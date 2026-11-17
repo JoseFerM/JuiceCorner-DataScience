@@ -1,16 +1,15 @@
-# 🍹 Juice Corner BD — Proyecto Integrador I
+# Juice Corner BD — Proyecto Integrador I
 ### Sistema Analítico Integral: OLTP Transaccional, Data Warehouse Dimensional y Visualizador Web
 
-[![SQL Server](https://img.shields.io/badge/SQL_Server-2014_|_2016_|_2019_|_2022_|_2025-CC292B?logo=microsoftsqlserver&logoColor=white)](https://www.microsoft.com/sql-server)
-[![Model](https://img.shields.io/badge/Architecture-Kimball_Star_Schema-blue.svg)](#-modelo-dimensional-data-warehouse-esquema-estrella-puro)
-[![ETL](https://img.shields.io/badge/ETL-.NET_SqlBulkCopy_(PowerShell)-178600.svg)](#-proceso-etl-y-carga-masiva-automatizada)
-[![Web Viewer](https://img.shields.io/badge/Visualization-Live_Demo_(GitHub_Pages)-0ea5e9.svg)](https://joseferm.github.io/JuiceCorner-DataScience/)
-[![GitHub Repo](https://img.shields.io/badge/GitHub-JoseFerM%2FJuiceCorner--DataScience-181717?logo=github)](https://github.com/JoseFerM/JuiceCorner-DataScience)
-[![Standards](https://img.shields.io/badge/Quality-ISO_8000_|_DMBOK_|_ISO_25012-f59e0b.svg)](#-7-normativas-de-gobernanza-y-calidad-aplicadas)
+[![SQL Server](https://img.shields.io/badge/SQL_Server-2014_|_2016_|_2019_|_2022_|_2025-CC292B?style=flat&logo=microsoftsqlserver&logoColor=white)](https://www.microsoft.com/sql-server)
+[![PowerShell](https://img.shields.io/badge/ETL-PowerShell_.NET_SqlBulkCopy-5391FE?style=flat&logo=powershell&logoColor=white)](#paso-2-carga-masiva-de-datos-transaccionales)
+[![GitHub Pages](https://img.shields.io/badge/Visualizador-GitHub_Pages_Demo-22c55e?style=flat&logo=githubpages&logoColor=white)](https://joseferm.github.io/JuiceCorner-DataScience/)
+[![GitHub Repo](https://img.shields.io/badge/Repositorio-JoseFerM%2FJuiceCorner--DataScience-181717?style=flat&logo=github&logoColor=white)](https://github.com/JoseFerM/JuiceCorner-DataScience)
+[![Calidad](https://img.shields.io/badge/Calidad-ISO_8000_|_DMBOK_|_ISO_25012-f59e0b?style=flat&logo=checkmarx&logoColor=white)](#7-normativas-de-gobernanza-y-calidad-aplicadas)
 
 ---
 
-## 📌 1. Visión General del Proyecto
+## 1. Visión General del Proyecto
 
 **Juice Corner BD** es un proyecto integral de ingeniería de datos desarrollado para el **Proyecto Integrador I (4to Semestre - Licenciatura en Ciencia de Datos)**. Centraliza y procesa la operativa completa de una cadena de restaurantes y servicio de delivery multicanal (pedidos en salón `dine_in`, para llevar `takeout` y entrega a domicilio `delivery`).
 
@@ -19,11 +18,11 @@ El proyecto abarca el ciclo de vida completo de los datos:
 2. **Capa de Extracción, Transformación y Carga (ETL):** Motor automatizado en PowerShell sobre .NET `SqlBulkCopy` con streaming y normalización de tipos.
 3. **Capa Analítica (Data Warehouse):** Esquema en Estrella puro (*Kimball Dimensional Modeling*) con grano atómico por ítem de pedido, 7 dimensiones conformadas y métricas aditivas prorrateadas sin doble descuento.
 4. **Capa de Gobernanza y Calidad:** Reglas alineadas con DMBOK, ISO/IEC 25012 e ISO 8000 con esquema administrativo dedicado (`audit.AUDITORIA_CUADRE_PEDIDOS`).
-5. **Capa de Visualización:** Aplicación web interactiva completa (`index.html` / `visualizador_sql.html`) desplegable en **GitHub Pages** para consultar el diccionario de datos, diagramas ERD, guías de conexión y un laboratorio SQL.
+5. **Capa de Visualización:** Aplicación web interactiva completa (`index.html`) desplegada en **GitHub Pages** para consultar el diccionario de datos, diagramas ERD, guías de conexión y laboratorio SQL.
 
 ---
 
-## 🏛️ 2. Arquitectura Global del Sistema
+## 2. Arquitectura Global del Sistema
 
 ```mermaid
 flowchart TD
@@ -72,7 +71,7 @@ flowchart TD
 
 ---
 
-## 🗄️ 3. Estructura de las Bases de Datos
+## 3. Estructura de las Bases de Datos
 
 ### A. Base Transaccional (`JuiceCorner_OLTP`)
 Diseñada en T-SQL con restricciones de verificación (`CHECK`), claves primarias y foráneas con eliminación restringida (`ON DELETE NO ACTION / CASCADE`) para garantizar integridad transaccional.
@@ -100,16 +99,16 @@ Construido bajo los principios de **Ralph Kimball** y auditado contra el Decálo
 
 ---
 
-## 🌐 4. Visualizador Web Interactivo y Studio ERD
+## 4. Visualizador Web Interactivo y Studio ERD
 
-El proyecto incluye una aplicación web de consulta integral empaquetada en [`index.html`](file:///C:/Users/Agents/Documents/3.1proyecto/index.html) (también disponible como [`visualizador_sql.html`](file:///C:/Users/Agents/Documents/3.1proyecto/visualizador_sql.html)):
+El proyecto incluye una aplicación web de consulta integral empaquetada en [`index.html`](index.html):
 
-```
-┌────────────────────────────────────────────────────────────────────────┐
-│  JUICE CORNER BD — Studio Interactivo de Arquitectura y Datos          │
-├────────────────────────────────────────────────────────────────────────┤
-│  [🚀 Cómo Ejecutar]  [📊 Diagramas ERD]  [📖 Diccionario]  [⚡ Playground] │
-└────────────────────────────────────────────────────────────────────────┘
+```text
++------------------------------------------------------------------------+
+|  JUICE CORNER BD — Studio Interactivo de Arquitectura y Datos          |
++------------------------------------------------------------------------+
+|  [Cómo Ejecutar]   [Diagramas ERD]   [Diccionario]   [Playground]      |
++------------------------------------------------------------------------+
 ```
 
 ### Funcionalidades del Visualizador:
@@ -122,11 +121,11 @@ El proyecto incluye una aplicación web de consulta integral empaquetada en [`in
 > [!TIP]
 > **Visualizador Web en Línea (GitHub Pages):**
 > La aplicación web interactiva se encuentra desplegada y disponible públicamente en:
-> 👉 **[https://joseferm.github.io/JuiceCorner-DataScience/](https://joseferm.github.io/JuiceCorner-DataScience/)**
+> **[https://joseferm.github.io/JuiceCorner-DataScience/](https://joseferm.github.io/JuiceCorner-DataScience/)**
 
 ---
 
-## 🚀 5. Guía de Ejecución Rápida (Local)
+## 5. Guía de Ejecución Rápida (Local)
 
 ### Requisitos Previos
 - Windows 10/11 o Windows Server.
@@ -135,7 +134,7 @@ El proyecto incluye una aplicación web de consulta integral empaquetada en [`in
 - PowerShell 5.1 o PowerShell 7+.
 
 ### Paso 1: Inicialización con el Menú Interactivo
-Ejecuta con doble clic el archivo [`ejecutar_sql.bat`](file:///C:/Users/Agents/Documents/3.1proyecto/ejecutar_sql.bat) o mediante consola:
+Ejecuta con doble clic el archivo [`ejecutar_sql.bat`](ejecutar_sql.bat) o mediante consola:
 ```cmd
 .\ejecutar_sql.bat
 ```
@@ -158,34 +157,34 @@ powershell -ExecutionPolicy Bypass -File .\Cargar_Datos_OLTP.ps1
 
 ---
 
-## 📂 6. Estructura del Repositorio
+## 6. Estructura del Repositorio
 
 ```text
 JuiceCorner-DataScience/
 ├── .vscode/
-│   └── settings.json           # Perfil de conexión LocalDB para extensión mssql
-├── dataset/                    # Documentación del origen de datos
-│   └── README.md               # Guía del dataset y política de archivos
-├── Docs/                       # Documentación técnica, justificaciones y entregables
-│   ├── Decalogo_Data_Warehouse_Restaurante_Corregido.md  # Decálogo Dimensional V2.0 oficial
-│   ├── Informe_Cambios_Data_Warehouse.md                # Informe técnico de auditoría Kimball
-│   ├── informe_justificacion_oltp.md                    # Justificación técnica del modelo OLTP
-│   ├── Fase_1_Descuentos_y_Cupones_Juice_Corner.docx    # Documento de entrega - Fase 1
-│   └── Data_Warehouse_TPS_Restaurante_Corregido.docx    # Documento de entrega - Data Warehouse
-├── .gitignore                  # Exclusión de CSVs masivos (>100MB) y temporales
-├── Cargar_Datos_OLTP.ps1       # Pipeline ETL automatizado (.NET SqlBulkCopy streaming)
-├── download_kaggle_dataset.py  # Descarga oficial del dataset vía API kagglehub
-├── Ejecutar_Carga.bat          # Lanzador batch para la carga masiva ETL
-├── ejecutar_sql.bat            # Menú interactivo CLI para inicialización y pruebas
-├── index.html                  # Visualizador interactivo web (desplegado en GitHub Pages)
-├── JuiceCorner_DW.sql          # DDL del Data Warehouse dimensional (Modelo Estrella)
-├── JuiceCorner_OLTP.sql        # DDL de la base de datos transaccional (19 tablas 3FN)
-└── README.md                   # Portal de documentación centralizada del proyecto
+│   └── settings.json                                 # Perfil de conexión LocalDB para extensión mssql
+├── dataset/                                          # Documentación del origen de datos
+│   └── README.md                                     # Guía del dataset y política de archivos
+├── Docs/                                             # Documentación técnica, justificaciones y entregables
+│   ├── Decalogo_Data_Warehouse_Restaurante_Corregido.md # Decálogo Dimensional V2.0 oficial
+│   ├── Informe_Cambios_Data_Warehouse.md               # Informe técnico de auditoría Kimball
+│   ├── informe_justificacion_oltp.md                   # Justificación técnica del modelo OLTP
+│   ├── Fase_1_Descuentos_y_Cupones_Juice_Corner.docx   # Documento de entrega - Fase 1
+│   └── Data_Warehouse_TPS_Restaurante_Corregido.docx   # Documento de entrega - Data Warehouse
+├── .gitignore                                        # Exclusión de CSVs masivos (>100MB) y temporales
+├── Cargar_Datos_OLTP.ps1                             # Pipeline ETL automatizado (.NET SqlBulkCopy streaming)
+├── download_kaggle_dataset.py                        # Descarga oficial del dataset vía API kagglehub
+├── Ejecutar_Carga.bat                                # Lanzador batch para la carga masiva ETL
+├── ejecutar_sql.bat                                  # Menú interactivo CLI para inicialización y pruebas
+├── index.html                                        # Visualizador interactivo web (desplegado en GitHub Pages)
+├── JuiceCorner_DW.sql                                # DDL del Data Warehouse dimensional (Modelo Estrella)
+├── JuiceCorner_OLTP.sql                              # DDL de la base de datos transaccional (19 tablas 3FN)
+└── README.md                                         # Portal de documentación centralizada del proyecto
 ```
 
 ---
 
-## 📑 7. Normativas de Gobernanza y Calidad Aplicadas
+## 7. Normativas de Gobernanza y Calidad Aplicadas
 
 El diseño y transformación de datos siguen los tres pilares de gobernanza exigidos por el programa:
 
@@ -195,7 +194,7 @@ El diseño y transformación de datos siguen los tres pilares de gobernanza exig
 
 ---
 
-## 👥 8. Equipo y Créditos
+## 8. Equipo y Créditos
 
 - **Proyecto:** Proyecto Integrador I — 4to Semestre
 - **Institución:** Licenciatura en Ciencia de Datos / Ingeniería de Datos
