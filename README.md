@@ -5,13 +5,13 @@
 [![PowerShell](https://img.shields.io/badge/ETL-PowerShell_.NET_SqlBulkCopy-5391FE?style=flat&logo=powershell&logoColor=white)](#paso-2-carga-masiva-de-datos-transaccionales)
 [![GitHub Pages](https://img.shields.io/badge/Visualizador-GitHub_Pages_Demo-22c55e?style=flat&logo=githubpages&logoColor=white)](https://joseferm.github.io/JuiceCorner-DataScience/)
 [![GitHub Repo](https://img.shields.io/badge/Repositorio-JoseFerM%2FJuiceCorner--DataScience-181717?style=flat&logo=github&logoColor=white)](https://github.com/JoseFerM/JuiceCorner-DataScience)
-[![Calidad](https://img.shields.io/badge/Calidad-ISO_8000_|_DMBOK_|_ISO_25012-f59e0b?style=flat&logo=checkmarx&logoColor=white)](#7-normativas-de-gobernanza-y-calidad-aplicadas)
+[![Calidad](https://img.shields.io/badge/Calidad-ISO_8000_|_DMBOK_|_ISO_25012-f59e0b?style=flat&logo=checkmarx&logoColor=white)](#9-normativas-de-gobernanza-y-calidad-aplicadas)
 
 ---
 
 ## 1. Visión General del Proyecto
 
-**Juice Corner BD** es un proyecto integral de ingeniería de datos desarrollado para el **Proyecto Integrador I (4to Semestre - Licenciatura en Ciencia de Datos)**. Centraliza y procesa la operativa completa de una cadena de restaurantes y servicio de delivery multicanal (pedidos en salón `dine_in`, para llevar `takeout` y entrega a domicilio `delivery`).
+**Juice Corner BD** es un proyecto integral de ingeniería de datos desarrollado para el **Proyecto Integrador I (4to Semestre - Licenciatura en Ciencia de Datos)**. Centraliza y procesa la operativa completa de una cadena de restaurantes y servicio de delivery multicanal (pedidos en salón `dine_in` y entrega a domicilio `delivery`).
 
 El proyecto abarca el ciclo de vida completo de los datos:
 1. **Capa Transaccional (OLTP / TPS):** Modelo relacional normalizado en 3FN con 19 tablas optimizadas para alta concurrencia, integridad referencial y auditoría histórica.
@@ -22,7 +22,73 @@ El proyecto abarca el ciclo de vida completo de los datos:
 
 ---
 
-## 2. Arquitectura Global del Sistema
+## 2. Estado de Avance del Proyecto (Fases 1 a 3)
+
+El desarrollo del proyecto se estructura en fases secuenciales que van desde la captura operacional hasta la analítica avanzada. Actualmente, el proyecto concentra sus entregables implementados hasta la **Fase 3**:
+
+### Fase 1: Identificación del Problema, Gobernanza y Modelo Relacional
+- **Diagnóstico del Problema de Negocio:** Se identificó la falta de control en la rentabilidad neta provocada por la aplicación desordenada de cupones y descuentos comerciales, ausencia de trazabilidad operativa entre salón y delivery, y necesidad de conciliación contable entre pasarelas de pago y facturación devengada.
+- **Modelo Relacional Transaccional (3FN):** Diseño e implementación de 19 tablas en Microsoft SQL Server (`JuiceCorner_OLTP.sql`) que garantizan integridad referencial estricta, restricciones `CHECK` de dominio para estados y canales, y soporte histórico.
+- **Marco de Gobernanza de Datos:** Adopción de normas internacionales:
+  - **ISO 8000:** Gestión de datos maestros e identificadores naturales (`nk`).
+  - **ISO/IEC 25012:** Control de exactitud, completitud y consistencia matemática de importes.
+  - **DMBOK:** Separación formal entre entornos operacionales (3FN) y analíticos (Dimensional).
+
+### Fase 2: Arquitectura del Data Warehouse y Pipeline ETL
+- **Modelado Dimensional Kimball:** Implementación del Data Warehouse en esquema estrella puro (`JuiceCorner_DW.sql`) con:
+  - **Grano Atómico:** Tabla de hechos `FACT_VENTAS` a nivel de línea de pedido individual (`order_items.id`).
+  - **Dimensiones Conformadas:** Tiempo, Cliente, Producto (con categoría desnormalizada), Sucursal, Zona de Entrega, Repartidor y Método de Pago.
+  - **Manejo Seguro de Nulos:** Claves artificiales comodín `sk = -1` (`No aplica / Desconocido`) para evitar violaciones de clave foránea en pedidos presenciales o clientes anónimos.
+  - **Auditoría Segregada:** Creación del esquema administrativo `audit.AUDITORIA_CUADRE_PEDIDOS` para no romper la topología estrella de cara a herramientas de BI.
+- **Pipeline ETL Masivo:** Script de carga automatizada en PowerShell (`Cargar_Datos_OLTP.ps1`) y ejecutable batch (`Ejecutar_Carga.bat`) basado en .NET `SqlBulkCopy` con procesamiento por lotes en streaming.
+- **Visualizador Web Interactivo:** Aplicación completa de consulta en `index.html` con diagramas interactivos, diccionario de tablas y playground SQL, publicada en GitHub Pages.
+
+### Fase 3: Análisis Estadístico y Exploratorio de Datos (EDA)
+- **Análisis Descriptivo de Volúmenes y Canales:**
+  - Caracterización del modelo bipolar de atención: **55,03 %** Delivery (550.264 pedidos) vs. **44,97 %** Salón (449.736 pedidos).
+  - Distribución de frecuencias, medidas de tendencia central (media, mediana) y dispersión (desviación estándar, rangos intercuartílicos P25/P75/P95) del valor bruto y neto de los tickets.
+- **Evaluación Estadística de Promociones y Descuentos:**
+  - Medición del impacto de cupones de cabecera (`orders.coupon_discount`) vs. descuentos a nivel de producto (`order_items.discount`).
+  - Detección y corrección de la anomalía de doble descuento en las fórmulas analíticas originales.
+  - Análisis de variabilidad de ticket medio en compras con cupón activo frente a compras a precio regular.
+- **Métricas de Eficiencia Logística:**
+  - Tiempos de ciclo logístico: distribución temporal desde la asignación del pedido hasta la entrega efectiva por zona geográfica (`delivery_zones`) y repartidor (`delivery_personnel`).
+  - Identificación de valores atípicos (*outliers*) en demoras de entrega y correlación con calificaciones de clientes (`reviews.rating`).
+
+---
+
+## 3. Plan de Expansión Estratégica (Marketing y Financiera)
+
+Con la base de datos transaccional, el Data Warehouse y el análisis estadístico base consolidados, el plan de trabajo continuará en las siguientes áreas de especialización analítica:
+
+### A. Dimensión de Marketing (Customer Analytics y Optimización Comercial)
+1. **Segmentación de Clientes mediante Modelo RFM:**
+   - Construcción de métricas de **Recencia (R)**, **Frecuencia (F)** y **Valor Monetario (M)** a partir del histórico de pedidos para agrupar a los clientes en segmentos operativos (Clientes Champions, Leales, Prometedores, En Riesgo e Inactivos).
+   - Cruce de la segmentación con la acumulación y canje del programa de fidelización (`loyalty_transactions`).
+2. **Efectividad y Elasticidad de Cupones y Promociones:**
+   - Cálculo de la tasa de redención efectiva por campaña (`coupon_redemptions`), identificando el retorno de inversión comercial (ROI) y el Costo de Adquisición de Clientes (CAC) por canal.
+   - Medición de la elasticidad precio de la demanda para determinar si los descuentos generan volumen incremental genuino o canibalizan el margen del negocio.
+3. **Análisis de Canasta de Mercado (Market Basket Analysis):**
+   - Minería de reglas de asociación (algoritmos Apriori y FP-Growth) sobre el detalle de productos (`order_items`) para descubrir combinaciones frecuentes y sugerir combos comerciales personalizados (cross-selling y up-selling).
+4. **Modelado Predictivo de Churn (Abandono de Clientes):**
+   - Algoritmos de clasificación basados en frecuencia de compra decreciente y satisfacción en reseñas (`reviews`) para activar campañas preventivas automatizadas.
+
+### B. Dimensión Financiera (Unit Economics y Rentabilidad Operativa)
+1. **Unit Economics Granular por Pedido y Canal:**
+   - Desglose contable por orden:
+     $$\text{Margen de Contribución} = \text{Ingreso Neto} - \text{Costo de Insumos (COGS)} - \text{Costo Logístico de Envío} - \text{Comisiones de Pasarela}$$
+   - Comparación del margen porcentual entre pedidos en salón (sin repartidor ni zona) y pedidos delivery (con costo de envío y personal asignado).
+2. **Rentabilidad Neta por Producto y Categoría:**
+   - Integración de los costos unitarios de ingredientes (`ingredients`, `product_ingredients`) y órdenes de compra a proveedores (`purchase_orders`, `suppliers`) para determinar el costo real de preparación y margen bruto por menú.
+   - Identificación de productos estrella (alto margen y alta rotación) frente a productos deficitarios.
+3. **Punto de Equilibrio (Break-Even) por Sucursal:**
+   - Modelado de costos fijos de sucursal (`branches`) y costos variables asociados al volumen de ventas para determinar el umbral mínimo de facturación mensual por punto físico.
+4. **Conciliación Automatizada y Prevención de Fugas:**
+   - Control automatizado de cuadre financiero mediante `audit.AUDITORIA_CUADRE_PEDIDOS`, contrastando el monto total registrado contra la sumatoria de líneas netas y verificando el estado de pagos exitosos (`payments.status = 'completed'`) frente a cancelaciones y reembolsos (`refunds`).
+
+---
+
+## 4. Arquitectura Global del Sistema
 
 ```mermaid
 flowchart TD
@@ -71,7 +137,7 @@ flowchart TD
 
 ---
 
-## 3. Estructura de las Bases de Datos
+## 5. Estructura de las Bases de Datos
 
 ### A. Base Transaccional (`JuiceCorner_OLTP`)
 Diseñada en T-SQL con restricciones de verificación (`CHECK`), claves primarias y foráneas con eliminación restringida (`ON DELETE NO ACTION / CASCADE`) para garantizar integridad transaccional.
@@ -99,7 +165,7 @@ Construido bajo los principios de **Ralph Kimball** y auditado contra el Decálo
 
 ---
 
-## 4. Visualizador Web Interactivo y Studio ERD
+## 6. Visualizador Web Interactivo y Studio ERD
 
 El proyecto incluye una aplicación web de consulta integral empaquetada en [`index.html`](index.html):
 
@@ -125,7 +191,7 @@ El proyecto incluye una aplicación web de consulta integral empaquetada en [`in
 
 ---
 
-## 5. Guía de Ejecución Rápida (Local)
+## 7. Guía de Ejecución Rápida (Local)
 
 ### Requisitos Previos
 - Windows 10/11 o Windows Server.
@@ -157,7 +223,7 @@ powershell -ExecutionPolicy Bypass -File .\Cargar_Datos_OLTP.ps1
 
 ---
 
-## 6. Estructura del Repositorio
+## 8. Estructura del Repositorio
 
 ```text
 JuiceCorner-DataScience/
@@ -184,7 +250,7 @@ JuiceCorner-DataScience/
 
 ---
 
-## 7. Normativas de Gobernanza y Calidad Aplicadas
+## 9. Normativas de Gobernanza y Calidad Aplicadas
 
 El diseño y transformación de datos siguen los tres pilares de gobernanza exigidos por el programa:
 
@@ -194,7 +260,7 @@ El diseño y transformación de datos siguen los tres pilares de gobernanza exig
 
 ---
 
-## 8. Equipo y Créditos
+## 10. Equipo y Créditos
 
 - **Proyecto:** Proyecto Integrador I — 4to Semestre
 - **Institución:** Licenciatura en Ciencia de Datos / Ingeniería de Datos
