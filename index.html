@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Juice Corner BD — Visualizador y Ejecutor SQL</title>
+  <title>Juice Corner BD — Visualizador y Estudio SQL</title>
   <!-- Tailwind CSS -->
   <script src="https://cdn.tailwindcss.com"></script>
   <!-- Chart.js -->
@@ -42,14 +42,14 @@
   </script>
   <style>
     .glass-card {
-      background: rgba(255, 255, 255, 0.85);
+      background: rgba(255, 255, 255, 0.88);
       backdrop-filter: blur(12px);
-      border: 1px solid rgba(229, 231, 235, 0.8);
+      border: 1px solid rgba(229, 231, 235, 0.85);
     }
     .dark .glass-card {
-      background: rgba(17, 24, 39, 0.85);
+      background: rgba(17, 24, 39, 0.88);
       backdrop-filter: blur(12px);
-      border: 1px solid rgba(55, 65, 81, 0.8);
+      border: 1px solid rgba(55, 65, 81, 0.85);
     }
     .custom-scroll::-webkit-scrollbar {
       width: 6px;
@@ -83,196 +83,343 @@
 </head>
 <body class="bg-slate-50 dark:bg-slate-950 text-slate-800 dark:text-slate-100 min-h-screen font-sans transition-colors duration-200">
 
-  <!-- Top Bar -->
-  <header class="sticky top-0 z-50 bg-white/90 dark:bg-slate-900/90 backdrop-blur border-b border-slate-200 dark:border-slate-800">
+  <!-- Top Navigation Header -->
+  <header class="sticky top-0 z-50 bg-white/95 dark:bg-slate-900/95 backdrop-blur border-b border-slate-200 dark:border-slate-800 shadow-sm">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
       <div class="flex items-center space-x-3">
-        <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-emerald-500 to-teal-400 flex items-center justify-center text-white font-black text-xl shadow-md shadow-emerald-500/20">
+        <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-emerald-500 via-teal-500 to-blue-600 flex items-center justify-center text-white font-black text-xl shadow-md shadow-emerald-500/20">
           JC
         </div>
         <div>
           <div class="flex items-center space-x-2">
             <h1 class="text-base sm:text-lg font-bold tracking-tight">Juice Corner BD</h1>
-            <span class="text-xs px-2 py-0.5 rounded-full bg-emerald-100 text-emerald-800 dark:bg-emerald-900/50 dark:text-emerald-300 font-semibold border border-emerald-300/40">SQL Studio</span>
+            <span class="text-xs px-2.5 py-0.5 rounded-full bg-emerald-100 text-emerald-800 dark:bg-emerald-900/60 dark:text-emerald-300 font-semibold border border-emerald-300/40">SQL & BI Studio</span>
           </div>
-          <p class="text-xs text-slate-500 dark:text-slate-400">Microsoft SQL Server 2025 · (localdb)\MSSQLLocalDB</p>
+          <p class="text-xs text-slate-500 dark:text-slate-400">Microsoft SQL Server 2025 · Instancia (localdb)\MSSQLLocalDB</p>
         </div>
       </div>
 
-      <!-- Action items -->
+      <!-- Header actions & indicators -->
       <div class="flex items-center space-x-2 sm:space-x-4">
-        <!-- Status Indicator -->
-        <div class="hidden sm:flex items-center space-x-2 px-3 py-1.5 rounded-lg bg-emerald-50 dark:bg-emerald-950/40 border border-emerald-200 dark:border-emerald-800">
+        <div class="hidden sm:flex items-center space-x-2 px-3 py-1.5 rounded-xl bg-emerald-50 dark:bg-emerald-950/40 border border-emerald-200 dark:border-emerald-800">
           <span class="relative flex h-2.5 w-2.5">
             <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
             <span class="relative inline-flex rounded-full h-2.5 w-2.5 bg-emerald-500"></span>
           </span>
-          <span class="text-xs font-medium text-emerald-700 dark:text-emerald-300">LocalDB Conectado</span>
+          <span class="text-xs font-semibold text-emerald-700 dark:text-emerald-300">Motor LocalDB Listo (28 Tablas)</span>
         </div>
 
         <!-- Theme Toggle -->
-        <button id="themeToggle" class="p-2 rounded-lg bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-slate-700 transition-colors" title="Cambiar tema">
+        <button id="themeToggle" class="p-2 rounded-xl bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-slate-700 transition" title="Cambiar tema">
           <svg id="themeIconDark" class="w-5 h-5 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z" /></svg>
           <svg id="themeIconLight" class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" /></svg>
         </button>
       </div>
     </div>
 
-    <!-- Navigation Tabs -->
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 border-t border-slate-200/80 dark:border-slate-800 flex space-x-1 sm:space-x-3 overflow-x-auto custom-scroll">
-      <button onclick="switchTab('guias')" id="tabBtn-guias" class="tab-btn px-4 py-2.5 text-sm font-semibold border-b-2 border-emerald-600 text-emerald-600 dark:border-emerald-400 dark:text-emerald-400 whitespace-nowrap transition-colors">
-        🚀 Cómo Ejecutar y Visualizar
+    <!-- Navigation Tabs with badges -->
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 border-t border-slate-200/80 dark:border-slate-800 flex space-x-1 sm:space-x-2 overflow-x-auto custom-scroll">
+      <button onclick="switchTab('presentacion')" id="tabBtn-presentacion" class="tab-btn px-4 py-2.5 text-xs sm:text-sm font-bold border-b-2 border-emerald-600 text-emerald-600 dark:border-emerald-400 dark:text-emerald-400 whitespace-nowrap transition-colors flex items-center space-x-1.5">
+        <span>🎓 Modo Presentación / ¿Qué es esto?</span>
       </button>
-      <button onclick="switchTab('diagramas')" id="tabBtn-diagramas" class="tab-btn px-4 py-2.5 text-sm font-semibold border-b-2 border-transparent text-slate-500 hover:text-slate-800 dark:hover:text-slate-200 whitespace-nowrap transition-colors">
-        📊 Diagramas ERD y Estrella
+      <button onclick="switchTab('guias')" id="tabBtn-guias" class="tab-btn px-4 py-2.5 text-xs sm:text-sm font-semibold border-b-2 border-transparent text-slate-500 hover:text-slate-800 dark:hover:text-slate-200 whitespace-nowrap transition-colors flex items-center space-x-1.5">
+        <span>🚀 Cómo Ejecutar y Visualizar</span>
       </button>
-      <button onclick="switchTab('diccionario')" id="tabBtn-diccionario" class="tab-btn px-4 py-2.5 text-sm font-semibold border-b-2 border-transparent text-slate-500 hover:text-slate-800 dark:hover:text-slate-200 whitespace-nowrap transition-colors">
-        📖 Diccionario de Tablas (OLTP & DW)
+      <button onclick="switchTab('diagramas')" id="tabBtn-diagramas" class="tab-btn px-4 py-2.5 text-xs sm:text-sm font-semibold border-b-2 border-transparent text-slate-500 hover:text-slate-800 dark:hover:text-slate-200 whitespace-nowrap transition-colors flex items-center space-x-1.5">
+        <span>📊 Diagramas ERD y Estrella</span>
       </button>
-      <button onclick="switchTab('playground')" id="tabBtn-playground" class="tab-btn px-4 py-2.5 text-sm font-semibold border-b-2 border-transparent text-slate-500 hover:text-slate-800 dark:hover:text-slate-200 whitespace-nowrap transition-colors">
-        ⚡ Laboratorio de Consultas SQL
+      <button onclick="switchTab('diccionario')" id="tabBtn-diccionario" class="tab-btn px-4 py-2.5 text-xs sm:text-sm font-semibold border-b-2 border-transparent text-slate-500 hover:text-slate-800 dark:hover:text-slate-200 whitespace-nowrap transition-colors flex items-center space-x-1.5">
+        <span>📖 Diccionario de Tablas (28)</span>
       </button>
-      <button onclick="switchTab('conexiones')" id="tabBtn-conexiones" class="tab-btn px-4 py-2.5 text-sm font-semibold border-b-2 border-transparent text-slate-500 hover:text-slate-800 dark:hover:text-slate-200 whitespace-nowrap transition-colors">
-        🔌 Cadenas de Conexión
+      <button onclick="switchTab('playground')" id="tabBtn-playground" class="tab-btn px-4 py-2.5 text-xs sm:text-sm font-semibold border-b-2 border-transparent text-slate-500 hover:text-slate-800 dark:hover:text-slate-200 whitespace-nowrap transition-colors flex items-center space-x-1.5">
+        <span>⚡ Laboratorio y Gráficos SQL</span>
+      </button>
+      <button onclick="switchTab('conexiones')" id="tabBtn-conexiones" class="tab-btn px-4 py-2.5 text-xs sm:text-sm font-semibold border-b-2 border-transparent text-slate-500 hover:text-slate-800 dark:hover:text-slate-200 whitespace-nowrap transition-colors flex items-center space-x-1.5">
+        <span>🔌 Conexiones (Excel, Power BI, Python)</span>
       </button>
     </div>
   </header>
 
-  <!-- Main Content Container -->
+  <!-- Main Container -->
   <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
 
     <!-- ===================================================================================== -->
-    <!-- TAB 1: GUÍAS DE EJECUCIÓN Y VISUALIZACIÓN -->
+    <!-- TAB 1: MODO PRESENTACIÓN / EXPLICACIÓN DIDÁCTICA PARA PRINCIPIANTES -->
     <!-- ===================================================================================== -->
-    <section id="tab-guias" class="space-y-6">
-      <!-- Quick Status Banner -->
+    <section id="tab-presentacion" class="space-y-6">
+      
+      <!-- Welcome Hero Banner -->
+      <div class="p-6 sm:p-8 rounded-3xl bg-gradient-to-br from-emerald-600 via-teal-700 to-blue-800 text-white shadow-xl relative overflow-hidden">
+        <div class="max-w-3xl space-y-3 relative z-10">
+          <div class="inline-flex items-center space-x-2 px-3 py-1 rounded-full bg-white/20 backdrop-blur text-xs font-bold tracking-wide uppercase">
+            <span>Guía Didáctica para Presentaciones</span>
+          </div>
+          <h2 class="text-2xl sm:text-3xl font-black tracking-tight">¿Cómo explicar este proyecto a alguien que no sabe nada de bases de datos?</h2>
+          <p class="text-sm sm:text-base text-emerald-100 leading-relaxed">
+            Imagina que <strong>Juice Corner</strong> es una cadena real de restaurantes de jugos y comida saludable con ventas en mesas de salón y pedidos a domicilio (delivery). Esta pantalla te da las analogías exactas y el libreto paso a paso para explicar qué se hizo, por qué y cómo funciona.
+          </p>
+        </div>
+      </div>
+
+      <!-- 3 Core Metaphors Grid -->
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        
+        <!-- Tarjeta 1: Base Transaccional (OLTP) -->
+        <div class="glass-card rounded-2xl p-6 shadow-sm border border-slate-200 dark:border-slate-800 flex flex-col justify-between">
+          <div>
+            <div class="w-12 h-12 rounded-2xl bg-amber-100 dark:bg-amber-900/40 text-amber-600 dark:text-amber-400 flex items-center justify-center text-2xl mb-4 font-bold">
+              🛒
+            </div>
+            <span class="text-xs font-bold uppercase tracking-wider text-amber-600 dark:text-amber-400">Parte 1 · El Sistema Diario</span>
+            <h3 class="text-lg font-bold text-slate-900 dark:text-white mt-1">1. Base Transaccional (OLTP)</h3>
+            <p class="text-xs text-slate-500 font-mono mt-0.5">Archivo: JuiceCorner_OLTP.sql (19 Tablas)</p>
+            
+            <div class="mt-4 p-3.5 rounded-xl bg-amber-50 dark:bg-amber-950/30 border border-amber-200 dark:border-amber-900/50 text-xs text-slate-700 dark:text-slate-300 space-y-2">
+              <p><strong>Analogía:</strong> <em>"Es la caja registradora y la cocina del restaurante en tiempo real."</em></p>
+              <p>Cada vez que un cliente pide un jugo de mango en el salón o por delivery, el sistema debe registrar en microsegundos el pedido, descontar la fruta del inventario y cobrar con tarjeta o efectivo.</p>
+            </div>
+          </div>
+          <div class="mt-4 pt-3 border-t border-slate-200 dark:border-slate-800 text-xs text-slate-500">
+            <strong>Objetivo clave:</strong> Rapidez extrema y que nunca se pierda un cobro.
+          </div>
+        </div>
+
+        <!-- Tarjeta 2: Data Warehouse (DW) -->
+        <div class="glass-card rounded-2xl p-6 shadow-sm border border-slate-200 dark:border-slate-800 flex flex-col justify-between">
+          <div>
+            <div class="w-12 h-12 rounded-2xl bg-blue-100 dark:bg-blue-900/40 text-blue-600 dark:text-blue-400 flex items-center justify-center text-2xl mb-4 font-bold">
+              🧠
+            </div>
+            <span class="text-xs font-bold uppercase tracking-wider text-blue-600 dark:text-blue-400">Parte 2 · El Cerebro Gerencial</span>
+            <h3 class="text-lg font-bold text-slate-900 dark:text-white mt-1">2. Data Warehouse (DW)</h3>
+            <p class="text-xs text-slate-500 font-mono mt-0.5">Archivo: JuiceCorner_DW.sql (9 Tablas)</p>
+            
+            <div class="mt-4 p-3.5 rounded-xl bg-blue-50 dark:bg-blue-950/30 border border-blue-200 dark:border-blue-900/50 text-xs text-slate-700 dark:text-slate-300 space-y-2">
+              <p><strong>Analogía:</strong> <em>"Es la oficina del gerente general y los reportes ejecutivos."</em></p>
+              <p>Si el gerente le pidiera a la caja registradora calcular las ventas de los últimos 2 años por sucursal, la caja se trabaría y los clientes esperarían. Por eso se copia la información histórica a un almacén especial diseñado para responder preguntas estratégicas en segundos.</p>
+            </div>
+          </div>
+          <div class="mt-4 pt-3 border-t border-slate-200 dark:border-slate-800 text-xs text-slate-500">
+            <strong>Objetivo clave:</strong> Análisis sin interrumpir las ventas operativas.
+          </div>
+        </div>
+
+        <!-- Tarjeta 3: Esquema Estrella -->
+        <div class="glass-card rounded-2xl p-6 shadow-sm border border-slate-200 dark:border-slate-800 flex flex-col justify-between">
+          <div>
+            <div class="w-12 h-12 rounded-2xl bg-emerald-100 dark:bg-emerald-900/40 text-emerald-600 dark:text-emerald-400 flex items-center justify-center text-2xl mb-4 font-bold">
+              ⭐
+            </div>
+            <span class="text-xs font-bold uppercase tracking-wider text-emerald-600 dark:text-emerald-400">Parte 3 · El Diseño Inteligente</span>
+            <h3 class="text-lg font-bold text-slate-900 dark:text-white mt-1">3. Modelo en Estrella</h3>
+            <p class="text-xs text-slate-500 font-mono mt-0.5">Centro: FACT_VENTAS + 7 Dimensiones</p>
+            
+            <div class="mt-4 p-3.5 rounded-xl bg-emerald-50 dark:bg-emerald-950/30 border border-emerald-200 dark:border-emerald-900/50 text-xs text-slate-700 dark:text-slate-300 space-y-2">
+              <p><strong>Analogía:</strong> <em>"El Sol en el centro y los 7 planetas girando alrededor."</em></p>
+              <p>Al centro está la tabla de hechos con los números del negocio (dinero cobrado, descuentos, tiempos de entrega) y alrededor están los 7 contextos: <strong>Quién</strong> compró, <strong>Qué</strong> jugo llevó, <strong>Cuándo</strong> fue, <strong>En qué</strong> local, <strong>Quién</strong> lo entregó, <strong>A qué zona</strong> y <strong>Cómo</strong> pagó.</p>
+            </div>
+          </div>
+          <div class="mt-4 pt-3 border-t border-slate-200 dark:border-slate-800 text-xs text-slate-500">
+            <strong>Objetivo clave:</strong> Claridad total para conectar con Power BI o Excel.
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Detailed Screen-by-Screen Walkthrough (Script para tu presentación) -->
+      <div class="glass-card rounded-2xl p-6 sm:p-7 shadow-sm border border-slate-200 dark:border-slate-800">
+        <h3 class="text-lg font-bold text-slate-900 dark:text-white mb-2">Libreto de Presentación: ¿Qué hace cada pestaña de este visualizador?</h3>
+        <p class="text-xs sm:text-sm text-slate-500 mb-6">Usa este guión cuando expongas la aplicación frente a tus profesores o evaluadores:</p>
+
+        <div class="space-y-4">
+          
+          <div class="p-4 rounded-xl bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-800">
+            <div class="flex items-center space-x-2 font-bold text-sm text-emerald-600 dark:text-emerald-400">
+              <span class="px-2 py-0.5 rounded bg-emerald-100 text-emerald-800 dark:bg-emerald-900/60 dark:text-emerald-300 text-xs">Pestaña 1</span>
+              <span>🎓 Modo Presentación (Esta misma pantalla)</span>
+            </div>
+            <p class="text-xs text-slate-600 dark:text-slate-300 mt-1">
+              <strong>Qué mostrar:</strong> Explica los objetivos del proyecto y las analogías de negocio para asegurar que la audiencia entienda la diferencia entre el día a día (OLTP) y el análisis histórico (Data Warehouse).
+            </p>
+          </div>
+
+          <div class="p-4 rounded-xl bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-800">
+            <div class="flex items-center space-x-2 font-bold text-sm text-blue-600 dark:text-blue-400">
+              <span class="px-2 py-0.5 rounded bg-blue-100 text-blue-800 dark:bg-blue-900/60 dark:text-blue-300 text-xs">Pestaña 2</span>
+              <span>🚀 Cómo Ejecutar y Visualizar</span>
+            </div>
+            <p class="text-xs text-slate-600 dark:text-slate-300 mt-1">
+              <strong>Qué mostrar:</strong> Muestra cómo se hace tangible el código SQL. Explica que se puede ejecutar en 1 solo clic con el archivo <code class="font-mono text-emerald-600">ejecutar_sql.bat</code>, o desde Visual Studio Code usando extensiones visuales que ya están listas en la computadora.
+            </p>
+          </div>
+
+          <div class="p-4 rounded-xl bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-800">
+            <div class="flex items-center space-x-2 font-bold text-sm text-purple-600 dark:text-purple-400">
+              <span class="px-2 py-0.5 rounded bg-purple-100 text-purple-800 dark:bg-purple-900/60 dark:text-purple-300 text-xs">Pestaña 3</span>
+              <span>📊 Diagramas ERD y Estrella</span>
+            </div>
+            <p class="text-xs text-slate-600 dark:text-slate-300 mt-1">
+              <strong>Qué mostrar:</strong> Es la pantalla más visual. Puedes cambiar entre el mapa de las 19 tablas transaccionales (organizadas en ventas, clientes, menú y delivery) y el mapa del Data Warehouse con <code class="font-mono text-emerald-600">FACT_VENTAS</code> en el centro y las 7 dimensiones conectadas.
+            </p>
+          </div>
+
+          <div class="p-4 rounded-xl bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-800">
+            <div class="flex items-center space-x-2 font-bold text-sm text-indigo-600 dark:text-indigo-400">
+              <span class="px-2 py-0.5 rounded bg-indigo-100 text-indigo-800 dark:bg-indigo-900/60 dark:text-indigo-300 text-xs">Pestaña 4</span>
+              <span>📖 Diccionario de Tablas (28 tablas completas)</span>
+            </div>
+            <p class="text-xs text-slate-600 dark:text-slate-300 mt-1">
+              <strong>Qué mostrar:</strong> Es la enciclopedia técnica. Al seleccionar cualquier tabla de la lista, la pantalla desglosa todas sus columnas, sus tipos de datos, qué significa cada clave primaria o foránea y las reglas de negocio en español claro.
+            </p>
+          </div>
+
+          <div class="p-4 rounded-xl bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-800">
+            <div class="flex items-center space-x-2 font-bold text-sm text-teal-600 dark:text-teal-400">
+              <span class="px-2 py-0.5 rounded bg-teal-100 text-teal-800 dark:bg-teal-900/60 dark:text-teal-300 text-xs">Pestaña 5</span>
+              <span>⚡ Laboratorio y Gráficos SQL</span>
+            </div>
+            <p class="text-xs text-slate-600 dark:text-slate-300 mt-1">
+              <strong>Qué mostrar:</strong> Demuestra el valor de negocio. Al hacer clic en "Visualizar Datos", la pantalla corre la consulta analítica y dibuja gráficos interactivos de barras, torta o donas (ventas mensuales, productos más vendidos, medios de pago y cuadre contable auditado).
+            </p>
+          </div>
+
+          <div class="p-4 rounded-xl bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-800">
+            <div class="flex items-center space-x-2 font-bold text-sm text-amber-600 dark:text-amber-400">
+              <span class="px-2 py-0.5 rounded bg-amber-100 text-amber-800 dark:bg-amber-900/60 dark:text-amber-300 text-xs">Pestaña 6</span>
+              <span>🔌 Cadenas de Conexión</span>
+            </div>
+            <p class="text-xs text-slate-600 dark:text-slate-300 mt-1">
+              <strong>Qué mostrar:</strong> Demuestra cómo conectar herramientas ejecutivas como Microsoft Power BI o Excel a la base de datos de Juice Corner para crear dashboards interactivos con actualización automática.
+            </p>
+          </div>
+
+        </div>
+      </div>
+
+    </section>
+
+    <!-- ===================================================================================== -->
+    <!-- TAB 2: GUÍAS DE EJECUCIÓN Y VISUALIZACIÓN -->
+    <!-- ===================================================================================== -->
+    <section id="tab-guias" class="space-y-6 hidden">
+      <!-- Status Banner -->
       <div class="p-4 sm:p-5 rounded-2xl bg-gradient-to-r from-emerald-500/10 via-teal-500/10 to-blue-500/10 border border-emerald-500/20 dark:border-emerald-500/30 flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
         <div>
           <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-emerald-100 text-emerald-800 dark:bg-emerald-900/60 dark:text-emerald-300 mb-2">
-            Instancia Detectada en tu Sistema
+            Servidor Local Activo
           </span>
           <h2 class="text-lg font-bold text-slate-900 dark:text-white">Microsoft SQL Server 2025 Express (LocalDB)</h2>
-          <p class="text-sm text-slate-600 dark:text-slate-300 mt-0.5">
-            Las bases de datos <span class="font-mono font-semibold text-emerald-600 dark:text-emerald-400">JuiceCorner_OLTP</span> (19 tablas) y <span class="font-mono font-semibold text-blue-600 dark:text-blue-400">JuiceCorner_DW</span> (9 tablas) ya están creadas y configuradas en tu equipo.
+          <p class="text-xs sm:text-sm text-slate-600 dark:text-slate-300 mt-0.5">
+            Las bases de datos <span class="font-mono font-semibold text-emerald-600 dark:text-emerald-400">JuiceCorner_OLTP</span> (19 tablas) y <span class="font-mono font-semibold text-blue-600 dark:text-blue-400">JuiceCorner_DW</span> (9 tablas) residen en <code class="font-mono font-bold">(localdb)\MSSQLLocalDB</code>.
           </p>
         </div>
         <div class="flex items-center gap-2">
           <button onclick="copyToClipboard('sqlcmd -S \"(localdb)\\MSSQLLocalDB\" -Q \"SELECT name FROM sys.databases;\"', this)" class="px-3.5 py-2 rounded-xl bg-white dark:bg-slate-800 border border-slate-300 dark:border-slate-700 text-xs font-semibold shadow-sm hover:bg-slate-50 dark:hover:bg-slate-700 transition">
-            📋 Copiar test sqlcmd
+            📋 Probar conexión sqlcmd
           </button>
         </div>
       </div>
 
-      <!-- 4 Execution / Visualization Methods Cards -->
+      <!-- 4 Execution Methods Cards -->
       <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
         
-        <!-- Método 1: VS Code (Configurado automáticamente) -->
+        <!-- Método 1: VS Code -->
         <div class="glass-card rounded-2xl p-6 shadow-sm border border-slate-200 dark:border-slate-800 relative overflow-hidden">
-          <div class="absolute top-0 right-0 w-32 h-32 bg-blue-500/10 rounded-full blur-2xl pointer-events-none"></div>
           <div class="flex items-center space-x-3 mb-4">
             <div class="w-10 h-10 rounded-xl bg-blue-100 dark:bg-blue-900/50 text-blue-600 dark:text-blue-400 flex items-center justify-center font-bold">
               <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M23.15 2.587L18.21.21a1.494 1.494 0 0 0-1.705.29l-9.46 8.63-4.12-3.128a.999.999 0 0 0-1.276.057L.327 7.261A1 1 0 0 0 .32 8.7l3.2 2.825-3.2 2.825a1 1 0 0 0 .007 1.439l1.322 1.202a.999.999 0 0 0 1.276.057l4.12-3.128 9.46 8.63a1.49 1.49 0 0 0 1.704.29l4.942-2.377A1.5 1.5 0 0 0 24 19.085V3.977a1.5 1.5 0 0 0-.85-1.39z"/></svg>
             </div>
             <div>
-              <span class="text-xs font-bold uppercase tracking-wider text-blue-600 dark:text-blue-400">Recomendado · Listo</span>
-              <h3 class="text-base font-bold">1. Visualizar y Ejecutar en VS Code</h3>
+              <span class="text-xs font-bold uppercase tracking-wider text-blue-600 dark:text-blue-400">Recomendado · Instalado</span>
+              <h3 class="text-base font-bold">1. Visual Studio Code con Extensiones SQL</h3>
             </div>
           </div>
-          <p class="text-sm text-slate-600 dark:text-slate-300 mb-4">
-            Ya instalamos y preconfiguramos las extensiones oficiales <span class="font-semibold text-slate-900 dark:text-white">SQL Server (mssql)</span> y <span class="font-semibold text-slate-900 dark:text-white">Database Client</span> en tu Visual Studio Code.
+          <p class="text-xs sm:text-sm text-slate-600 dark:text-slate-300 mb-4">
+            Ya están instaladas las extensiones oficiales <span class="font-semibold text-slate-900 dark:text-white">SQL Server (mssql)</span> y <span class="font-semibold text-slate-900 dark:text-white">Database Client</span> con perfiles de conexión preconfigurados.
           </p>
           <div class="space-y-2.5 text-xs text-slate-600 dark:text-slate-300">
             <div class="flex items-start space-x-2">
               <span class="w-5 h-5 rounded-full bg-blue-100 dark:bg-blue-900/40 text-blue-700 dark:text-blue-300 flex items-center justify-center font-bold shrink-0">1</span>
-              <span>Abre el proyecto con <code class="px-1.5 py-0.5 rounded bg-slate-100 dark:bg-slate-800 text-blue-600 dark:text-blue-400 font-mono">code .</code></span>
+              <span>Abre tu terminal y escribe <code class="px-1.5 py-0.5 rounded bg-slate-100 dark:bg-slate-800 text-blue-600 dark:text-blue-400 font-mono">code .</code> para abrir el proyecto.</span>
             </div>
             <div class="flex items-start space-x-2">
               <span class="w-5 h-5 rounded-full bg-blue-100 dark:bg-blue-900/40 text-blue-700 dark:text-blue-300 flex items-center justify-center font-bold shrink-0">2</span>
-              <span>Haz clic en el ícono de <strong>SQL Server</strong> (barra lateral izquierda). Las conexiones a <strong>JuiceCorner_OLTP</strong> y <strong>JuiceCorner_DW</strong> ya están guardadas.</span>
+              <span>En la barra lateral izquierda, pulsa el ícono de <strong>SQL Server</strong>. Verás las conexiones guardadas para <strong>JuiceCorner_OLTP</strong> y <strong>JuiceCorner_DW</strong>.</span>
             </div>
             <div class="flex items-start space-x-2">
               <span class="w-5 h-5 rounded-full bg-blue-100 dark:bg-blue-900/40 text-blue-700 dark:text-blue-300 flex items-center justify-center font-bold shrink-0">3</span>
-              <span>Abre cualquier archivo <code class="font-mono">.sql</code> y pulsa <kbd class="px-1.5 py-0.5 bg-slate-200 dark:bg-slate-700 rounded font-mono font-bold">Ctrl + Shift + E</kbd> para ejecutar la consulta y ver los resultados tabulares interactivos en cuadrícula.</span>
+              <span>Abre <code class="font-mono">JuiceCorner_DW.sql</code> y presiona <kbd class="px-1.5 py-0.5 bg-slate-200 dark:bg-slate-700 rounded font-mono font-bold">Ctrl + Shift + E</kbd> para ejecutar consultas y ver los datos en cuadrícula interactiva.</span>
             </div>
             <div class="flex items-start space-x-2">
               <span class="w-5 h-5 rounded-full bg-blue-100 dark:bg-blue-900/40 text-blue-700 dark:text-blue-300 flex items-center justify-center font-bold shrink-0">4</span>
-              <span>En <strong>Database Client</strong>, haz clic derecho en cualquier tabla y selecciona <em>"Show Diagram"</em> para generar el ERD visual al instante.</span>
+              <span>En <strong>Database Client</strong>, clic derecho en cualquier tabla > <em>"Show Diagram"</em> para generar el esquema de relaciones.</span>
             </div>
-          </div>
-          <div class="mt-4 pt-3 border-t border-slate-200 dark:border-slate-800 flex items-center justify-between">
-            <span class="text-xs text-slate-500">Perfil: Integrated (Windows Auth)</span>
-            <span class="text-xs font-semibold text-emerald-600 dark:text-emerald-400">✓ Preconfigurado</span>
           </div>
         </div>
 
-        <!-- Método 2: Lanzador en 1-Clic (.bat y .ps1) -->
+        <!-- Método 2: Lanzador en 1-Clic (.bat) -->
         <div class="glass-card rounded-2xl p-6 shadow-sm border border-slate-200 dark:border-slate-800 relative overflow-hidden">
-          <div class="absolute top-0 right-0 w-32 h-32 bg-emerald-500/10 rounded-full blur-2xl pointer-events-none"></div>
           <div class="flex items-center space-x-3 mb-4">
             <div class="w-10 h-10 rounded-xl bg-emerald-100 dark:bg-emerald-900/50 text-emerald-600 dark:text-emerald-400 flex items-center justify-center font-bold">
               <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z" /><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
             </div>
             <div>
-              <span class="text-xs font-bold uppercase tracking-wider text-emerald-600 dark:text-emerald-400">Directo · Sin Consola</span>
-              <h3 class="text-base font-bold">2. Ejecución con 1 Clic (Script Local)</h3>
+              <span class="text-xs font-bold uppercase tracking-wider text-emerald-600 dark:text-emerald-400">Directo · Sin Escribir Código</span>
+              <h3 class="text-base font-bold">2. Doble Clic en ejecutar_sql.bat</h3>
             </div>
           </div>
-          <p class="text-sm text-slate-600 dark:text-slate-300 mb-4">
-            Creamos los archivos ejecutables <code class="font-mono text-xs px-1.5 py-0.5 rounded bg-slate-100 dark:bg-slate-800">ejecutar_sql.bat</code> y <code class="font-mono text-xs px-1.5 py-0.5 rounded bg-slate-100 dark:bg-slate-800">ejecutar_sql.ps1</code> en la raíz de tu proyecto.
+          <p class="text-xs sm:text-sm text-slate-600 dark:text-slate-300 mb-4">
+            Creamos un script de automatización completo que no requiere abrir terminales ni recordar comandos técnicos:
           </p>
           <div class="space-y-2.5 text-xs text-slate-600 dark:text-slate-300">
             <div class="flex items-start space-x-2">
               <span class="w-5 h-5 rounded-full bg-emerald-100 dark:bg-emerald-900/40 text-emerald-700 dark:text-emerald-300 flex items-center justify-center font-bold shrink-0">1</span>
-              <span>Abre tu carpeta del proyecto en el Explorador de Windows y haz <strong>doble clic en <code class="font-mono">ejecutar_sql.bat</code></strong>.</span>
+              <span>Ve a la carpeta del proyecto en Windows y haz doble clic en <strong><code class="font-mono font-bold">ejecutar_sql.bat</code></strong>.</span>
             </div>
             <div class="flex items-start space-x-2">
               <span class="w-5 h-5 rounded-full bg-emerald-100 dark:bg-emerald-900/40 text-emerald-700 dark:text-emerald-300 flex items-center justify-center font-bold shrink-0">2</span>
-              <span>Verás un menú interactivo para ejecutar OLTP, DW, ambos scripts en orden, o verificar tablas y filas.</span>
+              <span>Elige la opción [4] para crear/reiniciar ambas bases en orden seguro de dependencias.</span>
             </div>
             <div class="flex items-start space-x-2">
               <span class="w-5 h-5 rounded-full bg-emerald-100 dark:bg-emerald-900/40 text-emerald-700 dark:text-emerald-300 flex items-center justify-center font-bold shrink-0">3</span>
-              <span>Inicia automáticamente el motor LocalDB si estaba apagado y aplica los scripts con verificación de integridad.</span>
+              <span>Elige la opción [5] para verificar en pantalla cuántas tablas tiene cada base de datos.</span>
             </div>
-          </div>
-          <div class="mt-4 pt-3 border-t border-slate-200 dark:border-slate-800 flex items-center justify-between">
-            <span class="text-xs text-slate-500">Ubicación: .\ejecutar_sql.bat</span>
-            <span class="text-xs font-semibold text-emerald-600 dark:text-emerald-400">✓ Creado</span>
           </div>
         </div>
 
         <!-- Método 3: Azure Data Studio & SSMS -->
-        <div class="glass-card rounded-2xl p-6 shadow-sm border border-slate-200 dark:border-slate-800 relative overflow-hidden">
+        <div class="glass-card rounded-2xl p-6 shadow-sm border border-slate-200 dark:border-slate-800">
           <div class="flex items-center space-x-3 mb-4">
             <div class="w-10 h-10 rounded-xl bg-purple-100 dark:bg-purple-900/50 text-purple-600 dark:text-purple-400 flex items-center justify-center font-bold">
               <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 7v10c0 2 1.5 3 3.5 3h9c2 0 3.5-1 3.5-3V7c0-2-1.5-3-3.5-3h-9C5.5 4 4 5 4 7zm0 0c0 2 1.5 3 3.5 3h9c2 0 3.5-1 3.5-3m-16 5c0 2 1.5 3 3.5 3h9c2 0 3.5-1 3.5-3" /></svg>
             </div>
             <div>
-              <span class="text-xs font-bold uppercase tracking-wider text-purple-600 dark:text-purple-400">Herramientas Oficiales GUI</span>
+              <span class="text-xs font-bold uppercase tracking-wider text-purple-600 dark:text-purple-400">Programas de Escritorio</span>
               <h3 class="text-base font-bold">3. Azure Data Studio & SSMS</h3>
             </div>
           </div>
-          <p class="text-sm text-slate-600 dark:text-slate-300 mb-3">
-            Para una experiencia gráfica empresarial con diagramadores nativos y exportación de gráficos:
+          <p class="text-xs sm:text-sm text-slate-600 dark:text-slate-300 mb-3">
+            Si prefieres un software dedicado de Microsoft:
           </p>
           <ul class="text-xs text-slate-600 dark:text-slate-300 space-y-2 list-disc list-inside">
-            <li><strong>Azure Data Studio</strong> (Gratis de Microsoft): Descárgalo e ingresa como servidor <code class="px-1 py-0.5 rounded bg-slate-100 dark:bg-slate-800 font-mono">(localdb)\MSSQLLocalDB</code> con <em>Windows Authentication</em>. Ofrece gráficos en tiempo real y cuadernos Jupyter SQL.</li>
-            <li><strong>SQL Server Management Studio (SSMS)</strong>: En el Explorador de Objetos, despliega <code class="font-mono">Databases > JuiceCorner_DW > Database Diagrams</code> y haz clic derecho en <em>"New Database Diagram"</em> para que SQL Server trace automáticamente las líneas y relaciones de todas las tablas.</li>
+            <li><strong>Azure Data Studio</strong>: Abre la app y conecta al servidor <code class="px-1 py-0.5 rounded bg-slate-100 dark:bg-slate-800 font-mono">(localdb)\MSSQLLocalDB</code> con autenticación de Windows. Te permite crear gráficos con un solo clic.</li>
+            <li><strong>SQL Server Management Studio (SSMS)</strong>: Despliega <code class="font-mono">Databases > JuiceCorner_DW > Database Diagrams</code> y haz clic derecho en <em>"New Database Diagram"</em> para generar el esquema estrella nativo con zoom y arrastre.</li>
           </ul>
         </div>
 
-        <!-- Método 4: Comandos Directos sqlcmd -->
-        <div class="glass-card rounded-2xl p-6 shadow-sm border border-slate-200 dark:border-slate-800 relative overflow-hidden">
+        <!-- Método 4: Comandos sqlcmd por Consola -->
+        <div class="glass-card rounded-2xl p-6 shadow-sm border border-slate-200 dark:border-slate-800">
           <div class="flex items-center space-x-3 mb-4">
             <div class="w-10 h-10 rounded-xl bg-slate-200 dark:bg-slate-800 text-slate-700 dark:text-slate-300 flex items-center justify-center font-bold">
               <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 9l3 3-3 3m5 0h3M5 20h14a2 2 0 002-2V6a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" /></svg>
             </div>
             <div>
-              <span class="text-xs font-bold uppercase tracking-wider text-slate-500">Terminal & CLI</span>
-              <h3 class="text-base font-bold">4. Comandos Rápidos por Consola</h3>
+              <span class="text-xs font-bold uppercase tracking-wider text-slate-500">Terminal & PowerShell</span>
+              <h3 class="text-base font-bold">4. Comandos de Consola (sqlcmd)</h3>
             </div>
           </div>
-          <p class="text-sm text-slate-600 dark:text-slate-300 mb-3">
-            Si prefieres trabajar desde PowerShell o Símbolo del Sistema:
+          <p class="text-xs sm:text-sm text-slate-600 dark:text-slate-300 mb-3">
+            Para los amantes de la consola o entornos de integración continua:
           </p>
           <div class="space-y-2 text-xs font-mono">
             <div class="p-2.5 rounded-lg bg-slate-900 text-slate-200 flex items-center justify-between">
@@ -283,10 +430,6 @@
               <span class="truncate">sqlcmd -S "(localdb)\MSSQLLocalDB" -i JuiceCorner_DW.sql</span>
               <button onclick="copyToClipboard('sqlcmd -S \"(localdb)\\MSSQLLocalDB\" -i JuiceCorner_DW.sql', this)" class="text-xs text-emerald-400 hover:text-emerald-300 ml-2">Copiar</button>
             </div>
-            <div class="p-2.5 rounded-lg bg-slate-900 text-slate-200 flex items-center justify-between">
-              <span class="truncate">sqlcmd -S "(localdb)\MSSQLLocalDB" -d JuiceCorner_DW -Q "SELECT * FROM DIM_TIEMPO;"</span>
-              <button onclick="copyToClipboard('sqlcmd -S \"(localdb)\\MSSQLLocalDB\" -d JuiceCorner_DW -Q \"SELECT * FROM DIM_TIEMPO;\"', this)" class="text-xs text-emerald-400 hover:text-emerald-300 ml-2">Copiar</button>
-            </div>
           </div>
         </div>
 
@@ -294,7 +437,7 @@
     </section>
 
     <!-- ===================================================================================== -->
-    <!-- TAB 2: DIAGRAMAS ERD Y ESTRELLA INTERACTIVOS -->
+    <!-- TAB 3: DIAGRAMAS ERD Y ESTRELLA INTERACTIVOS -->
     <!-- ===================================================================================== -->
     <section id="tab-diagramas" class="space-y-6 hidden">
       <!-- Selector de Modelo -->
@@ -305,58 +448,63 @@
         </div>
         <div class="inline-flex p-1 rounded-xl bg-slate-200 dark:bg-slate-800">
           <button id="btnModelDW" onclick="renderModel('dw')" class="px-4 py-2 text-xs font-bold rounded-lg bg-white dark:bg-slate-900 shadow-sm text-blue-600 dark:text-blue-400 transition">
-            🌟 JuiceCorner_DW (Modelo Estrella)
+            🌟 JuiceCorner_DW (Modelo Estrella · 9 Tablas)
           </button>
           <button id="btnModelOLTP" onclick="renderModel('oltp')" class="px-4 py-2 text-xs font-bold rounded-lg text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white transition">
-            🛒 JuiceCorner_OLTP (Transaccional - 19 Tablas)
+            🛒 JuiceCorner_OLTP (Transaccional · 19 Tablas)
           </button>
         </div>
       </div>
 
       <!-- Canvas / Diagram Area -->
-      <div id="diagramContainer" class="glass-card rounded-2xl p-6 min-h-[560px] relative overflow-hidden flex flex-col justify-between">
-        <!-- Dynamic Diagram Header -->
-        <div id="diagramHeader" class="flex items-center justify-between border-b border-slate-200 dark:border-slate-800 pb-4 mb-6">
+      <div id="diagramContainer" class="glass-card rounded-2xl p-6 min-h-[580px] relative overflow-hidden flex flex-col justify-between">
+        <!-- Header -->
+        <div id="diagramHeader" class="flex flex-col sm:flex-row sm:items-center justify-between border-b border-slate-200 dark:border-slate-800 pb-4 mb-6 gap-2">
           <div>
-            <h3 id="diagramTitle" class="text-base font-bold text-slate-900 dark:text-white">Esquema Dimensional en Estrella Puro</h3>
-            <p id="diagramSubtitle" class="text-xs text-slate-500">1 Tabla de Hechos Central (FACT_VENTAS) + 7 Dimensiones Conformadas + 1 Tabla de Auditoría</p>
+            <h3 id="diagramTitle" class="text-base font-bold text-slate-900 dark:text-white">Esquema Dimensional en Estrella Puro (JuiceCorner_DW)</h3>
+            <p id="diagramSubtitle" class="text-xs text-slate-500">1 Tabla de Hechos Central (FACT_VENTAS) + 7 Dimensiones Conformadas + 1 Esquema de Auditoría</p>
           </div>
-          <span id="diagramBadge" class="text-xs px-3 py-1 rounded-full bg-blue-100 text-blue-800 dark:bg-blue-900/60 dark:text-blue-300 font-semibold">
+          <span id="diagramBadge" class="text-xs px-3 py-1 rounded-full bg-blue-100 text-blue-800 dark:bg-blue-900/60 dark:text-blue-300 font-semibold self-start sm:self-auto">
             Grano: 1 fila por línea de pedido (order_items)
           </span>
         </div>
 
         <!-- Visual Render Target -->
         <div id="diagramContent" class="w-full overflow-x-auto custom-scroll pb-4">
-          <!-- Filled dynamically by JavaScript -->
+          <!-- Populated by JavaScript -->
         </div>
 
         <!-- Legend -->
         <div class="mt-6 pt-4 border-t border-slate-200 dark:border-slate-800 flex flex-wrap items-center justify-between text-xs text-slate-500 gap-3">
-          <div class="flex items-center space-x-4">
+          <div class="flex flex-wrap items-center gap-4">
             <span class="flex items-center space-x-1.5"><span class="w-3 h-3 rounded bg-amber-400 inline-block"></span><span>Clave Primaria (PK / Surrogate Key)</span></span>
-            <span class="flex items-center space-x-1.5"><span class="w-3 h-3 rounded bg-indigo-400 inline-block"></span><span>Clave Foránea (FK)</span></span>
-            <span class="flex items-center space-x-1.5"><span class="w-3 h-3 rounded bg-emerald-400 inline-block"></span><span>Clave Natural TPS (*_nk)</span></span>
+            <span class="flex items-center space-x-1.5"><span class="w-3 h-3 rounded bg-indigo-500 inline-block"></span><span>Clave Foránea (FK)</span></span>
+            <span class="flex items-center space-x-1.5"><span class="w-3 h-3 rounded bg-emerald-500 inline-block"></span><span>Clave Natural TPS (*_nk)</span></span>
+            <span class="flex items-center space-x-1.5"><span class="w-3 h-3 rounded bg-teal-500 inline-block"></span><span>Medida Cuantitativa / Prorrateo</span></span>
           </div>
-          <span class="italic">Haz clic en cualquier tabla para ver su especificación en el diccionario</span>
+          <span class="italic text-[11px] text-emerald-600 dark:text-emerald-400 font-semibold">💡 Haz clic en cualquier tarjeta para abrir su especificación en el Diccionario</span>
         </div>
       </div>
     </section>
 
     <!-- ===================================================================================== -->
-    <!-- TAB 3: DICCIONARIO DE TABLAS (OLTP & DW) -->
+    <!-- TAB 4: DICCIONARIO DE TABLAS (19 OLTP + 9 DW = 28 TABLAS COMPLETAS) -->
     <!-- ===================================================================================== -->
     <section id="tab-diccionario" class="space-y-6 hidden">
       <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
+        
         <!-- Sidebar: Table List & Filter -->
-        <div class="lg:col-span-4 glass-card rounded-2xl p-5 h-fit max-h-[750px] flex flex-col">
+        <div class="lg:col-span-4 glass-card rounded-2xl p-5 h-fit max-h-[780px] flex flex-col">
           <div class="mb-4 space-y-2">
-            <h3 class="text-sm font-bold uppercase tracking-wider text-slate-500">Explorador de Tablas</h3>
+            <div class="flex items-center justify-between">
+              <h3 class="text-sm font-bold uppercase tracking-wider text-slate-500">Catálogo de Tablas</h3>
+              <span id="tableCountBadge" class="text-xs px-2 py-0.5 rounded-full bg-slate-200 dark:bg-slate-800 text-slate-700 dark:text-slate-300 font-mono font-bold">28 Tablas</span>
+            </div>
             <div class="relative">
               <input type="text" id="tableSearchInput" onkeyup="filterTableList()" placeholder="Buscar tabla..." class="w-full px-3.5 py-2 text-xs rounded-xl bg-slate-100 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 focus:outline-none focus:ring-2 focus:ring-emerald-500">
             </div>
             <div class="flex gap-1 pt-1">
-              <button onclick="filterTableCategory('all')" class="cat-filter-btn px-2.5 py-1 text-xs rounded-lg bg-emerald-600 text-white font-medium" data-cat="all">Todas</button>
+              <button onclick="filterTableCategory('all')" class="cat-filter-btn px-2.5 py-1 text-xs rounded-lg bg-emerald-600 text-white font-medium" data-cat="all">Todas (28)</button>
               <button onclick="filterTableCategory('dw')" class="cat-filter-btn px-2.5 py-1 text-xs rounded-lg bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 font-medium" data-cat="dw">DW (9)</button>
               <button onclick="filterTableCategory('oltp')" class="cat-filter-btn px-2.5 py-1 text-xs rounded-lg bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 font-medium" data-cat="oltp">OLTP (19)</button>
             </div>
@@ -374,27 +522,27 @@
             <div id="tableDetailHeader" class="flex flex-col sm:flex-row items-start sm:items-center justify-between pb-4 border-b border-slate-200 dark:border-slate-800 gap-3">
               <div>
                 <div class="flex items-center space-x-2">
-                  <h3 id="selectedTableName" class="text-xl font-bold font-mono text-emerald-600 dark:text-emerald-400">FACT_VENTAS</h3>
+                  <h3 id="selectedTableName" class="text-xl font-bold font-mono text-emerald-600 dark:text-emerald-400">dbo.FACT_VENTAS</h3>
                   <span id="selectedTableType" class="text-xs px-2.5 py-0.5 rounded-full font-semibold bg-blue-100 text-blue-800 dark:bg-blue-900/60 dark:text-blue-300">Tabla de Hechos</span>
                 </div>
                 <p id="selectedTableDesc" class="text-xs text-slate-500 mt-1">Hechos a nivel atómico de ítem de pedido con prorrateo de costos y medidas cuantitativas.</p>
               </div>
-              <button id="copySelectBtn" onclick="copyTableQuery()" class="px-3 py-1.5 rounded-xl bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 text-xs font-semibold flex items-center space-x-1.5 transition">
+              <button id="copySelectBtn" onclick="copyTableQuery()" class="px-3.5 py-1.5 rounded-xl bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 text-xs font-semibold flex items-center space-x-1.5 transition">
                 <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"/></svg>
                 <span>Copiar SELECT TOP 10</span>
               </button>
             </div>
 
             <!-- Columns Table -->
-            <div class="mt-4 overflow-x-auto custom-scroll">
+            <div class="mt-4 overflow-x-auto custom-scroll max-h-[460px]">
               <table class="w-full text-left text-xs border-collapse">
-                <thead>
+                <thead class="sticky top-0 bg-white dark:bg-slate-900 shadow-sm z-10">
                   <tr class="border-b border-slate-200 dark:border-slate-800 text-slate-400 font-semibold uppercase tracking-wider">
                     <th class="py-2.5 px-3">Columna</th>
-                    <th class="py-2.5 px-3">Tipo de Dato</th>
-                    <th class="py-2.5 px-3">Clave / Restricción</th>
+                    <th class="py-2.5 px-3">Tipo de Dato SQL</th>
+                    <th class="py-2.5 px-3">Clave / Rol</th>
                     <th class="py-2.5 px-3">Nulidad</th>
-                    <th class="py-2.5 px-3">Regla / Descripción de Negocio</th>
+                    <th class="py-2.5 px-3">Regla / Significado en el Negocio</th>
                   </tr>
                 </thead>
                 <tbody id="tableColumnsBody" class="divide-y divide-slate-100 dark:divide-slate-800/60 font-mono">
@@ -409,19 +557,20 @@
             <!-- Dynamic notes -->
           </div>
         </div>
+
       </div>
     </section>
 
     <!-- ===================================================================================== -->
-    <!-- TAB 4: LABORATORIO DE CONSULTAS SQL & QUERY RUNNER -->
+    <!-- TAB 5: LABORATORIO DE CONSULTAS SQL Y GRÁFICOS INTERACTIVOS -->
     <!-- ===================================================================================== -->
     <section id="tab-playground" class="space-y-6 hidden">
       <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
         
         <!-- Left: Query Catalog -->
         <div class="lg:col-span-4 glass-card rounded-2xl p-5 space-y-3">
-          <h3 class="text-sm font-bold uppercase tracking-wider text-slate-500">Consultas Analíticas Clave</h3>
-          <p class="text-xs text-slate-500">Consultas preparadas según el Decálogo del Data Warehouse listas para ejecutar o probar:</p>
+          <h3 class="text-sm font-bold uppercase tracking-wider text-slate-500">Consultas Analíticas de Negocio</h3>
+          <p class="text-xs text-slate-500">Consultas T-SQL oficiales alineadas con el Decálogo del Data Warehouse:</p>
 
           <div class="space-y-2 mt-3" id="queryButtonsList">
             <!-- Populated via JS -->
@@ -430,12 +579,12 @@
 
         <!-- Right: Query Editor & Interactive Visualizer -->
         <div class="lg:col-span-8 glass-card rounded-2xl p-6 flex flex-col space-y-4">
-          <div class="flex items-center justify-between pb-3 border-b border-slate-200 dark:border-slate-800">
+          <div class="flex flex-col sm:flex-row sm:items-center justify-between pb-3 border-b border-slate-200 dark:border-slate-800 gap-2">
             <div>
               <h3 id="currentQueryTitle" class="text-base font-bold">1. Ventas Netas Totales por Mes y Semestre</h3>
               <p id="currentQueryTarget" class="text-xs text-blue-600 dark:text-blue-400 font-mono">Base de datos objetivo: JuiceCorner_DW</p>
             </div>
-            <div class="flex items-center space-x-2">
+            <div class="flex items-center space-x-2 self-start sm:self-auto">
               <button onclick="copyCurrentSQL(this)" class="px-3 py-1.5 rounded-xl bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 text-xs font-semibold flex items-center space-x-1 transition">
                 <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"/></svg>
                 <span>Copiar SQL</span>
@@ -449,11 +598,11 @@
 
           <!-- Code Box -->
           <div class="relative">
-            <pre id="currentQuerySQL" class="p-4 rounded-xl bg-slate-900 text-emerald-400 text-xs font-mono overflow-x-auto custom-scroll border border-slate-800 max-h-56 leading-relaxed select-all">-- Cargando consulta...</pre>
+            <pre id="currentQuerySQL" class="p-4 rounded-xl bg-slate-900 text-emerald-400 text-xs font-mono overflow-x-auto custom-scroll border border-slate-800 max-h-52 leading-relaxed select-all">-- Cargando consulta...</pre>
           </div>
 
           <!-- Result Visualization Area (Chart + Table) -->
-          <div id="queryVisualizationContainer" class="space-y-4 pt-2">
+          <div id="queryVisualizationContainer" class="space-y-4 pt-1">
             <!-- Dynamic Chart -->
             <div id="chartWrapper" class="p-4 rounded-xl bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 h-64">
               <canvas id="queryChartCanvas"></canvas>
@@ -475,37 +624,54 @@
     </section>
 
     <!-- ===================================================================================== -->
-    <!-- TAB 5: CADENAS DE CONEXIÓN Y CONFIGURACIONES -->
+    <!-- TAB 6: CADENAS DE CONEXIÓN Y CONFIGURACIONES EXTERNAS -->
     <!-- ===================================================================================== -->
     <section id="tab-conexiones" class="space-y-6 hidden">
       <div class="glass-card rounded-2xl p-6">
         <h2 class="text-lg font-bold mb-1">Cadenas de Conexión & Integración Externa</h2>
-        <p class="text-xs text-slate-500 mb-6">Usa estos parámetros para conectar tus aplicaciones (Python, Node.js, Power BI, Excel, DBeaver) a tu base de datos LocalDB.</p>
+        <p class="text-xs sm:text-sm text-slate-500 mb-6">Usa estos parámetros para conectar tus tableros de Power BI, libros de Excel o scripts de Python a tu motor LocalDB.</p>
 
         <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
           
+          <!-- Microsoft Power BI & Excel -->
+          <div class="p-5 rounded-2xl bg-amber-50/50 dark:bg-amber-950/20 border border-amber-200 dark:border-amber-900/60 space-y-3">
+            <div class="flex items-center space-x-2">
+              <span class="text-2xl">📊</span>
+              <div>
+                <h4 class="text-xs font-bold text-amber-700 dark:text-amber-400 uppercase tracking-wider">Microsoft Power BI & Excel</h4>
+                <p class="text-xs text-slate-500">Conexión directa nativa</p>
+              </div>
+            </div>
+            <div class="text-xs text-slate-600 dark:text-slate-300 space-y-2 pt-2">
+              <p>1. Ve a <strong>Obtener Datos > Base de datos de SQL Server</strong>.</p>
+              <p>2. En el campo <strong>Servidor</strong> escribe: <code class="px-1.5 py-0.5 rounded bg-white dark:bg-slate-900 border font-mono font-bold text-amber-700 dark:text-amber-300">(localdb)\MSSQLLocalDB</code></p>
+              <p>3. En <strong>Base de datos</strong> escribe: <code class="px-1.5 py-0.5 rounded bg-white dark:bg-slate-900 border font-mono font-bold text-amber-700 dark:text-amber-300">JuiceCorner_DW</code></p>
+              <p>4. Tipo de autenticación: <strong>Windows (Credenciales actuales)</strong>.</p>
+            </div>
+          </div>
+
           <!-- Python (pyodbc / SQLAlchemy) -->
           <div class="p-5 rounded-2xl bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 space-y-3">
             <div class="flex items-center justify-between">
-              <span class="text-xs font-bold text-emerald-600 dark:text-emerald-400">PYTHON (pyodbc / SQLAlchemy)</span>
+              <span class="text-xs font-bold text-emerald-600 dark:text-emerald-400">PYTHON (pyodbc / Pandas)</span>
               <button onclick="copySnippet('pythonConn', this)" class="text-xs text-slate-500 hover:text-slate-900 dark:hover:text-white">Copiar</button>
             </div>
             <pre id="pythonConn" class="text-xs font-mono p-3 rounded-xl bg-slate-950 text-slate-200 overflow-x-auto custom-scroll">
 import pyodbc
+import pandas as pd
 
-conn = pyodbc.connect(
+conn_str = (
     r"Driver={ODBC Driver 17 for SQL Server};"
     r"Server=(localdb)\MSSQLLocalDB;"
     r"Database=JuiceCorner_DW;"
     r"Trusted_Connection=yes;"
 )
-cursor = conn.cursor()
-cursor.execute("SELECT * FROM DIM_TIEMPO")
-for row in cursor.fetchall():
-    print(row)</pre>
+conn = pyodbc.connect(conn_str)
+df = pd.read_sql("SELECT * FROM dbo.FACT_VENTAS", conn)
+print(df.head())</pre>
           </div>
 
-          <!-- Node.js (mssql / tedium) -->
+          <!-- Node.js (mssql) -->
           <div class="p-5 rounded-2xl bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 space-y-3">
             <div class="flex items-center justify-between">
               <span class="text-xs font-bold text-blue-600 dark:text-blue-400">NODE.JS (mssql)</span>
@@ -518,25 +684,14 @@ const config = {
   connectionString: 'Driver={ODBC Driver 17 for SQL Server};Server=(localdb)\\MSSQLLocalDB;Database=JuiceCorner_DW;Trusted_Connection=yes;'
 };
 
-async function test() {
+async function getSales() {
   const pool = await sql.connect(config);
-  const result = await pool.request().query('SELECT * FROM DIM_TIEMPO');
+  const result = await pool.request().query('SELECT TOP 10 * FROM dbo.FACT_VENTAS');
   console.log(result.recordset);
 }</pre>
           </div>
 
-          <!-- Power BI / Excel -->
-          <div class="p-5 rounded-2xl bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 space-y-3">
-            <span class="text-xs font-bold text-amber-600 dark:text-amber-400">MICROSOFT EXCEL / POWER BI DESKTOP</span>
-            <div class="text-xs text-slate-600 dark:text-slate-300 space-y-2">
-              <p>1. Ve a <strong>Datos > Obtener Datos > De una base de datos > De SQL Server</strong>.</p>
-              <p>2. En el campo <strong>Servidor</strong>, escribe exactamente: <code class="px-1.5 py-0.5 rounded bg-slate-200 dark:bg-slate-800 font-mono font-bold">(localdb)\MSSQLLocalDB</code></p>
-              <p>3. En <strong>Base de datos</strong> escribe: <code class="px-1.5 py-0.5 rounded bg-slate-200 dark:bg-slate-800 font-mono font-bold">JuiceCorner_DW</code></p>
-              <p>4. En autenticación, selecciona <strong>"Usar mis credenciales actuales de Windows"</strong> y haz clic en Conectar.</p>
-            </div>
-          </div>
-
-          <!-- ADO.NET / C# -->
+          <!-- C# / .NET -->
           <div class="p-5 rounded-2xl bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 space-y-3">
             <div class="flex items-center justify-between">
               <span class="text-xs font-bold text-purple-600 dark:text-purple-400">C# / .NET (ADO.NET)</span>
@@ -560,43 +715,46 @@ Server=(localdb)\MSSQLLocalDB;Integrated Security=true;Initial Catalog=JuiceCorn
 
   <!-- Database Metadata & Client Script -->
   <script>
-    // --- Metadata Definitions ---
+    // --- Exact Metadata Definitions from JuiceCorner_DW.sql & JuiceCorner_OLTP.sql ---
     const DB_DATA = {
       dw: {
         name: "JuiceCorner_DW",
-        description: "Modelo Dimensional en Estrella Puro (1 Hecho Central + 7 Dimensiones Conformadas + 1 Auditoría)",
+        description: "Modelo Dimensional en Estrella Puro (1 Hecho Central + 7 Dimensiones Conformadas + 1 Esquema de Auditoría)",
         tables: [
           {
             name: "dbo.FACT_VENTAS",
             type: "Tabla de Hechos Central",
             category: "dw",
-            description: "Grano atómico: una fila por línea de pedido (order_items). Contiene medidas monetarias prorrateadas, tiempos logísticos y satisfacción.",
-            notes: "Regla del Decálogo: Los totales de pedido (cupones, envíos e impuestos) se prorratean con el peso relativo del subtotal de línea.",
+            description: "Grano atómico: una fila por línea de pedido (order_items.id). Contiene medidas monetarias prorrateadas, logística y satisfacción.",
+            notes: "Regla del Decálogo: Los totales de cabecera (cupones, costos de envío e impuestos) se prorratean proporcionalmente según el subtotal de cada línea.",
             columns: [
-              { name: "fact_venta_id", type: "BIGINT IDENTITY(1,1)", key: "PK", null: "NO", desc: "Clave primaria sustituta de la línea de hecho" },
-              { name: "tiempo_key", type: "INT", key: "FK", null: "NO", desc: "FK hacia DIM_TIEMPO (Formato AAAAMM)" },
-              { name: "cliente_key", type: "INT", key: "FK", null: "NO", desc: "FK hacia DIM_CLIENTE (-1 para invitado)" },
-              { name: "producto_key", type: "INT", key: "FK", null: "NO", desc: "FK hacia DIM_PRODUCTO" },
-              { name: "sucursal_key", type: "INT", key: "FK", null: "NO", desc: "FK hacia DIM_SUCURSAL" },
-              { name: "zona_key", type: "INT", key: "FK", null: "NO", desc: "FK hacia DIM_ZONA_ENTREGA (-1 si es salón/llevar)" },
-              { name: "repartidor_key", type: "INT", key: "FK", null: "NO", desc: "FK hacia DIM_REPARTIDOR (-1 si no hubo delivery)" },
-              { name: "metodo_pago_key", type: "INT", key: "FK", null: "NO", desc: "FK hacia DIM_METODO_PAGO (-1 si no hubo pago)" },
-              { name: "order_item_id", type: "BIGINT", key: "DD", null: "NO", desc: "Dimensión Degenerada: ID natural de la línea en TPS" },
-              { name: "order_id", type: "BIGINT", key: "DD", null: "NO", desc: "Dimensión Degenerada: ID de orden en TPS" },
-              { name: "order_number", type: "VARCHAR(50)", key: "DD", null: "NO", desc: "Dimensión Degenerada: Código visible de orden" },
-              { name: "order_type", type: "VARCHAR(20)", key: "ATTR", null: "NO", desc: "Tipo de servicio: delivery, dine_in, pickup" },
-              { name: "order_status", type: "VARCHAR(30)", key: "ATTR", null: "NO", desc: "Estado: delivered, completed, cancelled..." },
-              { name: "quantity", type: "INT", key: "MEASURE", null: "NO", desc: "Cantidad de unidades vendidas en la línea" },
-              { name: "unit_price", type: "DECIMAL(10,2)", key: "MEASURE", null: "NO", desc: "Precio unitario facial de venta" },
-              { name: "descuento_linea", type: "DECIMAL(10,2)", key: "MEASURE", null: "NO", desc: "Descuento directo aplicado al ítem" },
-              { name: "subtotal", type: "DECIMAL(10,2)", key: "MEASURE", null: "NO", desc: "Base de prorrateo: (quantity * unit_price) - desc_linea" },
-              { name: "descuento_pedido_prorr", type: "DECIMAL(10,2)", key: "MEASURE", null: "NO", desc: "Prorrateo del descuento global del pedido" },
-              { name: "descuento_cupon_prorr", type: "DECIMAL(10,2)", key: "MEASURE", null: "NO", desc: "Prorrateo del descuento del cupón promocional" },
-              { name: "costo_envio_prorr", type: "DECIMAL(10,2)", key: "MEASURE", null: "NO", desc: "Prorrateo de tarifa de delivery" },
-              { name: "impuesto_prorr", type: "DECIMAL(10,2)", key: "MEASURE", null: "NO", desc: "Prorrateo de impuestos (IVA/Tax)" },
-              { name: "monto_neto", type: "DECIMAL(10,2)", key: "MEASURE", null: "NO", desc: "Subtotal - descuentos + envío + impuestos" },
-              { name: "calificacion", type: "TINYINT", key: "MEASURE", null: "YES", desc: "Rating 1 a 5 estrellas otorgado por el cliente" },
-              { name: "minutos_entrega", type: "INT", key: "MEASURE", null: "YES", desc: "Minutos transcurridos desde pedido hasta entrega" },
+              { name: "venta_key", type: "BIGINT IDENTITY(1,1)", key: "PK", null: "NO", desc: "Clave primaria sustituta única de la línea de hecho en el DW" },
+              { name: "order_item_id", type: "BIGINT", key: "DD", null: "NO", desc: "Dimensión Degenerada: ID natural de línea (order_items.id)" },
+              { name: "order_id", type: "BIGINT", key: "DD", null: "NO", desc: "Dimensión Degenerada: ID del pedido (para COUNT DISTINCT)" },
+              { name: "order_number", type: "VARCHAR(50)", key: "DD", null: "NO", desc: "Dimensión Degenerada: Código visible del pedido (ej: ORD-2026-001)" },
+              { name: "tiempo_key", type: "INT", key: "FK", null: "NO", desc: "FK hacia DIM_TIEMPO (Formato inteligente AAAAMM, ej: 202601)" },
+              { name: "cliente_key", type: "INT", key: "FK", null: "NO", desc: "FK hacia DIM_CLIENTE (-1 para comensal invitado sin registrar)" },
+              { name: "producto_key", type: "INT", key: "FK", null: "NO", desc: "FK hacia DIM_PRODUCTO (desnormalizado con categoría)" },
+              { name: "sucursal_key", type: "INT", key: "FK", null: "NO", desc: "FK hacia DIM_SUCURSAL (local físico despachador)" },
+              { name: "zona_key", type: "INT", key: "FK", null: "NO", desc: "FK hacia DIM_ZONA_ENTREGA (-1 para consumo en salón o para llevar)" },
+              { name: "repartidor_key", type: "INT", key: "FK", null: "NO", desc: "FK hacia DIM_REPARTIDOR (-1 si no requirió repartidor)" },
+              { name: "metodo_pago_key", type: "INT", key: "FK", null: "NO", desc: "FK hacia DIM_METODO_PAGO (-1 para pedidos sin pago exitoso)" },
+              { name: "tipo_pedido", type: "VARCHAR(30)", key: "ATTR", null: "NO", desc: "Canal comercial: 'delivery' (55 %) o 'dine_in' (45 %)" },
+              { name: "estado_pedido", type: "VARCHAR(30)", key: "ATTR", null: "NO", desc: "Estado: 'delivered', 'completed', 'cancelled', etc." },
+              { name: "codigo_cupon", type: "VARCHAR(50)", key: "ATTR", null: "YES", desc: "Código de cupón aplicado en cabecera (NULL si no usó cupón)" },
+              { name: "numero_mesa", type: "VARCHAR(20)", key: "ATTR", null: "YES", desc: "Número de mesa física si fue pedido en salón (dining_tables)" },
+              { name: "en_promocion", type: "CHAR(1)", key: "ATTR", null: "NO", desc: "'S' si el producto tenía promoción activa en la fecha; sino 'N'" },
+              { name: "quantity", type: "INT", key: "MEASURE", null: "NO", desc: "Cantidad de unidades pedidas en la línea" },
+              { name: "unit_price", type: "DECIMAL(12,2)", key: "MEASURE", null: "NO", desc: "Precio unitario facial de venta al momento de ordenar" },
+              { name: "descuento_linea", type: "DECIMAL(12,2)", key: "MEASURE", null: "NO", desc: "Descuento aplicado directamente a la línea" },
+              { name: "subtotal", type: "DECIMAL(12,2)", key: "MEASURE", null: "NO", desc: "Base de prorrateo: (quantity * unit_price) - descuento_linea" },
+              { name: "descuento_pedido_prorr", type: "DECIMAL(12,4)", key: "MEASURE", null: "NO", desc: "Prorrateo proporcional del descuento general del pedido" },
+              { name: "descuento_cupon_prorr", type: "DECIMAL(12,4)", key: "MEASURE", null: "NO", desc: "Prorrateo proporcional del descuento de cupón" },
+              { name: "costo_envio_prorr", type: "DECIMAL(12,4)", key: "MEASURE", null: "NO", desc: "Prorrateo proporcional de la tarifa de delivery" },
+              { name: "impuesto_prorr", type: "DECIMAL(12,4)", key: "MEASURE", null: "NO", desc: "Prorrateo proporcional del impuesto (tax)" },
+              { name: "monto_neto", type: "DECIMAL(12,4)", key: "MEASURE", null: "NO", desc: "Medida neta auditada: subtotal - desc_cupon + envio + impuesto" },
+              { name: "calificacion", type: "TINYINT", key: "MEASURE", null: "YES", desc: "Calificación aprobada del cliente (1 a 5 estrellas)" },
+              { name: "minutos_entrega", type: "INT", key: "MEASURE", null: "YES", desc: "Tiempo real de entrega en minutos (delivered_at - placed_at)" },
               { name: "line_count", type: "TINYINT", key: "MEASURE", null: "NO", desc: "Constante = 1 para conteo aditivo de líneas" }
             ]
           },
@@ -604,32 +762,32 @@ Server=(localdb)\MSSQLLocalDB;Integrated Security=true;Initial Catalog=JuiceCorn
             name: "dbo.DIM_TIEMPO",
             type: "Dimensión Conformada",
             category: "dw",
-            description: "Jerarquía de tiempo continuo mensual para análisis de ventas.",
-            notes: "Precargada con todos los meses de 2025 y 2026 para garantizar continuidad analítica.",
+            description: "Jerarquía de tiempo continuo mensual para análisis de ventas y estacionalidad.",
+            notes: "Precargada con los 24 meses continuos de los años 2025 y 2026 completos para evitar huecos en reportes.",
             columns: [
-              { name: "tiempo_key", type: "INT", key: "PK", null: "NO", desc: "Clave inteligente: AAAAMM (Ej: 202601)" },
-              { name: "mes", type: "TINYINT", key: "ATTR", null: "NO", desc: "Número de mes (1 al 12)" },
-              { name: "nombre_mes", type: "VARCHAR(20)", key: "ATTR", null: "NO", desc: "Nombre en español (Enero, Febrero...)" },
-              { name: "semestre", type: "TINYINT", key: "ATTR", null: "NO", desc: "1 (Ene-Jun) o 2 (Jul-Dic)" },
-              { name: "año", type: "SMALLINT", key: "ATTR", null: "NO", desc: "Año calendario (2025, 2026)" }
+              { name: "tiempo_key", type: "INT", key: "PK", null: "NO", desc: "Clave inteligente en formato AAAAMM (ej. 202601)" },
+              { name: "mes", type: "TINYINT", key: "ATTR", null: "NO", desc: "Número del mes calendario (1 al 12)" },
+              { name: "nombre_mes", type: "VARCHAR(20)", key: "ATTR", null: "NO", desc: "Nombre del mes en español (Enero, Febrero...)" },
+              { name: "semestre", type: "TINYINT", key: "ATTR", null: "NO", desc: "Semestre del año: 1 (Ene-Jun) o 2 (Jul-Dic)" },
+              { name: "año", type: "SMALLINT", key: "ATTR", null: "NO", desc: "Año calendario de cuatro dígitos (2025, 2026)" }
             ]
           },
           {
             name: "dbo.DIM_CLIENTE",
             type: "Dimensión Conformada",
             category: "dw",
-            description: "Atributos del cliente, estados de verificación y canal de adquisición.",
-            notes: "Incluye registro comodín -1 para 'Cliente invitado'.",
+            description: "Perfil del cliente, estado de verificación de contacto y canal de adquisición.",
+            notes: "Incluye registro comodín -1 para 'Cliente invitado' (pedidos anónimos de mostrador).",
             columns: [
-              { name: "cliente_key", type: "INT IDENTITY(1,1)", key: "PK", null: "NO", desc: "Clave sustituta de cliente" },
-              { name: "customer_id_nk", type: "INT", key: "NK", null: "NO", desc: "Clave natural de customers.id en TPS" },
+              { name: "cliente_key", type: "INT IDENTITY(1,1)", key: "PK", null: "NO", desc: "Clave sustituta de cliente en el DW" },
+              { name: "customer_id_nk", type: "INT", key: "NK", null: "NO", desc: "Clave natural de customers.id en el TPS" },
               { name: "name", type: "VARCHAR(150)", key: "ATTR", null: "NO", desc: "Nombre completo del cliente" },
-              { name: "phone", type: "VARCHAR(20)", key: "ATTR", null: "NO", desc: "Teléfono registrado" },
-              { name: "email", type: "VARCHAR(150)", key: "ATTR", null: "NO", desc: "Correo electrónico" },
-              { name: "phone_verified", type: "CHAR(1)", key: "ATTR", null: "NO", desc: "'S' si verificó SMS, 'N' si no" },
-              { name: "email_verified", type: "CHAR(1)", key: "ATTR", null: "NO", desc: "'S' si verificó email, 'N' si no" },
-              { name: "es_referido", type: "CHAR(1)", key: "ATTR", null: "NO", desc: "'S' si vino recomendado por otro cliente" },
-              { name: "fecha_registro", type: "DATETIME2", key: "ATTR", null: "YES", desc: "Fecha de alta en la plataforma" }
+              { name: "phone", type: "VARCHAR(30)", key: "ATTR", null: "YES", desc: "Número de teléfono" },
+              { name: "email", type: "VARCHAR(150)", key: "ATTR", null: "YES", desc: "Correo electrónico" },
+              { name: "phone_verified", type: "CHAR(1)", key: "ATTR", null: "NO", desc: "'S' si verificó teléfono móvil, 'N' si no" },
+              { name: "email_verified", type: "CHAR(1)", key: "ATTR", null: "NO", desc: "'S' si verificó correo, 'N' si no" },
+              { name: "es_referido", type: "CHAR(1)", key: "ATTR", null: "NO", desc: "'S' si vino recomendado por otro cliente; sino 'N'" },
+              { name: "fecha_registro", type: "DATETIME2(0)", key: "ATTR", null: "YES", desc: "Fecha y hora de alta en la plataforma" }
             ]
           },
           {
@@ -637,15 +795,16 @@ Server=(localdb)\MSSQLLocalDB;Integrated Security=true;Initial Catalog=JuiceCorn
             type: "Dimensión Conformada",
             category: "dw",
             description: "Catálogo de productos con categoría desnormalizada para preservar la pureza de la estrella.",
-            notes: "Desnormaliza categories sin crear copo de nieve.",
+            notes: "Desnormaliza categories.name directamente sin generar copo de nieve (snowflake).",
             columns: [
-              { name: "producto_key", type: "INT IDENTITY(1,1)", key: "PK", null: "NO", desc: "Clave sustituta del producto" },
-              { name: "product_id_nk", type: "INT", key: "NK", null: "NO", desc: "Clave natural de products.id en TPS" },
+              { name: "producto_key", type: "INT IDENTITY(1,1)", key: "PK", null: "NO", desc: "Clave sustituta del producto en el DW" },
+              { name: "product_id_nk", type: "INT", key: "NK", null: "NO", desc: "Clave natural de products.id en el TPS" },
               { name: "name", type: "VARCHAR(150)", key: "ATTR", null: "NO", desc: "Nombre comercial del producto" },
-              { name: "categoria", type: "VARCHAR(100)", key: "ATTR", null: "NO", desc: "Categoría del producto (Jugos, Bowls...)" },
-              { name: "base_price", type: "DECIMAL(10,2)", key: "ATTR", null: "NO", desc: "Precio de lista base" },
-              { name: "is_seasonal", type: "CHAR(1)", key: "ATTR", null: "NO", desc: "'S' producto de temporada, 'N' permanente" },
-              { name: "is_active", type: "CHAR(1)", key: "ATTR", null: "NO", desc: "'S' activo para venta, 'N' inactivo" }
+              { name: "description", type: "VARCHAR(500)", key: "ATTR", null: "YES", desc: "Descripción del ítem" },
+              { name: "is_seasonal", type: "CHAR(1)", key: "ATTR", null: "NO", desc: "'S' si es producto de temporada; 'N' si es permanente" },
+              { name: "is_available", type: "CHAR(1)", key: "ATTR", null: "NO", desc: "'S' si está disponible para despacho; 'N' si está agotado" },
+              { name: "category_name", type: "VARCHAR(100)", key: "ATTR", null: "NO", desc: "Nombre de la categoría desnormalizada (Jugos, Bowls...)" },
+              { name: "category_description", type: "VARCHAR(500)", key: "ATTR", null: "YES", desc: "Descripción de la categoría" }
             ]
           },
           {
@@ -653,44 +812,47 @@ Server=(localdb)\MSSQLLocalDB;Integrated Security=true;Initial Catalog=JuiceCorn
             type: "Dimensión Conformada",
             category: "dw",
             description: "Locales físicos y centros de despacho de Juice Corner.",
-            notes: "Permite consolidar ventas por ubicación física y zona geográfica.",
+            notes: "Consolida ventas por punto de venta físico y coordenadas geoespaciales.",
             columns: [
-              { name: "sucursal_key", type: "INT IDENTITY(1,1)", key: "PK", null: "NO", desc: "Clave sustituta de sucursal" },
-              { name: "branch_id_nk", type: "INT", key: "NK", null: "NO", desc: "Clave natural de branches.id en TPS" },
+              { name: "sucursal_key", type: "INT IDENTITY(1,1)", key: "PK", null: "NO", desc: "Clave sustituta de sucursal en el DW" },
+              { name: "branch_id_nk", type: "INT", key: "NK", null: "NO", desc: "Clave natural de branches.id en el TPS" },
               { name: "name", type: "VARCHAR(150)", key: "ATTR", null: "NO", desc: "Nombre de la sucursal" },
-              { name: "address", type: "VARCHAR(255)", key: "ATTR", null: "NO", desc: "Dirección física" },
-              { name: "phone", type: "VARCHAR(20)", key: "ATTR", null: "NO", desc: "Teléfono de contacto" },
-              { name: "is_active", type: "CHAR(1)", key: "ATTR", null: "NO", desc: "'S' activa, 'N' cerrada" }
+              { name: "address", type: "VARCHAR(300)", key: "ATTR", null: "NO", desc: "Dirección física" },
+              { name: "phone", type: "VARCHAR(30)", key: "ATTR", null: "YES", desc: "Teléfono del local" },
+              { name: "latitude", type: "DECIMAL(10,7)", key: "ATTR", null: "YES", desc: "Coordenada latitud" },
+              { name: "longitude", type: "DECIMAL(10,7)", key: "ATTR", null: "YES", desc: "Coordenada longitud" },
+              { name: "is_active", type: "CHAR(1)", key: "ATTR", null: "NO", desc: "'S' si está operativa; 'N' si está inactiva" }
             ]
           },
           {
             name: "dbo.DIM_ZONA_ENTREGA",
             type: "Dimensión Conformada",
             category: "dw",
-            description: "Zonas logísticas de cobertura para envíos a domicilio.",
-            notes: "Miembro comodín -1 para pedidos de consumo en local.",
+            description: "Zonas logísticas de cobertura y tiempos de despacho para envíos.",
+            notes: "Incluye comodín -1 para pedidos de salón o para llevar.",
             columns: [
-              { name: "zona_key", type: "INT IDENTITY(1,1)", key: "PK", null: "NO", desc: "Clave sustituta de zona" },
-              { name: "zone_id_nk", type: "INT", key: "NK", null: "NO", desc: "Clave natural de delivery_zones.id" },
-              { name: "name", type: "VARCHAR(100)", key: "ATTR", null: "NO", desc: "Nombre del área de cobertura" },
-              { name: "tarifa_base", type: "DECIMAL(10,2)", key: "ATTR", null: "NO", desc: "Costo base de transporte" },
-              { name: "min_order_amount", type: "DECIMAL(10,2)", key: "ATTR", null: "NO", desc: "Monto mínimo para despachar" },
-              { name: "estimated_minutes", type: "INT", key: "ATTR", null: "NO", desc: "Tiempo estándar de entrega en minutos" }
+              { name: "zona_key", type: "INT IDENTITY(1,1)", key: "PK", null: "NO", desc: "Clave sustituta de zona en el DW" },
+              { name: "zone_id_nk", type: "INT", key: "NK", null: "NO", desc: "Clave natural de delivery_zones.id en el TPS" },
+              { name: "name", type: "VARCHAR(120)", key: "ATTR", null: "NO", desc: "Nombre de la zona de cobertura" },
+              { name: "tarifa_base", type: "DECIMAL(12,2)", key: "ATTR", null: "NO", desc: "Tarifa base de envío asignada a la zona" },
+              { name: "min_order_amount", type: "DECIMAL(12,2)", key: "ATTR", null: "NO", desc: "Monto mínimo requerido para despachar" },
+              { name: "estimated_minutes", type: "INT", key: "ATTR", null: "NO", desc: "Tiempo estándar estimado de entrega (minutos)" },
+              { name: "is_active", type: "CHAR(1)", key: "ATTR", null: "NO", desc: "'S' activa; 'N' inactiva" }
             ]
           },
           {
             name: "dbo.DIM_REPARTIDOR",
             type: "Dimensión Conformada",
             category: "dw",
-            description: "Flota de repartidores y medios de transporte.",
-            notes: "Miembro comodín -1 para órdenes sin delivery.",
+            description: "Personal de entrega y medios de transporte.",
+            notes: "Incluye comodín -1 para órdenes sin repartidor (salón / pickup).",
             columns: [
-              { name: "repartidor_key", type: "INT IDENTITY(1,1)", key: "PK", null: "NO", desc: "Clave sustituta de repartidor" },
+              { name: "repartidor_key", type: "INT IDENTITY(1,1)", key: "PK", null: "NO", desc: "Clave sustituta de repartidor en el DW" },
               { name: "delivery_person_id_nk", type: "INT", key: "NK", null: "NO", desc: "Clave natural de delivery_personnel.id" },
               { name: "name", type: "VARCHAR(150)", key: "ATTR", null: "NO", desc: "Nombre del repartidor" },
-              { name: "phone", type: "VARCHAR(20)", key: "ATTR", null: "NO", desc: "Teléfono" },
-              { name: "vehicle_type", type: "VARCHAR(50)", key: "ATTR", null: "NO", desc: "Moto, Bicicleta, Auto..." },
-              { name: "vehicle_number", type: "VARCHAR(50)", key: "ATTR", null: "NO", desc: "Placa o número de móvil" }
+              { name: "phone", type: "VARCHAR(30)", key: "ATTR", null: "YES", desc: "Teléfono móvil del repartidor" },
+              { name: "vehicle_type", type: "VARCHAR(50)", key: "ATTR", null: "NO", desc: "Medio de transporte (Motorcycle, Bicycle, etc.)" },
+              { name: "vehicle_number", type: "VARCHAR(50)", key: "ATTR", null: "YES", desc: "Placa o identificador del vehículo" }
             ]
           },
           {
@@ -698,27 +860,27 @@ Server=(localdb)\MSSQLLocalDB;Integrated Security=true;Initial Catalog=JuiceCorn
             type: "Dimensión Conformada",
             category: "dw",
             description: "Catálogo normalizado de medios de pago transaccionales.",
-            notes: "Cargado con: cash, card, bkash, nagad, rocket, gateway y -1 SIN_PAGO.",
+            notes: "Cargado con los 6 métodos del TPS ('cash', 'card', 'bkash', 'nagad', 'rocket', 'gateway') más el comodín -1 ('SIN_PAGO').",
             columns: [
-              { name: "metodo_pago_key", type: "INT IDENTITY(1,1)", key: "PK", null: "NO", desc: "Clave sustituta de método de pago" },
-              { name: "codigo_metodo", type: "VARCHAR(50)", key: "NK", null: "NO", desc: "Código transaccional (cash, card...)" },
-              { name: "nombre_metodo", type: "VARCHAR(100)", key: "ATTR", null: "NO", desc: "Nombre descriptivo en español" }
+              { name: "metodo_pago_key", type: "INT IDENTITY(1,1)", key: "PK", null: "NO", desc: "Clave sustituta de método de pago en el DW" },
+              { name: "codigo_metodo", type: "VARCHAR(50)", key: "NK", null: "NO", desc: "Código transaccional exacto en el TPS" },
+              { name: "nombre_metodo", type: "VARCHAR(100)", key: "ATTR", null: "NO", desc: "Nombre legible en español (Efectivo, Tarjeta, etc.)" }
             ]
           },
           {
             name: "audit.AUDITORIA_CUADRE_PEDIDOS",
             type: "Tabla de Control ETL",
             category: "dw",
-            description: "Valida la cuadratura financiera exacta al centavo entre el total del TPS y la suma de líneas del DW.",
-            notes: "Esquema separado 'audit' para no contaminar el modelo estrella.",
+            description: "Valida la conciliación financiera exacta al centavo entre el total del TPS y la suma de líneas en el DW.",
+            notes: "Aislada en el esquema 'audit' para no alterar la pureza del modelo estrella.",
             columns: [
-              { name: "auditoria_id", type: "BIGINT IDENTITY(1,1)", key: "PK", null: "NO", desc: "ID de auditoría" },
+              { name: "auditoria_id", type: "BIGINT IDENTITY(1,1)", key: "PK", null: "NO", desc: "ID secuencial de auditoría" },
               { name: "order_id", type: "BIGINT", key: "NK", null: "NO", desc: "ID de la orden transaccional evaluada" },
               { name: "order_number", type: "VARCHAR(50)", key: "ATTR", null: "NO", desc: "Código visible de la orden" },
-              { name: "total_amount_tps", type: "DECIMAL(12,2)", key: "MEASURE", null: "NO", desc: "Total registrado en orders (TPS)" },
+              { name: "total_amount_tps", type: "DECIMAL(12,2)", key: "MEASURE", null: "NO", desc: "Monto total registrado en orders (TPS)" },
               { name: "suma_monto_neto_dw", type: "DECIMAL(12,2)", key: "MEASURE", null: "NO", desc: "Suma de monto_neto en FACT_VENTAS (DW)" },
-              { name: "diferencia", type: "DECIMAL(12,2)", key: "MEASURE", null: "NO", desc: "Diferencia (debe ser 0.00)" },
-              { name: "fecha_auditoria", type: "DATETIME2", key: "ATTR", null: "NO", desc: "Momento de ejecución de la prueba" }
+              { name: "diferencia", type: "DECIMAL(12,2)", key: "MEASURE", null: "NO", desc: "Diferencia: debe ser 0.00 exacto" },
+              { name: "fecha_auditoria", type: "DATETIME2(0)", key: "ATTR", null: "NO", desc: "Timestamp de ejecución de la prueba" }
             ]
           }
         ]
@@ -727,70 +889,172 @@ Server=(localdb)\MSSQLLocalDB;Integrated Security=true;Initial Catalog=JuiceCorn
         name: "JuiceCorner_OLTP",
         description: "Base de Datos Relacional Transaccional (19 Tablas Mapeadas 1:1 con Dataset Kaggle)",
         tables: [
-          { name: "dbo.orders", type: "Transaccional", category: "oltp", description: "Cabecera de pedidos del restaurante", columns: [
-            { name: "id", type: "INT IDENTITY(1,1)", key: "PK", null: "NO", desc: "Identificador del pedido" },
-            { name: "order_number", type: "VARCHAR(50)", key: "ATTR", null: "NO", desc: "Número único visible" },
-            { name: "customer_id", type: "INT", key: "FK", null: "YES", desc: "Cliente que ordenó" },
-            { name: "branch_id", type: "INT", key: "FK", null: "NO", desc: "Sucursal responsable" },
-            { name: "order_type", type: "VARCHAR(20)", key: "ATTR", null: "NO", desc: "dine_in (45 %), delivery (55 %)" },
-            { name: "subtotal", type: "DECIMAL(10,2)", key: "ATTR", null: "NO", desc: "Suma de líneas sin descuentos" },
-            { name: "discount_amount", type: "DECIMAL(10,2)", key: "ATTR", null: "NO", desc: "Descuento total" },
-            { name: "delivery_fee", type: "DECIMAL(10,2)", key: "ATTR", null: "NO", desc: "Costo de entrega" },
-            { name: "tax_amount", type: "DECIMAL(10,2)", key: "ATTR", null: "NO", desc: "Impuesto calculado" },
-            { name: "total_amount", type: "DECIMAL(10,2)", key: "ATTR", null: "NO", desc: "Total final a cobrar" },
-            { name: "status", type: "VARCHAR(30)", key: "ATTR", null: "NO", desc: "Estado actual del pedido" },
-            { name: "placed_at", type: "DATETIME2", key: "ATTR", null: "NO", desc: "Fecha y hora de creación" }
+          { name: "dbo.categories", type: "Maestro", category: "oltp", description: "Categorías del menú del restaurante", notes: "Kaggle: categories.csv", columns: [
+            { name: "id", type: "INT IDENTITY(1,1)", key: "PK", null: "NO", desc: "Identificador de categoría" },
+            { name: "name", type: "VARCHAR(100)", key: "ATTR", null: "NO", desc: "Nombre de categoría (Jugos, Smoothies...)" },
+            { name: "description", type: "VARCHAR(500)", key: "ATTR", null: "YES", desc: "Descripción funcional" }
           ]},
-          { name: "dbo.order_items", type: "Transaccional", category: "oltp", description: "Líneas de detalle de productos en cada pedido", columns: [
-            { name: "id", type: "INT IDENTITY(1,1)", key: "PK", null: "NO", desc: "ID de línea de orden" },
-            { name: "order_id", type: "INT", key: "FK", null: "NO", desc: "FK hacia orders(id)" },
+          { name: "dbo.products", type: "Maestro", category: "oltp", description: "Catálogo oficial de productos para la venta", notes: "Kaggle: products.csv", columns: [
+            { name: "id", type: "INT IDENTITY(1,1)", key: "PK", null: "NO", desc: "Identificador del producto" },
+            { name: "category_id", type: "INT", key: "FK", null: "NO", desc: "FK hacia categories(id)" },
+            { name: "name", type: "VARCHAR(150)", key: "ATTR", null: "NO", desc: "Nombre comercial del producto" },
+            { name: "description", type: "VARCHAR(500)", key: "ATTR", null: "YES", desc: "Descripción detallada" },
+            { name: "price", type: "DECIMAL(12,2)", key: "ATTR", null: "NO", desc: "Precio base de lista" },
+            { name: "discounted_price", type: "DECIMAL(12,2)", key: "ATTR", null: "YES", desc: "Precio promocional si aplica" },
+            { name: "is_seasonal", type: "BIT", key: "ATTR", null: "NO", desc: "1 si es de temporada; 0 permanente" },
+            { name: "is_available", type: "BIT", key: "ATTR", null: "NO", desc: "1 si está disponible; 0 agotado" }
+          ]},
+          { name: "dbo.branches", type: "Maestro", category: "oltp", description: "Sucursales físicas del restaurante", notes: "Kaggle: branches.csv", columns: [
+            { name: "id", type: "INT IDENTITY(1,1)", key: "PK", null: "NO", desc: "Identificador de la sucursal" },
+            { name: "name", type: "VARCHAR(120)", key: "ATTR", null: "NO", desc: "Nombre comercial del local" },
+            { name: "address", type: "VARCHAR(255)", key: "ATTR", null: "NO", desc: "Dirección física" },
+            { name: "phone", type: "VARCHAR(30)", key: "ATTR", null: "YES", desc: "Teléfono" },
+            { name: "latitude", type: "DECIMAL(10,7)", key: "ATTR", null: "YES", desc: "Coordenada latitud" },
+            { name: "longitude", type: "DECIMAL(10,7)", key: "ATTR", null: "YES", desc: "Coordenada longitud" },
+            { name: "is_active", type: "BIT", key: "ATTR", null: "NO", desc: "1 activa; 0 inactiva" }
+          ]},
+          { name: "dbo.dining_tables", type: "Maestro", category: "oltp", description: "Mesas para atención en salón", notes: "Kaggle: dining_tables.csv", columns: [
+            { name: "id", type: "INT IDENTITY(1,1)", key: "PK", null: "NO", desc: "Identificador de mesa" },
+            { name: "branch_id", type: "INT", key: "FK", null: "NO", desc: "FK hacia branches(id)" },
+            { name: "table_number", type: "VARCHAR(20)", key: "ATTR", null: "NO", desc: "Número o código de mesa" },
+            { name: "capacity", type: "INT", key: "ATTR", null: "YES", desc: "Capacidad de comensales" },
+            { name: "is_available", type: "BIT", key: "ATTR", null: "NO", desc: "1 disponible; 0 ocupada" }
+          ]},
+          { name: "dbo.delivery_zones", type: "Maestro", category: "oltp", description: "Zonas de reparto a domicilio", notes: "Kaggle: delivery_zones.csv", columns: [
+            { name: "id", type: "INT IDENTITY(1,1)", key: "PK", null: "NO", desc: "Identificador de zona" },
+            { name: "name", type: "VARCHAR(120)", key: "ATTR", null: "NO", desc: "Nombre de la zona" },
+            { name: "delivery_fee", type: "DECIMAL(12,2)", key: "ATTR", null: "NO", desc: "Costo base de transporte" },
+            { name: "min_order_amount", type: "DECIMAL(12,2)", key: "ATTR", null: "NO", desc: "Monto mínimo para despachar" },
+            { name: "estimated_minutes", type: "INT", key: "ATTR", null: "NO", desc: "Minutos estimados de envío" },
+            { name: "is_active", type: "BIT", key: "ATTR", null: "NO", desc: "1 activa; 0 inactiva" }
+          ]},
+          { name: "dbo.customers", type: "Maestro", category: "oltp", description: "Clientes registrados en la plataforma", notes: "Sin bucle FK autorreferencial para permitir cargas masivas directas.", columns: [
+            { name: "id", type: "INT IDENTITY(1,1)", key: "PK", null: "NO", desc: "Identificador del cliente" },
+            { name: "name", type: "VARCHAR(150)", key: "ATTR", null: "NO", desc: "Nombre completo" },
+            { name: "phone", type: "VARCHAR(30)", key: "ATTR", null: "YES", desc: "Teléfono" },
+            { name: "email", type: "VARCHAR(150)", key: "ATTR", null: "YES", desc: "Correo electrónico" },
+            { name: "password_hash", type: "VARCHAR(255)", key: "ATTR", null: "YES", desc: "Hash de contraseña" },
+            { name: "phone_verified", type: "BIT", key: "ATTR", null: "NO", desc: "1 teléfono validado; 0 no" },
+            { name: "email_verified", type: "BIT", key: "ATTR", null: "NO", desc: "1 email validado; 0 no" },
+            { name: "referral_code", type: "VARCHAR(50)", key: "ATTR", null: "YES", desc: "Código para referir a otros" },
+            { name: "referred_by", type: "INT", key: "ATTR", null: "YES", desc: "ID del cliente que recomendó a este" },
+            { name: "loyalty_balance", type: "DECIMAL(12,2)", key: "ATTR", null: "NO", desc: "Saldo de puntos de fidelidad" },
+            { name: "created_at", type: "DATETIME2(0)", key: "ATTR", null: "NO", desc: "Fecha de registro" }
+          ]},
+          { name: "dbo.customer_addresses", type: "Maestro", category: "oltp", description: "Direcciones físicas de clientes", notes: "Kaggle: customer_addresses.csv", columns: [
+            { name: "id", type: "INT IDENTITY(1,1)", key: "PK", null: "NO", desc: "Identificador de dirección" },
+            { name: "customer_id", type: "INT", key: "FK", null: "NO", desc: "FK hacia customers(id)" },
+            { name: "zone_id", type: "INT", key: "FK", null: "NO", desc: "FK hacia delivery_zones(id)" },
+            { name: "address_line", type: "VARCHAR(300)", key: "ATTR", null: "NO", desc: "Calle, número y referencias" },
+            { name: "is_default", type: "BIT", key: "ATTR", null: "NO", desc: "1 si es la dirección predeterminada" }
+          ]},
+          { name: "dbo.delivery_personnel", type: "Maestro", category: "oltp", description: "Flota de repartidores", notes: "Precargada con 6 repartidores reales de users.csv", columns: [
+            { name: "id", type: "INT IDENTITY(1,1)", key: "PK", null: "NO", desc: "Identificador del repartidor" },
+            { name: "name", type: "VARCHAR(150)", key: "ATTR", null: "NO", desc: "Nombre completo" },
+            { name: "phone", type: "VARCHAR(30)", key: "ATTR", null: "NO", desc: "Teléfono" },
+            { name: "vehicle_type", type: "VARCHAR(50)", key: "ATTR", null: "NO", desc: "Moto, Bicicleta, etc." },
+            { name: "vehicle_number", type: "VARCHAR(50)", key: "ATTR", null: "YES", desc: "Placa del vehículo" },
+            { name: "license_number", type: "VARCHAR(80)", key: "ATTR", null: "NO", desc: "Licencia de conducir" },
+            { name: "availability", type: "BIT", key: "ATTR", null: "NO", desc: "1 disponible; 0 en ruta" },
+            { name: "current_latitude", type: "DECIMAL(10,7)", key: "ATTR", null: "YES", desc: "GPS Latitud" },
+            { name: "current_longitude", type: "DECIMAL(10,7)", key: "ATTR", null: "YES", desc: "GPS Longitud" }
+          ]},
+          { name: "dbo.coupons", type: "Maestro", category: "oltp", description: "Cupones de descuento comercial", notes: "Restricción CHECK ('percent', 'fixed')", columns: [
+            { name: "id", type: "INT IDENTITY(1,1)", key: "PK", null: "NO", desc: "Identificador de cupón" },
+            { name: "code", type: "VARCHAR(50)", key: "ATTR", null: "NO", desc: "Código único de cupón" },
+            { name: "discount_type", type: "VARCHAR(30)", key: "ATTR", null: "NO", desc: "'percent' o 'fixed'" },
+            { name: "discount_value", type: "DECIMAL(12,2)", key: "ATTR", null: "NO", desc: "Valor del descuento" },
+            { name: "is_active", type: "BIT", key: "ATTR", null: "NO", desc: "1 activo; 0 inactivo" }
+          ]},
+          { name: "dbo.promotions", type: "Maestro", category: "oltp", description: "Campañas de promociones", notes: "Kaggle: promotions.csv", columns: [
+            { name: "id", type: "INT IDENTITY(1,1)", key: "PK", null: "NO", desc: "Identificador de promoción" },
+            { name: "name", type: "VARCHAR(150)", key: "ATTR", null: "NO", desc: "Nombre de campaña" },
+            { name: "discount_percentage", type: "DECIMAL(5,2)", key: "ATTR", null: "NO", desc: "Porcentaje de descuento" },
+            { name: "start_date", type: "DATE", key: "ATTR", null: "NO", desc: "Fecha inicio" },
+            { name: "end_date", type: "DATE", key: "ATTR", null: "NO", desc: "Fecha fin" },
+            { name: "is_active", type: "BIT", key: "ATTR", null: "NO", desc: "1 activa; 0 finalizada" }
+          ]},
+          { name: "dbo.product_promotions", type: "Relación", category: "oltp", description: "Productos asignados a promociones", notes: "Tabla de unión muchos a muchos", columns: [
+            { name: "id", type: "INT IDENTITY(1,1)", key: "PK", null: "NO", desc: "ID de asignación" },
+            { name: "product_id", type: "INT", key: "FK", null: "NO", desc: "FK hacia products(id)" },
+            { name: "promotion_id", type: "INT", key: "FK", null: "NO", desc: "FK hacia promotions(id)" }
+          ]},
+          { name: "dbo.orders", type: "Transaccional", category: "oltp", description: "Cabecera de pedidos del restaurante", notes: "Incluye subtotal y table_id para alineación 1:1 con orders.csv", columns: [
+            { name: "id", type: "BIGINT IDENTITY(1,1)", key: "PK", null: "NO", desc: "Identificador único de pedido" },
+            { name: "order_number", type: "VARCHAR(50)", key: "ATTR", null: "NO", desc: "Número visible de orden" },
+            { name: "customer_id", type: "INT", key: "FK", null: "YES", desc: "FK hacia customers(id)" },
+            { name: "branch_id", type: "INT", key: "FK", null: "NO", desc: "FK hacia branches(id)" },
+            { name: "address_id", type: "INT", key: "FK", null: "YES", desc: "FK hacia customer_addresses(id)" },
+            { name: "table_id", type: "INT", key: "FK", null: "YES", desc: "FK hacia dining_tables(id)" },
+            { name: "coupon_id", type: "INT", key: "FK", null: "YES", desc: "FK hacia coupons(id)" },
+            { name: "order_type", type: "VARCHAR(30)", key: "ATTR", null: "NO", desc: "'dine_in' (45 %) o 'delivery' (55 %)" },
+            { name: "status", type: "VARCHAR(30)", key: "ATTR", null: "NO", desc: "pending, confirmed, delivered, etc." },
+            { name: "subtotal", type: "DECIMAL(12,2)", key: "ATTR", null: "NO", desc: "Suma de líneas sin descuentos" },
+            { name: "discount_amount", type: "DECIMAL(12,2)", key: "ATTR", null: "NO", desc: "Descuento total" },
+            { name: "coupon_discount", type: "DECIMAL(12,2)", key: "ATTR", null: "NO", desc: "Descuento por cupón" },
+            { name: "delivery_fee", type: "DECIMAL(12,2)", key: "ATTR", null: "NO", desc: "Tarifa de envío" },
+            { name: "tax", type: "DECIMAL(12,2)", key: "ATTR", null: "NO", desc: "Impuesto cobrado" },
+            { name: "total_amount", type: "DECIMAL(12,2)", key: "ATTR", null: "NO", desc: "Monto total a pagar" },
+            { name: "placed_at", type: "DATETIME2(0)", key: "ATTR", null: "NO", desc: "Fecha de registro" },
+            { name: "completed_at", type: "DATETIME2(0)", key: "ATTR", null: "YES", desc: "Fecha de cierre" }
+          ]},
+          { name: "dbo.order_items", type: "Transaccional", category: "oltp", description: "Líneas de detalle de productos en cada pedido", notes: "Corresponde al grano de FACT_VENTAS en el DW", columns: [
+            { name: "id", type: "BIGINT IDENTITY(1,1)", key: "PK", null: "NO", desc: "ID de línea de pedido" },
+            { name: "order_id", type: "BIGINT", key: "FK", null: "NO", desc: "FK hacia orders(id)" },
             { name: "product_id", type: "INT", key: "FK", null: "NO", desc: "FK hacia products(id)" },
             { name: "quantity", type: "INT", key: "ATTR", null: "NO", desc: "Cantidad pedida" },
-            { name: "unit_price", type: "DECIMAL(10,2)", key: "ATTR", null: "NO", desc: "Precio facial unitario" },
-            { name: "discount_amount", type: "DECIMAL(10,2)", key: "ATTR", null: "NO", desc: "Descuento de la línea" },
-            { name: "subtotal", type: "DECIMAL(10,2)", key: "ATTR", null: "NO", desc: "(quantity * unit_price) - discount" }
+            { name: "unit_price", type: "DECIMAL(12,2)", key: "ATTR", null: "NO", desc: "Precio unitario" },
+            { name: "discount", type: "DECIMAL(12,2)", key: "ATTR", null: "NO", desc: "Descuento directo" },
+            { name: "subtotal", type: "DECIMAL(12,2)", key: "ATTR", null: "NO", desc: "(quantity * unit_price) - discount" }
           ]},
-          { name: "dbo.customers", type: "Maestro", category: "oltp", description: "Clientes registrados y datos de contacto", columns: [
-            { name: "id", type: "INT IDENTITY(1,1)", key: "PK", null: "NO", desc: "ID del cliente" },
-            { name: "name", type: "VARCHAR(150)", key: "ATTR", null: "NO", desc: "Nombre completo" },
-            { name: "phone", type: "VARCHAR(20)", key: "ATTR", null: "NO", desc: "Teléfono" },
-            { name: "email", type: "VARCHAR(150)", key: "ATTR", null: "NO", desc: "Correo" },
-            { name: "referred_by", type: "INT", key: "ATTR", null: "YES", desc: "ID del cliente que refirió" }
+          { name: "dbo.payments", type: "Transaccional", category: "oltp", description: "Transacciones de pago", notes: "Restricción CHECK ('cash','card','bkash','nagad','rocket','gateway')", columns: [
+            { name: "id", type: "BIGINT IDENTITY(1,1)", key: "PK", null: "NO", desc: "Identificador del pago" },
+            { name: "order_id", type: "BIGINT", key: "FK", null: "NO", desc: "FK hacia orders(id)" },
+            { name: "method", type: "VARCHAR(50)", key: "ATTR", null: "NO", desc: "Método de pago" },
+            { name: "amount", type: "DECIMAL(12,2)", key: "ATTR", null: "NO", desc: "Importe pagado" },
+            { name: "status", type: "VARCHAR(30)", key: "ATTR", null: "NO", desc: "'paid', 'pending', 'failed', 'refunded'" },
+            { name: "paid_at", type: "DATETIME2(0)", key: "ATTR", null: "YES", desc: "Fecha y hora del cobro" }
           ]},
-          { name: "dbo.products", type: "Maestro", category: "oltp", description: "Catálogo de jugos, smoothies y alimentos", columns: [
-            { name: "id", type: "INT IDENTITY(1,1)", key: "PK", null: "NO", desc: "ID del producto" },
-            { name: "category_id", type: "INT", key: "FK", null: "NO", desc: "Categoría" },
-            { name: "name", type: "VARCHAR(150)", key: "ATTR", null: "NO", desc: "Nombre del producto" },
-            { name: "base_price", type: "DECIMAL(10,2)", key: "ATTR", null: "NO", desc: "Precio base" },
-            { name: "is_active", type: "CHAR(1)", key: "ATTR", null: "NO", desc: "Estado" }
+          { name: "dbo.deliveries", type: "Transaccional", category: "oltp", description: "Asignación y despacho de delivery", notes: "Kaggle: deliveries.csv", columns: [
+            { name: "id", type: "BIGINT IDENTITY(1,1)", key: "PK", null: "NO", desc: "Identificador de entrega" },
+            { name: "order_id", type: "BIGINT", key: "FK", null: "NO", desc: "FK hacia orders(id) (UQ 1:1)" },
+            { name: "delivery_person_id", type: "INT", key: "FK", null: "YES", desc: "FK hacia delivery_personnel(id)" },
+            { name: "assigned_at", type: "DATETIME2(0)", key: "ATTR", null: "YES", desc: "Hora de asignación" },
+            { name: "delivered_at", type: "DATETIME2(0)", key: "ATTR", null: "YES", desc: "Hora de entrega al cliente" },
+            { name: "status", type: "VARCHAR(30)", key: "ATTR", null: "NO", desc: "'assigned', 'picked_up', 'delivered', etc." }
           ]},
-          { name: "dbo.payments", type: "Transaccional", category: "oltp", description: "Transacciones de pago directas con restricción CHECK", columns: [
-            { name: "id", type: "INT IDENTITY(1,1)", key: "PK", null: "NO", desc: "ID del pago" },
-            { name: "order_id", type: "INT", key: "FK", null: "NO", desc: "FK hacia orders(id)" },
-            { name: "method", type: "VARCHAR(20)", key: "ATTR", null: "NO", desc: "cash, card, bkash, nagad..." },
-            { name: "amount", type: "DECIMAL(10,2)", key: "ATTR", null: "NO", desc: "Importe pagado" },
-            { name: "status", type: "VARCHAR(20)", key: "ATTR", null: "NO", desc: "completed, failed..." }
+          { name: "dbo.reviews", type: "Transaccional", category: "oltp", description: "Calificaciones de clientes", notes: "Calificación 1 a 5 estrellas con texto opcional", columns: [
+            { name: "id", type: "BIGINT IDENTITY(1,1)", key: "PK", null: "NO", desc: "ID de reseña" },
+            { name: "order_id", type: "BIGINT", key: "FK", null: "NO", desc: "FK hacia orders(id)" },
+            { name: "product_id", type: "INT", key: "FK", null: "YES", desc: "FK opcional hacia products(id)" },
+            { name: "customer_id", type: "INT", key: "ATTR", null: "YES", desc: "ID del cliente" },
+            { name: "rating", type: "TINYINT", key: "ATTR", null: "NO", desc: "Calificación (1 al 5)" },
+            { name: "comment", type: "VARCHAR(1000)", key: "ATTR", null: "YES", desc: "Comentario del comensal" },
+            { name: "is_approved", type: "BIT", key: "ATTR", null: "NO", desc: "1 aprobada; 0 en revisión" },
+            { name: "created_at", type: "DATETIME2(0)", key: "ATTR", null: "NO", desc: "Fecha de reseña" }
           ]},
-          { name: "dbo.branches", type: "Maestro", category: "oltp", description: "Locales físicos del restaurante", columns: [
-            { name: "id", type: "INT IDENTITY(1,1)", key: "PK", null: "NO", desc: "ID de sucursal" },
-            { name: "name", type: "VARCHAR(150)", key: "ATTR", null: "NO", desc: "Nombre de sucursal" },
-            { name: "address", type: "VARCHAR(255)", key: "ATTR", null: "NO", desc: "Dirección" }
+          { name: "dbo.ingredients", type: "Maestro", category: "oltp", description: "Catálogo de insumos y materias primas", notes: "Kaggle: ingredients.csv", columns: [
+            { name: "id", type: "INT IDENTITY(1,1)", key: "PK", null: "NO", desc: "ID de insumo" },
+            { name: "name", type: "VARCHAR(150)", key: "ATTR", null: "NO", desc: "Nombre (Mango, Naranja, Leche...)" },
+            { name: "unit", type: "VARCHAR(30)", key: "ATTR", null: "NO", desc: "Unidad (kg, ltr, pcs)" },
+            { name: "cost_per_unit", type: "DECIMAL(12,4)", key: "ATTR", null: "NO", desc: "Costo unitario" },
+            { name: "current_stock", type: "DECIMAL(12,4)", key: "ATTR", null: "NO", desc: "Stock actual general" },
+            { name: "reorder_level", type: "DECIMAL(12,4)", key: "ATTR", null: "NO", desc: "Nivel mínimo de reposición" },
+            { name: "is_active", type: "BIT", key: "ATTR", null: "NO", desc: "1 activo; 0 descontinuado" }
           ]},
-          { name: "dbo.deliveries", type: "Transaccional", category: "oltp", description: "Asignación y despacho de envíos a domicilio", columns: [
-            { name: "id", type: "INT IDENTITY(1,1)", key: "PK", null: "NO", desc: "ID de entrega" },
-            { name: "order_id", type: "INT", key: "FK", null: "NO", desc: "Orden despachada" },
-            { name: "delivery_person_id", type: "INT", key: "FK", null: "YES", desc: "Repartidor asignado" },
-            { name: "zone_id", type: "INT", key: "FK", null: "YES", desc: "Zona destino" }
+          { name: "dbo.product_ingredients", type: "Relación", category: "oltp", description: "Recetas y formulación de productos", notes: "Kaggle: product_ingredients.csv", columns: [
+            { name: "id", type: "INT IDENTITY(1,1)", key: "PK", null: "NO", desc: "ID de receta" },
+            { name: "product_id", type: "INT", key: "FK", null: "NO", desc: "FK hacia products(id)" },
+            { name: "ingredient_id", type: "INT", key: "FK", null: "NO", desc: "FK hacia ingredients(id)" },
+            { name: "quantity", type: "DECIMAL(12,4)", key: "ATTR", null: "NO", desc: "Cantidad de insumo requerida" },
+            { name: "unit", type: "VARCHAR(30)", key: "ATTR", null: "YES", desc: "Unidad de medida" }
           ]},
-          { name: "dbo.delivery_personnel", type: "Maestro", category: "oltp", description: "Personal de entrega (6 repartidores precargados)", columns: [
-            { name: "id", type: "INT IDENTITY(1,1)", key: "PK", null: "NO", desc: "ID del repartidor" },
-            { name: "name", type: "VARCHAR(150)", key: "ATTR", null: "NO", desc: "Nombre" },
-            { name: "vehicle_type", type: "VARCHAR(50)", key: "ATTR", null: "NO", desc: "Vehículo" }
-          ]},
-          { name: "dbo.reviews", type: "Transaccional", category: "oltp", description: "Calificaciones de 1 a 5 estrellas dejadas por clientes", columns: [
-            { name: "id", type: "INT IDENTITY(1,1)", key: "PK", null: "NO", desc: "ID reseña" },
-            { name: "order_id", type: "INT", key: "FK", null: "NO", desc: "FK hacia orders(id)" },
-            { name: "rating", type: "TINYINT", key: "ATTR", null: "NO", desc: "Rating (1-5)" }
+          { name: "dbo.inventory", type: "Maestro", category: "oltp", description: "Existencias de insumos por sucursal", notes: "Control de stock físico descentralizado", columns: [
+            { name: "id", type: "INT IDENTITY(1,1)", key: "PK", null: "NO", desc: "ID de registro de inventario" },
+            { name: "branch_id", type: "INT", key: "FK", null: "NO", desc: "FK hacia branches(id)" },
+            { name: "ingredient_id", type: "INT", key: "FK", null: "NO", desc: "FK hacia ingredients(id)" },
+            { name: "quantity", type: "DECIMAL(12,4)", key: "ATTR", null: "NO", desc: "Stock disponible en local" },
+            { name: "last_restocked_at", type: "DATETIME2(0)", key: "ATTR", null: "YES", desc: "Última reposición" }
           ]}
         ]
       }
@@ -841,16 +1105,16 @@ ORDER BY t.año DESC, t.mes ASC;`,
         title: "2. Top 5 Productos más Vendidos y Facturación",
         db: "JuiceCorner_DW",
         badge: "Dimensión Producto",
-        sql: `-- Top 5 Productos con mayor facturación neta
+        sql: `-- Top 5 Productos con mayor facturación neta (DIM_PRODUCTO desnormalizado)
 SELECT TOP 5
     p.name AS producto,
-    p.categoria,
+    p.category_name AS categoria,
     SUM(f.quantity) AS unidades_totales,
     CAST(SUM(f.monto_neto) AS DECIMAL(12,2)) AS facturacion_neta,
     CAST(AVG(CAST(f.calificacion AS FLOAT)) AS DECIMAL(3,2)) AS rating_promedio
 FROM dbo.FACT_VENTAS f
 INNER JOIN dbo.DIM_PRODUCTO p ON f.producto_key = p.producto_key
-GROUP BY p.name, p.categoria
+GROUP BY p.name, p.category_name
 ORDER BY facturacion_neta DESC;`,
         demoData: {
           headers: ["Producto", "Categoría", "Unidades", "Facturación Neta ($)", "Rating Prom."],
@@ -872,8 +1136,38 @@ ORDER BY facturacion_neta DESC;`,
         }
       },
       {
+        id: "canal_venta",
+        title: "3. Salón vs Delivery (Canales de Venta)",
+        db: "JuiceCorner_DW",
+        badge: "Canales Comerciales",
+        sql: `-- Comparativa estratégica entre Consumo en Local (45%) y Delivery (55%)
+SELECT 
+    f.tipo_pedido AS canal_venta,
+    COUNT(DISTINCT f.order_id) AS total_pedidos,
+    CAST(SUM(f.monto_neto) AS DECIMAL(12,2)) AS facturacion_total,
+    CAST(AVG(CAST(f.minutos_entrega AS FLOAT)) AS DECIMAL(5,1)) AS tiempo_promedio_entrega_min,
+    CAST(AVG(CAST(f.calificacion AS FLOAT)) AS DECIMAL(3,2)) AS satisfaccion_promedio
+FROM dbo.FACT_VENTAS f
+GROUP BY f.tipo_pedido;`,
+        demoData: {
+          headers: ["Canal de Venta", "Total Pedidos", "Facturación Total ($)", "Tiempo Prom. (min)", "Satisfacción (1-5)"],
+          rows: [
+            ["delivery", "5,500", "182,450.00", "34.2 min", "4.68 / 5.0"],
+            ["dine_in", "4,500", "149,200.00", "12.5 min", "4.82 / 5.0"]
+          ],
+          chart: {
+            type: "doughnut",
+            labels: ["Delivery (55 %)", "Salón / Dine-In (45 %)"],
+            datasets: [{
+              data: [182450, 149200],
+              backgroundColor: ["#3b82f6", "#22c55e"]
+            }]
+          }
+        }
+      },
+      {
         id: "metodos_pago",
-        title: "3. Distribución por Medio de Pago",
+        title: "4. Distribución por Medio de Pago",
         db: "JuiceCorner_DW",
         badge: "Dimensión Pago",
         sql: `-- Análisis de penetración de medios de pago en Juice Corner
@@ -896,7 +1190,7 @@ ORDER BY total_cobrado DESC;`,
             ["Pasarela de Pago Online", "340", "9,600.00", "3.40%"]
           ],
           chart: {
-            type: "doughnut",
+            type: "pie",
             labels: ["Tarjeta", "bKash", "Efectivo", "Nagad", "Pasarela Online"],
             datasets: [{
               data: [118500, 74200, 52400, 26800, 9600],
@@ -907,7 +1201,7 @@ ORDER BY total_cobrado DESC;`,
       },
       {
         id: "auditoria_cuadre",
-        title: "4. Auditoría de Cuadre Contable (TPS vs DW)",
+        title: "5. Auditoría de Cuadre Contable (TPS vs DW)",
         db: "JuiceCorner_DW",
         badge: "Control de Calidad",
         sql: `-- Verificación de conciliación al centavo (Decálogo Técnico)
@@ -946,7 +1240,7 @@ ORDER BY auditoria_id DESC;`,
     let currentSelectedTable = DB_DATA.dw.tables[0];
     let currentCategoryFilter = 'all';
 
-    // --- Tab Switching ---
+    // --- Tab Switching Logic ---
     function switchTab(tabId) {
       document.querySelectorAll('section[id^="tab-"]').forEach(sec => sec.classList.add('hidden'));
       document.querySelectorAll('.tab-btn').forEach(btn => {
@@ -981,78 +1275,78 @@ ORDER BY auditoria_id DESC;`,
         btnDW.className = 'px-4 py-2 text-xs font-bold rounded-lg bg-white dark:bg-slate-900 shadow-sm text-blue-600 dark:text-blue-400 transition';
         btnOLTP.className = 'px-4 py-2 text-xs font-bold rounded-lg text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white transition';
         title.innerText = "Esquema Dimensional en Estrella Puro (JuiceCorner_DW)";
-        subtitle.innerText = "1 Tabla Central de Hechos + 7 Dimensiones Conformadas + 1 Esquema de Auditoría";
-        badge.innerText = "Centro: FACT_VENTAS (Grano: order_items)";
+        subtitle.innerText = "1 Tabla Central de Hechos (FACT_VENTAS) + 7 Dimensiones Conformadas + 1 Esquema de Auditoría";
+        badge.innerText = "Grano: 1 fila por línea de pedido (order_items)";
 
         container.innerHTML = `
-          <div class="relative py-8 min-w-[850px] flex flex-col items-center justify-center">
+          <div class="relative py-6 min-w-[850px] flex flex-col items-center justify-center">
             
             <!-- Dimensiones Superiores -->
             <div class="grid grid-cols-4 gap-4 w-full mb-8">
-              <div onclick="selectSpecificTable('dbo.DIM_TIEMPO')" class="cursor-pointer p-3.5 rounded-xl bg-blue-50/80 dark:bg-blue-950/40 border border-blue-200 dark:border-blue-800 hover:shadow-md transition text-center">
-                <span class="text-[10px] font-bold text-blue-600 dark:text-blue-400 uppercase">Dimensión</span>
-                <h4 class="font-bold text-xs">DIM_TIEMPO</h4>
+              <div onclick="selectSpecificTable('dbo.DIM_TIEMPO')" class="cursor-pointer p-3.5 rounded-xl bg-blue-50/80 dark:bg-blue-950/40 border border-blue-200 dark:border-blue-800 hover:shadow-md hover:border-blue-400 transition text-center group">
+                <span class="text-[10px] font-bold text-blue-600 dark:text-blue-400 uppercase">Dimensión Temporal</span>
+                <h4 class="font-bold text-xs group-hover:text-blue-600 transition">DIM_TIEMPO</h4>
                 <p class="text-[10px] text-slate-500 mt-0.5">PK: tiempo_key (AAAAMM)</p>
                 <div class="mt-2 text-[10px] text-blue-600 dark:text-blue-400 font-mono">1 ─────── N</div>
               </div>
-              <div onclick="selectSpecificTable('dbo.DIM_CLIENTE')" class="cursor-pointer p-3.5 rounded-xl bg-blue-50/80 dark:bg-blue-950/40 border border-blue-200 dark:border-blue-800 hover:shadow-md transition text-center">
-                <span class="text-[10px] font-bold text-blue-600 dark:text-blue-400 uppercase">Dimensión</span>
-                <h4 class="font-bold text-xs">DIM_CLIENTE</h4>
+              <div onclick="selectSpecificTable('dbo.DIM_CLIENTE')" class="cursor-pointer p-3.5 rounded-xl bg-blue-50/80 dark:bg-blue-950/40 border border-blue-200 dark:border-blue-800 hover:shadow-md hover:border-blue-400 transition text-center group">
+                <span class="text-[10px] font-bold text-blue-600 dark:text-blue-400 uppercase">Dimensión Cliente</span>
+                <h4 class="font-bold text-xs group-hover:text-blue-600 transition">DIM_CLIENTE</h4>
                 <p class="text-[10px] text-slate-500 mt-0.5">PK: cliente_key | Comodín -1</p>
                 <div class="mt-2 text-[10px] text-blue-600 dark:text-blue-400 font-mono">1 ─────── N</div>
               </div>
-              <div onclick="selectSpecificTable('dbo.DIM_PRODUCTO')" class="cursor-pointer p-3.5 rounded-xl bg-blue-50/80 dark:bg-blue-950/40 border border-blue-200 dark:border-blue-800 hover:shadow-md transition text-center">
-                <span class="text-[10px] font-bold text-blue-600 dark:text-blue-400 uppercase">Dimensión</span>
-                <h4 class="font-bold text-xs">DIM_PRODUCTO</h4>
+              <div onclick="selectSpecificTable('dbo.DIM_PRODUCTO')" class="cursor-pointer p-3.5 rounded-xl bg-blue-50/80 dark:bg-blue-950/40 border border-blue-200 dark:border-blue-800 hover:shadow-md hover:border-blue-400 transition text-center group">
+                <span class="text-[10px] font-bold text-blue-600 dark:text-blue-400 uppercase">Dimensión Producto</span>
+                <h4 class="font-bold text-xs group-hover:text-blue-600 transition">DIM_PRODUCTO</h4>
                 <p class="text-[10px] text-slate-500 mt-0.5">PK: producto_key | Desnormalizada</p>
                 <div class="mt-2 text-[10px] text-blue-600 dark:text-blue-400 font-mono">1 ─────── N</div>
               </div>
-              <div onclick="selectSpecificTable('dbo.DIM_SUCURSAL')" class="cursor-pointer p-3.5 rounded-xl bg-blue-50/80 dark:bg-blue-950/40 border border-blue-200 dark:border-blue-800 hover:shadow-md transition text-center">
-                <span class="text-[10px] font-bold text-blue-600 dark:text-blue-400 uppercase">Dimensión</span>
-                <h4 class="font-bold text-xs">DIM_SUCURSAL</h4>
+              <div onclick="selectSpecificTable('dbo.DIM_SUCURSAL')" class="cursor-pointer p-3.5 rounded-xl bg-blue-50/80 dark:bg-blue-950/40 border border-blue-200 dark:border-blue-800 hover:shadow-md hover:border-blue-400 transition text-center group">
+                <span class="text-[10px] font-bold text-blue-600 dark:text-blue-400 uppercase">Dimensión Sucursal</span>
+                <h4 class="font-bold text-xs group-hover:text-blue-600 transition">DIM_SUCURSAL</h4>
                 <p class="text-[10px] text-slate-500 mt-0.5">PK: sucursal_key | Locales físicos</p>
                 <div class="mt-2 text-[10px] text-blue-600 dark:text-blue-400 font-mono">1 ─────── N</div>
               </div>
             </div>
 
             <!-- Centro: FACT_VENTAS -->
-            <div onclick="selectSpecificTable('dbo.FACT_VENTAS')" class="cursor-pointer w-full max-w-xl p-5 rounded-2xl bg-gradient-to-r from-emerald-600 to-teal-600 text-white shadow-xl hover:scale-[1.01] transition-transform text-center relative">
-              <span class="px-2.5 py-0.5 rounded-full text-[10px] font-extrabold uppercase bg-white/20 tracking-wider">Centro de la Estrella · Grano Atómico</span>
-              <h3 class="text-lg font-black tracking-tight mt-1">dbo.FACT_VENTAS</h3>
-              <p class="text-xs text-emerald-100 mt-1">order_item_id, order_id, order_number (Degeneradas) · Prorrateo exacto de envíos, cupones e impuestos</p>
+            <div onclick="selectSpecificTable('dbo.FACT_VENTAS')" class="cursor-pointer w-full max-w-2xl p-5 rounded-2xl bg-gradient-to-r from-emerald-600 via-teal-600 to-emerald-700 text-white shadow-xl hover:scale-[1.01] transition-transform text-center relative border border-emerald-400/30">
+              <span class="px-3 py-0.5 rounded-full text-[10px] font-extrabold uppercase bg-white/20 tracking-wider">Centro de la Estrella · Grano Atómico de Línea</span>
+              <h3 class="text-xl font-black tracking-tight mt-1">dbo.FACT_VENTAS</h3>
+              <p class="text-xs text-emerald-100 mt-1">PK: venta_key · Degeneradas: order_item_id, order_id, order_number · Prorrateo exacto</p>
               
-              <div class="grid grid-cols-3 gap-2 mt-3 pt-3 border-t border-emerald-500/40 text-[11px] text-emerald-50">
-                <div><span class="font-bold">Medidas de Venta:</span><br>subtotal, monto_neto</div>
-                <div><span class="font-bold">Medidas Logísticas:</span><br>minutos_entrega</div>
-                <div><span class="font-bold">Medidas Calidad:</span><br>calificacion (1-5)</div>
+              <div class="grid grid-cols-3 gap-2 mt-4 pt-3 border-t border-emerald-500/40 text-[11px] text-emerald-50">
+                <div class="p-2 rounded bg-white/10"><span class="font-bold">Monetarias:</span><br>subtotal, monto_neto</div>
+                <div class="p-2 rounded bg-white/10"><span class="font-bold">Prorrateadas:</span><br>envío, cupón, tax</div>
+                <div class="p-2 rounded bg-white/10"><span class="font-bold">Calidad & Entrega:</span><br>calificacion, minutos</div>
               </div>
             </div>
 
             <!-- Dimensiones Inferiores -->
             <div class="grid grid-cols-4 gap-4 w-full mt-8">
-              <div onclick="selectSpecificTable('dbo.DIM_ZONA_ENTREGA')" class="cursor-pointer p-3.5 rounded-xl bg-blue-50/80 dark:bg-blue-950/40 border border-blue-200 dark:border-blue-800 hover:shadow-md transition text-center">
+              <div onclick="selectSpecificTable('dbo.DIM_ZONA_ENTREGA')" class="cursor-pointer p-3.5 rounded-xl bg-blue-50/80 dark:bg-blue-950/40 border border-blue-200 dark:border-blue-800 hover:shadow-md hover:border-blue-400 transition text-center group">
                 <div class="mb-2 text-[10px] text-blue-600 dark:text-blue-400 font-mono">1 ─────── N</div>
-                <span class="text-[10px] font-bold text-blue-600 dark:text-blue-400 uppercase">Dimensión</span>
-                <h4 class="font-bold text-xs">DIM_ZONA_ENTREGA</h4>
+                <span class="text-[10px] font-bold text-blue-600 dark:text-blue-400 uppercase">Dimensión Zona</span>
+                <h4 class="font-bold text-xs group-hover:text-blue-600 transition">DIM_ZONA_ENTREGA</h4>
                 <p class="text-[10px] text-slate-500 mt-0.5">PK: zona_key | Comodín -1</p>
               </div>
-              <div onclick="selectSpecificTable('dbo.DIM_REPARTIDOR')" class="cursor-pointer p-3.5 rounded-xl bg-blue-50/80 dark:bg-blue-950/40 border border-blue-200 dark:border-blue-800 hover:shadow-md transition text-center">
+              <div onclick="selectSpecificTable('dbo.DIM_REPARTIDOR')" class="cursor-pointer p-3.5 rounded-xl bg-blue-50/80 dark:bg-blue-950/40 border border-blue-200 dark:border-blue-800 hover:shadow-md hover:border-blue-400 transition text-center group">
                 <div class="mb-2 text-[10px] text-blue-600 dark:text-blue-400 font-mono">1 ─────── N</div>
-                <span class="text-[10px] font-bold text-blue-600 dark:text-blue-400 uppercase">Dimensión</span>
-                <h4 class="font-bold text-xs">DIM_REPARTIDOR</h4>
+                <span class="text-[10px] font-bold text-blue-600 dark:text-blue-400 uppercase">Dimensión Repartidor</span>
+                <h4 class="font-bold text-xs group-hover:text-blue-600 transition">DIM_REPARTIDOR</h4>
                 <p class="text-[10px] text-slate-500 mt-0.5">PK: repartidor_key | Comodín -1</p>
               </div>
-              <div onclick="selectSpecificTable('dbo.DIM_METODO_PAGO')" class="cursor-pointer p-3.5 rounded-xl bg-blue-50/80 dark:bg-blue-950/40 border border-blue-200 dark:border-blue-800 hover:shadow-md transition text-center">
+              <div onclick="selectSpecificTable('dbo.DIM_METODO_PAGO')" class="cursor-pointer p-3.5 rounded-xl bg-blue-50/80 dark:bg-blue-950/40 border border-blue-200 dark:border-blue-800 hover:shadow-md hover:border-blue-400 transition text-center group">
                 <div class="mb-2 text-[10px] text-blue-600 dark:text-blue-400 font-mono">1 ─────── N</div>
-                <span class="text-[10px] font-bold text-blue-600 dark:text-blue-400 uppercase">Dimensión</span>
-                <h4 class="font-bold text-xs">DIM_METODO_PAGO</h4>
+                <span class="text-[10px] font-bold text-blue-600 dark:text-blue-400 uppercase">Dimensión Pago</span>
+                <h4 class="font-bold text-xs group-hover:text-blue-600 transition">DIM_METODO_PAGO</h4>
                 <p class="text-[10px] text-slate-500 mt-0.5">PK: metodo_pago_key | 6 Medios</p>
               </div>
-              <div onclick="selectSpecificTable('audit.AUDITORIA_CUADRE_PEDIDOS')" class="cursor-pointer p-3.5 rounded-xl bg-amber-50/80 dark:bg-amber-950/40 border border-amber-200 dark:border-amber-800 hover:shadow-md transition text-center">
+              <div onclick="selectSpecificTable('audit.AUDITORIA_CUADRE_PEDIDOS')" class="cursor-pointer p-3.5 rounded-xl bg-amber-50/80 dark:bg-amber-950/40 border border-amber-200 dark:border-amber-800 hover:shadow-md hover:border-amber-400 transition text-center group">
                 <span class="text-[10px] font-bold text-amber-700 dark:text-amber-400 uppercase">Esquema Audit</span>
-                <h4 class="font-bold text-xs">AUDITORIA_CUADRE</h4>
-                <p class="text-[10px] text-slate-500 mt-0.5">Valida: total_tps == suma_dw</p>
-                <div class="mt-2 text-[10px] text-amber-600 font-bold">Cuadratura al centavo</div>
+                <h4 class="font-bold text-xs group-hover:text-amber-600 transition">AUDITORIA_CUADRE</h4>
+                <p class="text-[10px] text-slate-500 mt-0.5">total_tps == suma_dw</p>
+                <div class="mt-2 text-[10px] text-amber-600 dark:text-amber-400 font-bold">Cuadratura Exacta</div>
               </div>
             </div>
 
@@ -1062,17 +1356,20 @@ ORDER BY auditoria_id DESC;`,
         btnDW.className = 'px-4 py-2 text-xs font-bold rounded-lg text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white transition';
         btnOLTP.className = 'px-4 py-2 text-xs font-bold rounded-lg bg-white dark:bg-slate-900 shadow-sm text-emerald-600 dark:text-emerald-400 transition';
         title.innerText = "Modelo Transaccional Relacional (JuiceCorner_OLTP)";
-        subtitle.innerText = "19 Tablas de Operación Normalizadas alineadas con Kaggle Dataset";
-        badge.innerText = "Eje: orders ──< order_items";
+        subtitle.innerText = "19 Tablas de Operación Normalizadas en 4 Módulos de Negocio alineadas con Kaggle";
+        badge.innerText = "Eje Central: orders ──< order_items";
 
         container.innerHTML = `
-          <div class="space-y-6 py-4">
-            <!-- Módulos Transaccionales -->
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+          <div class="space-y-6 py-2">
+            <!-- 4 Módulos Transaccionales -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
               
-              <!-- Módulo 1: Ventas y Pedidos -->
+              <!-- Módulo 1: Facturación y Pedidos -->
               <div class="p-4 rounded-xl bg-emerald-50/50 dark:bg-emerald-950/20 border border-emerald-200 dark:border-emerald-800 space-y-3">
-                <h4 class="text-xs font-bold text-emerald-700 dark:text-emerald-400 uppercase tracking-wider">Módulo Ventas & Pedidos</h4>
+                <div class="flex items-center justify-between">
+                  <h4 class="text-xs font-bold text-emerald-700 dark:text-emerald-400 uppercase tracking-wider">💰 Ventas & Pedidos</h4>
+                  <span class="text-[10px] px-1.5 py-0.5 rounded bg-emerald-200 dark:bg-emerald-800 text-emerald-900 dark:text-emerald-200 font-bold">4 Tablas</span>
+                </div>
                 <div class="space-y-2">
                   <div onclick="selectSpecificTable('dbo.orders')" class="cursor-pointer p-2 rounded-lg bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 hover:border-emerald-500 text-xs font-mono font-bold flex justify-between">
                     <span>orders</span><span class="text-emerald-600">PK: id</span>
@@ -1083,7 +1380,7 @@ ORDER BY auditoria_id DESC;`,
                   <div onclick="selectSpecificTable('dbo.payments')" class="cursor-pointer p-2 rounded-lg bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 hover:border-emerald-500 text-xs font-mono font-bold flex justify-between">
                     <span>payments</span><span class="text-indigo-600">FK: order_id</span>
                   </div>
-                  <div onclick="selectSpecificTable('dbo.dining_tables')" class="cursor-pointer p-2 rounded-lg bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 hover:border-emerald-500 text-xs font-mono text-xs flex justify-between">
+                  <div onclick="selectSpecificTable('dbo.dining_tables')" class="cursor-pointer p-2 rounded-lg bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 hover:border-emerald-500 text-xs font-mono flex justify-between">
                     <span>dining_tables</span><span>Salón</span>
                   </div>
                 </div>
@@ -1091,44 +1388,75 @@ ORDER BY auditoria_id DESC;`,
 
               <!-- Módulo 2: Clientes y Logística -->
               <div class="p-4 rounded-xl bg-blue-50/50 dark:bg-blue-950/20 border border-blue-200 dark:border-blue-800 space-y-3">
-                <h4 class="text-xs font-bold text-blue-700 dark:text-blue-400 uppercase tracking-wider">Módulo Clientes & Delivery</h4>
+                <div class="flex items-center justify-between">
+                  <h4 class="text-xs font-bold text-blue-700 dark:text-blue-400 uppercase tracking-wider">🛵 Clientes & Envíos</h4>
+                  <span class="text-[10px] px-1.5 py-0.5 rounded bg-blue-200 dark:bg-blue-800 text-blue-900 dark:text-blue-200 font-bold">5 Tablas</span>
+                </div>
                 <div class="space-y-2">
                   <div onclick="selectSpecificTable('dbo.customers')" class="cursor-pointer p-2 rounded-lg bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 hover:border-blue-500 text-xs font-mono font-bold flex justify-between">
                     <span>customers</span><span class="text-blue-600">PK: id</span>
                   </div>
                   <div onclick="selectSpecificTable('dbo.customer_addresses')" class="cursor-pointer p-2 rounded-lg bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 hover:border-blue-500 text-xs font-mono flex justify-between">
-                    <span>customer_addresses</span><span class="text-indigo-600">FK: customer_id</span>
+                    <span>customer_addresses</span><span class="text-indigo-600">FK: customer</span>
                   </div>
                   <div onclick="selectSpecificTable('dbo.deliveries')" class="cursor-pointer p-2 rounded-lg bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 hover:border-blue-500 text-xs font-mono flex justify-between">
-                    <span>deliveries</span><span class="text-indigo-600">FK: order_id</span>
+                    <span>deliveries</span><span class="text-indigo-600">FK: order</span>
                   </div>
                   <div onclick="selectSpecificTable('dbo.delivery_personnel')" class="cursor-pointer p-2 rounded-lg bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 hover:border-blue-500 text-xs font-mono flex justify-between">
-                    <span>delivery_personnel</span><span>6 Repartidores</span>
+                    <span>delivery_personnel</span><span>6 Choferes</span>
                   </div>
                   <div onclick="selectSpecificTable('dbo.delivery_zones')" class="cursor-pointer p-2 rounded-lg bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 hover:border-blue-500 text-xs font-mono flex justify-between">
-                    <span>delivery_zones</span><span>Tarifas / Zonas</span>
+                    <span>delivery_zones</span><span>Zonas/Tarifas</span>
                   </div>
                 </div>
               </div>
 
-              <!-- Módulo 3: Catálogo e Inventario -->
+              <!-- Módulo 3: Catálogo, Recetas e Inventario -->
               <div class="p-4 rounded-xl bg-purple-50/50 dark:bg-purple-950/20 border border-purple-200 dark:border-purple-800 space-y-3">
-                <h4 class="text-xs font-bold text-purple-700 dark:text-purple-400 uppercase tracking-wider">Módulo Catálogo & Recetas</h4>
+                <div class="flex items-center justify-between">
+                  <h4 class="text-xs font-bold text-purple-700 dark:text-purple-400 uppercase tracking-wider">🍹 Menú & Recetas</h4>
+                  <span class="text-[10px] px-1.5 py-0.5 rounded bg-purple-200 dark:bg-purple-800 text-purple-900 dark:text-purple-200 font-bold">6 Tablas</span>
+                </div>
                 <div class="space-y-2">
                   <div onclick="selectSpecificTable('dbo.products')" class="cursor-pointer p-2 rounded-lg bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 hover:border-purple-500 text-xs font-mono font-bold flex justify-between">
                     <span>products</span><span class="text-purple-600">PK: id</span>
                   </div>
-                  <div class="p-2 rounded-lg bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 text-xs font-mono flex justify-between">
+                  <div onclick="selectSpecificTable('dbo.categories')" class="cursor-pointer p-2 rounded-lg bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 hover:border-purple-500 text-xs font-mono flex justify-between">
                     <span>categories</span><span>Categorías</span>
                   </div>
-                  <div class="p-2 rounded-lg bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 text-xs font-mono flex justify-between">
-                    <span>product_ingredients</span><span>Recetas</span>
-                  </div>
-                  <div class="p-2 rounded-lg bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 text-xs font-mono flex justify-between">
+                  <div onclick="selectSpecificTable('dbo.ingredients')" class="cursor-pointer p-2 rounded-lg bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 hover:border-purple-500 text-xs font-mono flex justify-between">
                     <span>ingredients</span><span>Insumos</span>
                   </div>
-                  <div class="p-2 rounded-lg bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 text-xs font-mono flex justify-between">
-                    <span>inventory</span><span>Stock por sucursal</span>
+                  <div onclick="selectSpecificTable('dbo.product_ingredients')" class="cursor-pointer p-2 rounded-lg bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 hover:border-purple-500 text-xs font-mono flex justify-between">
+                    <span>product_ingredients</span><span>Recetas</span>
+                  </div>
+                  <div onclick="selectSpecificTable('dbo.inventory')" class="cursor-pointer p-2 rounded-lg bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 hover:border-purple-500 text-xs font-mono flex justify-between">
+                    <span>inventory</span><span>Stock Local</span>
+                  </div>
+                  <div onclick="selectSpecificTable('dbo.branches')" class="cursor-pointer p-2 rounded-lg bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 hover:border-purple-500 text-xs font-mono flex justify-between">
+                    <span>branches</span><span>Sucursales</span>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Módulo 4: Marketing y Fidelización -->
+              <div class="p-4 rounded-xl bg-amber-50/50 dark:bg-amber-950/20 border border-amber-200 dark:border-amber-800 space-y-3">
+                <div class="flex items-center justify-between">
+                  <h4 class="text-xs font-bold text-amber-700 dark:text-amber-400 uppercase tracking-wider">🎁 Promos & Reseñas</h4>
+                  <span class="text-[10px] px-1.5 py-0.5 rounded bg-amber-200 dark:bg-amber-800 text-amber-900 dark:text-amber-200 font-bold">4 Tablas</span>
+                </div>
+                <div class="space-y-2">
+                  <div onclick="selectSpecificTable('dbo.coupons')" class="cursor-pointer p-2 rounded-lg bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 hover:border-amber-500 text-xs font-mono flex justify-between">
+                    <span>coupons</span><span>Cupones</span>
+                  </div>
+                  <div onclick="selectSpecificTable('dbo.promotions')" class="cursor-pointer p-2 rounded-lg bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 hover:border-amber-500 text-xs font-mono flex justify-between">
+                    <span>promotions</span><span>Campañas</span>
+                  </div>
+                  <div onclick="selectSpecificTable('dbo.product_promotions')" class="cursor-pointer p-2 rounded-lg bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 hover:border-amber-500 text-xs font-mono flex justify-between">
+                    <span>product_promotions</span><span>Asignación</span>
+                  </div>
+                  <div onclick="selectSpecificTable('dbo.reviews')" class="cursor-pointer p-2 rounded-lg bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 hover:border-amber-500 text-xs font-mono flex justify-between">
+                    <span>reviews</span><span>Ratings (1-5)</span>
                   </div>
                 </div>
               </div>
@@ -1159,7 +1487,7 @@ ORDER BY auditoria_id DESC;`,
         const item = document.createElement('div');
         item.className = `table-item p-2.5 rounded-xl text-xs font-mono font-medium cursor-pointer transition flex items-center justify-between border ${
           t.name === currentSelectedTable.name 
-            ? 'bg-emerald-50 dark:bg-emerald-950/60 border-emerald-500 text-emerald-700 dark:text-emerald-300' 
+            ? 'bg-emerald-50 dark:bg-emerald-950/60 border-emerald-500 text-emerald-700 dark:text-emerald-300 shadow-sm' 
             : 'hover:bg-slate-100 dark:hover:bg-slate-800/80 border-transparent text-slate-700 dark:text-slate-300'
         }`;
         item.setAttribute('data-name', t.name.toLowerCase());
@@ -1209,7 +1537,7 @@ ORDER BY auditoria_id DESC;`,
 
     function showTableDetails(table) {
       currentSelectedTable = table;
-      populateTableList(); // re-render list highlight
+      populateTableList();
 
       document.getElementById('selectedTableName').innerText = table.name;
       document.getElementById('selectedTableType').innerText = table.type;
@@ -1222,19 +1550,19 @@ ORDER BY auditoria_id DESC;`,
         const tr = document.createElement('tr');
         tr.className = "hover:bg-slate-50/50 dark:hover:bg-slate-800/40";
         
-        let keyBadge = '<span class="text-slate-400">-</span>';
-        if (col.key === 'PK') keyBadge = '<span class="px-1.5 py-0.5 rounded text-[10px] font-bold badge-pk">PK</span>';
-        else if (col.key === 'FK') keyBadge = '<span class="px-1.5 py-0.5 rounded text-[10px] font-bold badge-fk">FK</span>';
-        else if (col.key === 'NK') keyBadge = '<span class="px-1.5 py-0.5 rounded text-[10px] font-bold bg-emerald-100 text-emerald-800 dark:bg-emerald-900/60 dark:text-emerald-200">NK</span>';
-        else if (col.key === 'DD') keyBadge = '<span class="px-1.5 py-0.5 rounded text-[10px] font-bold bg-amber-100 text-amber-800 dark:bg-amber-900/60 dark:text-amber-200">DEGEN</span>';
-        else if (col.key === 'MEASURE') keyBadge = '<span class="px-1.5 py-0.5 rounded text-[10px] font-bold bg-teal-100 text-teal-800 dark:bg-teal-900/60 dark:text-teal-200">MEDIDA</span>';
+        let keyBadge = '<span class="text-slate-400 font-sans">-</span>';
+        if (col.key === 'PK') keyBadge = '<span class="px-1.5 py-0.5 rounded text-[10px] font-bold badge-pk font-sans">PK</span>';
+        else if (col.key === 'FK') keyBadge = '<span class="px-1.5 py-0.5 rounded text-[10px] font-bold badge-fk font-sans">FK</span>';
+        else if (col.key === 'NK') keyBadge = '<span class="px-1.5 py-0.5 rounded text-[10px] font-bold bg-emerald-100 text-emerald-800 dark:bg-emerald-900/60 dark:text-emerald-200 font-sans">NK</span>';
+        else if (col.key === 'DD') keyBadge = '<span class="px-1.5 py-0.5 rounded text-[10px] font-bold bg-amber-100 text-amber-800 dark:bg-amber-900/60 dark:text-amber-200 font-sans">DEGEN</span>';
+        else if (col.key === 'MEASURE') keyBadge = '<span class="px-1.5 py-0.5 rounded text-[10px] font-bold bg-teal-100 text-teal-800 dark:bg-teal-900/60 dark:text-teal-200 font-sans">MEDIDA</span>';
 
         tr.innerHTML = `
-          <td class="py-2 px-3 font-bold text-slate-900 dark:text-slate-100">${col.name}</td>
-          <td class="py-2 px-3 text-slate-600 dark:text-slate-400 font-semibold">${col.type}</td>
-          <td class="py-2 px-3">${keyBadge}</td>
-          <td class="py-2 px-3 text-slate-500">${col.null}</td>
-          <td class="py-2 px-3 font-sans text-xs text-slate-600 dark:text-slate-400">${col.desc}</td>
+          <td class="py-2.5 px-3 font-bold text-slate-900 dark:text-slate-100">${col.name}</td>
+          <td class="py-2.5 px-3 text-slate-600 dark:text-slate-400 font-semibold">${col.type}</td>
+          <td class="py-2.5 px-3">${keyBadge}</td>
+          <td class="py-2.5 px-3 text-slate-500 font-sans">${col.null}</td>
+          <td class="py-2.5 px-3 font-sans text-xs text-slate-600 dark:text-slate-400">${col.desc}</td>
         `;
         tbody.appendChild(tr);
       });
@@ -1258,14 +1586,14 @@ ORDER BY auditoria_id DESC;`,
         const card = document.createElement('div');
         card.className = `p-3.5 rounded-xl border cursor-pointer transition ${
           q.id === currentSelectedQuery.id
-            ? 'bg-emerald-50 dark:bg-emerald-950/60 border-emerald-500'
+            ? 'bg-emerald-50 dark:bg-emerald-950/60 border-emerald-500 shadow-sm'
             : 'bg-white dark:bg-slate-900 border-slate-200 dark:border-slate-800 hover:border-slate-400'
         }`;
         card.onclick = () => selectQuery(q);
 
         card.innerHTML = `
           <div class="flex items-center justify-between mb-1">
-            <span class="text-[10px] font-bold px-2 py-0.5 rounded bg-blue-100 text-blue-800 dark:bg-blue-900 dark:text-blue-300">${q.badge}</span>
+            <span class="text-[10px] font-bold px-2 py-0.5 rounded bg-blue-100 text-blue-800 dark:bg-blue-900 dark:text-blue-300 font-sans">${q.badge}</span>
             <span class="text-[10px] font-mono text-slate-400">${q.db}</span>
           </div>
           <h4 class="text-xs font-bold text-slate-800 dark:text-slate-200">${q.title}</h4>
@@ -1291,7 +1619,7 @@ ORDER BY auditoria_id DESC;`,
         if (cards[i]) {
           cards[i].className = `p-3.5 rounded-xl border cursor-pointer transition ${
             q.id === currentSelectedQuery.id
-              ? 'bg-emerald-50 dark:bg-emerald-950/60 border-emerald-500'
+              ? 'bg-emerald-50 dark:bg-emerald-950/60 border-emerald-500 shadow-sm'
               : 'bg-white dark:bg-slate-900 border-slate-200 dark:border-slate-800 hover:border-slate-400'
           }`;
         }
