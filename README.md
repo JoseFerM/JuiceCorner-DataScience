@@ -4,7 +4,8 @@
 [![SQL Server](https://img.shields.io/badge/SQL_Server-2014_|_2016_|_2019_|_2022_|_2025-CC292B?logo=microsoftsqlserver&logoColor=white)](https://www.microsoft.com/sql-server)
 [![Model](https://img.shields.io/badge/Architecture-Kimball_Star_Schema-blue.svg)](#-modelo-dimensional-data-warehouse-esquema-estrella-puro)
 [![ETL](https://img.shields.io/badge/ETL-.NET_SqlBulkCopy_(PowerShell)-178600.svg)](#-proceso-etl-y-carga-masiva-automatizada)
-[![Web Viewer](https://img.shields.io/badge/Visualization-Interactive_Web_App-0ea5e9.svg)](#-visualizador-web-interactivo-y-studio-erd)
+[![Web Viewer](https://img.shields.io/badge/Visualization-Live_Demo_(GitHub_Pages)-0ea5e9.svg)](https://joseferm.github.io/JuiceCorner-DataScience/)
+[![GitHub Repo](https://img.shields.io/badge/GitHub-JoseFerM%2FJuiceCorner--DataScience-181717?logo=github)](https://github.com/JoseFerM/JuiceCorner-DataScience)
 [![Standards](https://img.shields.io/badge/Quality-ISO_8000_|_DMBOK_|_ISO_25012-f59e0b.svg)](Docs/IT_DM_01_CALIDAD_DATOS_Gu%C3%ADa+Integral+para+la+Integraci%C3%B3n+de+ISO_IEC+25012,+DMBOK+e+ISO+8000+en+las+Pol%C3%ADticas+de+Calidad+de+Datos.pdf)
 
 ---
@@ -119,7 +120,9 @@ El proyecto incluye una aplicación web de consulta integral empaquetada en [`in
 - **Modo Oscuro / Claro:** Interfaz responsiva con Tailwind CSS y Chart.js.
 
 > [!TIP]
-> **Despliegue en GitHub Pages:** Al alojar este repositorio en GitHub, ve a **Settings > Pages**, selecciona la rama `main` y la carpeta `/ (root)`. Tu visualizador estará accesible públicamente en `https://<tu-usuario>.github.io/<tu-repositorio>/`.
+> **Visualizador Web en Línea (GitHub Pages):**
+> La aplicación web interactiva se encuentra desplegada y disponible públicamente en:
+> 👉 **[https://joseferm.github.io/JuiceCorner-DataScience/](https://joseferm.github.io/JuiceCorner-DataScience/)**
 
 ---
 
