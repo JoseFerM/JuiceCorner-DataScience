@@ -1,0 +1,21 @@
+{
+  "mssql.connections": [
+    {
+      "server": "(localdb)\\MSSQLLocalDB",
+      "database": "JuiceCorner_OLTP",
+      "authenticationType": "Integrated",
+      "profileName": "JuiceCorner - OLTP (Transaccional)",
+      "trustServerCertificate": true
+    },
+    {
+      "server": "(localdb)\\MSSQLLocalDB",
+      "database": "JuiceCorner_DW",
+      "authenticationType": "Integrated",
+      "profileName": "JuiceCorner - DW (Data Warehouse)",
+      "trustServerCertificate": true
+    }
+  ],
+  "mssql.format.keywordCasing": "uppercase",
+  "mssql.resultsFontFamily": "Consolas, 'Courier New', monospace",
+  "sql.query.resultGrid.enableRowSelection": true
+}
