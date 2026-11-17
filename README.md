@@ -6,7 +6,7 @@
 [![ETL](https://img.shields.io/badge/ETL-.NET_SqlBulkCopy_(PowerShell)-178600.svg)](#-proceso-etl-y-carga-masiva-automatizada)
 [![Web Viewer](https://img.shields.io/badge/Visualization-Live_Demo_(GitHub_Pages)-0ea5e9.svg)](https://joseferm.github.io/JuiceCorner-DataScience/)
 [![GitHub Repo](https://img.shields.io/badge/GitHub-JoseFerM%2FJuiceCorner--DataScience-181717?logo=github)](https://github.com/JoseFerM/JuiceCorner-DataScience)
-[![Standards](https://img.shields.io/badge/Quality-ISO_8000_|_DMBOK_|_ISO_25012-f59e0b.svg)](Docs/IT_DM_01_CALIDAD_DATOS_Gu%C3%ADa+Integral+para+la+Integraci%C3%B3n+de+ISO_IEC+25012,+DMBOK+e+ISO+8000+en+las+Pol%C3%ADticas+de+Calidad+de+Datos.pdf)
+[![Standards](https://img.shields.io/badge/Quality-ISO_8000_|_DMBOK_|_ISO_25012-f59e0b.svg)](#-7-normativas-de-gobernanza-y-calidad-aplicadas)
 
 ---
 
@@ -161,36 +161,26 @@ powershell -ExecutionPolicy Bypass -File .\Cargar_Datos_OLTP.ps1
 ## 📂 6. Estructura del Repositorio
 
 ```text
-3.1proyecto/
+JuiceCorner-DataScience/
 ├── .vscode/
-│   └── settings.json           # Perfiles de conexión preconfigurados para extensión mssql
-├── conectores/                 # Carpeta para conectores ETL y pipelines analíticos
-│   └── README.md
-├── dataset/                    # Esquemas y documentación del dataset de origen
-│   ├── create_juice_corner_schema_postgreSQL.sql  # DDL original Kaggle
-│   ├── juice_corner_schema.dbml                  # Esquema DBML
-│   └── README.md                                 # Guía del dataset y política de archivos
-├── Docs/                       # Documentación técnica, académica y normativas
-│   ├── Decalogo_Data_Warehouse_Restaurante_Corregido.md  # Decálogo Dimensional V2.0
-│   ├── Informe_Cambios_Data_Warehouse.md                # Auditoría técnica Kimball
-│   ├── informe_justificacion_oltp.md                    # Justificación OLTP vs Kaggle
-│   ├── Fase 1.docx / Fase 1. Identificación...docx       # Entregables académicos
-│   ├── Data_Warehouse_TPS_Restaurante_Corregido.docx    # Documento de entrega
-│   ├── Grupo 1_Oct29.pdf / LCD-4toSem...pdf             # Programa de cátedra
-│   └── ISO-8000-1-2022.pdf / IT_DM_01_CALIDAD...pdf    # Normas de Calidad de Datos
-├── .gitignore                  # Exclusión de archivos >100MB, temporales y binarios
-├── Cargar_Datos_OLTP.ps1       # Script PowerShell de carga masiva con .NET SqlBulkCopy
-├── Cargar_Datos_OLTP.sql       # Script T-SQL complementario de carga
-├── download_kaggle_dataset.py  # Script Python para descargar el dataset con kagglehub
-├── Ejecutar_Carga.bat          # Lanzador batch para la carga masiva
-├── ejecutar_sql.bat            # Menú interactivo CLI para Windows
-├── ejecutar_sql.ps1            # Motor PowerShell del menú interactivo
-├── index.html                  # Visualizador interactivo principal (GitHub Pages ready)
-├── JuiceCorner_DW.sql          # DDL completo del Data Warehouse dimensional
-├── JuiceCorner_OLTP.sql        # DDL completo de la base transaccional OLTP
-├── README.md                   # Documentación centralizada del proyecto
-├── schema_restaurante_tipo.sql # DDL genérico alternativo MySQL/PostgreSQL
-└── visualizador_sql.html       # Visualizador web (copia de respaldo)
+│   └── settings.json           # Perfil de conexión LocalDB para extensión mssql
+├── dataset/                    # Documentación del origen de datos
+│   └── README.md               # Guía del dataset y política de archivos
+├── Docs/                       # Documentación técnica, justificaciones y entregables
+│   ├── Decalogo_Data_Warehouse_Restaurante_Corregido.md  # Decálogo Dimensional V2.0 oficial
+│   ├── Informe_Cambios_Data_Warehouse.md                # Informe técnico de auditoría Kimball
+│   ├── informe_justificacion_oltp.md                    # Justificación técnica del modelo OLTP
+│   ├── Fase_1_Descuentos_y_Cupones_Juice_Corner.docx    # Documento de entrega - Fase 1
+│   └── Data_Warehouse_TPS_Restaurante_Corregido.docx    # Documento de entrega - Data Warehouse
+├── .gitignore                  # Exclusión de CSVs masivos (>100MB) y temporales
+├── Cargar_Datos_OLTP.ps1       # Pipeline ETL automatizado (.NET SqlBulkCopy streaming)
+├── download_kaggle_dataset.py  # Descarga oficial del dataset vía API kagglehub
+├── Ejecutar_Carga.bat          # Lanzador batch para la carga masiva ETL
+├── ejecutar_sql.bat            # Menú interactivo CLI para inicialización y pruebas
+├── index.html                  # Visualizador interactivo web (desplegado en GitHub Pages)
+├── JuiceCorner_DW.sql          # DDL del Data Warehouse dimensional (Modelo Estrella)
+├── JuiceCorner_OLTP.sql        # DDL de la base de datos transaccional (19 tablas 3FN)
+└── README.md                   # Portal de documentación centralizada del proyecto
 ```
 
 ---

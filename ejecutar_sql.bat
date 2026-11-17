@@ -109,10 +109,12 @@ goto MENU
 
 :OPEN_WEB
 echo Abriendo Visualizador Interactivo en el navegador...
-if exist "%~dp0visualizador_sql.html" (
+if exist "%~dp0index.html" (
+    start "" "%~dp0index.html"
+) else if exist "%~dp0visualizador_sql.html" (
     start "" "%~dp0visualizador_sql.html"
 ) else (
-    echo El archivo visualizador_sql.html aún no está disponible.
+    echo El archivo index.html aún no está disponible.
 )
 pause
 goto MENU

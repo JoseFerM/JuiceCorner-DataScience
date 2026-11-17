@@ -22,10 +22,8 @@ python download_kaggle_dataset.py
 > [!NOTE]
 > Debido a que varios archivos CSV individuales superan los límites de GitHub (por ejemplo, `order_status_history.csv` con ~503 MB y `orders.csv` con ~255 MB, sumando más de 1.2 GB en total), los archivos `.csv` y `.zip` se encuentran ignorados en el archivo `.gitignore` del proyecto.
 
-En este repositorio se conservan:
-- El esquema PostgreSQL original del autor (`create_juice_corner_schema_postgreSQL.sql`).
-- La especificación del modelo relacional original en DBML (`juice_corner_schema.dbml`).
-- Los scripts automatizados de carga masiva rápida hacia SQL Server (`Cargar_Datos_OLTP.ps1` y `Ejecutar_Carga.bat`).
+Para cargar los datos en SQL Server una vez descargados los CSV:
+- Utiliza el pipeline automatizado en PowerShell [`Cargar_Datos_OLTP.ps1`](../Cargar_Datos_OLTP.ps1) o el lanzador [`Ejecutar_Carga.bat`](../Ejecutar_Carga.bat).
 
 ---
 
