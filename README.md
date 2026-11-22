@@ -30,7 +30,7 @@ Toda la arquitectura, ingeniería de datos, modelado analítico y código ejecut
                                       │
   ┌───────────────────────────────────┴────────────────────────────────────┐
   │       NIVEL 3: ESPECIFICACIONES TÉCNICAS Y CALIBRACIÓN DE DATOS        │
-  │   Docs/Informe_Ajuste_Temporal_1Anio.md (Proyección año móvil 365 días)│
+  │   Docs/Informe_Ajuste_Temporal_1Anio.md (Marco temporal año móvil)     │
   │   Docs/Decalogo_Data_Warehouse_Restaurante_Corregido.md (Kimball DW)   │
   │   Docs/Informe_Cambios_Data_Warehouse.md (Auditoría y cuadre)          │
   │   Docs/informe_justificacion_oltp.md (Modelo 3FN de 19 tablas)         │
@@ -48,7 +48,7 @@ Toda la arquitectura, ingeniería de datos, modelado analítico y código ejecut
 > **Documentos Oficiales Clave:**
 > 1. **Cima y Marco Metodológico:** [`Docs/Capitulo_I_Marco_Introductorio_Limpio.md`](Docs/Capitulo_I_Marco_Introductorio_Limpio.md) (y [`Capitulo_I_Marco_Introductorio_Limpio.html`](Docs/Capitulo_I_Marco_Introductorio_Limpio.html)) define la formulación académica, el árbol del problema, las hipótesis y los objetivos específicos OE1 a OE6.
 > 2. **Informe Final de Entrega:** [`Docs/Avance.docx`](Docs/Avance.docx) es el documento consolidado de entrega ejecutiva que agrupa las evidencias y contrastes de las Fases 1, 2 y 3.
-> 3. **Calibración Temporal a 1 Año:** [`Docs/Informe_Ajuste_Temporal_1Anio.md`](Docs/Informe_Ajuste_Temporal_1Anio.md) sustenta matemáticamente el escalamiento determinista a una ventana móvil anual (365 días / 12 meses continuos) requerida para el análisis de estacionalidad sin distorsión de horas ni importes.
+> 3. **Horizonte de Análisis:** El estudio comprende **1 año de operación (1 año móvil: 22 de junio de 2025 al 21 de junio de 2026)** para la evaluación de estacionalidad y comportamiento de la demanda, documentado en [`Docs/Informe_Ajuste_Temporal_1Anio.md`](Docs/Informe_Ajuste_Temporal_1Anio.md).
 
 ---
 
@@ -56,7 +56,7 @@ Toda la arquitectura, ingeniería de datos, modelado analítico y código ejecut
 
 **Juice Corner BD** es una cadena comercial gastronómica especializada en la elaboración y venta de jugos naturales, batidos y snacks, con tres sucursales operativas situadas en Dhaka, Bangladesh. La empresa comercializa un menú de 20 productos a través de dos canales principales: consumo en salón (`dine_in`) y servicio a domicilio (`delivery`), registrando sus operaciones en Taka bangladesí (BDT).
 
-El universo analizado comprende **1.000.000 de órdenes transaccionales**, **2.498.660 líneas de detalle** y **4.995.377 unidades físicas comercializadas** a lo largo de **365 días continuos de operación (1 año móvil auditado: 22 de junio de 2025 al 21 de junio de 2026)**.
+El universo analizado comprende **1.000.000 de órdenes transaccionales**, **2.498.660 líneas de detalle** y **4.995.377 unidades físicas comercializadas**, realizando el análisis sobre **1 año completo de operación (1 año móvil: 22 de junio de 2025 al 21 de junio de 2026)**.
 
 ### Diagnóstico de la Situación Problemática
 La rentabilidad operativa de Juice Corner BD se encuentra severamente erosionada debido a una política de descuentos empírica y desalineada del margen de contribución. Actualmente destina el **7,24 % de su subtotal neto a descuentos** (78.843.704 BDT: 52,35M en descuentos directos de línea y 26,49M en cupones promocionales):
@@ -111,7 +111,7 @@ Diseñar, mediante un modelo de análisis y simulación de escenarios, una polí
 - **Fórmula de Monto Neto Auditada:**
   $$\text{monto\_neto} = \text{subtotal} - \text{descuento\_cupon\_prorr} + \text{costo\_envio\_prorr} + \text{impuesto\_prorr}$$
 - **Pipeline ETL Masivo:** Carga en streaming vía PowerShell (`Cargar_Datos_OLTP.ps1` y `Ejecutar_Carga.bat`) basada en .NET `SqlBulkCopy` con validación de 0 descuadres en `audit.AUDITORIA_CUADRE_PEDIDOS`.
-- **Calibración Temporal de 1 Año Móvil:** Dilatación matemática determinista en `Scale-Date` que proyecta la ventana a 365 días continuos respetando tiempos de preparación intradiarios ([`Docs/Informe_Ajuste_Temporal_1Anio.md`](Docs/Informe_Ajuste_Temporal_1Anio.md)).
+- **Horizonte Temporal de 1 Año:** Cobertura de 1 año móvil continuo (22 de junio de 2025 al 21 de junio de 2026) que permite evaluar estacionalidad y comportamiento de la demanda sin alterar duraciones intradiarias ni valores contables ([`Docs/Informe_Ajuste_Temporal_1Anio.md`](Docs/Informe_Ajuste_Temporal_1Anio.md)).
 
 ### Fase 3: Análisis Estadístico e Inferencia en R (OE3 - Foco Actual)
 - **Homogeneidad de Demanda:** ANOVA ($F = 0,70, p = 0,819$) y Kruskal-Wallis ($p = 0,908$) descartan diferencias de venta entre productos. Coeficiente $V$ de Cramér entre 0,0025 y 0,0077 demuestra que la mezcla es independiente de sucursal, canal o fecha.
@@ -173,8 +173,8 @@ flowchart TD
         OLTP_CORE["19 Tablas Relacionales (3FN)<br/>• orders, order_items, payments<br/>• deliveries, delivery_tracking<br/>• products, categories, stock<br/>• customers, dining_tables"]
     end
 
-    subgraph S3["3. Pipeline ETL y Calibración Temporal"]
-        BULK["Cargar_Datos_OLTP.ps1<br/>(Escalamiento a 365 días + .NET SqlBulkCopy)"]
+    subgraph S3["3. Pipeline ETL Automatizado"]
+        BULK["Cargar_Datos_OLTP.ps1<br/>(.NET SqlBulkCopy Streaming)"]
         BAT["Ejecutar_Carga.bat / Crear_Backup.bat"]
     end
 
@@ -220,13 +220,13 @@ JuiceCorner-DataScience/
 │   ├── Capitulo_I_Marco_Introductorio_Limpio.md      # CIMA Y MARCO RECTOR: Formulación, objetivos e hipótesis
 │   ├── Capitulo_I_Marco_Introductorio_Limpio.html    # Versión formateada para consulta y lectura
 │   ├── Avance.docx                                   # INFORME CONSOLIDADO DE ENTREGA (Fases 1, 2 y 3)
-│   ├── Informe_Ajuste_Temporal_1Anio.md              # Justificación técnica de la ventana móvil de 1 año (365 días)
+│   ├── Informe_Ajuste_Temporal_1Anio.md              # Documento de referencia de la ventana móvil de 1 año
 │   ├── Decalogo_Data_Warehouse_Restaurante_Corregido.md # Decálogo Dimensional V2.0 oficial (Kimball)
 │   ├── Informe_Cambios_Data_Warehouse.md               # Informe técnico de auditoría y cuadre de DW
 │   ├── informe_justificacion_oltp.md                   # Justificación técnica del modelo OLTP (3FN)
 │   └── visualizador_studio_preview.png               # Captura de pantalla de la plataforma SQL & BI Studio
 ├── .gitignore                                        # Exclusión de CSVs masivos (>100MB), node_modules y temporales
-├── Cargar_Datos_OLTP.ps1                             # Pipeline ETL automatizado (Escalamiento 365d + SqlBulkCopy)
+├── Cargar_Datos_OLTP.ps1                             # Pipeline ETL automatizado (.NET SqlBulkCopy streaming)
 ├── download_kaggle_dataset.py                        # Descarga oficial del dataset vía API kagglehub
 ├── Ejecutar_Carga.bat                                # Lanzador batch para la carga masiva ETL
 ├── Crear_Backup.bat                                  # Generador y validador de copia de seguridad .BAK
@@ -260,7 +260,7 @@ El menú automatiza:
 - Apertura del Visualizador Web Interactivo (Opción 7).
 
 ### Paso 2: Carga Masiva de Datos Transaccionales
-Para cargar y calibrar el dataset masivo a 365 días en SQL Server:
+Para cargar el dataset a SQL Server:
 ```cmd
 .\Ejecutar_Carga.bat
 ```
