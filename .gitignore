@@ -46,3 +46,10 @@ Desktop.ini
 *.user
 *.userosscache
 *.sln.docstates
+
+# Node.js / Dependencias locales
+node_modules/
+package-lock.json
+
+# Bibliografia y carpeta de construcción metodológica (local)
+Docs/meth/
