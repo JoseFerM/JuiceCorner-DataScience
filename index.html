@@ -120,7 +120,7 @@
     <!-- Navigation Tabs with badges -->
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 border-t border-slate-200/80 dark:border-slate-800 flex space-x-1 sm:space-x-2 overflow-x-auto custom-scroll">
       <button onclick="switchTab('presentacion')" id="tabBtn-presentacion" class="tab-btn px-4 py-2.5 text-xs sm:text-sm font-bold border-b-2 border-emerald-600 text-emerald-600 dark:border-emerald-400 dark:text-emerald-400 whitespace-nowrap transition-colors flex items-center space-x-1.5">
-        <span>🎓 Modo Presentación / ¿Qué es esto?</span>
+        <span>🎓 Marco Introductorio & Sustentación</span>
       </button>
       <button onclick="switchTab('guias')" id="tabBtn-guias" class="tab-btn px-4 py-2.5 text-xs sm:text-sm font-semibold border-b-2 border-transparent text-slate-500 hover:text-slate-800 dark:hover:text-slate-200 whitespace-nowrap transition-colors flex items-center space-x-1.5">
         <span>🚀 Cómo Ejecutar y Visualizar</span>
@@ -144,102 +144,301 @@
   <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
 
     <!-- ===================================================================================== -->
-    <!-- TAB 1: MODO PRESENTACIÓN / EXPLICACIÓN DIDÁCTICA PARA PRINCIPIANTES -->
+    <!-- TAB 1: MARCO INTRODUCTORIO, OBJETIVOS SMART Y DIAGNÓSTICO EMPRESARIAL -->
     <!-- ===================================================================================== -->
     <section id="tab-presentacion" class="space-y-6">
       
-      <!-- Welcome Hero Banner -->
+      <!-- Welcome Hero Banner: Título Oficial y Objetivo General SMART -->
       <div class="p-6 sm:p-8 rounded-3xl bg-gradient-to-br from-emerald-600 via-teal-700 to-blue-800 text-white shadow-xl relative overflow-hidden">
-        <div class="max-w-3xl space-y-3 relative z-10">
-          <div class="inline-flex items-center space-x-2 px-3 py-1 rounded-full bg-white/20 backdrop-blur text-xs font-bold tracking-wide uppercase">
-            <span>Guía Didáctica para Presentaciones</span>
+        <div class="max-w-4xl space-y-3 relative z-10">
+          <div class="flex flex-wrap items-center gap-2">
+            <span class="inline-flex items-center space-x-1.5 px-3 py-1 rounded-full bg-white/20 backdrop-blur text-xs font-bold tracking-wide uppercase">
+              <span>📋 Capítulo I · Marco Introductorio Oficial</span>
+            </span>
+            <span class="inline-flex items-center px-3 py-1 rounded-full bg-emerald-400/20 backdrop-blur text-xs font-semibold text-emerald-200 border border-emerald-300/30">
+              📍 Dhaka, Bangladesh · 3 Sucursales (Salón & Delivery) · Moneda: BDT (৳)
+            </span>
           </div>
-          <h2 class="text-2xl sm:text-3xl font-black tracking-tight">¿Cómo explicar este proyecto a alguien que no sabe nada de bases de datos?</h2>
-          <p class="text-sm sm:text-base text-emerald-100 leading-relaxed">
-            Imagina que <strong>Juice Corner</strong> es una cadena real de restaurantes de jugos y comida saludable con ventas en mesas de salón y pedidos a domicilio (delivery). Esta pantalla te da las analogías exactas y el libreto paso a paso para explicar qué se hizo, por qué y cómo funciona.
+
+          <h2 class="text-xl sm:text-2xl lg:text-3xl font-black tracking-tight leading-snug">
+            Diseño de una Política de Descuentos Alineada con la Rentabilidad por Producto, Mediante Análisis y Simulación de Escenarios
+          </h2>
+
+          <div class="p-4 rounded-2xl bg-white/10 backdrop-blur-md border border-white/20 text-xs sm:text-sm text-emerald-50 leading-relaxed mt-2 space-y-1.5">
+            <div class="font-bold text-amber-300 uppercase tracking-wider text-[11px]">🎯 Objetivo General SMART de la Investigación:</div>
+            <p>
+              Diseñar, mediante un modelo de análisis y simulación de escenarios, una política de descuentos para los <strong>20 productos de Juice Corner BD</strong>, basada en el análisis de <strong>1.000.000 de órdenes transaccionales</strong> (censo semestral de 160 días), que permita en el próximo semestre de operación (<code class="bg-black/30 px-1 py-0.5 rounded font-mono font-bold">S₁</code>):
+            </p>
+            <div class="grid grid-cols-1 sm:grid-cols-3 gap-2 pt-2 text-xs font-semibold text-white">
+              <div class="p-2 rounded-xl bg-white/10 flex items-center space-x-2">
+                <span class="text-amber-400 text-base">📉</span>
+                <span>Reducir descuentos del <strong>7,24 %</strong> a <strong>≤ 5,00 %</strong></span>
+              </div>
+              <div class="p-2 rounded-xl bg-white/10 flex items-center space-x-2">
+                <span class="text-emerald-300 text-base">📈</span>
+                <span>Elevar margen global del <strong>61,1 %</strong> a <strong>≥ 62,0 %</strong></span>
+              </div>
+              <div class="p-2 rounded-xl bg-white/10 flex items-center space-x-2">
+                <span class="text-blue-300 text-base">💰</span>
+                <span>Ahorro semestral de <strong>≥ 24,39M BDT</strong></span>
+              </div>
+            </div>
+            <p class="text-[11px] text-emerald-200/90 pt-1">
+              *Condición estricta de evaluación: Manteniendo constante el volumen físico (4.995.377 unidades), los precios de lista y la carta de productos.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Ficha Técnica del Censo y KPIs Cuantitativos de Línea Base (S₀) -->
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+        
+        <div class="glass-card rounded-2xl p-4 shadow-sm border border-slate-200 dark:border-slate-800">
+          <span class="text-[11px] font-bold uppercase text-slate-500">Universo Transaccional</span>
+          <div class="text-xl sm:text-2xl font-black font-mono text-emerald-600 dark:text-emerald-400 mt-1">1.000.000</div>
+          <p class="text-xs text-slate-500 mt-0.5">Órdenes (Censo 100 %)</p>
+          <div class="mt-2 text-[10px] text-slate-400 border-t border-slate-100 dark:border-slate-800 pt-1.5 font-mono">
+            160 días · 3 Sucursales
+          </div>
+        </div>
+
+        <div class="glass-card rounded-2xl p-4 shadow-sm border border-slate-200 dark:border-slate-800">
+          <span class="text-[11px] font-bold uppercase text-slate-500">Grano en FACT_VENTAS</span>
+          <div class="text-xl sm:text-2xl font-black font-mono text-blue-600 dark:text-blue-400 mt-1">2.498.660</div>
+          <p class="text-xs text-slate-500 mt-0.5">Líneas de detalle (Items)</p>
+          <div class="mt-2 text-[10px] text-slate-400 border-t border-slate-100 dark:border-slate-800 pt-1.5 font-mono">
+            4.995.377 unidades vendidas
+          </div>
+        </div>
+
+        <div class="glass-card rounded-2xl p-4 shadow-sm border border-slate-200 dark:border-slate-800">
+          <span class="text-[11px] font-bold uppercase text-amber-600 dark:text-amber-400">Costo Actual Descuentos</span>
+          <div class="text-xl sm:text-2xl font-black font-mono text-amber-600 dark:text-amber-400 mt-1">7,24 %</div>
+          <p class="text-xs text-slate-500 mt-0.5">78,84M BDT gastados</p>
+          <div class="mt-2 text-[10px] text-slate-400 border-t border-slate-100 dark:border-slate-800 pt-1.5 font-mono">
+            52,4M línea + 26,5M cupones
+          </div>
+        </div>
+
+        <div class="glass-card rounded-2xl p-4 shadow-sm border border-slate-200 dark:border-slate-800">
+          <span class="text-[11px] font-bold uppercase text-emerald-600 dark:text-emerald-400">Meta Financiera S₁</span>
+          <div class="text-xl sm:text-2xl font-black font-mono text-emerald-600 dark:text-emerald-400 mt-1">≥ 24,39M</div>
+          <p class="text-xs text-slate-500 mt-0.5">BDT Recuperación Semestral</p>
+          <div class="mt-2 text-[10px] text-slate-400 border-t border-slate-100 dark:border-slate-800 pt-1.5 font-mono">
+            Margen: 61,1% ➔ ≥62,0%
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Diagnóstico Cuantitativo del Problema: 3 Distorsiones Críticas del Marco Introductorio -->
+      <div class="glass-card rounded-2xl p-6 shadow-sm border border-slate-200 dark:border-slate-800">
+        <div class="flex flex-col sm:flex-row sm:items-center justify-between pb-4 border-b border-slate-200 dark:border-slate-800 gap-2 mb-6">
+          <div>
+            <span class="text-xs font-bold uppercase tracking-wider text-rose-600 dark:text-rose-400">Diagnóstico de la Situación Problemática</span>
+            <h3 class="text-lg font-bold text-slate-900 dark:text-white mt-0.5">Las 3 Distorsiones Cuantitativas que Erosionan la Rentabilidad</h3>
+          </div>
+          <span class="text-xs px-3 py-1 rounded-full bg-rose-100 text-rose-800 dark:bg-rose-950/60 dark:text-rose-300 font-semibold self-start sm:self-auto">
+            Evidencia Estadística al 95 % de Confianza (α = 0,05)
+          </span>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+          
+          <!-- Distorsión 1: Desalineación Descuento vs Margen -->
+          <div class="p-4 rounded-xl bg-rose-50/50 dark:bg-rose-950/20 border border-rose-200 dark:border-rose-900/60 space-y-3 flex flex-col justify-between">
+            <div>
+              <div class="w-10 h-10 rounded-xl bg-rose-100 dark:bg-rose-900/40 text-rose-600 dark:text-rose-400 flex items-center justify-center text-xl mb-3 font-bold">
+                📉
+              </div>
+              <h4 class="font-bold text-sm text-slate-900 dark:text-white">1. Desalineación Crítica de Margen</h4>
+              <p class="text-xs text-rose-600 dark:text-rose-400 font-mono font-bold mt-0.5">Correlación r = -0,19 (p = 0,415)</p>
+              
+              <div class="mt-3 p-3 rounded-lg bg-white dark:bg-slate-900 border border-rose-100 dark:border-rose-900/40 text-xs text-slate-600 dark:text-slate-300 space-y-1.5">
+                <p>Existe una <strong>relación inversa irracional</strong>: el producto más rentable (<em>Blue Lagoon Mocktail</em>, margen 94,2 %) recibe el mayor descuento de la empresa (<strong>11,1 %</strong>).</p>
+                <p>En contraste, el producto con menor margen (<em>Strawberry Cream Shake</em>, margen 14,4 %) recibe <strong>0,0 %</strong> de descuento.</p>
+                <p class="text-[11px] text-rose-700 dark:text-rose-300 font-semibold pt-1">
+                  ⚠️ 7 productos con margen &lt; 70 % absorben 42,4M BDT (el 81 % del total de descuentos de línea).
+                </p>
+              </div>
+            </div>
+            <div class="pt-3 border-t border-rose-200/60 dark:border-rose-900/40 text-[11px] text-slate-500">
+              <strong>Impacto:</strong> Subsidio ciego de productos costosos sin premiar la rentabilidad.
+            </div>
+          </div>
+
+          <!-- Distorsión 2: Aplicación Ciega y Fuga de Cupones -->
+          <div class="p-4 rounded-xl bg-amber-50/50 dark:bg-amber-950/20 border border-amber-200 dark:border-amber-900/60 space-y-3 flex flex-col justify-between">
+            <div>
+              <div class="w-10 h-10 rounded-xl bg-amber-100 dark:bg-amber-900/40 text-amber-600 dark:text-amber-400 flex items-center justify-center text-xl mb-3 font-bold">
+                🎫
+              </div>
+              <h4 class="font-bold text-sm text-slate-900 dark:text-white">2. Fuga y Descontrol en Cupones</h4>
+              <p class="text-xs text-amber-600 dark:text-amber-400 font-mono font-bold mt-0.5">38,65 % de órdenes aplican cupón</p>
+              
+              <div class="mt-3 p-3 rounded-lg bg-white dark:bg-slate-900 border border-amber-100 dark:border-amber-900/40 text-xs text-slate-600 dark:text-slate-300 space-y-1.5">
+                <p>Cada orden con cupón resta en promedio <strong>-68 BDT de margen neto</strong> (615 BDT vs 653 BDT sin cupón), aplicándose a la canasta completa sin discriminar margen.</p>
+                <p><strong>Fuga crítica de reglas operativas:</strong></p>
+                <ul class="list-disc list-inside text-[11px] space-y-0.5 text-slate-700 dark:text-slate-300">
+                  <li><code class="font-mono">EID50</code>: <strong>94,4 %</strong> de usos fuera de fecha.</li>
+                  <li><code class="font-mono">VIP100</code>: <strong>18,7 %</strong> bajo el importe mínimo.</li>
+                  <li>El 100 % de cupones superó su tope de usos.</li>
+                </ul>
+              </div>
+            </div>
+            <div class="pt-3 border-t border-amber-200/60 dark:border-amber-900/40 text-[11px] text-slate-500">
+              <strong>Impacto:</strong> 26,49M BDT en descuentos globales sin control de canasta.
+            </div>
+          </div>
+
+          <!-- Distorsión 3: Demanda Plana Invalida Descuentos -->
+          <div class="p-4 rounded-xl bg-blue-50/50 dark:bg-blue-950/20 border border-blue-200 dark:border-blue-900/60 space-y-3 flex flex-col justify-between">
+            <div>
+              <div class="w-10 h-10 rounded-xl bg-blue-100 dark:bg-blue-900/40 text-blue-600 dark:text-blue-400 flex items-center justify-center text-xl mb-3 font-bold">
+                ⚖️
+              </div>
+              <h4 class="font-bold text-sm text-slate-900 dark:text-white">3. Demanda Homogénea Plana</h4>
+              <p class="text-xs text-blue-600 dark:text-blue-400 font-mono font-bold mt-0.5">ANOVA p = 0,819 | Kruskal-Wallis p = 0,908</p>
+              
+              <div class="mt-3 p-3 rounded-lg bg-white dark:bg-slate-900 border border-blue-100 dark:border-blue-900/40 text-xs text-slate-600 dark:text-slate-300 space-y-1.5">
+                <p>Cada uno de los 20 productos comercializa prácticamente la misma cantidad (entre 248.416 y 250.952 unidades, <strong>~5 % de la mezcla</strong>, CV = 0,26 %).</p>
+                <p>Las pruebas inferenciales confirman que <strong>no existen diferencias significativas de demanda</strong> entre productos ni por sucursal ni por canal.</p>
+                <p class="text-[11px] text-blue-700 dark:text-blue-300 font-semibold pt-1">
+                  💡 No hay justificación de rotación o estacionalidad para dar descuentos dispares.
+                </p>
+              </div>
+            </div>
+            <div class="pt-3 border-t border-blue-200/60 dark:border-blue-900/40 text-[11px] text-slate-500">
+              <strong>Impacto:</strong> Reestructurar descuentos no arriesga rotación diferencial.
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- Matriz de Metas Comparativas: Semestre Observado (S₀) vs Semestre Meta (S₁) -->
+      <div class="glass-card rounded-2xl p-6 shadow-sm border border-slate-200 dark:border-slate-800">
+        <h3 class="text-base font-bold text-slate-900 dark:text-white mb-1">
+          Matriz de Metas de Desempeño: Semestre Observado (S₀) vs. Proyección Semestral (S₁)
+        </h3>
+        <p class="text-xs text-slate-500 mb-4">
+          Comparativa directa del estado actual frente al criterio de éxito formulado en el Marco Introductorio:
+        </p>
+
+        <div class="overflow-x-auto custom-scroll">
+          <table class="w-full text-left text-xs border-collapse">
+            <thead>
+              <tr class="border-b border-slate-200 dark:border-slate-800 text-slate-400 uppercase font-semibold">
+                <th class="py-2.5 px-3">Indicador Clave de Rendimiento (KPI)</th>
+                <th class="py-2.5 px-3">S₀ Observado (Línea Base Histórica)</th>
+                <th class="py-2.5 px-3">S₁ Inacción (Política Replicada)</th>
+                <th class="py-2.5 px-3 text-emerald-600 dark:text-emerald-400 font-bold">S₁ Meta (Política Propuesta)</th>
+                <th class="py-2.5 px-3">Criterio de Éxito SMART</th>
+              </tr>
+            </thead>
+            <tbody class="divide-y divide-slate-100 dark:divide-slate-800/60 font-mono">
+              <tr class="hover:bg-slate-50 dark:hover:bg-slate-800/40">
+                <td class="py-2.5 px-3 font-sans font-bold text-slate-900 dark:text-white">Costo de Descuentos s/ Subtotal</td>
+                <td class="py-2.5 px-3 text-rose-600 font-bold">7,24 %</td>
+                <td class="py-2.5 px-3 text-rose-600">7,24 %</td>
+                <td class="py-2.5 px-3 text-emerald-600 dark:text-emerald-400 font-bold bg-emerald-50/50 dark:bg-emerald-950/30">≤ 5,00 %</td>
+                <td class="py-2.5 px-3 font-sans text-slate-500">Reducción ≥ 2,24 pp</td>
+              </tr>
+              <tr class="hover:bg-slate-50 dark:hover:bg-slate-800/40">
+                <td class="py-2.5 px-3 font-sans font-bold text-slate-900 dark:text-white">Monto Semestral de Descuentos</td>
+                <td class="py-2.5 px-3 text-rose-600">78.843.704 BDT</td>
+                <td class="py-2.5 px-3 text-rose-600">78.843.704 BDT</td>
+                <td class="py-2.5 px-3 text-emerald-600 dark:text-emerald-400 font-bold bg-emerald-50/50 dark:bg-emerald-950/30">≤ 54.450.427 BDT</td>
+                <td class="py-2.5 px-3 font-sans text-emerald-600 dark:text-emerald-400 font-semibold">Ahorro ≥ 24,39M BDT</td>
+              </tr>
+              <tr class="hover:bg-slate-50 dark:hover:bg-slate-800/40">
+                <td class="py-2.5 px-3 font-sans font-bold text-slate-900 dark:text-white">Margen de Contribución Global</td>
+                <td class="py-2.5 px-3 text-amber-600">61,1 % (60,1% post-cupón)</td>
+                <td class="py-2.5 px-3 text-amber-600">61,1 %</td>
+                <td class="py-2.5 px-3 text-emerald-600 dark:text-emerald-400 font-bold bg-emerald-50/50 dark:bg-emerald-950/30">≥ 62,00 %</td>
+                <td class="py-2.5 px-3 font-sans text-slate-500">Incremento ≥ 0,9 pp</td>
+              </tr>
+              <tr class="hover:bg-slate-50 dark:hover:bg-slate-800/40">
+                <td class="py-2.5 px-3 font-sans font-bold text-slate-900 dark:text-white">Correlación Descuento vs Margen</td>
+                <td class="py-2.5 px-3 text-rose-600 font-bold">r = -0,19 (Desalineada)</td>
+                <td class="py-2.5 px-3 text-rose-600">r = -0,19</td>
+                <td class="py-2.5 px-3 text-emerald-600 dark:text-emerald-400 font-bold bg-emerald-50/50 dark:bg-emerald-950/30">r &gt; 0 (Positiva)</td>
+                <td class="py-2.5 px-3 font-sans text-slate-500">Alineación económica real</td>
+              </tr>
+              <tr class="hover:bg-slate-50 dark:hover:bg-slate-800/40 text-slate-500">
+                <td class="py-2.5 px-3 font-sans">Volumen de Órdenes y Unidades</td>
+                <td class="py-2.5 px-3">1.000.000 / 4.995.377</td>
+                <td class="py-2.5 px-3">1.000.000 / 4.995.377</td>
+                <td class="py-2.5 px-3 font-bold text-slate-700 dark:text-slate-300">1.000.000 / 4.995.377</td>
+                <td class="py-2.5 px-3 font-sans">Constante (Volumen neutral)</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- El Rol del Data Warehouse dentro de los 6 Objetivos Específicos (OE1 a OE6) -->
+      <div class="glass-card rounded-2xl p-6 shadow-sm border border-slate-200 dark:border-slate-800 space-y-4">
+        <div>
+          <span class="text-xs font-bold uppercase tracking-wider text-blue-600 dark:text-blue-400">Objetivo Específico 2 (OE2) · Arquitectura Tecnológica</span>
+          <h3 class="text-lg font-bold text-slate-900 dark:text-white mt-0.5">¿Por qué construimos este Data Warehouse para resolver el problema?</h3>
+          <p class="text-xs text-slate-500 mt-1">
+            El Data Warehouse (<code class="font-mono text-emerald-600 font-bold">JuiceCorner_DW</code>) no es un fin en sí mismo, sino el <strong>repositorio analítico gobernado</strong> que hace posible la contrastación inferencial en R (OE3) y los modelos de optimización lineal y simulación de escenarios (OE5 y OE6):
           </p>
         </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-4 pt-2">
+          
+          <div class="p-4 rounded-xl bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 space-y-2">
+            <div class="flex items-center space-x-2 text-amber-600 dark:text-amber-400 font-bold text-xs uppercase">
+              <span>🛒 1. Base Operativa (OLTP)</span>
+            </div>
+            <h4 class="font-bold text-sm">JuiceCorner_OLTP (19 Tablas)</h4>
+            <p class="text-xs text-slate-600 dark:text-slate-300 leading-relaxed">
+              Mapea el día a día transaccional de pedidos en cocina, mesas y delivery. Optimizada para no perder una sola orden, pero inadecuada para calcular analítica pesada sobre 2,5 millones de registros en línea sin congelar la operación.
+            </p>
+          </div>
+
+          <div class="p-4 rounded-xl bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 space-y-2">
+            <div class="flex items-center space-x-2 text-blue-600 dark:text-blue-400 font-bold text-xs uppercase">
+              <span>🧠 2. Repositorio Dimensional (DW)</span>
+            </div>
+            <h4 class="font-bold text-sm">JuiceCorner_DW (9 Tablas)</h4>
+            <p class="text-xs text-slate-600 dark:text-slate-300 leading-relaxed">
+              Consolida el censo en un <strong>Modelo Estrella Puro</strong>: una tabla central (<code class="font-mono text-emerald-600 font-semibold">FACT_VENTAS</code>) con grano por línea de pedido, conectada a 7 dimensiones conformadas y una tabla de auditoría con cuadre al centavo exacto (<code class="font-mono text-xs">diferencia = 0.00</code>).
+            </p>
+          </div>
+
+          <div class="p-4 rounded-xl bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 space-y-2">
+            <div class="flex items-center space-x-2 text-emerald-600 dark:text-emerald-400 font-bold text-xs uppercase">
+              <span>⭐ 3. Habilitador de Simulación</span>
+            </div>
+            <h4 class="font-bold text-sm">Alimentación de R y Modelos Lineales</h4>
+            <p class="text-xs text-slate-600 dark:text-slate-300 leading-relaxed">
+              Permite extraer en microsegundos métricas de subtotal prorrateado, márgenes de receta y costos de ingredientes para alimentar los scripts estadísticos de R y la programación matemática que determina la política óptima de descuentos.
+            </p>
+          </div>
+
+        </div>
       </div>
 
-      <!-- 3 Core Metaphors Grid -->
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-        
-        <!-- Tarjeta 1: Base Transaccional (OLTP) -->
-        <div class="glass-card rounded-2xl p-6 shadow-sm border border-slate-200 dark:border-slate-800 flex flex-col justify-between">
-          <div>
-            <div class="w-12 h-12 rounded-2xl bg-amber-100 dark:bg-amber-900/40 text-amber-600 dark:text-amber-400 flex items-center justify-center text-2xl mb-4 font-bold">
-              🛒
-            </div>
-            <span class="text-xs font-bold uppercase tracking-wider text-amber-600 dark:text-amber-400">Parte 1 · El Sistema Diario</span>
-            <h3 class="text-lg font-bold text-slate-900 dark:text-white mt-1">1. Base Transaccional (OLTP)</h3>
-            <p class="text-xs text-slate-500 font-mono mt-0.5">Archivo: JuiceCorner_OLTP.sql (19 Tablas)</p>
-            
-            <div class="mt-4 p-3.5 rounded-xl bg-amber-50 dark:bg-amber-950/30 border border-amber-200 dark:border-amber-900/50 text-xs text-slate-700 dark:text-slate-300 space-y-2">
-              <p><strong>Analogía:</strong> <em>"Es la caja registradora y la cocina del restaurante en tiempo real."</em></p>
-              <p>Cada vez que un cliente pide un jugo de mango en el salón o por delivery, el sistema debe registrar en microsegundos el pedido, descontar la fruta del inventario y cobrar con tarjeta o efectivo.</p>
-            </div>
-          </div>
-          <div class="mt-4 pt-3 border-t border-slate-200 dark:border-slate-800 text-xs text-slate-500">
-            <strong>Objetivo clave:</strong> Rapidez extrema y que nunca se pierda un cobro.
-          </div>
-        </div>
-
-        <!-- Tarjeta 2: Data Warehouse (DW) -->
-        <div class="glass-card rounded-2xl p-6 shadow-sm border border-slate-200 dark:border-slate-800 flex flex-col justify-between">
-          <div>
-            <div class="w-12 h-12 rounded-2xl bg-blue-100 dark:bg-blue-900/40 text-blue-600 dark:text-blue-400 flex items-center justify-center text-2xl mb-4 font-bold">
-              🧠
-            </div>
-            <span class="text-xs font-bold uppercase tracking-wider text-blue-600 dark:text-blue-400">Parte 2 · El Cerebro Gerencial</span>
-            <h3 class="text-lg font-bold text-slate-900 dark:text-white mt-1">2. Data Warehouse (DW)</h3>
-            <p class="text-xs text-slate-500 font-mono mt-0.5">Archivo: JuiceCorner_DW.sql (9 Tablas)</p>
-            
-            <div class="mt-4 p-3.5 rounded-xl bg-blue-50 dark:bg-blue-950/30 border border-blue-200 dark:border-blue-900/50 text-xs text-slate-700 dark:text-slate-300 space-y-2">
-              <p><strong>Analogía:</strong> <em>"Es la oficina del gerente general y los reportes ejecutivos."</em></p>
-              <p>Si el gerente le pidiera a la caja registradora calcular las ventas de los últimos 2 años por sucursal, la caja se trabaría y los clientes esperarían. Por eso se copia la información histórica a un almacén especial diseñado para responder preguntas estratégicas en segundos.</p>
-            </div>
-          </div>
-          <div class="mt-4 pt-3 border-t border-slate-200 dark:border-slate-800 text-xs text-slate-500">
-            <strong>Objetivo clave:</strong> Análisis sin interrumpir las ventas operativas.
-          </div>
-        </div>
-
-        <!-- Tarjeta 3: Esquema Estrella -->
-        <div class="glass-card rounded-2xl p-6 shadow-sm border border-slate-200 dark:border-slate-800 flex flex-col justify-between">
-          <div>
-            <div class="w-12 h-12 rounded-2xl bg-emerald-100 dark:bg-emerald-900/40 text-emerald-600 dark:text-emerald-400 flex items-center justify-center text-2xl mb-4 font-bold">
-              ⭐
-            </div>
-            <span class="text-xs font-bold uppercase tracking-wider text-emerald-600 dark:text-emerald-400">Parte 3 · El Diseño Inteligente</span>
-            <h3 class="text-lg font-bold text-slate-900 dark:text-white mt-1">3. Modelo en Estrella</h3>
-            <p class="text-xs text-slate-500 font-mono mt-0.5">Centro: FACT_VENTAS + 7 Dimensiones</p>
-            
-            <div class="mt-4 p-3.5 rounded-xl bg-emerald-50 dark:bg-emerald-950/30 border border-emerald-200 dark:border-emerald-900/50 text-xs text-slate-700 dark:text-slate-300 space-y-2">
-              <p><strong>Analogía:</strong> <em>"El Sol en el centro y los 7 planetas girando alrededor."</em></p>
-              <p>Al centro está la tabla de hechos con los números del negocio (dinero cobrado, descuentos, tiempos de entrega) y alrededor están los 7 contextos: <strong>Quién</strong> compró, <strong>Qué</strong> jugo llevó, <strong>Cuándo</strong> fue, <strong>En qué</strong> local, <strong>Quién</strong> lo entregó, <strong>A qué zona</strong> y <strong>Cómo</strong> pagó.</p>
-            </div>
-          </div>
-          <div class="mt-4 pt-3 border-t border-slate-200 dark:border-slate-800 text-xs text-slate-500">
-            <strong>Objetivo clave:</strong> Claridad total para conectar con Power BI o Excel.
-          </div>
-        </div>
-
-      </div>
-
-      <!-- Detailed Screen-by-Screen Walkthrough (Script para tu presentación) -->
+      <!-- Libreto de Presentación y Defensa del Proyecto Integrador -->
       <div class="glass-card rounded-2xl p-6 sm:p-7 shadow-sm border border-slate-200 dark:border-slate-800">
-        <h3 class="text-lg font-bold text-slate-900 dark:text-white mb-2">Libreto de Presentación: ¿Qué hace cada pestaña de este visualizador?</h3>
-        <p class="text-xs sm:text-sm text-slate-500 mb-6">Usa este guión cuando expongas la aplicación frente a tus profesores o evaluadores:</p>
+        <div class="flex items-center justify-between mb-2">
+          <h3 class="text-lg font-bold text-slate-900 dark:text-white">Libreto de Sustentación Oral: ¿Cómo defender este visualizador ante el jurado?</h3>
+          <span class="text-xs px-2.5 py-0.5 rounded-full bg-emerald-100 text-emerald-800 dark:bg-emerald-900/60 dark:text-emerald-300 font-bold">Guía para el Estudiante</span>
+        </div>
+        <p class="text-xs sm:text-sm text-slate-500 mb-6">Usa este libreto estructurado según la rúbrica formal del Capítulo I cuando navegues por las pestañas de la aplicación:</p>
 
         <div class="space-y-4">
           
           <div class="p-4 rounded-xl bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-800">
             <div class="flex items-center space-x-2 font-bold text-sm text-emerald-600 dark:text-emerald-400">
               <span class="px-2 py-0.5 rounded bg-emerald-100 text-emerald-800 dark:bg-emerald-900/60 dark:text-emerald-300 text-xs">Pestaña 1</span>
-              <span>🎓 Modo Presentación (Esta misma pantalla)</span>
+              <span>🎓 Marco Introductorio & Sustentación (Esta pantalla)</span>
             </div>
-            <p class="text-xs text-slate-600 dark:text-slate-300 mt-1">
-              <strong>Qué mostrar:</strong> Explica los objetivos del proyecto y las analogías de negocio para asegurar que la audiencia entienda la diferencia entre el día a día (OLTP) y el análisis histórico (Data Warehouse).
+            <p class="text-xs text-slate-600 dark:text-slate-300 mt-1.5 leading-relaxed">
+              <strong>Qué decir:</strong> <em>"Buenos días/tardes. El proyecto aborda la erosión del margen de Juice Corner BD en Dhaka, Bangladesh. A partir del censo de 1.000.000 de órdenes demostramos que la empresa gasta el 7,24 % en descuentos desalineados de la rentabilidad (r = -0,19). Nuestro objetivo general es diseñar una nueva política que reduzca el gasto a ≤ 5,00 % y eleve el margen al 62,0 %, recuperando más de 24 millones de BDT semestrales sin subir los precios de la carta."</em>
             </p>
           </div>
 
@@ -248,18 +447,18 @@
               <span class="px-2 py-0.5 rounded bg-blue-100 text-blue-800 dark:bg-blue-900/60 dark:text-blue-300 text-xs">Pestaña 2</span>
               <span>🚀 Cómo Ejecutar y Visualizar</span>
             </div>
-            <p class="text-xs text-slate-600 dark:text-slate-300 mt-1">
-              <strong>Qué mostrar:</strong> Muestra cómo se hace tangible el código SQL. Explica que se puede ejecutar en 1 solo clic con el archivo <code class="font-mono text-emerald-600">ejecutar_sql.bat</code>, o desde Visual Studio Code usando extensiones visuales que ya están listas en la computadora.
+            <p class="text-xs text-slate-600 dark:text-slate-300 mt-1.5 leading-relaxed">
+              <strong>Qué decir:</strong> <em>"Para garantizar la total reproducibilidad del estudio, el proyecto incluye cuatro vías de despliegue automatizado sobre Microsoft SQL Server LocalDB, destacando el script en un solo clic ejecutar_sql.bat y perfiles preconfigurados para VS Code y Azure Data Studio."</em>
             </p>
           </div>
 
           <div class="p-4 rounded-xl bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-800">
             <div class="flex items-center space-x-2 font-bold text-sm text-purple-600 dark:text-purple-400">
               <span class="px-2 py-0.5 rounded bg-purple-100 text-purple-800 dark:bg-purple-900/60 dark:text-purple-300 text-xs">Pestaña 3</span>
-              <span>📊 Diagramas ERD y Estrella</span>
+              <span>📊 Diagramas ERD y Estrella (OE2)</span>
             </div>
-            <p class="text-xs text-slate-600 dark:text-slate-300 mt-1">
-              <strong>Qué mostrar:</strong> Es la pantalla más visual. Puedes cambiar entre el mapa de las 19 tablas transaccionales (organizadas en ventas, clientes, menú y delivery) y el mapa del Data Warehouse con <code class="font-mono text-emerald-600">FACT_VENTAS</code> en el centro y las 7 dimensiones conectadas.
+            <p class="text-xs text-slate-600 dark:text-slate-300 mt-1.5 leading-relaxed">
+              <strong>Qué decir:</strong> <em>"Aquí cumplimos el Objetivo Específico 2: pasamos de 19 tablas operativas normalizadas a un esquema en estrella puro según la metodología Kimball. En el centro ubicamos FACT_VENTAS a nivel atómico por ítem de pedido, prorrateando cupones e impuestos, rodeada por 7 dimensiones conformadas que resuelven clientes, productos, tiempo, sucursales y canales sin nulos gracias a claves comodín -1."</em>
             </p>
           </div>
 
@@ -268,8 +467,8 @@
               <span class="px-2 py-0.5 rounded bg-indigo-100 text-indigo-800 dark:bg-indigo-900/60 dark:text-indigo-300 text-xs">Pestaña 4</span>
               <span>📖 Diccionario de Tablas (28 tablas completas)</span>
             </div>
-            <p class="text-xs text-slate-600 dark:text-slate-300 mt-1">
-              <strong>Qué mostrar:</strong> Es la enciclopedia técnica. Al seleccionar cualquier tabla de la lista, la pantalla desglosa todas sus columnas, sus tipos de datos, qué significa cada clave primaria o foránea y las reglas de negocio en español claro.
+            <p class="text-xs text-slate-600 dark:text-slate-300 mt-1.5 leading-relaxed">
+              <strong>Qué decir:</strong> <em>"Bajo normativas de gobernanza de datos ISO 8000 y DMBOK, documentamos cada una de las 28 tablas y sus más de 150 columnas. Resaltamos aquí la fórmula auditada de monto_neto que evita el doble descuento, y la tabla audit.AUDITORIA_CUADRE_PEDIDOS que certifica 0 descuadres contables frente al TPS."</em>
             </p>
           </div>
 
@@ -278,18 +477,18 @@
               <span class="px-2 py-0.5 rounded bg-teal-100 text-teal-800 dark:bg-teal-900/60 dark:text-teal-300 text-xs">Pestaña 5</span>
               <span>⚡ Laboratorio y Gráficos SQL</span>
             </div>
-            <p class="text-xs text-slate-600 dark:text-slate-300 mt-1">
-              <strong>Qué mostrar:</strong> Demuestra el valor de negocio. Al hacer clic en "Visualizar Datos", la pantalla corre la consulta analítica y dibuja gráficos interactivos de barras, torta o donas (ventas mensuales, productos más vendidos, medios de pago y cuadre contable auditado).
+            <p class="text-xs text-slate-600 dark:text-slate-300 mt-1.5 leading-relaxed">
+              <strong>Qué decir:</strong> <em>"Esta pantalla demuestra la capacidad de explotación del repositorio: ejecutamos en tiempo real las 5 consultas T-SQL estratégicas alineadas con los KPIs de negocio (evolución temporal de ventas, productos más vendidos, split salón vs delivery, medios de pago y el cuadre contable al centavo con gráficos interactivos)."</em>
             </p>
           </div>
 
           <div class="p-4 rounded-xl bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-800">
             <div class="flex items-center space-x-2 font-bold text-sm text-amber-600 dark:text-amber-400">
               <span class="px-2 py-0.5 rounded bg-amber-100 text-amber-800 dark:bg-amber-900/60 dark:text-amber-300 text-xs">Pestaña 6</span>
-              <span>🔌 Cadenas de Conexión</span>
+              <span>🔌 Cadenas de Conexión & Explotación Externa</span>
             </div>
-            <p class="text-xs text-slate-600 dark:text-slate-300 mt-1">
-              <strong>Qué mostrar:</strong> Demuestra cómo conectar herramientas ejecutivas como Microsoft Power BI o Excel a la base de datos de Juice Corner para crear dashboards interactivos con actualización automática.
+            <p class="text-xs text-slate-600 dark:text-slate-300 mt-1.5 leading-relaxed">
+              <strong>Qué decir:</strong> <em>"Para habilitar las fases posteriores de analítica predictiva y prescriptiva, proporcionamos los conectores directos hacia Microsoft Power BI y entornos de programación en R / Python Pandas, completando la cadena de valor desde el dato en bruto hasta la toma de decisiones gerenciales."</em>
             </p>
           </div>
 
