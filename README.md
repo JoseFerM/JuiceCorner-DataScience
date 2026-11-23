@@ -1,12 +1,11 @@
 # Diseño de una Política de Descuentos Alineada con la Rentabilidad por Producto, Mediante Análisis y Simulación de Escenarios, en Juice Corner BD de la Ciudad de Dhaka, Bangladesh
 ### Proyecto Integrador I — Ingeniería de Sistemas / Ciencia de Datos (4to Semestre)
 
-[![SQL Server](https://img.shields.io/badge/SQL_Server-2014_|_2016_|_2019_|_2022_|_2025-CC292B?style=flat&logo=microsoftsqlserver&logoColor=white)](https://www.microsoft.com/sql-server)
-[![PowerShell](https://img.shields.io/badge/ETL-PowerShell_.NET_SqlBulkCopy-5391FE?style=flat&logo=powershell&logoColor=white)](#paso-2-carga-masiva-de-datos-transaccionales)
-[![GitHub Pages](https://img.shields.io/badge/Visualizador-GitHub_Pages_Demo-22c55e?style=flat&logo=githubpages&logoColor=white)](https://joseferm.github.io/JuiceCorner-DataScience/)
-[![GitHub Repo](https://img.shields.io/badge/Repositorio-JoseFerM%2FJuiceCorner--DataScience-181717?style=flat&logo=github&logoColor=white)](https://github.com/JoseFerM/JuiceCorner-DataScience)
-[![Calidad](https://img.shields.io/badge/Calidad-ISO_8000_|_DMBOK_|_ISO_25012-f59e0b?style=flat&logo=checkmarx&logoColor=white)](#11-normativas-de-gobernanza-y-calidad-aplicadas)
-[![Modelización MCO](https://img.shields.io/badge/Modelizaci%C3%B3n-MCO_Econometr%C3%ADa_|_Python_statsmodels-8b5cf6?style=flat&logo=python&logoColor=white)](#8-fase-econométrica-modelización-mco-y-simulación-de-escenarios)
+[![Visualizador Web Interactivo](https://img.shields.io/badge/Visualizador_Web-SQL_&_BI_Analytics_Studio-10b981?style=flat&logo=githubpages&logoColor=white)](https://joseferm.github.io/JuiceCorner-DataScience/)
+[![Modelización Econométrica MCO](https://img.shields.io/badge/Modelizaci%C3%B3n_MCO-Reporte_Econom%C3%A9trico_Interactivo-8b5cf6?style=flat&logo=python&logoColor=white)](https://joseferm.github.io/JuiceCorner-DataScience/reporte_modelizacion_mco.html)
+[![ETL PowerShell](https://img.shields.io/badge/ETL-PowerShell_.NET_SqlBulkCopy-5391FE?style=flat&logo=powershell&logoColor=white)](#paso-2-carga-masiva-de-datos-transaccionales)
+[![Repositorio GitHub](https://img.shields.io/badge/Repositorio-JoseFerM%2FJuiceCorner--DataScience-181717?style=flat&logo=github&logoColor=white)](https://github.com/JoseFerM/JuiceCorner-DataScience)
+[![Calidad y Gobernanza](https://img.shields.io/badge/Calidad-ISO_8000_|_DMBOK_|_ISO_25012-f59e0b?style=flat&logo=checkmarx&logoColor=white)](#11-normativas-de-gobernanza-y-calidad-aplicadas)
 
 ---
 
@@ -158,8 +157,9 @@ El proyecto incluye un entorno de exploración analítica disponible en la nube 
 - **Laboratorio y Gráficos SQL:** Consultas analíticas predefinidas para validar ventas por mes, ranking de productos y cuadres contables.
 - **Cadenas de Conexión:** Snippets listos para conectar Excel, Power BI, Python (pyodbc, SQLAlchemy) y Node.js.
 - **Acceso Local:** Ejecutable haciendo doble clic en [`visualizador_sql.html`](visualizador_sql.html) o [`index.html`](index.html), o mediante la opción `[7]` del menú [`ejecutar_sql.bat`](ejecutar_sql.bat).
-- **Despliegue en la Nube (GitHub Pages):** Disponible públicamente en:
-  **[https://joseferm.github.io/JuiceCorner-DataScience/](https://joseferm.github.io/JuiceCorner-DataScience/)**
+- **Despliegue en la Nube (GitHub Pages):**
+  * **Visualizador Web Principal (Menú Lateral Vertical):** [https://joseferm.github.io/JuiceCorner-DataScience/](https://joseferm.github.io/JuiceCorner-DataScience/)
+  * **Reporte Autónomo de Modelización MCO:** [https://joseferm.github.io/JuiceCorner-DataScience/reporte_modelizacion_mco.html](https://joseferm.github.io/JuiceCorner-DataScience/reporte_modelizacion_mco.html)
 
 ---
 
@@ -264,7 +264,7 @@ Donde:
 
 ### Artefactos de la Fase de Modelización
 - Script ejecutable en Python: [`modelizacion_mco.py`](modelizacion_mco.py)
-- Reporte ejecutivo interactivo HTML: [`reporte_modelizacion_mco.html`](reporte_modelizacion_mco.html)
+- Reporte ejecutivo interactivo HTML: [`reporte_modelizacion_mco.html`](reporte_modelizacion_mco.html) (disponible en línea en [GitHub Pages](https://joseferm.github.io/JuiceCorner-DataScience/reporte_modelizacion_mco.html))
 - Datos panel y matrices de regresión: [`resultados_modelizacion/`](resultados_modelizacion/)
 
 ---
