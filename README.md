@@ -5,7 +5,8 @@
 [![PowerShell](https://img.shields.io/badge/ETL-PowerShell_.NET_SqlBulkCopy-5391FE?style=flat&logo=powershell&logoColor=white)](#paso-2-carga-masiva-de-datos-transaccionales)
 [![GitHub Pages](https://img.shields.io/badge/Visualizador-GitHub_Pages_Demo-22c55e?style=flat&logo=githubpages&logoColor=white)](https://joseferm.github.io/JuiceCorner-DataScience/)
 [![GitHub Repo](https://img.shields.io/badge/Repositorio-JoseFerM%2FJuiceCorner--DataScience-181717?style=flat&logo=github&logoColor=white)](https://github.com/JoseFerM/JuiceCorner-DataScience)
-[![Calidad](https://img.shields.io/badge/Calidad-ISO_8000_|_DMBOK_|_ISO_25012-f59e0b?style=flat&logo=checkmarx&logoColor=white)](#10-normativas-de-gobernanza-y-calidad-aplicadas)
+[![Calidad](https://img.shields.io/badge/Calidad-ISO_8000_|_DMBOK_|_ISO_25012-f59e0b?style=flat&logo=checkmarx&logoColor=white)](#11-normativas-de-gobernanza-y-calidad-aplicadas)
+[![Modelización MCO](https://img.shields.io/badge/Modelizaci%C3%B3n-MCO_Econometr%C3%ADa_|_Python_statsmodels-8b5cf6?style=flat&logo=python&logoColor=white)](#8-fase-econométrica-modelización-mco-y-simulación-de-escenarios)
 
 ---
 
@@ -41,6 +42,8 @@ Toda la arquitectura, ingeniería de datos, modelado analítico y código ejecut
   │   DDL: JuiceCorner_OLTP.sql, JuiceCorner_DW.sql                        │
   │   ETL: Cargar_Datos_OLTP.ps1, Ejecutar_Carga.bat, Crear_Backup.bat     │
   │   Visualizador: index.html (GitHub Pages) y visualizador_sql.html (v3) │
+  │   Econometría: modelizacion_mco.py, reporte_modelizacion_mco.html      │
+  │   Resultados: resultados_modelizacion/ (dataset 19.4k obs, coefs, E1/E2)│
   └────────────────────────────────────────────────────────────────────────┘
 ```
 
@@ -150,6 +153,7 @@ El proyecto incluye un entorno de exploración analítica disponible en la nube 
 ```
 
 ### Funcionalidades de la Plataforma:
+- **Modelización Econométrica MCO (Fase 4 & 5):** Módulo interactivo con estimación de demanda log-lineal, elasticidad-precio (β₁ = -0.0792), simulación de 3 escenarios (E1, E2 y E3 LP), matriz de dispersión de 20 productos, análisis de sensibilidad (umbral 7.70%) y gráficos Chart.js.
 - **Diccionario de Tablas Completo (28 Tablas):** Especificación campo a campo de las 19 tablas del OLTP y las 9 tablas del Data Warehouse.
 - **Laboratorio y Gráficos SQL:** Consultas analíticas predefinidas para validar ventas por mes, ranking de productos y cuadres contables.
 - **Cadenas de Conexión:** Snippets listos para conectar Excel, Power BI, Python (pyodbc, SQLAlchemy) y Node.js.
@@ -191,8 +195,17 @@ flowchart TD
         AUD["audit.AUDITORIA_CUADRE_PEDIDOS<br/>(Esquema Administrativo)"] -.-> FACT
     end
 
-    subgraph S5["5. Visualización y Consumo"]
-        WEB["Visualizador Web Interactivo<br/>(visualizador_sql.html / GitHub Pages)"]
+    subgraph S5["5. Fase Econométrica (Modelización Empresarial I)"]
+        direction TB
+        MCO_PY["modelizacion_mco.py<br/>(statsmodels OLS + White HC1)"]
+        PANEL["dataset_regresion_mco.csv<br/>(19,440 Obs: 20 prod × 162d × 3suc × 2can)"]
+        REP["reporte_modelizacion_mco.html<br/>(Visualización Autónoma de Elasticidades)"]
+        MCO_PY --> PANEL
+        PANEL --> REP
+    end
+
+    subgraph S6["6. Visualización Integral y Consumo"]
+        WEB["Visualizador Web Interactivo (v3)<br/>(index.html / GitHub Pages / SQL & BI)"]
         VSC["VS Code + Extensión mssql<br/>(.vscode/settings.json)"]
         SSMS["SQL Server Management Studio / Power BI"]
     end
@@ -201,14 +214,62 @@ flowchart TD
     CSV --> BULK
     BULK --> OLTP_CORE
     OLTP_CORE --> S4
+    S4 --> MCO_PY
     S4 --> WEB
+    REP --> WEB
     S4 --> VSC
     S4 --> SSMS
 ```
 
 ---
 
-## 8. Estructura del Repositorio
+## 8. Fase Econométrica: Modelización MCO, Elasticidades y Simulación de Escenarios
+
+Como parte de **Modelización Empresarial I (4to Semestre LCD)**, se construyó un modelo econométrico log-lineal estimado por **Mínimos Cuadrados Ordinarios (MCO)** con corrección de heterocedasticidad mediante errores estándar robustos **White (HC1)**. El modelo cuantifica la elasticidad-precio de la demanda y evalúa el impacto marginal de los descuentos y canales comerciales.
+
+### Ecuación Econométrica Log-Lineal
+$$\ln(Q_{it}) = \beta_0 + \beta_1 \ln(P_{it}) + \beta_2 D_{it} + \beta_3 Desc_{it} + \delta_1 Delivery_{it} + \sum_{k=2}^3 \gamma_k Sucursal_{kt} + u_{it}$$
+
+Donde:
+- $\ln(Q_{it})$: Logaritmo natural de las unidades físicas demandadas del producto $i$ en el día $t$.
+- $\ln(P_{it})$: Logaritmo natural del precio unitario de lista. $\beta_1$ representa la **elasticidad-precio de la demanda**.
+- $D_{it}$: Tasa de descuento de línea otorgada a nivel de ítem (0% a 15%).
+- $Desc_{it}$: Intensidad porcentual de cupones promocionales de orden prorrateados.
+- $Delivery_{it}$: Variable dummy (1 = Delivery a domicilio, 0 = Salón presencial `dine_in`).
+- $Sucursal_{kt}$: Dummies territoriales para Banani y Gulshan (referencia: Dhanmondi).
+
+### Resultados de la Estimación MCO (statsmodels OLS)
+- **Observaciones del Panel Balanceado:** 19.440 (20 productos × 162 días de operación × 3 sucursales × 2 canales).
+- **Bondad de Ajuste:** $R^2 = 0.369$ ($R^2_{adj} = 0.369$), Estadístico $F = 1,896$ ($p < 0.001$).
+- **Elasticidad-Precio ($\beta_1 = -0.0792$, $p < 0.001$):** Demanda **altamente inelástica** ($|\beta_1| = 0.0792 \ll 1$). Un aumento del 1% en el precio reduce el volumen en apenas 0.08%. Esto garantiza que **la empresa puede recortar descuentos sin temor a perder clientes ni volumen de ventas**.
+- **Ineficacia del Descuento de Línea ($\beta_2 = +0.0006$, $p = 0.004$):** Subir 1 punto porcentual de descuento solo genera un insignificante +0.06% en volumen. Los descuentos de línea subsidian compras sin respuesta volumétrica.
+- **Efecto Negativo de Cupones ($\beta_3 = -0.0113$, $p < 0.001$):** Cada punto de cupón tiene un impacto neto negativo (-1.13%), canibalizando 68 BDT de margen por pedido sin expandir el mercado.
+- **Motor Comercial Delivery ($\delta_1 = +0.2009$, $p < 0.001$):** El canal delivery genera un **+22.3% más volumen** que el salón presencial ($e^{0.2009} - 1$). Si se mantienen incentivos, deben focalizarse aquí.
+- **Homogeneidad Territorial ($\gamma_1 = -0.0028, p = 0.227; \gamma_2 = -0.0023, p = 0.323$):** Las 3 sucursales se comportan de manera idéntica; no se justifica discriminación de precios por local.
+
+### Diagnósticos de Supuestos Clásicos
+1. **Normalidad (Jarque-Bera, $p = 0.000$):** Por el Teorema del Límite Central (TLC) con $N = 19.440$, los estimadores son asintóticamente normales e insesgados.
+2. **Homocedasticidad (Breusch-Pagan, $p = 0.014$):** Se detectó heterocedasticidad leve, corregida exhaustivamente con matriz de covarianzas robusta **White HC1**.
+3. **Multicolinealidad (VIF Máximo = 2.73):** Todos los factores VIF están muy por debajo de 5, confirmando ortogonalidad entre regresores.
+
+### Simulación de Escenarios y Análisis de Sensibilidad
+| Escenario | Costo Descuentos (% Subtotal) | Margen Contribución Global (%) | Total Descuentos (BDT) | Margen Semestral (BDT) | Ahorro vs E1 (BDT) |
+| :--- | :---: | :---: | :---: | :---: | :---: |
+| **E1 — Línea Base Actual (S₀)** | **7.24%** | **58.64%** | 78.843.704 | 638.568.440 | 0 BDT (Ref.) |
+| **E2 — Reasignación Moderada** | **2.24%** | **61.25%** | 25.539.944 | 691.873.332 | **+53.304.892 BDT** |
+| **E3 — Meta Optimizada LP (Fase 5)** | **≤ 5.00%** | **≥ 62.00%** | ≤ 54.450.000 | > 700.000.000 | **Resolución con PuLP** |
+
+> [!TIP]
+> **Umbral de Quiebre de Equilibrio (7.70%):** En el análisis de sensibilidad, la demanda total tendría que contraerse más de un **7.70%** (pérdida de 384.644 unidades) para que el Escenario E2 deje de ser superior a la línea base E1. Dado que la elasticidad-precio estimada es $\beta_1 = -0.0792$, la caída real esperada es menor a **0.5%**, asegurando la viabilidad comercial y financiera de la reasignación.
+
+### Artefactos de la Fase de Modelización
+- Script ejecutable en Python: [`modelizacion_mco.py`](modelizacion_mco.py)
+- Reporte ejecutivo interactivo HTML: [`reporte_modelizacion_mco.html`](reporte_modelizacion_mco.html)
+- Datos panel y matrices de regresión: [`resultados_modelizacion/`](resultados_modelizacion/)
+
+---
+
+## 9. Estructura del Repositorio
 
 ```text
 JuiceCorner-DataScience/
@@ -233,6 +294,9 @@ JuiceCorner-DataScience/
 ├── ejecutar_sql.bat                                  # Menú interactivo CLI para inicialización y pruebas
 ├── index.html                                        # Visualizador interactivo web (GitHub Pages)
 ├── visualizador_sql.html                             # Visualizador interactivo web v3 (copia local de estudio)
+├── modelizacion_mco.py                               # Script de estimación econométrica MCO y robustez HC1 (Python)
+├── reporte_modelizacion_mco.html                     # Reporte ejecutivo y analítico de la modelización MCO
+├── resultados_modelizacion/                          # Salidas de econometría (dataset 19.4k obs, coefs, E1/E2)
 ├── JuiceCorner_DW.sql                                # DDL del Data Warehouse dimensional (Modelo Estrella)
 ├── JuiceCorner_OLTP.sql                              # DDL de la base de datos transaccional (19 tablas 3FN)
 └── README.md                                         # Portal de documentación centralizada del proyecto
@@ -240,7 +304,7 @@ JuiceCorner-DataScience/
 
 ---
 
-## 9. Guía de Puesta en Marcha (Local)
+## 10. Guía de Puesta en Marcha (Local)
 
 ### Requisitos Previos
 - Microsoft SQL Server (LocalDB `(localdb)\MSSQLLocalDB`, SQLEXPRESS o instancia completa).
@@ -273,7 +337,7 @@ Para crear un respaldo completo y validado de la base transaccional:
 
 ---
 
-## 10. Normativas de Gobernanza y Calidad Aplicadas
+## 11. Normativas de Gobernanza y Calidad Aplicadas
 
 - **ISO/IEC 25012:** Garantía de exactitud sintáctica, completitud, consistencia matemática de importes netos y trazabilidad temporal.
 - **ISO 8000:** Calidad de datos maestros en clientes, productos y sucursales con identificadores naturales (`nk`) y sustitutos (`sk`).
@@ -281,7 +345,7 @@ Para crear un respaldo completo y validado de la base transaccional:
 
 ---
 
-## 11. Equipo y Créditos
+## 12. Equipo y Créditos
 
 - **Proyecto:** Proyecto Integrador I — 4to Semestre
 - **Institución:** Licenciatura en Ciencia de Datos / Ingeniería de Sistemas — Universidad Privada del Valle
