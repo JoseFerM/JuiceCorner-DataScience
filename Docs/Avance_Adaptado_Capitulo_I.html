@@ -1,0 +1,1208 @@
+<!DOCTYPE html>
+<html xmlns:o="urn:schemas-microsoft-com:office:office"
+      xmlns:w="urn:schemas-microsoft-com:office:word"
+      xmlns="http://www.w3.org/TR/REC-html40">
+<head>
+  <meta charset="utf-8">
+  <title>Avance del proyecto - Juice Corner BD</title>
+  <!--[if gte mso 9]>
+  <xml>
+    <w:WordDocument>
+      <w:View>Print</w:View>
+      <w:Zoom>100</w:Zoom>
+      <w:DoNotOptimizeForBrowser/>
+    </w:WordDocument>
+  </xml>
+  <![endif]-->
+  <style>
+    @page {
+      size: 21.59cm 27.94cm;
+      margin: 2.54cm 2.54cm 2.54cm 2.54cm;
+      mso-header-margin: 1.27cm;
+      mso-footer-margin: 1.27cm;
+    }
+    body {
+      font-family: 'Calibri', 'Segoe UI', Arial, sans-serif;
+      font-size: 11pt;
+      line-height: 1.35;
+      color: #222222;
+      text-align: justify;
+      margin: 0;
+      padding: 0;
+    }
+    h1 {
+      font-size: 18pt;
+      font-weight: bold;
+      color: #1f4e78;
+      margin-top: 18pt;
+      margin-bottom: 8pt;
+      page-break-before: always;
+      page-break-after: avoid;
+      border-bottom: 1.5pt solid #1f4e78;
+      padding-bottom: 4pt;
+      text-align: left;
+    }
+    h1:first-of-type { page-break-before: avoid; }
+    h2 {
+      font-size: 13.5pt;
+      font-weight: bold;
+      color: #2e75b6;
+      margin-top: 14pt;
+      margin-bottom: 6pt;
+      page-break-after: avoid;
+      border-bottom: 0.5pt solid #cccccc;
+      padding-bottom: 2pt;
+      text-align: left;
+    }
+    h3 {
+      font-size: 11.5pt;
+      font-weight: bold;
+      color: #1f4e78;
+      margin-top: 10pt;
+      margin-bottom: 4pt;
+      page-break-after: avoid;
+      text-align: left;
+    }
+    h4 {
+      font-size: 11pt;
+      font-weight: bold;
+      color: #333333;
+      margin-top: 8pt;
+      margin-bottom: 3pt;
+      page-break-after: avoid;
+      text-align: left;
+    }
+    p { margin-top: 0pt; margin-bottom: 6pt; }
+    table {
+      border-collapse: collapse;
+      width: 100%;
+      margin-top: 8pt;
+      margin-bottom: 10pt;
+      font-size: 9.5pt;
+    }
+    th {
+      background-color: #2e75b6;
+      color: #ffffff;
+      font-weight: bold;
+      padding: 5pt 7pt;
+      text-align: left;
+      border: 1pt solid #20558a;
+    }
+    td {
+      padding: 4.5pt 7pt;
+      border: 1pt solid #cccccc;
+      vertical-align: top;
+      text-align: left;
+    }
+    tr:nth-child(even) td { background-color: #f7f9fb; }
+    blockquote {
+      margin: 8pt 0pt 8pt 10pt;
+      padding: 6pt 12pt;
+      border-left: 3.5pt solid #2e75b6;
+      background-color: #f0f5fa;
+      color: #2b3e50;
+      font-style: italic;
+    }
+    blockquote p { margin-bottom: 0; }
+    code {
+      font-family: 'Consolas', 'Courier New', monospace;
+      font-size: 9pt;
+      background-color: #f3f3f3;
+      padding: 1pt 3pt;
+      border: 0.5pt solid #e0e0e0;
+    }
+    pre {
+      background-color: #f5f5f5;
+      padding: 8pt;
+      border: 1pt solid #e0e0e0;
+      font-family: 'Consolas', 'Courier New', monospace;
+      font-size: 7.5pt;
+      line-height: 1.1;
+      text-align: left;
+      white-space: pre;
+    }
+    pre code { background: none; border: none; padding: 0; font-size: 7.5pt; }
+    ul, ol { margin-top: 0pt; margin-bottom: 6pt; padding-left: 18pt; }
+    li { margin-bottom: 2.5pt; }
+    hr { border: 0; height: 1pt; background-color: #d0d7de; margin: 14pt 0; }
+    strong { font-weight: bold; color: #111111; }
+    em { font-style: italic; }
+    img { max-width: 100%; }
+  </style>
+</head>
+<body>
+<h1>CAPÍTULO I: MARCO INTRODUCTORIO</h1>
+<h2>TÍTULO DEL PROYECTO</h2>
+<p><strong>Diseño de una Política de Descuentos Alineada con la Rentabilidad por Producto, Mediante Análisis y Simulación de Escenarios, en Juice Corner BD de la Ciudad de Dhaka, Bangladesh</strong></p>
+<hr>
+<h2>1. PLANTEAMIENTO DEL PROBLEMA</h2>
+<h3>1.1 Contextualización Empresarial</h3>
+<p>Juice Corner BD es una cadena comercial del sector gastronómico especializada en la elaboración y venta de jugos naturales, batidos y snacks, con tres sucursales operativas situadas en Dhaka, Bangladesh. La empresa comercializa un menú de 20 productos a través de dos canales principales: consumo en salón (<em>dine_in</em>) y servicio a domicilio (<em>delivery</em>), registrando sus transacciones en moneda local, el Taka bangladesí (BDT).</p>
+<p>La base transaccional de estudio comprende una ventana anual continua de 365 días de operación comercial, del 22 de junio de 2025 al 21 de junio de 2026, abarcando un universo de 1.000.000 de órdenes de compra, 2.498.660 líneas de detalle transaccional y 4.995.377 unidades físicas comercializadas.</p>
+<h3>1.2 Diagnóstico de la Situación Problemática</h3>
+<p>La rentabilidad operativa de Juice Corner BD se encuentra severamente erosionada debido a la aplicación de una política de descuentos empírica, dispersa y desprovista de criterios económicos de margen de contribución. Actualmente, la organización destina el <strong>7,24 % de su subtotal neto a descuentos</strong>, lo que representa 78.843.704 BDT: 52,38 millones correspondientes a descuentos directos de línea y 26,47 millones a cupones promocionales.</p>
+<p>El análisis cuantitativo de los registros históricos pone de manifiesto cuatro distorsiones fundamentales:</p>
+<ol>
+<li><p><strong>Desalineación Crítica entre Descuento y Margen por Producto:</strong>
+No existe una relación positiva entre el descuento concedido y el margen de ganancia del producto. El producto con mayor margen de contribución de toda la carta (<em>Blue Lagoon Mocktail</em>, con un margen unitario de 94,2 %) recibe la tasa de descuento de línea más agresiva de la empresa (11,1 %). Por el contrario, el producto con el margen más reducido (<em>Strawberry Cream Shake</em>, con apenas un 14,4 % de margen) no recibe beneficio promocional alguno (0,0 %).
+La correlación de Pearson calculada entre la tasa de descuento otorgada y el margen a precio de lista es negativa y no significativa (<em>r</em> = −0,19; <em>p</em> = 0,415), lo que descarta que la política histórica premie la rentabilidad. Los productos con descuento registran un margen medio a precio de lista de 60,0 %, frente a 69,1 % en los productos sin descuento.</p>
+</li>
+<li><p><strong>Aplicación Global y Ciega de Cupones Promocionales:</strong>
+El 38,65 % de las órdenes totales (386.527 órdenes) incluye un cupón de descuento. Estos cupones se deducen a nivel de canasta general sin evaluar la composición de rentabilidad de los artículos adquiridos, restando en promedio <strong>68 BDT de margen neto por pedido</strong>, con una contribución promedio de 615 BDT en órdenes con cupón frente a 653 BDT en órdenes sin cupón.</p>
+</li>
+<li><p><strong>Inconsistencias y Fuga de Reglas de Negocio en Cupones:</strong>
+Los controles operativos del sistema de ventas evidencian vulnerabilidades críticas de gobernanza: el cupón <code>EID50</code> fue redimido fuera de su período de vigencia en el 94,4 % de sus aplicaciones; el cupón <code>VIP100</code> se concedió por debajo del importe mínimo de compra requerido en el 18,7 % de las transacciones; y los cinco cupones con límite de usos autorizado lo superaron con creces.</p>
+</li>
+<li><p><strong>Homogeneidad de Demanda que Invalida la Política Actual:</strong>
+A diferencia de lo que justificaría una estrategia de liquidación o atracción comercial selectiva, el volumen de ventas se distribuye de manera estrictamente plana entre los 20 productos de la empresa: cada uno concentra aproximadamente el 5 % de las ventas totales, oscilando estrechamente entre 248.416 y 250.952 unidades vendidas, con un coeficiente de variación de apenas 0,26 %. Las pruebas de hipótesis inferenciales (ANOVA con <em>p</em> = 0,819 y Kruskal-Wallis con <em>p</em> = 0,908) confirman que no existen diferencias estadísticamente significativas en la demanda de los productos. Por consiguiente, la asignación diferenciada de descuentos carece de fundamento operativo o de respuesta diferencial de mercado.</p>
+</li>
+</ol>
+<h4>Tabla 1. Evidencia Cuantitativa de la Línea Base y Desalineación Estructural</h4>
+<table>
+<thead>
+<tr>
+<th align="left">Indicador Clave</th>
+<th align="left">Valor Observado (Línea Base S0)</th>
+<th align="left">Interpretación Diagnóstica</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left"><strong>Costo Total de Descuentos s/ Subtotal Neto</strong></td>
+<td align="left"><strong>7,24 %</strong> (78.843.704 BDT)</td>
+<td align="left">Absorción desproporcionada del ingreso bruto de ventas</td>
+</tr>
+<tr>
+<td align="left"><strong>Margen de Contribución Global (Pre-cupón)</strong></td>
+<td align="left"><strong>61,1 %</strong></td>
+<td align="left">Por debajo del umbral corporativo objetivo (≥ 62,0 %)</td>
+</tr>
+<tr>
+<td align="left"><strong>Margen de Contribución Global (Post-cupón)</strong></td>
+<td align="left"><strong>60,1 %</strong></td>
+<td align="left">Pérdida adicional de 1,0 punto porcentual por promociones globales</td>
+</tr>
+<tr>
+<td align="left"><strong>Productos con Descuento de Línea</strong></td>
+<td align="left">9 de 20 productos (tasas: 6,7 % a 11,1 %)</td>
+<td align="left">Concentración arbitraria sin criterio de rotación</td>
+</tr>
+<tr>
+<td align="left"><strong>Descuento en Producto de Mayor Margen</strong></td>
+<td align="left">11,1 % (<em>Blue Lagoon Mocktail</em>, margen: 94,2 %)</td>
+<td align="left">Máxima erosión en el artículo más rentable</td>
+</tr>
+<tr>
+<td align="left"><strong>Descuento en Producto de Menor Margen</strong></td>
+<td align="left">0,0 % (<em>Strawberry Cream Shake</em>, margen: 14,4 %)</td>
+<td align="left">Nulo incentivo en productos con alto costo relativo</td>
+</tr>
+<tr>
+<td align="left"><strong>Participación de Órdenes con Cupón</strong></td>
+<td align="left"><strong>38,65 %</strong> (386.527 órdenes)</td>
+<td align="left">Alta penetración promocional sin segmentación de canasta</td>
+</tr>
+<tr>
+<td align="left"><strong>Pérdida de Margen por Orden con Cupón</strong></td>
+<td align="left"><strong>−68 BDT</strong> por pedido</td>
+<td align="left">Reducción de 653 BDT a 615 BDT por transacción</td>
+</tr>
+<tr>
+<td align="left"><strong>Correlación Descuento vs. Margen (<em>r</em>)</strong></td>
+<td align="left"><strong><em>r</em> = −0,19</strong> (<em>p</em> = 0,415)</td>
+<td align="left">Desalineación estructural: no existe correlación positiva</td>
+</tr>
+<tr>
+<td align="left"><strong>Pruebas de Variación de Demanda</strong></td>
+<td align="left">ANOVA: <em>p</em> = 0,819 | Kruskal-Wallis: <em>p</em> = 0,908</td>
+<td align="left">Demanda homogénea; ningún producto justifica trato preferencial</td>
+</tr>
+</tbody></table>
+<p><em>Fuente: Elaboración propia con datos de thesohanur (s. f.). El margen se calcula como (precio de lista − costo de ingredientes) ÷ precio de lista.</em></p>
+<h3>1.3 Consecuencias de la Inacción (Pronóstico del Problema)</h3>
+<p>De mantenerse el esquema actual de descuentos:</p>
+<ul>
+<li><strong>Concentración de Pérdidas:</strong> Los 7 productos con margen de contribución inferior al 70 % continuarán absorbiendo 42,4 millones de BDT en descuentos, lo que representa el 81 % del gasto en descuentos de línea y el 54 % del costo total de promociones, subsidiando ineficiencias de costo.</li>
+<li><strong>Sobrecosto Financiero:</strong> La empresa continuará incurriendo en un exceso de gasto promocional de al menos <strong>24,39 millones de BDT anuales</strong> respecto al estándar de mercado y a la meta institucional del 5,00 % del subtotal neto.</li>
+<li><strong>Estancamiento del Margen Operativo:</strong> El margen de contribución global permanecerá confinado en torno al 60,1 % – 61,1 %, imposibilitando alcanzar la meta financiera mínima del 62,00 % requerida para la sostenibilidad y expansión de las sucursales.</li>
+</ul>
+<h3>1.4 Árbol del Problema</h3>
+<pre><code>                                      EFECTOS / CONSECUENCIAS
+ ┌────────────────────────────────────────────────────────────────────────────────────────┐
+ │ • Margen global deprimido (61,1 %) por debajo del potencial financiero (meta: ≥62,0 %) │
+ │ • Sobrecosto anual de 24,39 millones de BDT en promociones no justificadas             │
+ │ • Reducción directa de 68 BDT de margen por cada orden que aplica cupón                │
+ └───────────────────────────────────────────┬────────────────────────────────────────────┘
+                                             │
+                                     PROBLEMA CENTRAL
+ ┌───────────────────────────────────────────┴────────────────────────────────────────────┐
+ │  POLÍTICA DE DESCUENTOS Y PROMOCIONES DESALINEADA DE LA RENTABILIDAD POR PRODUCTO      │
+ │                     EN LAS SUCURSALES DE JUICE CORNER BD                               │
+ └───────────────────────────────────────────┬────────────────────────────────────────────┘
+                                             │
+                                      CAUSAS RAÍCES
+ ┌───────────────────────────────────────────┴────────────────────────────────────────────┐
+ │ 1. Asignación arbitraria de descuentos de línea sin ponderación del margen unitario.   │
+ │ 2. Cupones promocionales genéricos aplicados a canasta completa sin discriminar mix.   │
+ │ 3. Falta de controles de negocio en cupones (fuga de fechas, montos mínimos y cupos).  │
+ │ 4. Inexistencia de un modelo analítico de simulación de escenarios de optimización.    │
+ └────────────────────────────────────────────────────────────────────────────────────────┘
+</code></pre>
+<hr>
+<h2>2. FORMULACIÓN DEL PROBLEMA</h2>
+<h3>2.1 Pregunta General de Investigación</h3>
+<blockquote>
+<p><strong>¿Cómo puede un modelo de análisis y simulación de escenarios reducir la pérdida de margen ocasionada por el otorgamiento de descuentos desalineados con la rentabilidad de los 20 productos de Juice Corner BD, manteniendo constante el volumen de unidades vendidas, los precios de lista y la composición de la carta, durante su próximo año de operación en Dhaka, Bangladesh, a partir del análisis de las 1.000.000 de órdenes del año observado?</strong></p>
+</blockquote>
+<hr>
+<h2>3. OBJETIVOS DE LA INVESTIGACIÓN</h2>
+<h3>3.1 Objetivo General</h3>
+<p><strong>Diseñar, mediante un modelo de análisis y simulación de escenarios, una política de descuentos para los 20 productos de Juice Corner BD, basada en el análisis de 1.000.000 de órdenes transaccionales, que permita, en el próximo año de operación de la empresa, reducir la proporción de descuentos otorgados del 7,24 % al 5,00 % o menos del subtotal neto y aumentar el margen de contribución global del 61,1 % al 62,0 % o más, manteniendo constante el volumen de unidades vendidas, los precios de lista y la composición de la carta.</strong></p>
+<h3>3.2 Objetivos Específicos</h3>
+<ol>
+<li><strong>OE1. Diagnosticar</strong> la estructura histórica de descuentos (de línea y por cupones) y el margen de contribución individual de los 20 productos a partir de 1.000.000 de órdenes de compra.<ul>
+<li><em>Entregable:</em> Tabla consolidada de línea base con indicadores de venta, descuentos y márgenes unitarios.</li>
+</ul>
+</li>
+<li><strong>OE2. Construir</strong> un repositorio dimensional Data Warehouse (esquema estrella con 1 tabla de hechos <code>FACT_VENTAS</code> y 7 tablas de dimensiones) que garantice la consolidación, gobernanza e integridad contable de los datos.<ul>
+<li><em>Entregable:</em> Base de datos relacional analítica validada con 0 inconsistencias en la auditoría de cuadre.</li>
+</ul>
+</li>
+<li><strong>OE3. Contrastar</strong> estadísticamente la homogeneidad de la demanda diaria por producto y la correlación existente entre la tasa de descuento otorgada y el margen de ganancia a lista.<ul>
+<li><em>Entregable:</em> Informe de pruebas estadísticas inferenciales (ANOVA, Kruskal-Wallis, Chi-cuadrado, Pearson y Spearman) con niveles de significancia (α = 0,05).</li>
+</ul>
+</li>
+<li><strong>OE4. Estimar</strong> la sensibilidad del comportamiento de la demanda y determinar el umbral de caída de volumen de equilibrio ante variaciones de descuento por canal, sucursal y categoría de producto.<ul>
+<li><em>Entregable:</em> Modelo cuantitativo de elasticidad y matriz de límites de tolerancia de volumen de venta.</li>
+</ul>
+</li>
+<li><strong>OE5. Simular</strong> escenarios de asignación promocional (línea base actual, reasignación moderada y optimización lineal orientada a margen) bajo volumen y carta constantes para el siguiente año operativo.<ul>
+<li><em>Entregable:</em> Matriz comparativa de desempeño financiero y KPIs proyectados por escenario evaluado.</li>
+</ul>
+</li>
+<li><strong>OE6. Proponer</strong> la política definitiva de descuentos diferenciados y la reglamentación estricta de cupones que satisfaga simultáneamente el costo de descuentos ≤ 5,00 % y un margen global ≥ 62,00 %.<ul>
+<li><em>Entregable:</em> Manual de políticas comerciales, reglas de validación de cupones y programa de incentivos alineado al margen.</li>
+</ul>
+</li>
+</ol>
+<h3>3.3 Matriz de Operacionalización SMART</h3>
+<h4>Tabla 2. Matriz de Operacionalización SMART de los Objetivos</h4>
+<table>
+<thead>
+<tr>
+<th align="left">Objetivo</th>
+<th align="left">S (Específico)</th>
+<th align="left">M (Medible)</th>
+<th align="left">A (Alcanzable)</th>
+<th align="left">R (Relevante)</th>
+<th align="left">T (Temporal)</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left"><strong>General</strong></td>
+<td align="left">Política integral de descuentos alineada al margen por producto.</td>
+<td align="left">Costo de descuento ≤ 5,00 %; margen global ≥ 62,00 %; correlación <em>r</em> &gt; 0.</td>
+<td align="left">Demanda plana demostrada y volumen constante; ajuste de 0,9 pp de margen.</td>
+<td align="left">Corrige la principal causa de fuga de rentabilidad operativa.</td>
+<td align="left">Próximo año de operación de la empresa (S1).</td>
+</tr>
+<tr>
+<td align="left"><strong>OE1</strong></td>
+<td align="left">Diagnóstico de línea base transaccional y rentabilidad.</td>
+<td align="left">1.000.000 órdenes analizadas; 7,24 % costo de descuento; 61,1 % margen.</td>
+<td align="left">Datos transaccionales completos disponibles y validados.</td>
+<td align="left">Base empírica indispensable de comparación y evaluación.</td>
+<td align="left">Año observado (S0).</td>
+</tr>
+<tr>
+<td align="left"><strong>OE2</strong></td>
+<td align="left">Data Warehouse con esquema dimensional en estrella.</td>
+<td align="left">2.498.660 hechos consolidados; subtotal 1.089.008.540 BDT; 0 descuadres.</td>
+<td align="left">Infraestructura SQL Server y procesos ETL optimizados.</td>
+<td align="left">Garantiza veracidad y trazabilidad única de la información.</td>
+<td align="left">Año observado (S0).</td>
+</tr>
+<tr>
+<td align="left"><strong>OE3</strong></td>
+<td align="left">Contraste inferencial de demanda y política actual.</td>
+<td align="left">Pruebas paramétricas y no paramétricas al 95 % de confianza (α = 0,05).</td>
+<td align="left">Scripts automatizados ejecutados en lenguaje R.</td>
+<td align="left">Demuestra la arbitrariedad empírica del modelo comercial actual.</td>
+<td align="left">Año observado (S0).</td>
+</tr>
+<tr>
+<td align="left"><strong>OE4</strong></td>
+<td align="left">Modelación de elasticidad y caída de volumen de equilibrio.</td>
+<td align="left">Coeficientes de sensibilidad e intervalo de tolerancia de caída de volumen.</td>
+<td align="left">Métodos estadísticos y programación matemática formal.</td>
+<td align="left">Calibra el riesgo comercial de reducción de descuentos.</td>
+<td align="left">Parámetros de S0 proyectados a S1.</td>
+</tr>
+<tr>
+<td align="left"><strong>OE5</strong></td>
+<td align="left">Simulación de escenarios comerciales proyectados.</td>
+<td align="left">Proyección cuantitativa de BDT, porcentaje de descuento y margen en 3 modelos.</td>
+<td align="left">Modelo de programación lineal bajo volumen constante.</td>
+<td align="left">Permite seleccionar el escenario óptimo con base científica.</td>
+<td align="left">Próximo año de operación (S1).</td>
+</tr>
+<tr>
+<td align="left"><strong>OE6</strong></td>
+<td align="left">Formulación de la política definitiva de descuentos.</td>
+<td align="left">Costo final ≤ 5,00 % y margen ≥ 62,00 % demostrados en simulación.</td>
+<td align="left">Ahorro anual de hasta 24,39 millones de BDT.</td>
+<td align="left">Constituye la solución gerencial definitiva al problema central.</td>
+<td align="left">Próximo año de operación (S1).</td>
+</tr>
+</tbody></table>
+<h3>3.4 Horizonte Temporal de Evaluación y Metas Comparativas</h3>
+<p>El desempeño de la política propuesta se evalúa en el marco temporal de la empresa (año operativo proyectado S1), manteniendo las condiciones fundamentales de mercado del año observado (S0): mismo volumen total de órdenes y unidades, idénticos precios de lista e igual composición de la carta comercial.</p>
+<h4>Tabla 3. Matriz de Metas de Desempeño: Año Observado vs. Proyección Anual</h4>
+<table>
+<thead>
+<tr>
+<th align="left">Indicador Clave de Rendimiento</th>
+<th align="left">S0 Observado (Línea Base Histórica)</th>
+<th align="left">S1 Inacción (Política Actual Replicada)</th>
+<th align="left">S1 Meta (Política Propuesta)</th>
+<th align="left">Criterio de Éxito</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left"><strong>Volumen de Órdenes</strong></td>
+<td align="left">1.000.000</td>
+<td align="left">1.000.000</td>
+<td align="left">1.000.000</td>
+<td align="left">Constante</td>
+</tr>
+<tr>
+<td align="left"><strong>Unidades Físicas Vendidas</strong></td>
+<td align="left">4.995.377</td>
+<td align="left">4.995.377</td>
+<td align="left">4.995.377</td>
+<td align="left">Constante</td>
+</tr>
+<tr>
+<td align="left"><strong>Costo de Descuentos (% Subtotal)</strong></td>
+<td align="left"><strong>7,24 %</strong></td>
+<td align="left"><strong>7,24 %</strong></td>
+<td align="left"><strong>≤ 5,00 %</strong></td>
+<td align="left">Reducción ≥ 2,24 pp</td>
+</tr>
+<tr>
+<td align="left"><strong>Monto Anual de Descuentos</strong></td>
+<td align="left">78.843.704 BDT</td>
+<td align="left">78.843.704 BDT</td>
+<td align="left"><strong>≤ 54.450.427 BDT</strong></td>
+<td align="left">Ahorro ≥ 24,39M BDT</td>
+</tr>
+<tr>
+<td align="left"><strong>Margen de Contribución Global</strong></td>
+<td align="left"><strong>61,1 %</strong></td>
+<td align="left"><strong>61,1 %</strong></td>
+<td align="left"><strong>≥ 62,0 %</strong></td>
+<td align="left">Incremento ≥ 0,9 pp</td>
+</tr>
+<tr>
+<td align="left"><strong>Correlación Descuento vs. Margen</strong></td>
+<td align="left"><em>r</em> = −0,19</td>
+<td align="left"><em>r</em> = −0,19</td>
+<td align="left"><strong>Positiva (<em>r</em> &gt; 0)</strong></td>
+<td align="left">Alineación económica</td>
+</tr>
+</tbody></table>
+<hr>
+<h2>4. JUSTIFICACIÓN Y DELIMITACIÓN DE LA INVESTIGACIÓN</h2>
+<h3>4.1 Justificación Teórica y Metodológica</h3>
+<p>Desde la perspectiva teórica, la fijación y otorgamiento de descuentos comerciales no debe concebirse como un recurso promocional indiscriminado, sino como una herramienta de optimización microeconómica supeditada al margen de contribución marginal. Metodológicamente, la investigación aporta un marco riguroso de analítica prescriptiva que enlaza la minería de datos transaccionales (Data Warehouse y ETL), la contrastación estadística inferencial y la simulación matemática de escenarios bajo condiciones operativas reales.</p>
+<h3>4.2 Justificación Práctica y Económica</h3>
+<p>La investigación responde a una necesidad crítica de gestión financiera en Juice Corner BD. La optimización del gasto promocional recupera al menos 24,39 millones de BDT en el año de aplicación sin recurrir a incrementos en los precios de venta al público ni requerir inversiones en infraestructura, fortaleciendo directamente el flujo operativo de la cadena gastronómica.</p>
+<h3>4.3 Delimitación de la Investigación</h3>
+<ul>
+<li><strong>Delimitación Espacial:</strong> Exclusivamente circunscrita a las tres sucursales operativas de la cadena Juice Corner BD en la ciudad de Dhaka, Bangladesh.</li>
+<li><strong>Delimitación Temporal:</strong> Análisis fundamentado en la base anual de 365 días completos de operación regular (S0), del 22 de junio de 2025 al 21 de junio de 2026, con proyección de evaluación para el período anual inmediato de operación (S1).</li>
+<li><strong>Delimitación Operativa y de Alcance:</strong> La investigación interviene única y estrictamente en las reglas de asignación de descuentos por producto y la gobernanza de cupones. Quedan explícitamente fuera del alcance las variaciones en los precios de lista de la carta, la modificación en recetas de insumos y los cambios en la oferta de productos del menú.</li>
+</ul>
+<hr>
+<h2>5. MARCO METODOLÓGICO</h2>
+<h3>5.1 Enfoque Metodológico: Cuantitativo</h3>
+<p>La investigación adopta un enfoque eminentemente <strong>cuantitativo</strong>. Se basa en un razonamiento formal deductivo que parte de los principios económicos de maximización de margen para contrastarlos frente al comportamiento empírico de un registro transaccional masivo de 1.000.000 de órdenes. La recolección y procesamiento se efectúa sobre datos numéricos estructurados, aplicando pruebas estadísticas inferenciales con un nivel de significancia prefijado de α = 0,05.</p>
+<h3>5.2 Diseño de la Investigación: No Experimental y Transversal Analítico</h3>
+<ul>
+<li><strong>No Experimental:</strong> Las variables operativas (precios de venta, costos de insumos, frecuencias de compra y descuentos) se analizan en su condición natural histórica, sin manipulación deliberada sobre el mercado físico. Los efectos de las nuevas directrices se evalúan a través de modelos computacionales de simulación.</li>
+<li><strong>Transversal Analítico:</strong> Si bien el registro abarca una serie temporal de 365 días, el análisis central se estructura de forma consolidada por producto, canal y sucursal sobre la ventana anual completa, habiéndose verificado la ausencia de tendencias seculares y de efectos por día de la semana.</li>
+</ul>
+<h3>5.3 Tipo y Alcance de la Investigación: Correlacional y Explicativo</h3>
+<ul>
+<li><strong>Alcance Correlacional:</strong> Evalúa el grado de asociación cuantitativa entre el porcentaje de descuento asignado a cada ítem y su respectivo margen de contribución, midiendo la dispersión y el sentido de los coeficientes de Pearson y Spearman.</li>
+<li><strong>Alcance Explicativo:</strong> Determina las causas estructurales que originan la erosión de beneficios (descuentos desalineados, canibalización por cupones ciegos y demanda homogénea no reactiva) y cuantifica formalmente el impacto marginal que la reestructuración de descuentos ejercerá sobre la rentabilidad global.</li>
+</ul>
+<h3>5.4 Sistema de Hipótesis</h3>
+<h4>Hipótesis de Investigación (<em>H<sub>i</sub></em>)</h4>
+<blockquote>
+<p><em><strong>H<sub>i</sub>:</strong></em> El diseño y aplicación de una política de descuentos comerciales alineada con el margen de contribución por producto permite reducir el costo total de descuentos al 5,00 % o menos del subtotal neto y elevar el margen de contribución global de Juice Corner BD al 62,00 % o más, manteniendo constantes el volumen de unidades vendidas, los precios de lista y la carta comercial durante el próximo año de operación.</p>
+</blockquote>
+<h4>Hipótesis Nula (<em>H<sub>0</sub></em>)</h4>
+<blockquote>
+<p><em><strong>H<sub>0</sub>:</strong></em> Ninguna política de descuentos comerciales estructurada a partir del margen de contribución permite reducir el costo de descuentos al 5,00 % o menos y elevar simultáneamente el margen global al 62,00 % o más bajo condiciones de volumen y carta constantes.</p>
+</blockquote>
+<h4>Hipótesis Estadísticas Secundarias</h4>
+<ol>
+<li><strong>Correlación Descuento – Margen:</strong><ul>
+<li><em>H<sub>0,1</sub>:</em> ρ = 0 (no existe correlación lineal entre la tasa de descuento de línea y el margen de contribución del producto).</li>
+<li><em>Resultado empírico:</em> <em>r</em> = −0,19 (<em>p</em> = 0,415). No se rechaza <em>H<sub>0</sub></em>; se corrobora que la política histórica no premia la rentabilidad.</li>
+</ul>
+</li>
+<li><strong>Homogeneidad de Demanda entre Productos:</strong><ul>
+<li><em>H<sub>0,2</sub>:</em> μ<sub>1</sub> = μ<sub>2</sub> = … = μ<sub>20</sub> (el volumen diario de unidades vendidas es idéntico entre los 20 productos de la carta).</li>
+<li><em>Resultado empírico:</em> ANOVA <em>F</em> = 0,70, <em>p</em> = 0,819; Kruskal-Wallis <em>H</em> = 11,45, <em>p</em> = 0,908. No se rechaza <em>H<sub>0</sub></em>; la demanda es uniforme y no sustenta descuentos diferenciales por rotación.</li>
+</ul>
+</li>
+</ol>
+<h3>5.5 Métodos, Técnicas e Instrumentos de Investigación</h3>
+<ul>
+<li><strong>Métodos Teóricos:</strong><ul>
+<li><em>Método Hipotético-Deductivo:</em> Planteamiento de conjeturas de rentabilidad y contrastación cuantitativa con la evidencia empírica del repositorio analítico.</li>
+<li><em>Método Analítico-Sintético:</em> Descomposición de la transaccionalidad por niveles (producto, cupón, canal, sucursal) y posterior síntesis en un modelo normativo corporativo.</li>
+</ul>
+</li>
+<li><strong>Técnicas y Herramientas Tecnológicas:</strong><ul>
+<li><em>Extracción, Transformación y Carga (ETL):</em> Procedimientos automatizados en scripts PowerShell (.NET <code>SqlBulkCopy</code>) y paquetes SSIS para la ingesta de datos.</li>
+<li><em>Almacenamiento y Modelado Dimensional:</em> Sistema Gestor de Bases de Datos Microsoft SQL Server, estructurado bajo arquitectura de Data Warehouse dimensional (esquema en estrella).</li>
+<li><em>Análisis Estadístico e Inferencia:</em> Entorno RStudio / Lenguaje R para la ejecución de tests de normalidad, contrastes de hipótesis (ANOVA, Kruskal-Wallis) y matrices de correlación.</li>
+<li><em>Optimización y Simulación:</em> Modelos de programación lineal determinista y evaluación estocástica de escenarios de demanda.</li>
+</ul>
+</li>
+</ul>
+<h3>5.6 Población, Censo y Fuentes de Información</h3>
+<ul>
+<li><strong>Población Objeto de Estudio:</strong> Finita y exhaustiva, constituida por la totalidad del registro transaccional anual: <strong>1.000.000 de órdenes de compra</strong>, <strong>2.498.660 líneas de pedido</strong>, <strong>20 artículos de menú</strong>, <strong>3 sucursales comerciales</strong> y <strong>6 cupones promocionales</strong>.</li>
+<li><strong>Criterio Muestral:</strong> No se extrae muestra probabilística ni se calcula tamaño muestral; se efectúa un <strong>censo poblacional íntegro (100 % de los registros)</strong> gracias a la capacidad de procesamiento de la arquitectura analítica implementada, eliminando errores de muestreo.</li>
+<li><strong>Fuentes de Información:</strong><ul>
+<li><em>Fuente Secundaria:</em> Base de datos transaccional estandarizada de restaurante y delivery, repositorio estructurado verificado e implementado en las bases <code>JuiceCorner_OLTP</code> y <code>JuiceCorner_DW</code>.</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h1>CAPÍTULO II: CONSTRUCCIÓN Y ORGANIZACIÓN DE LOS DATOS</h1>
+<p>Este capítulo desarrolla el segundo objetivo específico (OE2) y corresponde a la Fase 2 del proyecto: la construcción del repositorio analítico que sustenta el diagnóstico, el contraste estadístico y la simulación de escenarios. Su propósito es garantizar la consolidación, la gobernanza y la integridad contable de los datos transaccionales de Juice Corner BD.</p>
+<h2>2.1 Requerimientos de Información</h2>
+<p>La base de datos transaccional contiene la información necesaria sobre ventas, descuentos y costos (Tabla 4). Los datos que no están disponibles se cubren mediante supuestos declarados (Tabla 5), de modo que ninguna decisión del modelo dependa de información no documentada.</p>
+<h4>Tabla 4. Información disponible en la base de datos</h4>
+<table>
+<thead>
+<tr>
+<th align="left">Información</th>
+<th align="left">Tablas de origen</th>
+<th align="left">Uso en el proyecto</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">Descuento de línea por producto</td>
+<td align="left"><code>products</code>, <code>order_items</code></td>
+<td align="left">Tasa de descuento por producto</td>
+</tr>
+<tr>
+<td align="left">Cupones</td>
+<td align="left"><code>coupons</code>, <code>orders</code></td>
+<td align="left">Costo y uso de cupones</td>
+</tr>
+<tr>
+<td align="left">Costo por producto</td>
+<td align="left"><code>products</code>, <code>product_ingredients</code>, <code>ingredients</code></td>
+<td align="left">Margen por producto</td>
+</tr>
+<tr>
+<td align="left">Ventas</td>
+<td align="left"><code>orders</code>, <code>order_items</code>, <code>branches</code></td>
+<td align="left">Unidades, subtotal neto y mezcla</td>
+</tr>
+<tr>
+<td align="left">Clientes</td>
+<td align="left"><code>customers</code>, <code>orders</code></td>
+<td align="left">Uso de cupón por cliente</td>
+</tr>
+</tbody></table>
+<p><em>Fuente: Elaboración propia con base en el esquema transaccional de thesohanur (s. f.).</em></p>
+<h4>Tabla 5. Información faltante y supuestos declarados</h4>
+<table>
+<thead>
+<tr>
+<th align="left">Dato faltante</th>
+<th align="left">Supuesto</th>
+<th align="left">Se usa en</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">Respuesta de la demanda al cambiar un descuento</td>
+<td align="left">No se supone un valor; se calcula la caída de volumen de equilibrio</td>
+<td align="left">Fase 5</td>
+</tr>
+<tr>
+<td align="left">Empaque, mano de obra y comisión de delivery</td>
+<td align="left">Porcentaje fijo sobre el precio de lista, declarado en el informe</td>
+<td align="left">Fase 4</td>
+</tr>
+<tr>
+<td align="left">Costos fijos</td>
+<td align="left">Valor supuesto y declarado</td>
+<td align="left">Fase 4</td>
+</tr>
+</tbody></table>
+<p><em>Fuente: Elaboración propia.</em></p>
+<h2>2.2 Identificación de Fuentes de Datos</h2>
+<p>La única fuente es el sistema transaccional (TPS) de pedidos del restaurante, implementado en Microsoft SQL Server en la base <code>JuiceCorner_OLTP</code>, compuesta por 19 tablas (thesohanur, s. f.). El Data Warehouse utiliza 16 de esas tablas (Tabla 6) y excluye <code>ingredients</code>, <code>product_ingredients</code> e <code>inventory</code>, que almacenan las recetas, los costos de los insumos y el stock.</p>
+<h4>Tabla 6. Tablas del TPS utilizadas como fuente</h4>
+<table>
+<thead>
+<tr>
+<th align="left">Tabla del TPS</th>
+<th align="left">Tipo</th>
+<th align="left">Registros</th>
+<th align="left">Destino en el Data Warehouse</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left"><code>orders</code></td>
+<td align="left">Cabecera del pedido</td>
+<td align="left">1.000.000</td>
+<td align="left">Claves, atributos degenerados e importes prorrateados</td>
+</tr>
+<tr>
+<td align="left"><code>order_items</code></td>
+<td align="left">Detalle del pedido</td>
+<td align="left">2.498.660</td>
+<td align="left"><code>FACT_VENTAS</code> (grano de la tabla de hechos)</td>
+</tr>
+<tr>
+<td align="left"><code>payments</code></td>
+<td align="left">Detalle del pedido</td>
+<td align="left">1.000.000</td>
+<td align="left">Método de pago principal</td>
+</tr>
+<tr>
+<td align="left"><code>deliveries</code></td>
+<td align="left">Detalle del pedido</td>
+<td align="left">550.245</td>
+<td align="left">Repartidor y minutos de entrega</td>
+</tr>
+<tr>
+<td align="left"><code>reviews</code></td>
+<td align="left">Transacción relacionada</td>
+<td align="left">748.743</td>
+<td align="left">Calificación de la línea</td>
+</tr>
+<tr>
+<td align="left"><code>customers</code></td>
+<td align="left">Maestro</td>
+<td align="left">5.000</td>
+<td align="left"><code>DIM_CLIENTE</code></td>
+</tr>
+<tr>
+<td align="left"><code>customer_addresses</code></td>
+<td align="left">Maestro relacionado</td>
+<td align="left">6.627</td>
+<td align="left">Puente hacia <code>DIM_ZONA_ENTREGA</code></td>
+</tr>
+<tr>
+<td align="left"><code>delivery_zones</code></td>
+<td align="left">Maestro</td>
+<td align="left">5</td>
+<td align="left"><code>DIM_ZONA_ENTREGA</code></td>
+</tr>
+<tr>
+<td align="left"><code>delivery_personnel</code></td>
+<td align="left">Maestro</td>
+<td align="left">6</td>
+<td align="left"><code>DIM_REPARTIDOR</code></td>
+</tr>
+<tr>
+<td align="left"><code>products</code></td>
+<td align="left">Maestro</td>
+<td align="left">20</td>
+<td align="left"><code>DIM_PRODUCTO</code></td>
+</tr>
+<tr>
+<td align="left"><code>categories</code></td>
+<td align="left">Catálogo</td>
+<td align="left">5</td>
+<td align="left"><code>DIM_PRODUCTO</code> (desnormalizado)</td>
+</tr>
+<tr>
+<td align="left"><code>branches</code></td>
+<td align="left">Maestro</td>
+<td align="left">3</td>
+<td align="left"><code>DIM_SUCURSAL</code></td>
+</tr>
+<tr>
+<td align="left"><code>dining_tables</code></td>
+<td align="left">Maestro</td>
+<td align="left">30</td>
+<td align="left">Número de mesa (atributo degenerado)</td>
+</tr>
+<tr>
+<td align="left"><code>coupons</code></td>
+<td align="left">Maestro</td>
+<td align="left">6</td>
+<td align="left">Código de cupón (atributo degenerado)</td>
+</tr>
+<tr>
+<td align="left"><code>promotions</code> y <code>product_promotions</code></td>
+<td align="left">Maestro y relación</td>
+<td align="left">5 y 13</td>
+<td align="left">Indicador <code>en_promocion</code></td>
+</tr>
+</tbody></table>
+<p><em>Fuente: Elaboración propia con base en el decálogo del Data Warehouse y los archivos de origen de thesohanur (s. f.). Los registros corresponden a los archivos de origen.</em></p>
+<h2>2.3 Integración y Limpieza de Datos</h2>
+<p>Las reglas de integración y limpieza siguen el decálogo técnico del Data Warehouse y se resumen en la Tabla 7.</p>
+<h4>Tabla 7. Reglas de integración y limpieza aplicadas</h4>
+<table>
+<thead>
+<tr>
+<th align="left">Regla</th>
+<th align="left">Tratamiento</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left"><strong>Claves</strong></td>
+<td align="left">Cada dimensión tiene una clave sustituta y conserva la clave natural del TPS en una columna única (sufijo <code>_nk</code>) para las búsquedas del ETL.</td>
+</tr>
+<tr>
+<td align="left"><strong>Miembros comodín</strong></td>
+<td align="left">La clave −1 representa al cliente invitado, a la zona &quot;No aplica&quot; (salón o para llevar), al repartidor &quot;No aplica&quot; y al método &quot;Sin pago&quot;. Así todas las claves foráneas del hecho son obligatorias.</td>
+</tr>
+<tr>
+<td align="left"><strong>Datos excluidos</strong></td>
+<td align="left">No se cargan <code>password_hash</code>, <code>loyalty_balance</code> ni <code>referral_code</code> (cliente); <code>license_number</code>, <code>availability</code> ni la ubicación en tiempo real (repartidor); <code>price</code> ni <code>discounted_price</code> (producto), porque el precio se toma de <code>order_items.unit_price</code>.</td>
+</tr>
+<tr>
+<td align="left"><strong>Desnormalización</strong></td>
+<td align="left">La tabla <code>categories</code> se integra en <code>DIM_PRODUCTO</code> para evitar un esquema copo de nieve, y el número de mesa se guarda en el hecho.</td>
+</tr>
+<tr>
+<td align="left"><strong>Tipos de datos</strong></td>
+<td align="left">Los valores BIT del TPS se convierten a S/N y el método de pago se carga desde el enumerado de 6 valores con un nombre descriptivo.</td>
+</tr>
+<tr>
+<td align="left"><strong>Prorrateo</strong></td>
+<td align="left">Los importes de la cabecera (cupón, envío e impuesto) se reparten entre las líneas con el peso de línea: subtotal de la línea ÷ suma de subtotales del pedido.</td>
+</tr>
+<tr>
+<td align="left"><strong>Monto neto</strong></td>
+<td align="left"><code>monto_neto</code> = subtotal − descuento por cupón + envío + impuesto. El subtotal de la línea ya está neto del descuento de línea, por lo que no se resta de nuevo.</td>
+</tr>
+<tr>
+<td align="left"><strong>Pago principal</strong></td>
+<td align="left">Si un pedido tiene varios pagos, se usa el de estado exitoso con mayor monto.</td>
+</tr>
+<tr>
+<td align="left"><strong>Zona de entrega</strong></td>
+<td align="left">Se obtiene al cargar, con la ruta <code>address_id</code> → <code>zone_id</code>, y la carga es incremental para no reasignar pedidos antiguos.</td>
+</tr>
+<tr>
+<td align="left"><strong>Auditoría</strong></td>
+<td align="left">El ETL compara la suma de <code>monto_neto</code> de cada pedido con <code>orders.total_amount</code> y registra las diferencias en <code>audit.AUDITORIA_CUADRE_PEDIDOS</code>.</td>
+</tr>
+</tbody></table>
+<p><em>Fuente: Elaboración propia con base en el decálogo del Data Warehouse y el script <code>JuiceCorner_DW.sql</code>.</em></p>
+<p>La fórmula del monto neto coincide con la verificación estadística del Capítulo III: en el 100 % de las órdenes, el total es igual al subtotal menos el cupón, más el envío y el impuesto. Esto confirma que no se debe restar otra vez el descuento del pedido, porque ya equivale a la suma de los descuentos de línea.</p>
+<p>El análisis de la fuente también mostró los siguientes casos que el ETL debe manejar. Hay 19 pedidos de delivery sin registro de entrega y 12 entregas todavía en camino, por lo que sus minutos de entrega quedan nulos. Hay 50 pedidos sin pago exitoso (40 pendientes y 10 reembolsados), que van al método &quot;Sin pago&quot;. Las 748.743 reseñas están aprobadas y no se repiten por pedido y producto, así que unirlas no multiplica las filas; solo esas líneas tienen calificación y las demás quedan nulas.</p>
+<h2>2.4 Proceso ETL</h2>
+<p>El proceso se construyó como un paquete de SQL Server Integration Services (<code>Juice Corner.dtsx</code>) con dos conexiones: <code>JuiceCorner_OLTP</code> como origen y <code>JuiceCorner_DW</code> como destino. Como muestra la Figura 1, el flujo de control encadena diez tareas. <code>LIMPIEZA</code> elimina la tabla de hechos y vacía las siete dimensiones, y <code>CREACION FACT_VENTAS</code> vuelve a crear la tabla de hechos con su clave primaria, su restricción única y sus claves foráneas. Después, siete flujos de datos cargan las dimensiones en este orden: cliente, repartidor, sucursal, producto, método de pago, zona de entrega y tiempo. La dimensión producto se carga con una consulta que une <code>products</code> y <code>categories</code>; la zona de entrega convierte el indicador de actividad a S/N y evita duplicados; y el tiempo toma los meses distintos de <code>orders.placed_at</code>.</p>
+<p>El último flujo carga <code>FACT_VENTAS</code> con una sola consulta que une cada línea con la cabecera del pedido y busca las claves sustitutas en las dimensiones, asignando −1 cuando no hay cliente, zona, repartidor o pago. La consulta prorratea el cupón, el envío y el impuesto por peso de línea, toma el pago exitoso de mayor monto y la última reseña aprobada, marca si el producto estaba en una promoción vigente y calcula los minutos de entrega. Las dimensiones se cargan antes que el hecho para que las claves sustitutas ya existan al resolver las claves foráneas. La ejecución mostrada se completó con todas las tareas en verde.</p>
+<h4>Figura 1. Flujo de control del paquete ETL en SQL Server Integration Services</h4>
+<p><img src="img/figura1_flujo_etl.png" alt="Flujo de control del paquete ETL"></p>
+<p><em>Fuente: Elaboración propia. Captura del paquete <code>Juice Corner.dtsx</code> después de una ejecución exitosa, recortada y convertida a escala de grises.</em></p>
+<h2>2.5 Diseño del Modelo de Datos</h2>
+<p>El modelo es un esquema estrella con una única tabla de hechos, <code>FACT_VENTAS</code>, y siete dimensiones (Figura 2). El grano del hecho es una fila por línea de pedido, por lo que los pedidos se cuentan con <code>COUNT(DISTINCT order_id)</code> y nunca sumando filas. La Tabla 8 describe las dimensiones y la Tabla 9 los campos del hecho.</p>
+<h4>Figura 2. Modelo dimensional en estrella de JuiceCorner_DW</h4>
+<p><img src="img/figura2_modelo_estrella.png" alt="Modelo dimensional en estrella"></p>
+<p><em>Fuente: Elaboración propia con base en el script <code>JuiceCorner_DW.sql</code>.</em></p>
+<h4>Tabla 8. Dimensiones del Data Warehouse</h4>
+<table>
+<thead>
+<tr>
+<th align="left">Dimensión</th>
+<th align="left">Origen</th>
+<th align="left">Atributos principales</th>
+<th align="left">Filas esperadas</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left"><code>DIM_TIEMPO</code></td>
+<td align="left"><code>orders.placed_at</code> (mes)</td>
+<td align="left">Clave AAAAMM, mes, nombre del mes, semestre y año</td>
+<td align="left">13 meses</td>
+</tr>
+<tr>
+<td align="left"><code>DIM_CLIENTE</code></td>
+<td align="left"><code>customers</code></td>
+<td align="left">Nombre, teléfono, correo, verificaciones, es_referido y fecha de registro</td>
+<td align="left">5.001</td>
+</tr>
+<tr>
+<td align="left"><code>DIM_PRODUCTO</code></td>
+<td align="left"><code>products</code> y <code>categories</code></td>
+<td align="left">Nombre, descripción, temporada, disponibilidad y categoría</td>
+<td align="left">20</td>
+</tr>
+<tr>
+<td align="left"><code>DIM_SUCURSAL</code></td>
+<td align="left"><code>branches</code></td>
+<td align="left">Nombre, dirección, teléfono, coordenadas y estado</td>
+<td align="left">3</td>
+</tr>
+<tr>
+<td align="left"><code>DIM_ZONA_ENTREGA</code></td>
+<td align="left"><code>delivery_zones</code></td>
+<td align="left">Nombre, tarifa base, pedido mínimo, minutos estimados y estado</td>
+<td align="left">6</td>
+</tr>
+<tr>
+<td align="left"><code>DIM_REPARTIDOR</code></td>
+<td align="left"><code>delivery_personnel</code></td>
+<td align="left">Nombre, teléfono, tipo y número de vehículo</td>
+<td align="left">7</td>
+</tr>
+<tr>
+<td align="left"><code>DIM_METODO_PAGO</code></td>
+<td align="left"><code>payments.method</code></td>
+<td align="left">Código y nombre del método</td>
+<td align="left">7</td>
+</tr>
+</tbody></table>
+<p><em>Fuente: Elaboración propia. Las filas incluyen el miembro comodín −1 cuando corresponde.</em></p>
+<h4>Tabla 9. Campos de FACT_VENTAS por grupo</h4>
+<table>
+<thead>
+<tr>
+<th align="left">Grupo</th>
+<th align="left">Campos</th>
+<th align="left">Descripción</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">Identificadores del TPS</td>
+<td align="left"><code>order_item_id</code>, <code>order_id</code>, <code>order_number</code></td>
+<td align="left">Línea y pedido de origen</td>
+</tr>
+<tr>
+<td align="left">Claves foráneas</td>
+<td align="left"><code>tiempo_key</code>, <code>cliente_key</code>, <code>producto_key</code>, <code>sucursal_key</code>, <code>zona_key</code>, <code>repartidor_key</code>, <code>metodo_pago_key</code></td>
+<td align="left">Una por dimensión, todas obligatorias</td>
+</tr>
+<tr>
+<td align="left">Atributos degenerados</td>
+<td align="left"><code>tipo_pedido</code>, <code>estado_pedido</code>, <code>codigo_cupon</code>, <code>numero_mesa</code>, <code>en_promocion</code></td>
+<td align="left">Contexto del pedido</td>
+</tr>
+<tr>
+<td align="left">Medidas de línea</td>
+<td align="left"><code>quantity</code>, <code>unit_price</code>, <code>descuento_linea</code>, <code>subtotal</code></td>
+<td align="left">Tomadas del detalle del pedido</td>
+</tr>
+<tr>
+<td align="left">Medidas prorrateadas</td>
+<td align="left"><code>descuento_pedido_prorr</code>, <code>descuento_cupon_prorr</code>, <code>costo_envio_prorr</code>, <code>impuesto_prorr</code></td>
+<td align="left">Importes de la cabecera repartidos por peso de línea</td>
+</tr>
+<tr>
+<td align="left">Medida neta</td>
+<td align="left"><code>monto_neto</code></td>
+<td align="left">Subtotal − cupón + envío + impuesto</td>
+</tr>
+<tr>
+<td align="left">Logística y satisfacción</td>
+<td align="left"><code>calificacion</code>, <code>minutos_entrega</code>, <code>line_count</code></td>
+<td align="left">Nulos si no hay dato; <code>line_count</code> es siempre 1</td>
+</tr>
+</tbody></table>
+<p><em>Fuente: Elaboración propia con base en el script <code>JuiceCorner_DW.sql</code>.</em></p>
+<h2>2.6 Construcción del Data Warehouse y Controles de Validación</h2>
+<p>El Data Warehouse se construyó en SQL Server con el script <code>JuiceCorner_DW.sql</code>, que crea la base <code>JuiceCorner_DW</code> y el esquema <code>audit</code> para las tablas de control. Define las siete dimensiones y la tabla de hechos con clave primaria, una restricción única sobre <code>order_item_id</code>, restricciones de dominio y siete claves foráneas. Además crea ocho índices analíticos (uno por clave foránea y uno compuesto por pedido, mes y sucursal) y la tabla de auditoría. El script puede ejecutarse más de una vez, porque elimina los objetos previos y solo inserta los datos iniciales cuando no existen: los cuatro miembros comodín, el catálogo de seis métodos de pago y el calendario mensual.</p>
+<p>Para verificar la carga, la Tabla 10 compara cada control con el valor esperado de la fuente. Las consultas de verificación se entregan en el archivo <code>Controles_DW.sql</code>.</p>
+<h4>Tabla 10. Controles de validación de la carga</h4>
+<table>
+<thead>
+<tr>
+<th align="left">Control</th>
+<th align="left">Valor esperado en la fuente</th>
+<th align="left">Criterio de aceptación</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">Filas de <code>FACT_VENTAS</code></td>
+<td align="left">2.498.660</td>
+<td align="left">Coincide con <code>order_items</code></td>
+</tr>
+<tr>
+<td align="left">Pedidos distintos (<code>COUNT DISTINCT order_id</code>)</td>
+<td align="left">1.000.000</td>
+<td align="left">Coincide con <code>orders</code></td>
+</tr>
+<tr>
+<td align="left">Suma de subtotal (BDT)</td>
+<td align="left">1.089.008.540</td>
+<td align="left">Coincide con <code>orders.subtotal</code></td>
+</tr>
+<tr>
+<td align="left">Suma de <code>monto_neto</code> (BDT)</td>
+<td align="left">1.147.618.023,60</td>
+<td align="left">Coincide con <code>orders.total_amount</code></td>
+</tr>
+<tr>
+<td align="left">Pedidos de delivery</td>
+<td align="left">550.264</td>
+<td align="left">Coincide con <code>orders.order_type</code></td>
+</tr>
+<tr>
+<td align="left">Líneas con calificación</td>
+<td align="left">748.743</td>
+<td align="left">Coincide con <code>reviews</code> aprobadas</td>
+</tr>
+<tr>
+<td align="left">Pedidos con método &quot;Sin pago&quot;</td>
+<td align="left">50</td>
+<td align="left">Coincide con pagos no exitosos</td>
+</tr>
+<tr>
+<td align="left">Pedidos de delivery sin repartidor</td>
+<td align="left">19</td>
+<td align="left">Clave foránea −1 asignada</td>
+</tr>
+<tr>
+<td align="left">Filas en <code>DIM_METODO_PAGO</code></td>
+<td align="left">7</td>
+<td align="left">6 métodos + miembro comodín</td>
+</tr>
+<tr>
+<td align="left">Miembros comodín (−1) en las dimensiones</td>
+<td align="left">4</td>
+<td align="left">Cliente, zona, repartidor y método</td>
+</tr>
+<tr>
+<td align="left">Filas en <code>AUDITORIA_CUADRE_PEDIDOS</code></td>
+<td align="left">0</td>
+<td align="left">Sin diferencias de cuadre</td>
+</tr>
+</tbody></table>
+<p><em>Fuente: Elaboración propia. Los valores esperados se calcularon con los archivos de origen; la auditoría de cuadre se ejecuta sobre las 1.000.000 de órdenes.</em></p>
+<h2>2.7 Limitaciones y Decisiones Pendientes</h2>
+<p>El decálogo no incluye el costo de los insumos. Las recetas y los costos (<code>product_ingredients</code> e <code>ingredients</code>) no se cargan al Data Warehouse, así que el margen de contribución, que es el indicador central del proyecto, no se puede calcular solo con él. Corresponde decidir si se agrega una medida de costo por línea al hecho o si el margen se calcula con las tablas del TPS.</p>
+<p>El tiempo tiene grano mensual, por lo que el Data Warehouse no permite análisis diarios ni por hora; los análisis por día del Capítulo III usan los datos del TPS. El cupón se guarda solo como código en el hecho, de modo que el monto mínimo, la vigencia y los límites de cada cupón, que se usan para revisar su cumplimiento, no están en el Data Warehouse. Por último, el flujo <code>T_Tiempo</code> carga solo los meses que tienen pedidos (13 en la ventana anual), mientras que el decálogo pide incluir todos los meses del rango aunque no registren operaciones; con estos datos todos los meses tienen pedidos, pero conviene confirmar el criterio.</p>
+<hr>
+<h1>CAPÍTULO III: ANÁLISIS ESTADÍSTICO Y MODELIZACIÓN</h1>
+<p>Este capítulo desarrolla el tercer objetivo específico (OE3) y corresponde a la Fase 3 del proyecto. Presenta el análisis exploratorio y las pruebas inferenciales que verifican la línea base del Capítulo I y cuantifican la desalineación entre descuentos y margen.</p>
+<h2>3.1 Datos y Método</h2>
+<p>El análisis se realizó en R sobre las 1.000.000 de órdenes y 2.498.660 líneas de pedido de la ventana anual de 365 días (thesohanur, s. f.). Antes de analizar se comprobó que los datos cuadran: las identidades contables de cada orden (subtotal, descuentos y total) se cumplen en el 100 % de los registros y no hay líneas sin orden. Las pruebas usan un nivel de significancia α = 0,05. Como con un millón de órdenes casi cualquier diferencia resulta significativa, cada prueba se acompaña de un tamaño de efecto (V de Cramér, η² o <em>d</em> de Cohen) y se interpreta la relevancia práctica, no solo el valor <em>p</em>. Los análisis diarios se realizan sobre la ventana anual, excluyendo el primer y el último día por estar incompletos.</p>
+<p>La Tabla 11 define los indicadores que se recalculan al cierre de cada fase. El margen global se mide antes de cupones y los cupones se cuentan en el costo de descuentos, para no contarlos dos veces.</p>
+<h4>Tabla 11. Indicadores clave del proyecto</h4>
+<table>
+<thead>
+<tr>
+<th align="left">KPI</th>
+<th align="left">Fórmula</th>
+<th align="left">Línea base</th>
+<th align="left">Meta</th>
+<th align="left">Verificación</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">Costo de descuentos</td>
+<td align="left">(Descuentos de línea + descuentos por cupón) ÷ subtotal neto × 100</td>
+<td align="left">7,24 %</td>
+<td align="left">5 % o menos</td>
+<td align="left">Fases 4 y 5</td>
+</tr>
+<tr>
+<td align="left">Margen de contribución global</td>
+<td align="left">(Ventas netas − costo de ingredientes) ÷ ventas netas × 100, antes de cupones</td>
+<td align="left">61,1 %</td>
+<td align="left">62 % o más</td>
+<td align="left">Fases 4 y 5</td>
+</tr>
+<tr>
+<td align="left">Alineación descuento–margen</td>
+<td align="left">Correlación de Pearson entre la tasa de descuento y el margen a precio de lista de los 20 productos</td>
+<td align="left">−0,19</td>
+<td align="left">Positiva (mayor que 0)</td>
+<td align="left">Fases 3 y 5</td>
+</tr>
+</tbody></table>
+<p><em>Fuente: Elaboración propia. Subtotal neto: ventas después del descuento de línea.</em></p>
+<h2>3.2 Análisis Exploratorio</h2>
+<p>La Tabla 12 recalcula las cifras de la línea base y confirma los valores del Capítulo I. Los descuentos suman 78,8 millones de BDT: 52,4 millones de descuento de línea y 26,5 millones de cupones.</p>
+<h4>Tabla 12. Línea base verificada con los datos</h4>
+<table>
+<thead>
+<tr>
+<th align="left">Indicador</th>
+<th align="left">Valor</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">Órdenes</td>
+<td align="left">1.000.000</td>
+</tr>
+<tr>
+<td align="left">Unidades vendidas</td>
+<td align="left">4.995.377</td>
+</tr>
+<tr>
+<td align="left">Ventas netas del descuento de línea (BDT)</td>
+<td align="left">1.089.008.540</td>
+</tr>
+<tr>
+<td align="left">Descuento de línea (BDT)</td>
+<td align="left">52.376.310</td>
+</tr>
+<tr>
+<td align="left">Descuento por cupón (BDT)</td>
+<td align="left">26.467.394</td>
+</tr>
+<tr>
+<td align="left">Costo de descuentos sobre el subtotal neto</td>
+<td align="left">7,24 %</td>
+</tr>
+<tr>
+<td align="left">Margen de contribución global (antes de cupón)</td>
+<td align="left">61,07 %</td>
+</tr>
+<tr>
+<td align="left">Margen de contribución global (después de cupón)</td>
+<td align="left">60,10 %</td>
+</tr>
+<tr>
+<td align="left">Órdenes con cupón</td>
+<td align="left">38,65 %</td>
+</tr>
+</tbody></table>
+<p><em>Fuente: Elaboración propia con datos de thesohanur (s. f.). Sobre las ventas a precio de lista (1.141.384.850 BDT), el costo de descuentos es 6,91 %.</em></p>
+<p>Los 20 productos venden prácticamente lo mismo: entre 248.416 y 250.952 unidades, con un coeficiente de variación de 0,26 % (Figura 3). En cambio, sus márgenes a precio de lista van de 14,4 % a 94,2 % y el descuento de línea reduce el margen de los 9 productos que lo reciben (Figura 4). El ticket medio por orden es 1.089 BDT (mediana de 1.040), con entre 1 y 4 líneas por orden en proporciones iguales (≈ 25 % cada una).</p>
+<h4>Figura 3. Unidades vendidas por producto</h4>
+<p><img src="img/figura3_unidades.png" alt="Unidades vendidas por producto"></p>
+<p><em>Fuente: Elaboración propia en R con datos de thesohanur (s. f.). Los productos se ordenan por margen a precio de lista; el eje parte de cero.</em></p>
+<h4>Figura 4. Margen de contribución por producto, a precio de lista y con descuento de línea</h4>
+<p><img src="img/figura4_margen.png" alt="Margen de contribución por producto"></p>
+<p><em>Fuente: Elaboración propia en R con datos de thesohanur (s. f.).</em></p>
+<h2>3.3 Relaciones y Patrones</h2>
+<p><strong>Descuentos y margen.</strong> El descuento de línea es un precio rebajado fijo: afecta al 100 % de las líneas de 9 productos durante todo el periodo y equivale a la diferencia entre el precio y el precio con descuento de la tabla de productos. No es una promoción puntual y tampoco coincide con las promociones registradas: 3 productos tienen descuento sin promoción y 6 tienen promoción registrada sin descuento aplicado. La Tabla 13 muestra el descuento por producto.</p>
+<h4>Tabla 13. Descuento de línea por producto</h4>
+<table>
+<thead>
+<tr>
+<th align="left">Producto</th>
+<th align="left">Margen a lista</th>
+<th align="left">Tasa de descuento</th>
+<th align="left">Descuento total (BDT)</th>
+<th align="left">Descuento ÷ margen unitario</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">Blue Lagoon Mocktail</td>
+<td align="left">94,2 %</td>
+<td align="left">11,1 %</td>
+<td align="left">4.996.080</td>
+<td align="left">12 %</td>
+</tr>
+<tr>
+<td align="left">Pure Mango Splash</td>
+<td align="left">77,4 %</td>
+<td align="left">11,1 %</td>
+<td align="left">4.987.060</td>
+<td align="left">14 %</td>
+</tr>
+<tr>
+<td align="left">Orange Citrus Detox</td>
+<td align="left">67,5 %</td>
+<td align="left">10,0 %</td>
+<td align="left">4.980.260</td>
+<td align="left">15 %</td>
+</tr>
+<tr>
+<td align="left">Caesar Salad with Chicken</td>
+<td align="left">65,0 %</td>
+<td align="left">9,4 %</td>
+<td align="left">7.477.950</td>
+<td align="left">14 %</td>
+</tr>
+<tr>
+<td align="left">Oreo Crunch Shake</td>
+<td align="left">63,0 %</td>
+<td align="left">8,0 %</td>
+<td align="left">4.987.860</td>
+<td align="left">13 %</td>
+</tr>
+<tr>
+<td align="left">Vanilla Bean Milkshake</td>
+<td align="left">53,8 %</td>
+<td align="left">10,0 %</td>
+<td align="left">4.968.320</td>
+<td align="left">19 %</td>
+</tr>
+<tr>
+<td align="left">Club Sandwich Deluxe</td>
+<td align="left">52,3 %</td>
+<td align="left">6,7 %</td>
+<td align="left">4.990.840</td>
+<td align="left">13 %</td>
+</tr>
+<tr>
+<td align="left">Avocado Banana Energy</td>
+<td align="left">41,4 %</td>
+<td align="left">10,7 %</td>
+<td align="left">7.492.200</td>
+<td align="left">26 %</td>
+</tr>
+<tr>
+<td align="left">Berry Blast Smoothie</td>
+<td align="left">25,5 %</td>
+<td align="left">10,0 %</td>
+<td align="left">7.495.740</td>
+<td align="left">39 %</td>
+</tr>
+</tbody></table>
+<p><em>Fuente: Elaboración propia con datos de thesohanur (s. f.). El descuento por unidad se compara con el margen unitario a precio de lista.</em></p>
+<p>La correlación entre la tasa de descuento y el margen a precio de lista de los 20 productos es negativa pero no significativa (Pearson <em>r</em> = −0,19, <em>p</em> = 0,415; Spearman ρ = −0,21, <em>p</em> = 0,373), como muestra la Figura 5. Con solo 20 productos la prueba tiene poca potencia, por lo que lo correcto es concluir que no existe alineación entre descuento y margen, no que haya una relación inversa demostrada. Los productos con descuento tienen un margen medio a lista de 60,0 %, frente a 69,1 % de los que no tienen. El descuento pesa más donde el margen es menor: en Berry Blast Smoothie consume el 39 % de su margen unitario y en Avocado Banana Energy el 26 %, mientras que en Blue Lagoon Mocktail consume el 12 %.</p>
+<h4>Figura 5. Tasa de descuento y margen a precio de lista por producto</h4>
+<p><img src="img/figura5_dispersion.png" alt="Tasa de descuento y margen a precio de lista"></p>
+<p><em>Fuente: Elaboración propia en R con datos de thesohanur (s. f.). Cada punto es un producto; su tamaño refleja las unidades vendidas.</em></p>
+<p>Los descuentos aplicados a los 7 productos con margen a lista menor a 70 % suman 42,4 millones de BDT. Eso equivale al 81 % del descuento de línea y al 54 % del costo total de descuentos. Es una cota superior del ahorro posible, porque supone que el volumen no cambia al retirar el descuento.</p>
+<p><strong>Cupones.</strong> Los seis cupones se usan casi igual (unas 64.000 órdenes cada uno) y su uso es independiente de la sucursal (<em>p</em> = 0,809) y del tipo de orden (<em>p</em> = 0,568). Además, los cupones no cumplen sus propias reglas (Tabla 14): los cinco que tienen límite de usos lo superan por mucho y todos superan su límite por cliente. <code>EID50</code>, marcado como inactivo, se usa fuera de vigencia en el 94,4 % de sus órdenes, y <code>VIP100</code> se aplica a canastas por debajo de su monto mínimo en el 18,7 %.</p>
+<h4>Tabla 14. Cumplimiento de las reglas de cada cupón</h4>
+<table>
+<thead>
+<tr>
+<th align="left">Cupón</th>
+<th align="left">Usos reales</th>
+<th align="left">Límite de usos</th>
+<th align="left">Fuera de vigencia</th>
+<th align="left">Bajo el monto mínimo</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">WELCOME10</td>
+<td align="left">64.536</td>
+<td align="left">Sin límite</td>
+<td align="left">0,0 %</td>
+<td align="left">0,0 %</td>
+</tr>
+<tr>
+<td align="left">JUICE20</td>
+<td align="left">64.547</td>
+<td align="left">500</td>
+<td align="left">13,0 %</td>
+<td align="left">3,9 %</td>
+</tr>
+<tr>
+<td align="left">EID50</td>
+<td align="left">64.099</td>
+<td align="left">200</td>
+<td align="left">94,4 %</td>
+<td align="left">1,7 %</td>
+</tr>
+<tr>
+<td align="left">SMOOTHIE15</td>
+<td align="left">64.781</td>
+<td align="left">300</td>
+<td align="left">68,0 %</td>
+<td align="left">0,0 %</td>
+</tr>
+<tr>
+<td align="left">FREEDEL</td>
+<td align="left">64.460</td>
+<td align="left">400</td>
+<td align="left">49,3 %</td>
+<td align="left">6,1 %</td>
+</tr>
+<tr>
+<td align="left">VIP100</td>
+<td align="left">64.104</td>
+<td align="left">100</td>
+<td align="left">0,0 %</td>
+<td align="left">18,7 %</td>
+</tr>
+</tbody></table>
+<p><em>Fuente: Elaboración propia con datos de thesohanur (s. f.). Las órdenes con cupón se comparan con el monto mínimo y la vigencia definidos en la tabla de cupones; el monto mínimo se evalúa sobre el subtotal antes del descuento de línea.</em></p>
+<p>Las órdenes con cupón tienen un ticket medio de 1.121 BDT frente a 1.069 BDT sin cupón (<em>d</em> de Cohen ≈ 0,09). La diferencia es pequeña y se explica en parte porque los cupones exigen un monto mínimo, no porque el cupón haga gastar más. Cada orden con cupón resta en promedio 68 BDT de contribución, de modo que la contribución media por orden es 615 BDT con cupón y 653 BDT sin él. Tampoco hay evidencia de que el cupón cambie la mezcla de productos (V de Cramér = 0,0077). Por último, los 5.000 clientes usan cupón en cerca del 39 % de sus aproximadamente 200 órdenes, con una dispersión igual a la que produciría el azar (0,034 observada y 0,035 esperada), por lo que no hay segmentos de clientes que concentren el uso de cupones.</p>
+<p><strong>Demanda y tiempo.</strong> La mezcla de productos no cambia de forma relevante por sucursal, tipo de orden, mes ni uso de cupón (V de Cramér entre 0,0025 y 0,0077), y las órdenes diarias no muestran tendencia, efecto del día de la semana ni autocorrelación (<em>p</em> &gt; 0,05 en todos los casos).</p>
+<h2>3.4 Métodos Estadísticos Aplicados</h2>
+<p>La Tabla 15 resume las pruebas realizadas, su resultado y la decisión que se toma con cada una.</p>
+<h4>Tabla 15. Resumen de las pruebas estadísticas</h4>
+<table>
+<thead>
+<tr>
+<th align="left">Pregunta</th>
+<th align="left">Prueba</th>
+<th align="left">Resultado</th>
+<th align="left">Decisión</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">¿Los productos venden lo mismo por día?</td>
+<td align="left">ANOVA y Kruskal-Wallis</td>
+<td align="left"><em>F</em> = 0,70, <em>p</em> = 0,819; <em>H</em> = 11,45, <em>p</em> = 0,908</td>
+<td align="left">No hay diferencias</td>
+</tr>
+<tr>
+<td align="left">¿Las unidades totales son uniformes?</td>
+<td align="left">χ² de bondad de ajuste</td>
+<td align="left">χ²(19) = 31,75, <em>p</em> = 0,033; CV = 0,26 %</td>
+<td align="left">Diferencia mínima</td>
+</tr>
+<tr>
+<td align="left">¿La mezcla cambia por sucursal, tipo de orden, mes o cupón?</td>
+<td align="left">χ² de independencia y V de Cramér</td>
+<td align="left">V entre 0,0025 y 0,0077</td>
+<td align="left">Asociación despreciable</td>
+</tr>
+<tr>
+<td align="left">¿El ticket difiere entre sucursales o tipos de orden?</td>
+<td align="left">ANOVA, Kruskal-Wallis y Welch</td>
+<td align="left"><em>p</em> = 0,267; <em>p</em> = 0,235; <em>p</em> = 0,069</td>
+<td align="left">No hay diferencias</td>
+</tr>
+<tr>
+<td align="left">¿Hay tendencia o estacionalidad diaria?</td>
+<td align="left">Regresión, Kruskal-Wallis y Ljung-Box</td>
+<td align="left"><em>p</em> = 0,307; <em>p</em> = 0,641; <em>p</em> = 0,275</td>
+<td align="left">No hay patrón</td>
+</tr>
+<tr>
+<td align="left">¿El descuento sigue al margen?</td>
+<td align="left">Correlación de Pearson y Spearman</td>
+<td align="left"><em>r</em> = −0,19, <em>p</em> = 0,415; ρ = −0,21, <em>p</em> = 0,373</td>
+<td align="left">No hay alineación</td>
+</tr>
+<tr>
+<td align="left">¿El uso de cupón depende de la sucursal o del tipo de orden?</td>
+<td align="left">χ² de independencia</td>
+<td align="left"><em>p</em> = 0,809; <em>p</em> = 0,568</td>
+<td align="left">Es independiente</td>
+</tr>
+<tr>
+<td align="left">¿Con cupón se gasta más?</td>
+<td align="left">Welch y <em>d</em> de Cohen</td>
+<td align="left">Diferencia de 52 BDT; <em>d</em> ≈ 0,09</td>
+<td align="left">Efecto pequeño</td>
+</tr>
+</tbody></table>
+<p><em>Fuente: Elaboración propia en R. Los supuestos del ANOVA se cumplen (Shapiro-Wilk <em>p</em> = 0,168; Fligner-Killeen <em>p</em> = 0,680).</em></p>
+<h2>3.5 Interpretación de Resultados</h2>
+<p>Los resultados respaldan el problema planteado y precisan dónde actuar. Primero, la demanda es plana y homogénea: no hay un producto, una sucursal ni un tipo de orden que justifique descuentos distintos, así que una sola regla de descuentos sirve para las tres sucursales. Segundo, el descuento no sigue al margen (<em>r</em> = −0,19) y más de la mitad del costo total de descuentos (54 %) se concentra en productos con margen a lista menor a 70 %. Tercero, los cupones se reparten al azar, no cumplen sus propias reglas y no muestran un beneficio en ventas ni en mezcla, por lo que hacer cumplir las reglas ya definidas es la palanca más inmediata.</p>
+<p>Con esto quedan verificadas las líneas base del Capítulo I (costo de descuentos de 7,24 % y margen de contribución de 61,1 %) y se fija la del tercer KPI: la correlación descuento–margen parte de <em>r</em> = −0,19, con meta positiva. Conviene mantener una sola definición de los indicadores: el margen es de 60,1 % si se incluyen los cupones, y el costo de descuentos es de 6,91 % si se mide sobre las ventas a precio de lista.</p>
+<p>Las conclusiones tienen límites. Los datos son sintéticos y cubren una ventana anual continua, lo que permite contrastar estacionalidad, pero no sustituye un historial de varios años. La correlación usa 20 productos y tiene poca potencia, y no hay datos para medir cómo reaccionaría la demanda ante un cambio de descuento. Por eso los resultados valen como ejercicio metodológico y la Fase 5 calculará la caída de volumen que anularía cualquier ganancia.</p>
+<h2>3.6 Modelización Empresarial</h2>
+<p><em>Pendiente. Esta sección se completa cuando el grupo desarrolle el modelo y el análisis de escenarios (Fases 4 y 5).</em></p>
+<hr>
+<h1>REFERENCIAS BIBLIOGRÁFICAS</h1>
+<ul>
+<li>Bernal, C. A. (2016). <em>Metodología de la investigación: Administración, economía, humanidades y ciencias sociales</em> (4.ª ed.). Pearson Educación de Colombia.</li>
+<li>Hernández-Sampieri, R., Fernández-Collado, C., &amp; Baptista-Lucio, P. (2014). <em>Metodología de la investigación</em> (6.ª ed.). McGraw-Hill Education.</li>
+<li>Kimball, R., &amp; Ross, M. (2013). <em>The Data Warehouse Toolkit: The Definitive Guide to Dimensional Modeling</em> (3rd ed.). John Wiley &amp; Sons.</li>
+<li>thesohanur. (s. f.). <em>Restaurant &amp; Food Delivery Relational Database</em> [Conjunto de datos]. Kaggle. <a href="https://www.kaggle.com/datasets/thesohanur/restaurant-and-food-delivery-relational-database">https://www.kaggle.com/datasets/thesohanur/restaurant-and-food-delivery-relational-database</a></li>
+<li>Universidad Privada del Valle. (2026). <em>Guía de aprendizaje. Capítulo I – Marco introductorio</em>. Departamento de Ingeniería de Sistemas e Informática.</li>
+</ul>
+
+</body>
+</html>
