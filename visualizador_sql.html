@@ -83,69 +83,189 @@
 </head>
 <body class="bg-slate-50 dark:bg-slate-950 text-slate-800 dark:text-slate-100 min-h-screen font-sans transition-colors duration-200">
 
-  <!-- Top Navigation Header -->
-  <header class="sticky top-0 z-50 bg-white/95 dark:bg-slate-900/95 backdrop-blur border-b border-slate-200 dark:border-slate-800 shadow-sm">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+    <!-- Outer Flex Layout: Vertical Sidebar + Main Content -->
+  <div class="min-h-screen flex flex-col lg:flex-row w-full">
+
+    <!-- Mobile Top Navigation Header (< lg) -->
+    <header class="lg:hidden sticky top-0 z-40 bg-white/95 dark:bg-slate-900/95 backdrop-blur border-b border-slate-200 dark:border-slate-800 px-4 py-3 flex items-center justify-between shadow-sm">
       <div class="flex items-center space-x-3">
-        <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-emerald-500 via-teal-500 to-blue-600 flex items-center justify-center text-white font-black text-xl shadow-md shadow-emerald-500/20">
+        <div class="w-9 h-9 rounded-xl bg-gradient-to-tr from-emerald-500 via-teal-500 to-blue-600 flex items-center justify-center text-white font-black text-lg shadow-md shadow-emerald-500/20">
           JC
         </div>
         <div>
-          <div class="flex items-center space-x-2">
-            <h1 class="text-base sm:text-lg font-bold tracking-tight">Juice Corner BD</h1>
-            <span class="text-xs px-2.5 py-0.5 rounded-full bg-emerald-100 text-emerald-800 dark:bg-emerald-900/60 dark:text-emerald-300 font-semibold border border-emerald-300/40">SQL & BI Studio</span>
+          <div class="flex items-center space-x-1.5">
+            <h1 class="text-sm font-bold tracking-tight">Juice Corner BD</h1>
+            <span class="text-[10px] px-2 py-0.5 rounded-full bg-emerald-100 text-emerald-800 dark:bg-emerald-900/60 dark:text-emerald-300 font-semibold border border-emerald-300/40">Studio</span>
           </div>
-          <p class="text-xs text-slate-500 dark:text-slate-400">Microsoft SQL Server 2025 · Instancia (localdb)\MSSQLLocalDB</p>
+          <p class="text-[10px] text-slate-500 dark:text-slate-400">Microsoft SQL Server 2025 · LocalDB</p>
         </div>
       </div>
+      <div class="flex items-center space-x-2">
+        <!-- Theme Toggle Mobile -->
+        <button onclick="toggleTheme()" class="p-2 rounded-xl bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-slate-700 transition" title="Cambiar tema">
+          <svg class="themeIconDark w-5 h-5 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z" /></svg>
+          <svg class="themeIconLight w-5 h-5 fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" /></svg>
+        </button>
+        <!-- Hamburger Menu Button -->
+        <button onclick="toggleMobileSidebar()" class="p-2 rounded-xl bg-emerald-50 dark:bg-emerald-950/60 text-emerald-700 dark:text-emerald-300 border border-emerald-300 dark:border-emerald-700 hover:bg-emerald-100 transition" aria-label="Abrir Menú">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" /></svg>
+        </button>
+      </div>
+    </header>
 
-      <!-- Header actions & indicators -->
-      <div class="flex items-center space-x-2 sm:space-x-4">
-        <div class="hidden sm:flex items-center space-x-2 px-3 py-1.5 rounded-xl bg-emerald-50 dark:bg-emerald-950/40 border border-emerald-200 dark:border-emerald-800">
-          <span class="relative flex h-2.5 w-2.5">
+    <!-- Mobile Backdrop Overlay -->
+    <div id="mobileSidebarBackdrop" onclick="toggleMobileSidebar(false)" class="fixed inset-0 bg-slate-950/60 backdrop-blur-sm z-40 hidden lg:hidden transition-opacity"></div>
+
+    <!-- Vertical Sidebar Navigation (Left Column) -->
+    <aside id="sidebarNav" class="fixed inset-y-0 left-0 z-50 w-72 lg:w-80 bg-white/95 dark:bg-slate-900/95 backdrop-blur border-r border-slate-200 dark:border-slate-800 flex flex-col justify-between transform -translate-x-full lg:translate-x-0 lg:sticky lg:top-0 lg:h-screen transition-transform duration-300 ease-in-out shadow-2xl lg:shadow-none shrink-0">
+      
+      <!-- Sidebar Header: Brand & LocalDB Status -->
+      <div class="p-5 border-b border-slate-200/90 dark:border-slate-800/90">
+        <div class="flex items-center justify-between">
+          <div class="flex items-center space-x-3">
+            <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-emerald-500 via-teal-500 to-blue-600 flex items-center justify-center text-white font-black text-xl shadow-md shadow-emerald-500/20 shrink-0">
+              JC
+            </div>
+            <div class="min-w-0">
+              <div class="flex items-center space-x-1.5">
+                <h1 class="text-base font-bold tracking-tight text-slate-900 dark:text-white truncate">Juice Corner BD</h1>
+                <span class="text-[10px] px-2 py-0.5 rounded-full bg-emerald-100 text-emerald-800 dark:bg-emerald-900/60 dark:text-emerald-300 font-semibold border border-emerald-300/40 shrink-0">Studio</span>
+              </div>
+              <p class="text-xs text-slate-500 dark:text-slate-400 truncate">SQL & BI Analytics Platform</p>
+            </div>
+          </div>
+          <!-- Close button on mobile -->
+          <button onclick="toggleMobileSidebar(false)" class="lg:hidden p-1.5 rounded-lg text-slate-400 hover:text-slate-600 dark:hover:text-slate-200">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+          </button>
+        </div>
+
+        <!-- LocalDB Status Pill -->
+        <div class="mt-3.5 px-3 py-2 rounded-xl bg-emerald-50 dark:bg-emerald-950/40 border border-emerald-200 dark:border-emerald-800/80 flex items-center space-x-2.5">
+          <span class="relative flex h-2.5 w-2.5 shrink-0">
             <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
             <span class="relative inline-flex rounded-full h-2.5 w-2.5 bg-emerald-500"></span>
           </span>
-          <span class="text-xs font-semibold text-emerald-700 dark:text-emerald-300">Motor LocalDB Listo (28 Tablas)</span>
+          <div class="min-w-0">
+            <div class="text-[11px] font-bold text-emerald-800 dark:text-emerald-300 truncate">Motor LocalDB Listo (28 Tablas)</div>
+            <div class="text-[10px] text-slate-500 dark:text-slate-400 truncate">(localdb)\MSSQLLocalDB</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Vertical Navigation Menu List -->
+      <nav class="flex-1 overflow-y-auto custom-scroll p-3.5 space-y-1.5">
+        <div class="px-3 pt-1 pb-1.5 text-[10px] font-bold uppercase tracking-wider text-slate-400 dark:text-slate-500">
+          Módulos de Investigación
         </div>
 
-        <!-- Theme Toggle -->
-        <button id="themeToggle" class="p-2 rounded-xl bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-slate-700 transition" title="Cambiar tema">
-          <svg id="themeIconDark" class="w-5 h-5 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z" /></svg>
-          <svg id="themeIconLight" class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" /></svg>
+        <!-- 1. Marco Introductorio -->
+        <button onclick="switchTab('presentacion')" id="tabBtn-presentacion" class="tab-btn w-full text-left px-3.5 py-3 rounded-xl text-xs sm:text-sm font-bold transition-all flex items-center justify-between group border border-emerald-500 bg-emerald-50 dark:bg-emerald-950/70 text-emerald-700 dark:text-emerald-300 shadow-sm">
+          <div class="flex items-center space-x-3 min-w-0">
+            <span class="text-base shrink-0">🎓</span>
+            <div class="min-w-0">
+              <div class="font-bold leading-tight truncate">Capítulo I & Sustentación</div>
+              <div class="text-[10px] text-slate-500 dark:text-slate-400 font-normal truncate">Marco rector y objetivos SMART</div>
+            </div>
+          </div>
+          <span class="text-[10px] px-1.5 py-0.5 rounded bg-emerald-200/80 dark:bg-emerald-900/60 text-emerald-800 dark:text-emerald-200 font-bold shrink-0">Base</span>
         </button>
+
+        <!-- 2. Modelización Econométrica MCO (Fase 4 & 5) -->
+        <button onclick="switchTab('modelizacion')" id="tabBtn-modelizacion" class="tab-btn w-full text-left px-3.5 py-3 rounded-xl text-xs sm:text-sm font-semibold transition-all flex items-center justify-between group border border-transparent text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800/60">
+          <div class="flex items-center space-x-3 min-w-0">
+            <span class="text-base shrink-0">📈</span>
+            <div class="min-w-0">
+              <div class="font-bold leading-tight truncate">Modelización MCO & Escenarios</div>
+              <div class="text-[10px] text-slate-500 dark:text-slate-400 font-normal truncate">Elasticidad β₁=-0.079, Sensibilidad</div>
+            </div>
+          </div>
+          <span class="text-[10px] px-1.5 py-0.5 rounded bg-indigo-100 dark:bg-indigo-950 text-indigo-700 dark:text-indigo-300 font-bold shrink-0">Fase 4 & 5</span>
+        </button>
+
+        <!-- 3. Cómo Ejecutar y Visualizar -->
+        <button onclick="switchTab('guias')" id="tabBtn-guias" class="tab-btn w-full text-left px-3.5 py-3 rounded-xl text-xs sm:text-sm font-semibold transition-all flex items-center justify-between group border border-transparent text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800/60">
+          <div class="flex items-center space-x-3 min-w-0">
+            <span class="text-base shrink-0">🚀</span>
+            <div class="min-w-0">
+              <div class="font-bold leading-tight truncate">Cómo Ejecutar y Visualizar</div>
+              <div class="text-[10px] text-slate-500 dark:text-slate-400 font-normal truncate">Paso a paso en Microsoft LocalDB</div>
+            </div>
+          </div>
+        </button>
+
+        <!-- 4. Diagramas ERD y Estrella -->
+        <button onclick="switchTab('diagramas')" id="tabBtn-diagramas" class="tab-btn w-full text-left px-3.5 py-3 rounded-xl text-xs sm:text-sm font-semibold transition-all flex items-center justify-between group border border-transparent text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800/60">
+          <div class="flex items-center space-x-3 min-w-0">
+            <span class="text-base shrink-0">📊</span>
+            <div class="min-w-0">
+              <div class="font-bold leading-tight truncate">Diagramas ERD & DW Estrella</div>
+              <div class="text-[10px] text-slate-500 dark:text-slate-400 font-normal truncate">19 OLTP + 9 DW Kimball puro</div>
+            </div>
+          </div>
+        </button>
+
+        <!-- 5. Diccionario de Tablas (28) -->
+        <button onclick="switchTab('diccionario')" id="tabBtn-diccionario" class="tab-btn w-full text-left px-3.5 py-3 rounded-xl text-xs sm:text-sm font-semibold transition-all flex items-center justify-between group border border-transparent text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800/60">
+          <div class="flex items-center space-x-3 min-w-0">
+            <span class="text-base shrink-0">📖</span>
+            <div class="min-w-0">
+              <div class="font-bold leading-tight truncate">Diccionario de Tablas (28)</div>
+              <div class="text-[10px] text-slate-500 dark:text-slate-400 font-normal truncate">Metadatos, esquemas y tipos</div>
+            </div>
+          </div>
+          <span class="text-[10px] px-1.5 py-0.5 rounded bg-slate-200 dark:bg-slate-800 text-slate-700 dark:text-slate-300 font-mono font-bold shrink-0">28</span>
+        </button>
+
+        <!-- 6. Laboratorio y Gráficos SQL -->
+        <button onclick="switchTab('playground')" id="tabBtn-playground" class="tab-btn w-full text-left px-3.5 py-3 rounded-xl text-xs sm:text-sm font-semibold transition-all flex items-center justify-between group border border-transparent text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800/60">
+          <div class="flex items-center space-x-3 min-w-0">
+            <span class="text-base shrink-0">⚡</span>
+            <div class="min-w-0">
+              <div class="font-bold leading-tight truncate">Laboratorio y Gráficos SQL</div>
+              <div class="text-[10px] text-slate-500 dark:text-slate-400 font-normal truncate">Consultas analíticas T-SQL</div>
+            </div>
+          </div>
+          <span class="text-[10px] px-1.5 py-0.5 rounded bg-amber-100 dark:bg-amber-950 text-amber-700 dark:text-amber-300 font-bold shrink-0">SQL</span>
+        </button>
+
+        <!-- 7. Conexiones (Power BI, Excel, Python) -->
+        <button onclick="switchTab('conexiones')" id="tabBtn-conexiones" class="tab-btn w-full text-left px-3.5 py-3 rounded-xl text-xs sm:text-sm font-semibold transition-all flex items-center justify-between group border border-transparent text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800/60">
+          <div class="flex items-center space-x-3 min-w-0">
+            <span class="text-base shrink-0">🔌</span>
+            <div class="min-w-0">
+              <div class="font-bold leading-tight truncate">Cadenas de Conexión</div>
+              <div class="text-[10px] text-slate-500 dark:text-slate-400 font-normal truncate">Power BI, Excel, Python pyodbc</div>
+            </div>
+          </div>
+        </button>
+      </nav>
+
+      <!-- Sidebar Footer: Theme Toggle & Info -->
+      <div class="p-4 border-t border-slate-200/90 dark:border-slate-800/90 space-y-3 bg-slate-50/70 dark:bg-slate-950/40">
+        <!-- Theme Toggle in Sidebar -->
+        <button id="themeToggle" onclick="toggleTheme()" class="w-full px-3.5 py-2.5 rounded-xl bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-slate-700 transition flex items-center justify-between text-xs font-semibold shadow-sm border border-slate-200/60 dark:border-slate-700/60">
+          <div class="flex items-center space-x-2.5">
+            <svg class="themeIconDark w-4 h-4 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z" /></svg>
+            <svg class="themeIconLight w-4 h-4 fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" /></svg>
+            <span>Cambiar Modo Oscuro / Claro</span>
+          </div>
+          <span class="text-[10px] px-1.5 py-0.5 rounded bg-slate-200 dark:bg-slate-700 text-slate-600 dark:text-slate-300 font-mono">Tema</span>
+        </button>
+
+        <!-- Repo Link & Credits -->
+        <div class="flex items-center justify-between text-[11px] text-slate-500 dark:text-slate-400 px-1">
+          <a href="https://github.com/JoseFerM/JuiceCorner-DataScience" target="_blank" class="hover:text-emerald-600 dark:hover:text-emerald-400 transition flex items-center space-x-1 font-medium">
+            <svg class="w-3.5 h-3.5" fill="currentColor" viewBox="0 0 24 24"><path fill-rule="evenodd" clip-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.53 1.032 1.53 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"/></svg>
+            <span>GitHub</span>
+          </a>
+          <span class="text-[10px]">4to Semestre LCD</span>
+        </div>
       </div>
-    </div>
+    </aside>
 
-    <!-- Navigation Tabs with badges -->
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 border-t border-slate-200/80 dark:border-slate-800 flex space-x-1 sm:space-x-2 overflow-x-auto custom-scroll">
-      <button onclick="switchTab('presentacion')" id="tabBtn-presentacion" class="tab-btn px-4 py-2.5 text-xs sm:text-sm font-bold border-b-2 border-emerald-600 text-emerald-600 dark:border-emerald-400 dark:text-emerald-400 whitespace-nowrap transition-colors flex items-center space-x-1.5">
-        <span>🎓 Marco Introductorio & Sustentación</span>
-      </button>
-      <button onclick="switchTab('guias')" id="tabBtn-guias" class="tab-btn px-4 py-2.5 text-xs sm:text-sm font-semibold border-b-2 border-transparent text-slate-500 hover:text-slate-800 dark:hover:text-slate-200 whitespace-nowrap transition-colors flex items-center space-x-1.5">
-        <span>🚀 Cómo Ejecutar y Visualizar</span>
-      </button>
-      <button onclick="switchTab('diagramas')" id="tabBtn-diagramas" class="tab-btn px-4 py-2.5 text-xs sm:text-sm font-semibold border-b-2 border-transparent text-slate-500 hover:text-slate-800 dark:hover:text-slate-200 whitespace-nowrap transition-colors flex items-center space-x-1.5">
-        <span>📊 Diagramas ERD y Estrella</span>
-      </button>
-      <button onclick="switchTab('diccionario')" id="tabBtn-diccionario" class="tab-btn px-4 py-2.5 text-xs sm:text-sm font-semibold border-b-2 border-transparent text-slate-500 hover:text-slate-800 dark:hover:text-slate-200 whitespace-nowrap transition-colors flex items-center space-x-1.5">
-        <span>📖 Diccionario de Tablas (28)</span>
-      </button>
-      <button onclick="switchTab('playground')" id="tabBtn-playground" class="tab-btn px-4 py-2.5 text-xs sm:text-sm font-semibold border-b-2 border-transparent text-slate-500 hover:text-slate-800 dark:hover:text-slate-200 whitespace-nowrap transition-colors flex items-center space-x-1.5">
-        <span>⚡ Laboratorio y Gráficos SQL</span>
-      </button>
-      <button onclick="switchTab('conexiones')" id="tabBtn-conexiones" class="tab-btn px-4 py-2.5 text-xs sm:text-sm font-semibold border-b-2 border-transparent text-slate-500 hover:text-slate-800 dark:hover:text-slate-200 whitespace-nowrap transition-colors flex items-center space-x-1.5">
-        <span>🔌 Conexiones (Excel, Power BI, Python)</span>
-      </button>
-      <button onclick="switchTab('modelizacion')" id="tabBtn-modelizacion" class="tab-btn px-4 py-2.5 text-xs sm:text-sm font-semibold border-b-2 border-transparent text-slate-500 hover:text-slate-800 dark:hover:text-slate-200 whitespace-nowrap transition-colors flex items-center space-x-1.5">
-        <span class="inline-flex items-center px-1.5 py-0.5 rounded text-[10px] font-bold bg-indigo-100 text-indigo-700 dark:bg-indigo-900/60 dark:text-indigo-300">Fase 4 & 5</span>
-        <span>📈 Modelización Econométrica MCO</span>
-      </button>
-    </div>
-  </header>
-
-  <!-- Main Container -->
-  <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
+    <!-- Main Content Canvas (Right Column) -->
+    <main class="flex-1 min-w-0 max-w-full overflow-y-auto px-4 sm:px-6 lg:px-8 py-6">
 
     <!-- ===================================================================================== -->
     <!-- TAB 1: MARCO INTRODUCTORIO, OBJETIVOS SMART Y DIAGNÓSTICO EMPRESARIAL -->
@@ -1526,6 +1646,7 @@ Server=(localdb)\MSSQLLocalDB;Integrated Security=true;Initial Catalog=JuiceCorn
 
 
   </main>
+  </div>
 
   <!-- Notification Toast -->
   <div id="toast" class="fixed bottom-6 right-6 px-4 py-2.5 rounded-xl bg-slate-900 text-white text-xs font-medium shadow-2xl border border-slate-700 opacity-0 pointer-events-none transition-all duration-300 transform translate-y-2 flex items-center space-x-2 z-50">
@@ -2064,8 +2185,8 @@ ORDER BY auditoria_id DESC;`,
     function switchTab(tabId) {
       document.querySelectorAll('section[id^="tab-"]').forEach(sec => sec.classList.add('hidden'));
       document.querySelectorAll('.tab-btn').forEach(btn => {
-        btn.classList.remove('border-emerald-600', 'text-emerald-600', 'dark:border-emerald-400', 'dark:text-emerald-400');
-        btn.classList.add('border-transparent', 'text-slate-500');
+        btn.classList.remove('border-emerald-500', 'bg-emerald-50', 'dark:bg-emerald-950/70', 'text-emerald-700', 'dark:text-emerald-300', 'shadow-sm', 'font-bold');
+        btn.classList.add('border-transparent', 'text-slate-600', 'dark:text-slate-400');
       });
       
       const activeSec = document.getElementById('tab-' + tabId);
@@ -2073,8 +2194,8 @@ ORDER BY auditoria_id DESC;`,
       
       const activeBtn = document.getElementById('tabBtn-' + tabId);
       if (activeBtn) {
-        activeBtn.classList.remove('border-transparent', 'text-slate-500');
-        activeBtn.classList.add('border-emerald-600', 'text-emerald-600', 'dark:border-emerald-400', 'dark:text-emerald-400');
+        activeBtn.classList.remove('border-transparent', 'text-slate-600', 'dark:text-slate-400');
+        activeBtn.classList.add('border-emerald-500', 'bg-emerald-50', 'dark:bg-emerald-950/70', 'text-emerald-700', 'dark:text-emerald-300', 'shadow-sm', 'font-bold');
       }
 
       if (tabId === 'diagramas') {
@@ -2082,6 +2203,26 @@ ORDER BY auditoria_id DESC;`,
       }
       if (tabId === 'modelizacion') {
         initModelizacionTab();
+      }
+
+      // Close mobile sidebar on selection
+      toggleMobileSidebar(false);
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    function toggleMobileSidebar(force) {
+      const sidebar = document.getElementById('sidebarNav');
+      const backdrop = document.getElementById('mobileSidebarBackdrop');
+      if (!sidebar) return;
+      const isOpen = !sidebar.classList.contains('-translate-x-full');
+      const shouldOpen = force !== undefined ? force : !isOpen;
+
+      if (shouldOpen) {
+        sidebar.classList.remove('-translate-x-full');
+        if (backdrop) backdrop.classList.remove('hidden');
+      } else {
+        sidebar.classList.add('-translate-x-full');
+        if (backdrop) backdrop.classList.add('hidden');
       }
     }
 
@@ -2550,27 +2691,20 @@ ORDER BY auditoria_id DESC;`,
       }, 2500);
     }
 
-    // --- Theme Toggle ---
-    const themeBtn = document.getElementById('themeToggle');
-    const iconDark = document.getElementById('themeIconDark');
-    const iconLight = document.getElementById('themeIconLight');
-
+    // --- Theme Toggle Logic ---
     function applyTheme(isDark) {
       if (isDark) {
         document.documentElement.classList.add('dark');
-        iconDark.classList.remove('hidden');
-        iconLight.classList.add('hidden');
+        document.querySelectorAll('.themeIconDark').forEach(el => el.classList.remove('hidden'));
+        document.querySelectorAll('.themeIconLight').forEach(el => el.classList.add('hidden'));
       } else {
         document.documentElement.classList.remove('dark');
-        iconDark.classList.add('hidden');
-        iconLight.classList.remove('hidden');
+        document.querySelectorAll('.themeIconDark').forEach(el => el.classList.add('hidden'));
+        document.querySelectorAll('.themeIconLight').forEach(el => el.classList.remove('hidden'));
       }
     }
 
-    const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-    applyTheme(prefersDark);
-
-    themeBtn.addEventListener('click', () => {
+    function toggleTheme() {
       const isDark = document.documentElement.classList.contains('dark');
       applyTheme(!isDark);
       if (activeChartInstance) {
@@ -2579,7 +2713,10 @@ ORDER BY auditoria_id DESC;`,
       if (modelChartsInitialized) {
         renderModelizacionCharts();
       }
-    });
+    }
+
+    const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+    applyTheme(prefersDark);
 
     // --- Initial Boot ---
     
