@@ -138,7 +138,7 @@
 <h2>1. PLANTEAMIENTO DEL PROBLEMA</h2>
 <h3>1.1 Contextualización Empresarial</h3>
 <p>Juice Corner BD es una cadena comercial del sector gastronómico especializada en la elaboración y venta de jugos naturales, batidos y snacks, con tres sucursales operativas situadas en Dhaka, Bangladesh. La empresa comercializa un menú de 20 productos a través de dos canales principales: consumo en salón (<em>dine_in</em>) y servicio a domicilio (<em>delivery</em>), registrando sus transacciones en moneda local, el Taka bangladesí (BDT).</p>
-<p>La base transaccional de estudio comprende una ventana anual continua de 365 días de operación comercial, del 22 de junio de 2025 al 21 de junio de 2026, abarcando un universo de 1.000.000 de órdenes de compra, 2.498.660 líneas de detalle transaccional y 4.995.377 unidades físicas comercializadas.</p>
+<p>La base transaccional de estudio comprende <strong>162 días continuos de operación comercial</strong> (del 11 de enero al 21 de junio de 2026, ~5,5 meses / semestre base S0) sobre el dataset original sin modificar, abarcando un universo de 1.000.000 de órdenes de compra, 2.498.660 líneas de detalle transaccional y 4.995.377 unidades físicas comercializadas.</p>
 <h3>1.2 Diagnóstico de la Situación Problemática</h3>
 <p>La rentabilidad operativa de Juice Corner BD se encuentra severamente erosionada debido a la aplicación de una política de descuentos empírica, dispersa y desprovista de criterios económicos de margen de contribución. Actualmente, la organización destina el <strong>7,24 % de su subtotal neto a descuentos</strong>, lo que representa 78.843.704 BDT: 52,38 millones correspondientes a descuentos directos de línea y 26,47 millones a cupones promocionales.</p>
 <p>El análisis cuantitativo de los registros históricos pone de manifiesto cuatro distorsiones fundamentales:</p>
@@ -222,14 +222,14 @@ A diferencia de lo que justificaría una estrategia de liquidación o atracción
 <p>De mantenerse el esquema actual de descuentos:</p>
 <ul>
 <li><strong>Concentración de Pérdidas:</strong> Los 7 productos con margen de contribución inferior al 70 % continuarán absorbiendo 42,4 millones de BDT en descuentos, lo que representa el 81 % del gasto en descuentos de línea y el 54 % del costo total de promociones, subsidiando ineficiencias de costo.</li>
-<li><strong>Sobrecosto Financiero:</strong> La empresa continuará incurriendo en un exceso de gasto promocional de al menos <strong>24,39 millones de BDT anuales</strong> respecto al estándar de mercado y a la meta institucional del 5,00 % del subtotal neto.</li>
+<li><strong>Sobrecosto Financiero:</strong> La empresa continuará incurriendo en un exceso de gasto promocional de al menos <strong>24,39 millones de BDT semestrales</strong> respecto al estándar de mercado y a la meta institucional del 5,00 % del subtotal neto.</li>
 <li><strong>Estancamiento del Margen Operativo:</strong> El margen de contribución global permanecerá confinado en torno al 60,1 % – 61,1 %, imposibilitando alcanzar la meta financiera mínima del 62,00 % requerida para la sostenibilidad y expansión de las sucursales.</li>
 </ul>
 <h3>1.4 Árbol del Problema</h3>
 <pre><code>                                      EFECTOS / CONSECUENCIAS
  ┌────────────────────────────────────────────────────────────────────────────────────────┐
  │ • Margen global deprimido (61,1 %) por debajo del potencial financiero (meta: ≥62,0 %) │
- │ • Sobrecosto anual de 24,39 millones de BDT en promociones no justificadas             │
+ │ • Sobrecosto semestral de 24,39 millones de BDT en promociones no justificadas             │
  │ • Reducción directa de 68 BDT de margen por cada orden que aplica cupón                │
  └───────────────────────────────────────────┬────────────────────────────────────────────┘
                                              │
@@ -251,12 +251,12 @@ A diferencia de lo que justificaría una estrategia de liquidación o atracción
 <h2>2. FORMULACIÓN DEL PROBLEMA</h2>
 <h3>2.1 Pregunta General de Investigación</h3>
 <blockquote>
-<p><strong>¿Cómo puede un modelo de análisis y simulación de escenarios reducir la pérdida de margen ocasionada por el otorgamiento de descuentos desalineados con la rentabilidad de los 20 productos de Juice Corner BD, manteniendo constante el volumen de unidades vendidas, los precios de lista y la composición de la carta, durante su próximo año de operación en Dhaka, Bangladesh, a partir del análisis de las 1.000.000 de órdenes del año observado?</strong></p>
+<p><strong>¿Cómo puede un modelo de análisis y simulación de escenarios reducir la pérdida de margen ocasionada por el otorgamiento de descuentos desalineados con la rentabilidad de los 20 productos de Juice Corner BD, manteniendo constante el volumen de unidades vendidas, los precios de lista y la composición de la carta, durante su próximo semestre de operación (S1) en Dhaka, Bangladesh, a partir del análisis de las 1.000.000 de órdenes del semestre base observado (S0: 162 días)?</strong></p>
 </blockquote>
 <hr>
 <h2>3. OBJETIVOS DE LA INVESTIGACIÓN</h2>
 <h3>3.1 Objetivo General</h3>
-<p><strong>Diseñar, mediante un modelo de análisis y simulación de escenarios, una política de descuentos para los 20 productos de Juice Corner BD, basada en el análisis de 1.000.000 de órdenes transaccionales, que permita, en el próximo año de operación de la empresa, reducir la proporción de descuentos otorgados del 7,24 % al 5,00 % o menos del subtotal neto y aumentar el margen de contribución global del 61,1 % al 62,0 % o más, manteniendo constante el volumen de unidades vendidas, los precios de lista y la composición de la carta.</strong></p>
+<p><strong>Diseñar, mediante un modelo de análisis y simulación de escenarios, una política de descuentos para los 20 productos de Juice Corner BD, basada en el análisis de 1.000.000 de órdenes transaccionales, que permita, en el próximo semestre de operación de la empresa (S1), reducir la proporción de descuentos otorgados del 7,24 % al 5,00 % o menos del subtotal neto y aumentar el margen de contribución global del 61,1 % al 62,0 % o más, manteniendo constante el volumen de unidades vendidas, los precios de lista y la composición de la carta.</strong></p>
 <h3>3.2 Objetivos Específicos</h3>
 <ol>
 <li><strong>OE1. Diagnosticar</strong> la estructura histórica de descuentos (de línea y por cupones) y el margen de contribución individual de los 20 productos a partir de 1.000.000 de órdenes de compra.<ul>
@@ -275,7 +275,7 @@ A diferencia de lo que justificaría una estrategia de liquidación o atracción
 <li><em>Entregable:</em> Modelo cuantitativo de elasticidad y matriz de límites de tolerancia de volumen de venta.</li>
 </ul>
 </li>
-<li><strong>OE5. Simular</strong> escenarios de asignación promocional (línea base actual, reasignación moderada y optimización lineal orientada a margen) bajo volumen y carta constantes para el siguiente año operativo.<ul>
+<li><strong>OE5. Simular</strong> escenarios de asignación promocional (línea base actual, reasignación moderada y optimización lineal orientada a margen) bajo volumen y carta constantes para el siguiente semestre operativo (S1).<ul>
 <li><em>Entregable:</em> Matriz comparativa de desempeño financiero y KPIs proyectados por escenario evaluado.</li>
 </ul>
 </li>
@@ -303,7 +303,7 @@ A diferencia de lo que justificaría una estrategia de liquidación o atracción
 <td align="left">Costo de descuento ≤ 5,00 %; margen global ≥ 62,00 %; correlación <em>r</em> &gt; 0.</td>
 <td align="left">Demanda plana demostrada y volumen constante; ajuste de 0,9 pp de margen.</td>
 <td align="left">Corrige la principal causa de fuga de rentabilidad operativa.</td>
-<td align="left">Próximo año de operación de la empresa (S1).</td>
+<td align="left">Próximo semestre de operación de la empresa (S1).</td>
 </tr>
 <tr>
 <td align="left"><strong>OE1</strong></td>
@@ -311,7 +311,7 @@ A diferencia de lo que justificaría una estrategia de liquidación o atracción
 <td align="left">1.000.000 órdenes analizadas; 7,24 % costo de descuento; 61,1 % margen.</td>
 <td align="left">Datos transaccionales completos disponibles y validados.</td>
 <td align="left">Base empírica indispensable de comparación y evaluación.</td>
-<td align="left">Año observado (S0).</td>
+<td align="left">Semestre base observado (S0: 162 días).</td>
 </tr>
 <tr>
 <td align="left"><strong>OE2</strong></td>
@@ -319,7 +319,7 @@ A diferencia de lo que justificaría una estrategia de liquidación o atracción
 <td align="left">2.498.660 hechos consolidados; subtotal 1.089.008.540 BDT; 0 descuadres.</td>
 <td align="left">Infraestructura SQL Server y procesos ETL optimizados.</td>
 <td align="left">Garantiza veracidad y trazabilidad única de la información.</td>
-<td align="left">Año observado (S0).</td>
+<td align="left">Semestre base observado (S0: 162 días).</td>
 </tr>
 <tr>
 <td align="left"><strong>OE3</strong></td>
@@ -327,7 +327,7 @@ A diferencia de lo que justificaría una estrategia de liquidación o atracción
 <td align="left">Pruebas paramétricas y no paramétricas al 95 % de confianza (α = 0,05).</td>
 <td align="left">Scripts automatizados ejecutados en lenguaje R.</td>
 <td align="left">Demuestra la arbitrariedad empírica del modelo comercial actual.</td>
-<td align="left">Año observado (S0).</td>
+<td align="left">Semestre base observado (S0: 162 días).</td>
 </tr>
 <tr>
 <td align="left"><strong>OE4</strong></td>
@@ -343,21 +343,21 @@ A diferencia de lo que justificaría una estrategia de liquidación o atracción
 <td align="left">Proyección cuantitativa de BDT, porcentaje de descuento y margen en 3 modelos.</td>
 <td align="left">Modelo de programación lineal bajo volumen constante.</td>
 <td align="left">Permite seleccionar el escenario óptimo con base científica.</td>
-<td align="left">Próximo año de operación (S1).</td>
+<td align="left">Próximo semestre de operación (S1).</td>
 </tr>
 <tr>
 <td align="left"><strong>OE6</strong></td>
 <td align="left">Formulación de la política definitiva de descuentos.</td>
 <td align="left">Costo final ≤ 5,00 % y margen ≥ 62,00 % demostrados en simulación.</td>
-<td align="left">Ahorro anual de hasta 24,39 millones de BDT.</td>
+<td align="left">Ahorro semestral de hasta 24,39 millones de BDT.</td>
 <td align="left">Constituye la solución gerencial definitiva al problema central.</td>
-<td align="left">Próximo año de operación (S1).</td>
+<td align="left">Próximo semestre de operación (S1).</td>
 </tr>
 </tbody></table>
 <p><em>Fuente: Elaboración propia.</em></p>
 <h3>3.4 Horizonte Temporal de Evaluación y Metas Comparativas</h3>
-<p>El desempeño de la política propuesta se evalúa en el marco temporal de la empresa (año operativo proyectado S1), manteniendo las condiciones fundamentales de mercado del año observado (S0): mismo volumen total de órdenes y unidades, idénticos precios de lista e igual composición de la carta comercial.</p>
-<h4>Tabla 3. Matriz de Metas de Desempeño: Año Observado vs. Proyección Anual</h4>
+<p>El desempeño de la política propuesta se evalúa en el marco temporal de la empresa (próximo semestre operativo S1), manteniendo las condiciones fundamentales de mercado del período base observado (S0: 162 días): mismo volumen total de órdenes y unidades, idénticos precios de lista e igual composición de la carta comercial.</p>
+<h4>Tabla 3. Matriz de Metas de Desempeño: Semestre Base Observado (S0) vs. Proyección Semestral (S1)</h4>
 <table>
 <thead>
 <tr>
@@ -390,7 +390,7 @@ A diferencia de lo que justificaría una estrategia de liquidación o atracción
 <td align="left">Reducción ≥ 2,24 pp</td>
 </tr>
 <tr>
-<td align="left"><strong>Monto Anual de Descuentos</strong></td>
+<td align="left"><strong>Monto de Descuentos (Período)</strong></td>
 <td align="left">78.843.704 BDT</td>
 <td align="left">78.843.704 BDT</td>
 <td align="left"><strong>≤ 54.450.427 BDT</strong></td>
@@ -417,11 +417,11 @@ A diferencia de lo que justificaría una estrategia de liquidación o atracción
 <h3>4.1 Justificación Teórica y Metodológica</h3>
 <p>Desde la perspectiva teórica, la fijación y otorgamiento de descuentos comerciales no debe concebirse como un recurso promocional indiscriminado, sino como una herramienta de optimización microeconómica supeditada al margen de contribución marginal. Metodológicamente, la investigación aporta un marco riguroso de analítica prescriptiva que enlaza la minería de datos transaccionales (Data Warehouse y ETL), la contrastación estadística inferencial y la simulación matemática de escenarios bajo condiciones operativas reales.</p>
 <h3>4.2 Justificación Práctica y Económica</h3>
-<p>La investigación responde a una necesidad crítica de gestión financiera en Juice Corner BD. La optimización del gasto promocional recupera al menos 24,39 millones de BDT en el año de aplicación sin recurrir a incrementos en los precios de venta al público ni requerir inversiones en infraestructura, fortaleciendo directamente el flujo operativo de la cadena gastronómica.</p>
+<p>La investigación responde a una necesidad crítica de gestión financiera en Juice Corner BD. La optimización del gasto promocional recupera al menos 24,39 millones de BDT en el semestre de aplicación (S1) sin recurrir a incrementos en los precios de venta al público ni requerir inversiones en infraestructura, fortaleciendo directamente el flujo operativo de la cadena gastronómica.</p>
 <h3>4.3 Delimitación de la Investigación</h3>
 <ul>
 <li><strong>Delimitación Espacial:</strong> Exclusivamente circunscrita a las tres sucursales operativas de la cadena Juice Corner BD en la ciudad de Dhaka, Bangladesh.</li>
-<li><strong>Delimitación Temporal:</strong> Análisis fundamentado en la base anual de 365 días completos de operación regular (S0), del 22 de junio de 2025 al 21 de junio de 2026, con proyección de evaluación para el período anual inmediato de operación (S1).</li>
+<li><strong>Delimitación Temporal:</strong> Análisis fundamentado en la base histórica original de <strong>162 días completos de operación regular (S0)</strong>, del 11 de enero al 21 de junio de 2026 (~5,5 meses), con proyección de evaluación para el próximo semestre inmediato de operación (S1).</li>
 <li><strong>Delimitación Operativa y de Alcance:</strong> La investigación interviene única y estrictamente en las reglas de asignación de descuentos por producto y la gobernanza de cupones. Quedan explícitamente fuera del alcance las variaciones en los precios de lista de la carta, la modificación en recetas de insumos y los cambios en la oferta de productos del menú.</li>
 </ul>
 <hr>
@@ -431,7 +431,7 @@ A diferencia de lo que justificaría una estrategia de liquidación o atracción
 <h3>5.2 Diseño de la Investigación: No Experimental y Transversal Analítico</h3>
 <ul>
 <li><strong>No Experimental:</strong> Las variables operativas (precios de venta, costos de insumos, frecuencias de compra y descuentos) se analizan en su condición natural histórica, sin manipulación deliberada sobre el mercado físico. Los efectos de las nuevas directrices se evalúan a través de modelos computacionales de simulación.</li>
-<li><strong>Transversal Analítico:</strong> Si bien el registro abarca una serie temporal de 365 días, el análisis central se estructura de forma consolidada por producto, canal y sucursal sobre la ventana anual completa, habiéndose verificado la ausencia de tendencias seculares y de efectos por día de la semana.</li>
+<li><strong>Transversal Analítico:</strong> Si bien el registro abarca una serie temporal de 162 días, el análisis central se estructura de forma consolidada por producto, canal y sucursal sobre el período base completo, habiéndose verificado la ausencia de tendencias seculares y de efectos por día de la semana.</li>
 </ul>
 <h3>5.3 Tipo y Alcance de la Investigación: Correlacional y Explicativo</h3>
 <ul>
@@ -441,7 +441,7 @@ A diferencia de lo que justificaría una estrategia de liquidación o atracción
 <h3>5.4 Sistema de Hipótesis</h3>
 <h4>Hipótesis de Investigación (<em>H<sub>i</sub></em>)</h4>
 <blockquote>
-<p><em><strong>H<sub>i</sub>:</strong></em> El diseño y aplicación de una política de descuentos comerciales alineada con el margen de contribución por producto permite reducir el costo total de descuentos al 5,00 % o menos del subtotal neto y elevar el margen de contribución global de Juice Corner BD al 62,00 % o más, manteniendo constantes el volumen de unidades vendidas, los precios de lista y la carta comercial durante el próximo año de operación.</p>
+<p><em><strong>H<sub>i</sub>:</strong></em> El diseño y aplicación de una política de descuentos comerciales alineada con el margen de contribución por producto permite reducir el costo total de descuentos al 5,00 % o menos del subtotal neto y elevar el margen de contribución global de Juice Corner BD al 62,00 % o más, manteniendo constantes el volumen de unidades vendidas, los precios de lista y la carta comercial durante el próximo semestre de operación (S1).</p>
 </blockquote>
 <h4>Hipótesis Nula (<em>H<sub>0</sub></em>)</h4>
 <blockquote>
@@ -477,7 +477,7 @@ A diferencia de lo que justificaría una estrategia de liquidación o atracción
 </ul>
 <h3>5.6 Población, Censo y Fuentes de Información</h3>
 <ul>
-<li><strong>Población Objeto de Estudio:</strong> Finita y exhaustiva, constituida por la totalidad del registro transaccional anual: <strong>1.000.000 de órdenes de compra</strong>, <strong>2.498.660 líneas de pedido</strong>, <strong>20 artículos de menú</strong>, <strong>3 sucursales comerciales</strong> y <strong>6 cupones promocionales</strong>.</li>
+<li><strong>Población Objeto de Estudio:</strong> Finita y exhaustiva, constituida por la totalidad del registro transaccional del semestre base (S0: 162 días): <strong>1.000.000 de órdenes de compra</strong>, <strong>2.498.660 líneas de pedido</strong>, <strong>20 artículos de menú</strong>, <strong>3 sucursales comerciales</strong> y <strong>6 cupones promocionales</strong>.</li>
 <li><strong>Criterio Muestral:</strong> No se extrae muestra probabilística ni se calcula tamaño muestral; se efectúa un <strong>censo poblacional íntegro (100 % de los registros)</strong> gracias a la capacidad de procesamiento de la arquitectura analítica implementada, eliminando errores de muestreo.</li>
 <li><strong>Fuentes de Información:</strong><ul>
 <li><em>Fuente Secundaria:</em> Base de datos transaccional estandarizada de restaurante y delivery, repositorio estructurado verificado e implementado en las bases <code>JuiceCorner_OLTP</code> y <code>JuiceCorner_DW</code>.</li>
@@ -734,7 +734,7 @@ A diferencia de lo que justificaría una estrategia de liquidación o atracción
 <td align="left"><code>DIM_TIEMPO</code></td>
 <td align="left"><code>orders.placed_at</code> (mes)</td>
 <td align="left">Clave AAAAMM, mes, nombre del mes, semestre y año</td>
-<td align="left">13 meses</td>
+<td align="left">6 meses (ene–jun 2026)</td>
 </tr>
 <tr>
 <td align="left"><code>DIM_CLIENTE</code></td>
@@ -891,12 +891,12 @@ A diferencia de lo que justificaría una estrategia de liquidación o atracción
 <p><em>Fuente: Elaboración propia. Los valores esperados se calcularon con los archivos de origen; la auditoría de cuadre se ejecuta sobre las 1.000.000 de órdenes.</em></p>
 <h2>2.7 Limitaciones y Decisiones Pendientes</h2>
 <p>El decálogo no incluye el costo de los insumos. Las recetas y los costos (<code>product_ingredients</code> e <code>ingredients</code>) no se cargan al Data Warehouse, así que el margen de contribución, que es el indicador central del proyecto, no se puede calcular solo con él. Corresponde decidir si se agrega una medida de costo por línea al hecho o si el margen se calcula con las tablas del TPS.</p>
-<p>El tiempo tiene grano mensual, por lo que el Data Warehouse no permite análisis diarios ni por hora; los análisis por día del Capítulo III usan los datos del TPS. El cupón se guarda solo como código en el hecho, de modo que el monto mínimo, la vigencia y los límites de cada cupón, que se usan para revisar su cumplimiento, no están en el Data Warehouse. Por último, el flujo <code>T_Tiempo</code> carga solo los meses que tienen pedidos (13 en la ventana anual), mientras que el decálogo pide incluir todos los meses del rango aunque no registren operaciones; con estos datos todos los meses tienen pedidos, pero conviene confirmar el criterio.</p>
+<p>El tiempo tiene grano mensual, por lo que el Data Warehouse no permite análisis diarios ni por hora; los análisis por día del Capítulo III usan los datos del TPS. El cupón se guarda solo como código en el hecho, de modo que el monto mínimo, la vigencia y los límites de cada cupón, que se usan para revisar su cumplimiento, no están en el Data Warehouse. Por último, el flujo <code>T_Tiempo</code> carga solo los meses que tienen pedidos (6 meses en la ventana de enero a junio de 2026), mientras que el decálogo pide incluir todos los meses del rango aunque no registren operaciones; con estos datos todos los meses tienen pedidos, pero conviene confirmar el criterio.</p>
 <hr>
 <h1>CAPÍTULO III: ANÁLISIS ESTADÍSTICO Y MODELIZACIÓN</h1>
 <p>Este capítulo desarrolla el tercer objetivo específico (OE3) y corresponde a la Fase 3 del proyecto. Presenta el análisis exploratorio y las pruebas inferenciales que verifican la línea base del Capítulo I y cuantifican la desalineación entre descuentos y margen.</p>
 <h2>3.1 Datos y Método</h2>
-<p>El análisis se realizó en R sobre las 1.000.000 de órdenes y 2.498.660 líneas de pedido de la ventana anual de 365 días (thesohanur, s. f.). Antes de analizar se comprobó que los datos cuadran: las identidades contables de cada orden (subtotal, descuentos y total) se cumplen en el 100 % de los registros y no hay líneas sin orden. Las pruebas usan un nivel de significancia α = 0,05. Como con un millón de órdenes casi cualquier diferencia resulta significativa, cada prueba se acompaña de un tamaño de efecto (V de Cramér, η² o <em>d</em> de Cohen) y se interpreta la relevancia práctica, no solo el valor <em>p</em>. Los análisis diarios se realizan sobre la ventana anual, excluyendo el primer y el último día por estar incompletos.</p>
+<p>El análisis se realizó en R sobre las 1.000.000 de órdenes y 2.498.660 líneas de pedido del dataset original de 162 días (del 11 de enero al 21 de junio de 2026; thesohanur, s. f.). Antes de analizar se comprobó que los datos cuadran: las identidades contables de cada orden (subtotal, descuentos y total) se cumplen en el 100 % de los registros y no hay líneas sin orden. Las pruebas usan un nivel de significancia α = 0,05. Como con un millón de órdenes casi cualquier diferencia resulta significativa, cada prueba se acompaña de un tamaño de efecto (V de Cramér, η² o <em>d</em> de Cohen) y se interpreta la relevancia práctica, no solo el valor <em>p</em>. Los análisis diarios se realizan sobre la serie completa de 160 días completos, excluyendo el primer y el último día por estar incompletos.</p>
 <p>La Tabla 11 define los indicadores que se recalculan al cierre de cada fase. El margen global se mide antes de cupones y los cupones se cuentan en el costo de descuentos, para no contarlos dos veces.</p>
 <h4>Tabla 11. Indicadores clave del proyecto</h4>
 <table>
@@ -1193,7 +1193,7 @@ A diferencia de lo que justificaría una estrategia de liquidación o atracción
 <h2>3.5 Interpretación de Resultados</h2>
 <p>Los resultados respaldan el problema planteado y precisan dónde actuar. Primero, la demanda es plana y homogénea: no hay un producto, una sucursal ni un tipo de orden que justifique descuentos distintos, así que una sola regla de descuentos sirve para las tres sucursales. Segundo, el descuento no sigue al margen (<em>r</em> = −0,19) y más de la mitad del costo total de descuentos (54 %) se concentra en productos con margen a lista menor a 70 %. Tercero, los cupones se reparten al azar, no cumplen sus propias reglas y no muestran un beneficio en ventas ni en mezcla, por lo que hacer cumplir las reglas ya definidas es la palanca más inmediata.</p>
 <p>Con esto quedan verificadas las líneas base del Capítulo I (costo de descuentos de 7,24 % y margen de contribución de 61,1 %) y se fija la del tercer KPI: la correlación descuento–margen parte de <em>r</em> = −0,19, con meta positiva. Conviene mantener una sola definición de los indicadores: el margen es de 60,1 % si se incluyen los cupones, y el costo de descuentos es de 6,91 % si se mide sobre las ventas a precio de lista.</p>
-<p>Las conclusiones tienen límites. Los datos son sintéticos y cubren una ventana anual continua, lo que permite contrastar estacionalidad, pero no sustituye un historial de varios años. La correlación usa 20 productos y tiene poca potencia, y no hay datos para medir cómo reaccionaría la demanda ante un cambio de descuento. Por eso los resultados valen como ejercicio metodológico y la Fase 5 calculará la caída de volumen que anularía cualquier ganancia.</p>
+<p>Las conclusiones del análisis exploratorio tienen límites. Los datos son sintéticos y cubren una ventana continua de 162 días (enero a junio de 2026, ~5,5 meses), lo que no sustituye un historial anual completo ni de varios años, y la correlación simple usa solo 20 productos y tiene poca potencia. Además, las pruebas descriptivas por sí solas no miden la respuesta causal de la demanda ante cambios en el descuento; por ello, el <strong>apartado 3.6</strong> estima formalmente la elasticidad-precio y de descuentos mediante un modelo econométrico MCO sobre 19.440 observaciones de panel y calcula el umbral de caída de volumen de equilibrio (<strong>7,70 %</strong>), dejando para la <strong>Fase 5</strong> la resolución del programa lineal de optimización (escenario E3) y la reglamentación operativa de cupones.</p>
 <h2>3.6 Modelización Empresarial</h2>
 <p>La modelización convierte los patrones del análisis exploratorio en parámetros y usa esos parámetros para simular políticas de descuento. Se estimó un modelo log-lineal de demanda por mínimos cuadrados ordinarios (MCO), con errores estándar robustos a la heterocedasticidad, y con él se construyeron tres escenarios: la mezcla actual (E1), una reasignación moderada (E2) y la mezcla optimizada que se resolverá por programación lineal en la Fase 5 (E3).</p>
 <h3>3.6.1 Especificación del modelo y datos</h3>
@@ -1208,7 +1208,7 @@ A diferencia de lo que justificaría una estrategia de liquidación o atracción
 <li>u<sub>it</sub>: término de error.</li>
 </ul>
 <p>La forma logarítmica en precio y cantidad hace que β<sub>1</sub> se lea directamente como elasticidad; las variables en niveles se interpretan como cambios porcentuales aproximados en la cantidad ante un punto porcentual adicional. La estimación sigue el tratamiento clásico del modelo lineal general y de la corrección de White para varianzas no constantes (Gujarati y Porter, 2010).</p>
-<p>El panel tiene 19.440 observaciones y combina 20 productos, 3 sucursales y 2 canales en los 162 días de operación que registra la base transaccional, del 11 de enero al 21 de junio de 2026. Cada celda agrega las unidades del día, el precio efectivo medio, la tasa media de descuento y la intensidad media del cupón. Los escenarios se evalúan sobre el volumen anual del Capítulo I, porque la elasticidad es adimensional y se aplica a esa base sin necesidad de reestimar el modelo.</p>
+<p>El panel tiene 19.440 observaciones y combina 20 productos, 3 sucursales y 2 canales en los 162 días de operación que registra la base transaccional, del 11 de enero al 21 de junio de 2026. Cada celda agrega las unidades del día, el precio efectivo medio, la tasa media de descuento y la intensidad media del cupón. Los escenarios se evalúan sobre el volumen del semestre base (S0) del Capítulo I, porque la elasticidad es adimensional y se aplica a esa base sin necesidad de reestimar el modelo.</p>
 <h3>3.6.2 Estimación y bondad de ajuste</h3>
 <p>La Tabla 16 presenta los coeficientes con errores estándar robustos HC1, necesarios porque la prueba de Breusch-Pagan rechaza la homocedasticidad (apartado 3.6.3).</p>
 <h4>Tabla 16. Modelo MCO de demanda (variable dependiente: logaritmo de las unidades)</h4>

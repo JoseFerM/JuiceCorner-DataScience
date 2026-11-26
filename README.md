@@ -22,10 +22,10 @@ Toda la arquitectura, ingeniería de datos, modelado analítico y código ejecut
   └───────────────────────────────────┬────────────────────────────────────┘
                                       │
   ┌───────────────────────────────────┴────────────────────────────────────┐
-  │          NIVEL 2: INFORME DE AVANCE Y ENTREGABLE CONSOLIDADO           │
-  │   Docs/00_Proyecto_Integrador/Avance.docx                              │
-  │   - Documento final formal de entrega ejecutiva de Fases 1, 2 y 3      │
-  │   - Evidencias numéricas, validación de hipótesis y resultados en R    │
+  │          NIVEL 2: INFORME CONSOLIDADO VIGENTE (FASES 1 A 4)            │
+  │   Docs/00_Proyecto_Integrador/Informe_Consolidado_Fases_1_a_4.docx     │
+  │   - Documento consolidado (Caps. I–III): Fases 1, 2, 3 y 4 (MCO)       │
+  │   - Evidencias numéricas, validación de hipótesis, R y modelo MCO      │
   └───────────────────────────────────┬────────────────────────────────────┘
                                       │
   ┌───────────────────────────────────┴────────────────────────────────────┐
@@ -51,7 +51,7 @@ Toda la arquitectura, ingeniería de datos, modelado analítico y código ejecut
 > [!IMPORTANT]
 > **Documentos Oficiales Clave:**
 > 1. **Cima y Marco Metodológico:** [`Docs/00_Proyecto_Integrador/Capitulo_I_Marco_Introductorio_Limpio.md`](Docs/00_Proyecto_Integrador/Capitulo_I_Marco_Introductorio_Limpio.md) (y [`Capitulo_I_Marco_Introductorio_Limpio.html`](Docs/00_Proyecto_Integrador/Capitulo_I_Marco_Introductorio_Limpio.html)) define la formulación académica, el árbol del problema, las hipótesis y los objetivos específicos OE1 a OE6.
-> 2. **Informe Final de Entrega:** [`Docs/00_Proyecto_Integrador/Avance.docx`](Docs/00_Proyecto_Integrador/Avance.docx) es el documento consolidado de entrega ejecutiva que agrupa las evidencias y contrastes de las Fases 1, 2 y 3.
+> 2. **Informe Consolidado Vigente (Fases 1 a 4):** [`Docs/00_Proyecto_Integrador/Informe_Consolidado_Fases_1_a_4.docx`](Docs/00_Proyecto_Integrador/Informe_Consolidado_Fases_1_a_4.docx) (y [`.md`](Docs/00_Proyecto_Integrador/Informe_Consolidado_Fases_1_a_4.md) / [`.html`](Docs/00_Proyecto_Integrador/Informe_Consolidado_Fases_1_a_4.html)) es el documento consolidado vigente (Capítulos I a III) que agrupa las evidencias y resultados de las Fases 1, 2, 3 y 4 (MCO). *(Histórico anterior Fases 1–3: `Avance.docx`.)*
 > 3. **Avance y Bases por Materia:** [`Docs/AVANCE_POR_MATERIAS.md`](Docs/AVANCE_POR_MATERIAS.md) centraliza el estado de avance y fundamentos teóricos por asignatura (Ingeniería de Datos, Estadística, Modelización MCO, Optimización y Finanzas/Marketing).
 > 4. **Horizonte de Análisis:** Todos los análisis (OLTP, DW, R y MCO) se ejecutaron directamente sobre el dataset original de Kaggle sin modificar: **162 días de operación** (11 de enero al 21 de junio de 2026, ~5,5 meses / semestre base $S_0$), para proyectar y calibrar las metas del próximo semestre ($S_1$).
 

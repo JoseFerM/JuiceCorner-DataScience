@@ -24,7 +24,8 @@ Este documento consolida la estructura documental de [`Docs/`](./) organizada po
 - **Bases:** Planteamiento del problema, árbol del problema, objetivos SMART (Objetivo General y OE1–OE6), sistema de hipótesis ($H_i, H_0, H_{0,2}$) y delimitación temporal sobre el dataset original de **162 días** (11/01/2026 al 21/06/2026, ~5,5 meses / semestre base $S_0$) para calibrar las metas del próximo semestre ($S_1$: costo de descuentos $\le 5,00\%$ del subtotal neto y margen global $\ge 62,00\%$).
 - **Documentos clave:**
   - [`Capitulo_I_Marco_Introductorio_Limpio.md`](00_Proyecto_Integrador/Capitulo_I_Marco_Introductorio_Limpio.md) (y `.html`)
-  - [`Avance.docx`](00_Proyecto_Integrador/Avance.docx) / [`Avance_Adaptado_Capitulo_I.md`](00_Proyecto_Integrador/Avance_Adaptado_Capitulo_I.md) (`.html`, `.docx`)
+  - [`Informe_Consolidado_Fases_1_a_4.md`](00_Proyecto_Integrador/Informe_Consolidado_Fases_1_a_4.md) (`.html`, `.docx`) — *Informe consolidado vigente (Capítulos I–III / Fases 1–4)*
+  - [`Avance.docx`](00_Proyecto_Integrador/Avance.docx) — *Versión histórica anterior (Fases 1–3)*
 
 ### 1. Ingeniería de Datos y Base de Datos (OLTP + Data Warehouse)
 - **Carpeta:** [`Docs/01_Ingenieria_Datos_DW/`](01_Ingenieria_Datos_DW/)

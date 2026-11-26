@@ -41,6 +41,6 @@
 
 ## 3. Avance y Entregables
 
-- [x] Análisis inferencial completo ejecutado en R y documentado en [`../00_Proyecto_Integrador/Avance.docx`](../00_Proyecto_Integrador/Avance.docx) y [`../00_Proyecto_Integrador/Avance_Adaptado_Capitulo_I.md`](../00_Proyecto_Integrador/Avance_Adaptado_Capitulo_I.md).
+- [x] Análisis inferencial completo ejecutado en R y documentado en [`../00_Proyecto_Integrador/Informe_Consolidado_Fases_1_a_4.md`](../00_Proyecto_Integrador/Informe_Consolidado_Fases_1_a_4.md) (y `.docx` / `.html`).
 - [x] Figuras de soporte generadas en [`../img/figura3_unidades.png`](../img/figura3_unidades.png), [`../img/figura4_margen.png`](../img/figura4_margen.png) y [`../img/figura5_dispersion.png`](../img/figura5_dispersion.png).
 - [x] Insumos estadísticos validados como línea base para la Fase 4 (Modelización MCO) y Fase 5 (Optimización LP).
