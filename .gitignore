@@ -21,8 +21,10 @@ dataset/*.tar.gz
 *.log
 *.tmp
 *.temp
+~$*
 error.txt
 output.txt
+scratch/
 
 # Entornos Virtuales y Caché de Python
 __pycache__/

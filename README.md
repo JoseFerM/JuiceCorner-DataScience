@@ -16,24 +16,26 @@ Toda la arquitectura, ingeniería de datos, modelado analítico y código ejecut
 ```text
   ┌────────────────────────────────────────────────────────────────────────┐
   │              NIVEL 1: CIMA Y BASE METODOLÓGICA RECTORA                 │
-  │   Docs/Capitulo_I_Marco_Introductorio_Limpio.md (.html)               │
+  │   Docs/00_Proyecto_Integrador/Capitulo_I_Marco_Introductorio_Limpio.md │
   │   - Título formal, árbol del problema y objetivos SMART (OE1 a OE6)    │
   │   - Sistema de hipótesis (Hi / H0) y marco metodológico cuantitativo   │
   └───────────────────────────────────┬────────────────────────────────────┘
                                       │
   ┌───────────────────────────────────┴────────────────────────────────────┐
   │          NIVEL 2: INFORME DE AVANCE Y ENTREGABLE CONSOLIDADO           │
-  │   Docs/Avance.docx                                                     │
+  │   Docs/00_Proyecto_Integrador/Avance.docx                              │
   │   - Documento final formal de entrega ejecutiva de Fases 1, 2 y 3      │
   │   - Evidencias numéricas, validación de hipótesis y resultados en R    │
   └───────────────────────────────────┬────────────────────────────────────┘
                                       │
   ┌───────────────────────────────────┴────────────────────────────────────┐
-  │       NIVEL 3: ESPECIFICACIONES TÉCNICAS Y CALIBRACIÓN DE DATOS        │
-  │   Docs/Informe_Ajuste_Temporal_1Anio.md (Marco temporal año móvil)     │
-  │   Docs/Decalogo_Data_Warehouse_Restaurante_Corregido.md (Kimball DW)   │
-  │   Docs/Informe_Cambios_Data_Warehouse.md (Auditoría y cuadre)          │
-  │   Docs/informe_justificacion_oltp.md (Modelo 3FN de 19 tablas)         │
+  │       NIVEL 3: ESPECIFICACIONES TÉCNICAS Y DOCUMENTACIÓN POR MATERIA   │
+  │   Docs/AVANCE_POR_MATERIAS.md (Índice maestro de bases y avance)       │
+  │   Docs/01_Ingenieria_Datos_DW/ (OLTP 3FN, Decálogo Kimball DW, Auditoría)│
+  │   Docs/02_Estadistica/ (Inferencia ANOVA, Kruskal-Wallis, Pearson r)   │
+  │   Docs/03_Modelizacion_MCO/ (Enfoque Matricial MCO y Elasticidades)    │
+  │   Docs/04_Optimizacion/ (Formulación LP PuLP - Escenario E3)           │
+  │   Docs/05_Finanzas_y_Marketing/ (Costos, Márgenes y Reglas Cupones)    │
   └───────────────────────────────────┬────────────────────────────────────┘
                                       │
   ┌───────────────────────────────────┴────────────────────────────────────┐
@@ -48,9 +50,10 @@ Toda la arquitectura, ingeniería de datos, modelado analítico y código ejecut
 
 > [!IMPORTANT]
 > **Documentos Oficiales Clave:**
-> 1. **Cima y Marco Metodológico:** [`Docs/Capitulo_I_Marco_Introductorio_Limpio.md`](Docs/Capitulo_I_Marco_Introductorio_Limpio.md) (y [`Capitulo_I_Marco_Introductorio_Limpio.html`](Docs/Capitulo_I_Marco_Introductorio_Limpio.html)) define la formulación académica, el árbol del problema, las hipótesis y los objetivos específicos OE1 a OE6.
-> 2. **Informe Final de Entrega:** [`Docs/Avance.docx`](Docs/Avance.docx) es el documento consolidado de entrega ejecutiva que agrupa las evidencias y contrastes de las Fases 1, 2 y 3.
-> 3. **Horizonte de Análisis:** El estudio comprende **1 año de operación (1 año móvil: 22 de junio de 2025 al 21 de junio de 2026)** para la evaluación de estacionalidad y comportamiento de la demanda, documentado en [`Docs/Informe_Ajuste_Temporal_1Anio.md`](Docs/Informe_Ajuste_Temporal_1Anio.md).
+> 1. **Cima y Marco Metodológico:** [`Docs/00_Proyecto_Integrador/Capitulo_I_Marco_Introductorio_Limpio.md`](Docs/00_Proyecto_Integrador/Capitulo_I_Marco_Introductorio_Limpio.md) (y [`Capitulo_I_Marco_Introductorio_Limpio.html`](Docs/00_Proyecto_Integrador/Capitulo_I_Marco_Introductorio_Limpio.html)) define la formulación académica, el árbol del problema, las hipótesis y los objetivos específicos OE1 a OE6.
+> 2. **Informe Final de Entrega:** [`Docs/00_Proyecto_Integrador/Avance.docx`](Docs/00_Proyecto_Integrador/Avance.docx) es el documento consolidado de entrega ejecutiva que agrupa las evidencias y contrastes de las Fases 1, 2 y 3.
+> 3. **Avance y Bases por Materia:** [`Docs/AVANCE_POR_MATERIAS.md`](Docs/AVANCE_POR_MATERIAS.md) centraliza el estado de avance y fundamentos teóricos por asignatura (Ingeniería de Datos, Estadística, Modelización MCO, Optimización y Finanzas/Marketing).
+> 4. **Horizonte de Análisis:** Todos los análisis (OLTP, DW, R y MCO) se ejecutaron directamente sobre el dataset original de Kaggle sin modificar: **162 días de operación** (11 de enero al 21 de junio de 2026, ~5,5 meses / semestre base $S_0$), para proyectar y calibrar las metas del próximo semestre ($S_1$).
 
 ---
 
@@ -58,7 +61,7 @@ Toda la arquitectura, ingeniería de datos, modelado analítico y código ejecut
 
 **Juice Corner BD** es una cadena comercial gastronómica especializada en la elaboración y venta de jugos naturales, batidos y snacks, con tres sucursales operativas situadas en Dhaka, Bangladesh. La empresa comercializa un menú de 20 productos a través de dos canales principales: consumo en salón (`dine_in`) y servicio a domicilio (`delivery`), registrando sus operaciones en Taka bangladesí (BDT).
 
-El universo analizado comprende **1.000.000 de órdenes transaccionales**, **2.498.660 líneas de detalle** y **4.995.377 unidades físicas comercializadas**, realizando el análisis sobre **1 año completo de operación (1 año móvil: 22 de junio de 2025 al 21 de junio de 2026)**.
+El universo analizado comprende **1.000.000 de órdenes transaccionales**, **2.498.660 líneas de detalle** y **4.995.377 unidades físicas comercializadas**, correspondientes a **162 días continuos de operación** (11 de enero al 21 de junio de 2026, ~5,5 meses / período base $S_0$) sobre el dataset original sin modificar, para establecer con solidez las metas de rentabilidad del próximo semestre ($S_1$).
 
 ### Diagnóstico de la Situación Problemática
 La rentabilidad operativa de Juice Corner BD se encuentra severamente erosionada debido a una política de descuentos empírica y desalineada del margen de contribución. Actualmente destina el **7,24 % de su subtotal neto a descuentos** (78.843.704 BDT: 52,35M en descuentos directos de línea y 26,49M en cupones promocionales):
@@ -94,16 +97,16 @@ Diseñar, mediante un modelo de análisis y simulación de escenarios, una polí
 | KPI | Fórmula de Cálculo | Línea Base Observada ($S_0$) | Meta Propuesta ($S_1$) | Verificación Metodológica |
 | :--- | :--- | :--- | :--- | :--- |
 | **Costo de Descuentos** | $\frac{\text{Descuentos de línea} + \text{Descuentos por cupón}}{\text{Subtotal neto}} \times 100$ | **7,24 %** (78,84M BDT) | **$\le$ 5,00 %** ($\le$ 54,45M BDT) | Fases 4 y 5 (OE5 / OE6) |
-| **Margen de Contribución Global** | $\frac{\text{Ventas netas} - \text{Costo ingredientes}}{\text{Ventas netas}} \times 100$ | **61,07 %** (pre-cupón)<br>**60,10 %** (post-cupón) | **$\ge$ 62,00 %** | Fases 4 y 5 (OE5 / OE6) |
+| **Margen de Contribución Global** | $\frac{\text{Ventas netas} - \text{Costo ingredientes}}{\text{Ventas netas}} \times 100$ | **61,07 %** (pre-cupón)<br>**60,10 %** (post-cupón s/ ventas netas)<br>**58,64 %** (E1 Python s/ ingreso bruto post-línea) | **$\ge$ 62,00 %** (pre-cupón) | Fases 4 y 5 (OE5 / OE6) |
 | **Alineación Descuento-Margen** | Correlación de Pearson ($r$) entre descuento y margen a lista | **$r = -0,19$** (desalineada / negativa) | **Positiva ($r > 0$)** | Fases 3 y 5 (OE3 / OE6) |
 | **Ahorro Semestral Estimado** | Reducción de subsidios en productos con margen < 70 % | 0 BDT | **$\ge$ 24,39 Millones BDT** | Simulación de escenarios |
 
 ---
 
-## 4. Estado de Avance por Fases (Fases 1 a 3)
+## 4. Estado de Avance por Fases (Fases 1 a 4 — Completadas)
 
 ### Fase 1: Identificación del Problema, Gobernanza y Modelo Relacional (OE1 - Completada)
-- Delimitación espacial (3 sucursales en Dhaka), temporal (ventana anualizada auditada) y operativa.
+- Delimitación espacial (3 sucursales en Dhaka), temporal (**162 días**: 11/01/2026 al 21/06/2026, ~5,5 meses) y operativa.
 - Diseño e implementación del modelo relacional transaccional (3FN) con 19 tablas en SQL Server (`JuiceCorner_OLTP.sql`).
 - Alineamiento con normas **ISO 8000** (claves naturales `_nk`), **ISO/IEC 25012** (calidad del producto de datos) y **DMBOK**.
 
@@ -113,27 +116,34 @@ Diseñar, mediante un modelo de análisis y simulación de escenarios, una polí
 - **Fórmula de Monto Neto Auditada:**
   $$\text{monto\_neto} = \text{subtotal} - \text{descuento\_cupon\_prorr} + \text{costo\_envio\_prorr} + \text{impuesto\_prorr}$$
 - **Pipeline ETL Masivo:** Carga en streaming vía PowerShell (`Cargar_Datos_OLTP.ps1` y `Ejecutar_Carga.bat`) basada en .NET `SqlBulkCopy` con validación de 0 descuadres en `audit.AUDITORIA_CUADRE_PEDIDOS`.
-- **Horizonte Temporal de 1 Año:** Cobertura de 1 año móvil continuo (22 de junio de 2025 al 21 de junio de 2026) que permite evaluar estacionalidad y comportamiento de la demanda sin alterar duraciones intradiarias ni valores contables ([`Docs/Informe_Ajuste_Temporal_1Anio.md`](Docs/Informe_Ajuste_Temporal_1Anio.md)).
+- **Horizonte Temporal Verificado:** Cobertura real de **162 días continuos** (11 de enero al 21 de junio de 2026, ~5,5 meses) directamente sobre el dataset original sin alterar fechas ni valores contables.
 
-### Fase 3: Análisis Estadístico e Inferencia en R (OE3 - Foco Actual)
+### Fase 3: Análisis Estadístico e Inferencia en R (OE3 - Completada)
 - **Homogeneidad de Demanda:** ANOVA ($F = 0,70, p = 0,819$) y Kruskal-Wallis ($p = 0,908$) descartan diferencias de venta entre productos. Coeficiente $V$ de Cramér entre 0,0025 y 0,0077 demuestra que la mezcla es independiente de sucursal, canal o fecha.
 - **Concentración del Desgaste Promocional:** 7 productos con margen menor al 70 % absorben **42,4 millones de BDT** (el 81 % del descuento de línea y 54 % del costo total promocional).
 - **Infracción de Cupones:** 94,4 % de órdenes de `EID50` fuera de vigencia; 18,7 % de `VIP100` bajo el monto mínimo; y destrucción de 68 BDT de margen neto por orden con cupón.
 
+### Fase 4: Modelización Econométrica MCO, Elasticidades y Sensibilidad (OE4 / OE5 - Completada)
+- **Estimación Econométrica OLS con Errores Robustos White HC1:** Modelo log-lineal estimado sobre panel de 19.440 observaciones en Python (`modelizacion_mco.py`).
+- **Elasticidad-Precio Confirmada ($\beta_1 = -0.0792$, $p < 0.001$):** Demanda altamente inelástica que garantiza margen de maniobra para retirar subsidios sin pérdida de clientes.
+- **Canal Delivery como Motor ($\delta_1 = +0.2009$):** Aporta un +22,3 % más volumen comercial que salón presencial.
+- **Análisis de Sensibilidad de Quiebre (7,70 %):** La demanda total tendría que contraerse más de un 7,70 % (384.644 unidades) para que la reasignación moderada (E2) deje de generar ahorro neto frente a la línea base E1.
+- **Visualizador y Reporte Autónomo:** Integrado en [`index.html`](index.html) y [`reporte_modelizacion_mco.html`](reporte_modelizacion_mco.html).
+
 ---
 
-## 5. Plan de Expansión Estratégica: Marketing y Finanzas (OE4 a OE6)
+## 5. Próximo Paso Estratégico: Optimización Lineal y Gobernanza (Fase 5 - OE5 y OE6 - En Curso)
 
-### A. Dimensión de Marketing (Fase 4 - OE4 / OE6)
+### A. Dimensión de Marketing y Blindaje de Canasta (OE6)
 - **Blindaje y Gobernanza de Cupones:** Bloqueo automático de redenciones fuera de vigencia y aplicación estricta de cupos por cliente.
 - **Condicionamiento Selectivo de Canasta:** Restricción de cupones para excluir productos de margen vulnerable (< 50 %) y focalizarlos en líneas altamente rentables (> 70 %).
 - **Umbrales Mínimos Dinámicos:** Configuración de montos mínimos de compra que garanticen rentabilidad incremental real.
 - **Transición a Descuentos Estacionales:** Supresión de descuentos de línea estáticos en productos de bajo margen.
 
-### B. Dimensión Financiera (Fase 4 y 5 - OE4 / OE5 / OE6)
+### B. Dimensión Financiera y Programación Lineal (Fase 5 - OE5 / OE6)
 - **Estructura Integral de Costos Operativos (COGS y Logística):** Modelado de empaque, mano de obra y comisiones de delivery.
-- **Modelo de Optimización Lineal (Fase 5):** Maximización de la función objetivo de margen de contribución sujeta a costo de descuentos $\le 5,00\%$ y margen global $\ge 62,00\%$.
-- **Cálculo de Caída de Volumen de Equilibrio:** Determinación matemática de la tolerancia máxima de reducción de demanda permisible al retirar un descuento sin mermar la utilidad neta en BDT.
+- **Modelo de Optimización Lineal LP (PuLP):** Maximización de la función objetivo de margen de contribución sujeta a costo de descuentos $\le 5,00\%$ y margen global $\ge 62,00\%$ (Escenario E3).
+- **Matriz Definitiva de Asignación Promocional:** Reglas automatizadas por ítem y canal para implementación en producción.
 
 ---
 
@@ -144,11 +154,18 @@ El proyecto incluye un entorno de exploración analítica disponible en la nube 
 ![Juice Corner BD — Visualizador y Ejecutor SQL Studio](Docs/visualizador_studio_preview.png)
 
 ```text
-+------------------------------------------------------------------------+
-|  JUICE CORNER BD — Studio Interactivo de Arquitectura y Datos (v3)     |
-+------------------------------------------------------------------------+
-|  [Cómo Ejecutar]   [Diagramas ERD]   [Diccionario]   [Playground SQL]  |
-+------------------------------------------------------------------------+
+┌───────────────────────┬────────────────────────────────────────────────────────┐
+│  JUICE CORNER STUDIO  │  PANEL INTERACTIVO CENTRAL (HTML5 + Tailwind + Chart)  │
+│  (Navegación Vertical)│                                                        │
+│                       │                                                        │
+│  🏛️ Capítulo I        │  - Cima metodológica, objetivos SMART y KPIs base      │
+│  📈 Modelización MCO  │  - Regresión OLS, elasticidades, simulador y gráficos  │
+│  🚀 Cómo Ejecutar     │  - Guía paso a paso LocalDB, SSMS y backup .BAK        │
+│  📐 Diagramas ERD     │  - Esquema Relacional 3FN (19T) y Kimball DW (9T)      │
+│  📖 Diccionario (28)  │  - Metadatos campo a campo (ISO 8000 / DMBOK)          │
+│  🧪 Laboratorio SQL   │  - Playground interactivo con consultas y gráficos     │
+│  🔌 Cadenas Conexión  │  - Snippets listos para Python, Power BI y Excel       │
+└───────────────────────┴────────────────────────────────────────────────────────┘
 ```
 
 ### Funcionalidades de la Plataforma:
@@ -242,7 +259,7 @@ Donde:
 - **Observaciones del Panel Balanceado:** 19.440 (20 productos × 162 días de operación × 3 sucursales × 2 canales).
 - **Bondad de Ajuste:** $R^2 = 0.369$ ($R^2_{adj} = 0.369$), Estadístico $F = 1,896$ ($p < 0.001$).
 - **Elasticidad-Precio ($\beta_1 = -0.0792$, $p < 0.001$):** Demanda **altamente inelástica** ($|\beta_1| = 0.0792 \ll 1$). Un aumento del 1% en el precio reduce el volumen en apenas 0.08%. Esto garantiza que **la empresa puede recortar descuentos sin temor a perder clientes ni volumen de ventas**.
-- **Ineficacia del Descuento de Línea ($\beta_2 = +0.0006$, $p = 0.004$):** Subir 1 punto porcentual de descuento solo genera un insignificante +0.06% en volumen. Los descuentos de línea subsidian compras sin respuesta volumétrica.
+- **Ineficacia del Descuento de Línea ($\beta_2 = +0.0006$, $p = 0.006$ HC1):** Subir 1 punto porcentual de descuento solo genera un insignificante +0.06% en volumen. Los descuentos de línea subsidian compras sin respuesta volumétrica.
 - **Efecto Negativo de Cupones ($\beta_3 = -0.0113$, $p < 0.001$):** Cada punto de cupón tiene un impacto neto negativo (-1.13%), canibalizando 68 BDT de margen por pedido sin expandir el mercado.
 - **Motor Comercial Delivery ($\delta_1 = +0.2009$, $p < 0.001$):** El canal delivery genera un **+22.3% más volumen** que el salón presencial ($e^{0.2009} - 1$). Si se mantienen incentivos, deben focalizarse aquí.
 - **Homogeneidad Territorial ($\gamma_1 = -0.0028, p = 0.227; \gamma_2 = -0.0023, p = 0.323$):** Las 3 sucursales se comportan de manera idéntica; no se justifica discriminación de precios por local.
@@ -256,7 +273,7 @@ Donde:
 | Escenario | Costo Descuentos (% Subtotal) | Margen Contribución Global (%) | Total Descuentos (BDT) | Margen Semestral (BDT) | Ahorro vs E1 (BDT) |
 | :--- | :---: | :---: | :---: | :---: | :---: |
 | **E1 — Línea Base Actual (S₀)** | **7.24%** | **58.64%** | 78.843.704 | 638.568.440 | 0 BDT (Ref.) |
-| **E2 — Reasignación Moderada** | **2.24%** | **61.25%** | 25.539.944 | 691.873.332 | **+53.304.892 BDT** |
+| **E2 — Reasignación Moderada** | **2.26%** *(2.24% s/ lista)* | **61.25%** *(62.47% pre-cupón)* | 25.538.812 | 691.873.332 | **+53.304.892 BDT** |
 | **E3 — Meta Optimizada LP (Fase 5)** | **≤ 5.00%** | **≥ 62.00%** | ≤ 54.450.000 | > 700.000.000 | **Resolución con PuLP** |
 
 > [!TIP]
@@ -277,14 +294,15 @@ JuiceCorner-DataScience/
 │   └── settings.json                                 # Perfil de conexión LocalDB para extensión mssql
 ├── dataset/                                          # Documentación del origen de datos
 │   └── README.md                                     # Guía del dataset y política de exclusión
-├── Docs/                                             # Documentación técnica, metodológica y entregables
-│   ├── Capitulo_I_Marco_Introductorio_Limpio.md      # CIMA Y MARCO RECTOR: Formulación, objetivos e hipótesis
-│   ├── Capitulo_I_Marco_Introductorio_Limpio.html    # Versión formateada para consulta y lectura
-│   ├── Avance.docx                                   # INFORME CONSOLIDADO DE ENTREGA (Fases 1, 2 y 3)
-│   ├── Informe_Ajuste_Temporal_1Anio.md              # Documento de referencia de la ventana móvil de 1 año
-│   ├── Decalogo_Data_Warehouse_Restaurante_Corregido.md # Decálogo Dimensional V2.0 oficial (Kimball)
-│   ├── Informe_Cambios_Data_Warehouse.md               # Informe técnico de auditoría y cuadre de DW
-│   ├── informe_justificacion_oltp.md                   # Justificación técnica del modelo OLTP (3FN)
+├── Docs/                                             # Documentación organizada por materias principales
+│   ├── AVANCE_POR_MATERIAS.md                        # Índice maestro: bases teóricas y avance por asignatura
+│   ├── 00_Proyecto_Integrador/                       # Capítulo I, Avance.docx, Avance adaptado y ajuste temporal
+│   ├── 01_Ingenieria_Datos_DW/                       # Justificación OLTP 3FN, Decálogo Kimball DW y auditoría
+│   ├── 02_Estadistica/                               # Bases y avance de inferencia (ANOVA, Kruskal-Wallis, Pearson)
+│   ├── 03_Modelizacion_MCO/                          # Guía matricial MCO, Documentos A/B, bases y avance
+│   ├── 04_Optimizacion/                              # Bases y formulación LP (PuLP - Escenario E3)
+│   ├── 05_Finanzas_y_Marketing/                      # Bases financieras, costos operativos y gobernanza de cupones
+│   ├── img/                                          # Figuras técnicas de soporte (figuras 1 a 6)
 │   └── visualizador_studio_preview.png               # Captura de pantalla de la plataforma SQL & BI Studio
 ├── .gitignore                                        # Exclusión de CSVs masivos (>100MB), node_modules y temporales
 ├── Cargar_Datos_OLTP.ps1                             # Pipeline ETL automatizado (.NET SqlBulkCopy streaming)

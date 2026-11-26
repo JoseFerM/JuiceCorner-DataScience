@@ -354,6 +354,7 @@ A diferencia de lo que justificaría una estrategia de liquidación o atracción
 <td align="left">Próximo año de operación (S1).</td>
 </tr>
 </tbody></table>
+<p><em>Fuente: Elaboración propia.</em></p>
 <h3>3.4 Horizonte Temporal de Evaluación y Metas Comparativas</h3>
 <p>El desempeño de la política propuesta se evalúa en el marco temporal de la empresa (año operativo proyectado S1), manteniendo las condiciones fundamentales de mercado del año observado (S0): mismo volumen total de órdenes y unidades, idénticos precios de lista e igual composición de la carta comercial.</p>
 <h4>Tabla 3. Matriz de Metas de Desempeño: Año Observado vs. Proyección Anual</h4>
@@ -410,6 +411,7 @@ A diferencia de lo que justificaría una estrategia de liquidación o atracción
 <td align="left">Alineación económica</td>
 </tr>
 </tbody></table>
+<p><em>Fuente: Elaboración propia con base en la línea base verificada con los datos (Tabla 12).</em></p>
 <hr>
 <h2>4. JUSTIFICACIÓN Y DELIMITACIÓN DE LA INVESTIGACIÓN</h2>
 <h3>4.1 Justificación Teórica y Metodológica</h3>
@@ -711,12 +713,12 @@ A diferencia de lo que justificaría una estrategia de liquidación o atracción
 <p>El proceso se construyó como un paquete de SQL Server Integration Services (<code>Juice Corner.dtsx</code>) con dos conexiones: <code>JuiceCorner_OLTP</code> como origen y <code>JuiceCorner_DW</code> como destino. Como muestra la Figura 1, el flujo de control encadena diez tareas. <code>LIMPIEZA</code> elimina la tabla de hechos y vacía las siete dimensiones, y <code>CREACION FACT_VENTAS</code> vuelve a crear la tabla de hechos con su clave primaria, su restricción única y sus claves foráneas. Después, siete flujos de datos cargan las dimensiones en este orden: cliente, repartidor, sucursal, producto, método de pago, zona de entrega y tiempo. La dimensión producto se carga con una consulta que une <code>products</code> y <code>categories</code>; la zona de entrega convierte el indicador de actividad a S/N y evita duplicados; y el tiempo toma los meses distintos de <code>orders.placed_at</code>.</p>
 <p>El último flujo carga <code>FACT_VENTAS</code> con una sola consulta que une cada línea con la cabecera del pedido y busca las claves sustitutas en las dimensiones, asignando −1 cuando no hay cliente, zona, repartidor o pago. La consulta prorratea el cupón, el envío y el impuesto por peso de línea, toma el pago exitoso de mayor monto y la última reseña aprobada, marca si el producto estaba en una promoción vigente y calcula los minutos de entrega. Las dimensiones se cargan antes que el hecho para que las claves sustitutas ya existan al resolver las claves foráneas. La ejecución mostrada se completó con todas las tareas en verde.</p>
 <h4>Figura 1. Flujo de control del paquete ETL en SQL Server Integration Services</h4>
-<p><img src="img/figura1_flujo_etl.png" alt="Flujo de control del paquete ETL"></p>
+<p><img src="../img/figura1_flujo_etl.png" alt="Flujo de control del paquete ETL"></p>
 <p><em>Fuente: Elaboración propia. Captura del paquete <code>Juice Corner.dtsx</code> después de una ejecución exitosa, recortada y convertida a escala de grises.</em></p>
 <h2>2.5 Diseño del Modelo de Datos</h2>
 <p>El modelo es un esquema estrella con una única tabla de hechos, <code>FACT_VENTAS</code>, y siete dimensiones (Figura 2). El grano del hecho es una fila por línea de pedido, por lo que los pedidos se cuentan con <code>COUNT(DISTINCT order_id)</code> y nunca sumando filas. La Tabla 8 describe las dimensiones y la Tabla 9 los campos del hecho.</p>
 <h4>Figura 2. Modelo dimensional en estrella de JuiceCorner_DW</h4>
-<p><img src="img/figura2_modelo_estrella.png" alt="Modelo dimensional en estrella"></p>
+<p><img src="../img/figura2_modelo_estrella.png" alt="Modelo dimensional en estrella"></p>
 <p><em>Fuente: Elaboración propia con base en el script <code>JuiceCorner_DW.sql</code>.</em></p>
 <h4>Tabla 8. Dimensiones del Data Warehouse</h4>
 <table>
@@ -980,10 +982,10 @@ A diferencia de lo que justificaría una estrategia de liquidación o atracción
 <p><em>Fuente: Elaboración propia con datos de thesohanur (s. f.). Sobre las ventas a precio de lista (1.141.384.850 BDT), el costo de descuentos es 6,91 %.</em></p>
 <p>Los 20 productos venden prácticamente lo mismo: entre 248.416 y 250.952 unidades, con un coeficiente de variación de 0,26 % (Figura 3). En cambio, sus márgenes a precio de lista van de 14,4 % a 94,2 % y el descuento de línea reduce el margen de los 9 productos que lo reciben (Figura 4). El ticket medio por orden es 1.089 BDT (mediana de 1.040), con entre 1 y 4 líneas por orden en proporciones iguales (≈ 25 % cada una).</p>
 <h4>Figura 3. Unidades vendidas por producto</h4>
-<p><img src="img/figura3_unidades.png" alt="Unidades vendidas por producto"></p>
+<p><img src="../img/figura3_unidades.png" alt="Unidades vendidas por producto"></p>
 <p><em>Fuente: Elaboración propia en R con datos de thesohanur (s. f.). Los productos se ordenan por margen a precio de lista; el eje parte de cero.</em></p>
 <h4>Figura 4. Margen de contribución por producto, a precio de lista y con descuento de línea</h4>
-<p><img src="img/figura4_margen.png" alt="Margen de contribución por producto"></p>
+<p><img src="../img/figura4_margen.png" alt="Margen de contribución por producto"></p>
 <p><em>Fuente: Elaboración propia en R con datos de thesohanur (s. f.).</em></p>
 <h2>3.3 Relaciones y Patrones</h2>
 <p><strong>Descuentos y margen.</strong> El descuento de línea es un precio rebajado fijo: afecta al 100 % de las líneas de 9 productos durante todo el periodo y equivale a la diferencia entre el precio y el precio con descuento de la tabla de productos. No es una promoción puntual y tampoco coincide con las promociones registradas: 3 productos tienen descuento sin promoción y 6 tienen promoción registrada sin descuento aplicado. La Tabla 13 muestra el descuento por producto.</p>
@@ -1065,7 +1067,7 @@ A diferencia de lo que justificaría una estrategia de liquidación o atracción
 <p><em>Fuente: Elaboración propia con datos de thesohanur (s. f.). El descuento por unidad se compara con el margen unitario a precio de lista.</em></p>
 <p>La correlación entre la tasa de descuento y el margen a precio de lista de los 20 productos es negativa pero no significativa (Pearson <em>r</em> = −0,19, <em>p</em> = 0,415; Spearman ρ = −0,21, <em>p</em> = 0,373), como muestra la Figura 5. Con solo 20 productos la prueba tiene poca potencia, por lo que lo correcto es concluir que no existe alineación entre descuento y margen, no que haya una relación inversa demostrada. Los productos con descuento tienen un margen medio a lista de 60,0 %, frente a 69,1 % de los que no tienen. El descuento pesa más donde el margen es menor: en Berry Blast Smoothie consume el 39 % de su margen unitario y en Avocado Banana Energy el 26 %, mientras que en Blue Lagoon Mocktail consume el 12 %.</p>
 <h4>Figura 5. Tasa de descuento y margen a precio de lista por producto</h4>
-<p><img src="img/figura5_dispersion.png" alt="Tasa de descuento y margen a precio de lista"></p>
+<p><img src="../img/figura5_dispersion.png" alt="Tasa de descuento y margen a precio de lista"></p>
 <p><em>Fuente: Elaboración propia en R con datos de thesohanur (s. f.). Cada punto es un producto; su tamaño refleja las unidades vendidas.</em></p>
 <p>Los descuentos aplicados a los 7 productos con margen a lista menor a 70 % suman 42,4 millones de BDT. Eso equivale al 81 % del descuento de línea y al 54 % del costo total de descuentos. Es una cota superior del ahorro posible, porque supone que el volumen no cambia al retirar el descuento.</p>
 <p><strong>Cupones.</strong> Los seis cupones se usan casi igual (unas 64.000 órdenes cada uno) y su uso es independiente de la sucursal (<em>p</em> = 0,809) y del tipo de orden (<em>p</em> = 0,568). Además, los cupones no cumplen sus propias reglas (Tabla 14): los cinco que tienen límite de usos lo superan por mucho y todos superan su límite por cliente. <code>EID50</code>, marcado como inactivo, se usa fuera de vigencia en el 94,4 % de sus órdenes, y <code>VIP100</code> se aplica a canastas por debajo de su monto mínimo en el 18,7 %.</p>
@@ -1193,11 +1195,339 @@ A diferencia de lo que justificaría una estrategia de liquidación o atracción
 <p>Con esto quedan verificadas las líneas base del Capítulo I (costo de descuentos de 7,24 % y margen de contribución de 61,1 %) y se fija la del tercer KPI: la correlación descuento–margen parte de <em>r</em> = −0,19, con meta positiva. Conviene mantener una sola definición de los indicadores: el margen es de 60,1 % si se incluyen los cupones, y el costo de descuentos es de 6,91 % si se mide sobre las ventas a precio de lista.</p>
 <p>Las conclusiones tienen límites. Los datos son sintéticos y cubren una ventana anual continua, lo que permite contrastar estacionalidad, pero no sustituye un historial de varios años. La correlación usa 20 productos y tiene poca potencia, y no hay datos para medir cómo reaccionaría la demanda ante un cambio de descuento. Por eso los resultados valen como ejercicio metodológico y la Fase 5 calculará la caída de volumen que anularía cualquier ganancia.</p>
 <h2>3.6 Modelización Empresarial</h2>
-<p><em>Pendiente. Esta sección se completa cuando el grupo desarrolle el modelo y el análisis de escenarios (Fases 4 y 5).</em></p>
+<p>La modelización convierte los patrones del análisis exploratorio en parámetros y usa esos parámetros para simular políticas de descuento. Se estimó un modelo log-lineal de demanda por mínimos cuadrados ordinarios (MCO), con errores estándar robustos a la heterocedasticidad, y con él se construyeron tres escenarios: la mezcla actual (E1), una reasignación moderada (E2) y la mezcla optimizada que se resolverá por programación lineal en la Fase 5 (E3).</p>
+<h3>3.6.1 Especificación del modelo y datos</h3>
+<p style="text-align:center; font-style:italic; margin:12pt 0;">ln(Q<sub>it</sub>) = β<sub>0</sub> + β<sub>1</sub>·ln(P<sub>it</sub>) + β<sub>2</sub>·D<sub>it</sub> + β<sub>3</sub>·Desc<sub>it</sub> + δ<sub>1</sub>·Delivery<sub>it</sub> + γ<sub>2</sub>·Gulshan<sub>it</sub> + γ<sub>3</sub>·Banani<sub>it</sub> + u<sub>it</sub></p><p>Cada variable se define así:</p>
+<ul>
+<li>Q<sub>it</sub>: unidades vendidas del producto <em>i</em> en el día <em>t</em>, en la sucursal y el canal correspondientes.</li>
+<li>P<sub>it</sub>: precio efectivo medio por unidad, es decir, el precio de lista menos el descuento de línea aplicado.</li>
+<li>D<sub>it</sub>: tasa media de descuento de línea, en puntos porcentuales.</li>
+<li>Desc<sub>it</sub>: intensidad del cupón de la orden, medida como porcentaje del subtotal.</li>
+<li>Delivery<sub>it</sub>: variable dicótoma (1 = domicilio, 0 = salón).</li>
+<li>Gulshan<sub>it</sub> y Banani<sub>it</sub>: dicótomas de sucursal, con Dhanmondi como referencia.</li>
+<li>u<sub>it</sub>: término de error.</li>
+</ul>
+<p>La forma logarítmica en precio y cantidad hace que β<sub>1</sub> se lea directamente como elasticidad; las variables en niveles se interpretan como cambios porcentuales aproximados en la cantidad ante un punto porcentual adicional. La estimación sigue el tratamiento clásico del modelo lineal general y de la corrección de White para varianzas no constantes (Gujarati y Porter, 2010).</p>
+<p>El panel tiene 19.440 observaciones y combina 20 productos, 3 sucursales y 2 canales en los 162 días de operación que registra la base transaccional, del 11 de enero al 21 de junio de 2026. Cada celda agrega las unidades del día, el precio efectivo medio, la tasa media de descuento y la intensidad media del cupón. Los escenarios se evalúan sobre el volumen anual del Capítulo I, porque la elasticidad es adimensional y se aplica a esa base sin necesidad de reestimar el modelo.</p>
+<h3>3.6.2 Estimación y bondad de ajuste</h3>
+<p>La Tabla 16 presenta los coeficientes con errores estándar robustos HC1, necesarios porque la prueba de Breusch-Pagan rechaza la homocedasticidad (apartado 3.6.3).</p>
+<h4>Tabla 16. Modelo MCO de demanda (variable dependiente: logaritmo de las unidades)</h4>
+<table>
+<thead>
+<tr>
+<th align="left">Variable</th>
+<th align="left">Coeficiente</th>
+<th align="left">Error estándar (HC1)</th>
+<th align="left">z</th>
+<th align="left">p</th>
+<th align="left">Significancia</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">Constante (β<sub>0</sub>)</td>
+<td align="left">5,9523</td>
+<td align="left">0,057</td>
+<td align="left">104,70</td>
+<td align="left">&lt; 0,001</td>
+<td align="left">***</td>
+</tr>
+<tr>
+<td align="left">ln(P) — elasticidad precio (β<sub>1</sub>)</td>
+<td align="left">−0,0792</td>
+<td align="left">0,009</td>
+<td align="left">−8,63</td>
+<td align="left">&lt; 0,001</td>
+<td align="left">***</td>
+</tr>
+<tr>
+<td align="left">Descuento de línea (β<sub>2</sub>)</td>
+<td align="left">0,0006</td>
+<td align="left">0,0002</td>
+<td align="left">2,74</td>
+<td align="left">0,006</td>
+<td align="left">**</td>
+</tr>
+<tr>
+<td align="left">Intensidad del cupón (β<sub>3</sub>)</td>
+<td align="left">−0,0113</td>
+<td align="left">0,001</td>
+<td align="left">−10,18</td>
+<td align="left">&lt; 0,001</td>
+<td align="left">***</td>
+</tr>
+<tr>
+<td align="left">Delivery (δ<sub>1</sub>)</td>
+<td align="left">0,2009</td>
+<td align="left">0,002</td>
+<td align="left">105,70</td>
+<td align="left">&lt; 0,001</td>
+<td align="left">***</td>
+</tr>
+<tr>
+<td align="left">Gulshan (γ<sub>2</sub>)</td>
+<td align="left">−0,0023</td>
+<td align="left">0,002</td>
+<td align="left">−0,99</td>
+<td align="left">0,323</td>
+<td align="left">n.s.</td>
+</tr>
+<tr>
+<td align="left">Banani (γ<sub>3</sub>)</td>
+<td align="left">−0,0028</td>
+<td align="left">0,002</td>
+<td align="left">−1,21</td>
+<td align="left">0,227</td>
+<td align="left">n.s.</td>
+</tr>
+</tbody></table>
+<p><em>Fuente: Elaboración propia en Python con statsmodels. MCO con errores robustos HC1; n = 19.440; R² = 0,369; F = 1.896 (p &lt; 0,001). *** p &lt; 0,001; ** p &lt; 0,01; n.s. no significativo.</em></p>
+<p>El modelo es globalmente significativo y explica el 36,9 % de la variación del logaritmo de las unidades. El ajuste es moderado, como corresponde a un panel agregado sin efectos fijos por producto: el interés no está en predecir cada celda, sino en estimar la dirección y la magnitud de los efectos, y en ese plano los cuatro regresores centrales son significativos.</p>
+<h3>3.6.3 Validación de los supuestos</h3>
+<h4>Tabla 17. Diagnóstico de los supuestos clásicos del MCO</h4>
+<table>
+<thead>
+<tr>
+<th align="left">Supuesto</th>
+<th align="left">Prueba</th>
+<th align="left">Estadístico</th>
+<th align="left">p</th>
+<th align="left">Decisión</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">Normalidad de los residuos</td>
+<td align="left">Jarque-Bera</td>
+<td align="left">710.187,8</td>
+<td align="left">&lt; 0,001</td>
+<td align="left">Se rechaza; la inferencia se sostiene por el teorema central del límite (n = 19.440)</td>
+</tr>
+<tr>
+<td align="left">Homocedasticidad</td>
+<td align="left">Breusch-Pagan</td>
+<td align="left">—</td>
+<td align="left">0,014</td>
+<td align="left">Hay heterocedasticidad; se usan errores robustos HC1</td>
+</tr>
+<tr>
+<td align="left">Autocorrelación</td>
+<td align="left">Durbin-Watson</td>
+<td align="left">1,174</td>
+<td align="left">—</td>
+<td align="left">Autocorrelación positiva, propia del panel; cubierta por HC1</td>
+</tr>
+<tr>
+<td align="left">Multicolinealidad</td>
+<td align="left">Factor de inflación de varianza</td>
+<td align="left">Máximo 2,73</td>
+<td align="left">—</td>
+<td align="left">Sin problema: todos los VIF son menores que 5</td>
+</tr>
+</tbody></table>
+<p><em>Fuente: Elaboración propia en Python con statsmodels.</em></p>
+<p>La normalidad se rechaza, como era previsible con 19.440 observaciones y una distribución de ventas con cola a la derecha (asimetría −3,66; curtosis 31,69); el tamaño de la muestra permite apoyarse en la normalidad asintótica. La heterocedasticidad se corrige con HC1 y los coeficientes conservan su significancia: el descuento de línea pasa de p = 0,004 a p = 0,006 y el resto no cambia de decisión. La autocorrelación positiva es esperable en un panel con persistencia diaria y también queda cubierta por la matriz robusta. La multicolinealidad no representa un problema, porque el VIF máximo es 2,73.</p>
+<h3>3.6.4 Interpretación económica</h3>
+<p><strong>Precio.</strong> El coeficiente β<sub>1</sub> = −0,0792 (p &lt; 0,001) indica que un aumento de 1 % en el precio reduce la cantidad en 0,08 %. La demanda es inelástica (|β<sub>1</sub>| muy inferior a 1): el cliente de Juice Corner no ajusta su compra al precio, de modo que retirar descuentos no destruye volumen de forma apreciable.</p>
+<p><strong>Descuento de línea.</strong> El coeficiente β<sub>2</sub> = +0,0006 (p = 0,006) indica que un punto porcentual adicional de descuento eleva la cantidad en 0,06 %. El efecto es significativo desde el punto de vista estadístico, pero nulo desde el económico: el descuento de línea subsidia compras que habrían ocurrido igual.</p>
+<p><strong>Cupones.</strong> El coeficiente β<sub>3</sub> = −0,0113 (p &lt; 0,001) indica que un punto más de intensidad del cupón reduce la cantidad en 1,1 %. El signo negativo confirma que los cupones no generan demanda nueva: capturan órdenes que ya iban a comprarse, en línea con los 68 BDT de margen que resta cada orden con cupón.</p>
+<p><strong>Canal.</strong> El coeficiente δ<sub>1</sub> = +0,2009 (p &lt; 0,001) indica que el domicilio vende 22,3 % más unidades que el salón (e<sup>0,2009</sup> − 1). Si se conserva algún incentivo, debe concentrarse en ese canal.</p>
+<p><strong>Sucursales.</strong> Los coeficientes γ<sub>2</sub> = −0,0023 (p = 0,323) y γ<sub>3</sub> = −0,0028 (p = 0,227) no son significativos. Las tres sucursales se comportan igual, lo que confirma el resultado descriptivo y descarta promociones diferenciadas por local.</p>
+<h3>3.6.5 Escenarios de política</h3>
+<p>El escenario E2 aplica una regla simple sobre el margen unitario a precio de lista: retira el descuento de los productos con margen menor a 50 %, lo reduce a la cuarta parte entre 50 % y 70 %, y a la mitad por encima de 70 %. Además, baja la penetración de cupones de 38,65 % a 20 % de las órdenes, que es el nivel que el propio diseño de los cupones sugiere. La Tabla 18 compara los tres escenarios.</p>
+<h4>Tabla 18. Comparación de escenarios de política de descuentos</h4>
+<table>
+<thead>
+<tr>
+<th align="left">Indicador</th>
+<th align="left">E1 — mezcla actual</th>
+<th align="left">E2 — reasignación moderada</th>
+<th align="left">E3 — optimización (Fase 5)</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">Volumen (unidades)</td>
+<td align="left">4.995.377</td>
+<td align="left">4.995.377</td>
+<td align="left">4.995.377</td>
+</tr>
+<tr>
+<td align="left">Descuento de línea (BDT)</td>
+<td align="left">52.376.310</td>
+<td align="left">11.842.878</td>
+<td align="left">Por resolver</td>
+</tr>
+<tr>
+<td align="left">Descuento por cupón (BDT)</td>
+<td align="left">26.467.394</td>
+<td align="left">13.695.935</td>
+<td align="left">Por resolver</td>
+</tr>
+<tr>
+<td align="left">Descuento total (BDT)</td>
+<td align="left">78.843.704</td>
+<td align="left">25.538.812</td>
+<td align="left">≤ 54.450.427</td>
+</tr>
+<tr>
+<td align="left">Costo de descuentos (% de ventas netas)</td>
+<td align="left">7,24 %</td>
+<td align="left">2,26 %</td>
+<td align="left">≤ 5,00 %</td>
+</tr>
+<tr>
+<td align="left">Margen antes de cupón (BDT)</td>
+<td align="left">665.035.834</td>
+<td align="left">705.569.266</td>
+<td align="left">—</td>
+</tr>
+<tr>
+<td align="left">Margen antes de cupón (%)</td>
+<td align="left">61,07 %</td>
+<td align="left">62,47 %</td>
+<td align="left">≥ 62,00 %</td>
+</tr>
+<tr>
+<td align="left">Margen después de cupón (BDT)</td>
+<td align="left">638.568.440</td>
+<td align="left">691.873.331</td>
+<td align="left">—</td>
+</tr>
+<tr>
+<td align="left">Margen después de cupón (%)</td>
+<td align="left">58,64 %</td>
+<td align="left">61,25 %</td>
+<td align="left">—</td>
+</tr>
+<tr>
+<td align="left">Ahorro frente a E1 (BDT)</td>
+<td align="left">—</td>
+<td align="left">53.304.892</td>
+<td align="left">—</td>
+</tr>
+</tbody></table>
+<p><em>Fuente: Elaboración propia. El costo de descuentos se calcula sobre las ventas netas del descuento de línea de cada escenario; sobre precio de lista, E1 equivale a 6,91 % y E2 a 2,24 %.</em></p>
+<p>Con esa regla, el costo de descuentos cae de 7,24 % a 2,26 % y el margen después de cupón sube de 58,64 % a 61,25 %. El ahorro es 53,30 millones de BDT, muy superior al mínimo de 24,39 millones que exige la meta de 5 % (78,84 − 54,45 millones), porque E2 retira descuentos completos en lugar de recortarlos hasta el límite.</p>
+<p>Conviene separar las dos metas del Capítulo I. El KPI de margen se define antes de cupones: con esa definición, E1 parte de 61,07 % y E2 llega a 62,47 %, de modo que E2 ya cumple el objetivo de 62 % y también el de 5 % de costo. La cifra de 61,25 % de la tabla es la misma realidad medida después de restar el cupón, y es la que se compara con el 58,64 % de E1. E3 no repite ese ejercicio: es el programa lineal que maximiza el margen sujeto a volumen constante, costo de descuentos de 5 % o menos y límites de demanda por producto, y se resolverá en la Fase 5. La meta de 64 % que plantearon las orientaciones de la asignatura exige, además de recortar descuentos, reasignar la mezcla de volumen.</p>
+<h3>3.6.6 Análisis de sensibilidad</h3>
+<p>La ventaja de E2 no depende de que el volumen se mantenga exacto. La Tabla 19 y la Figura 6 muestran que E2 sigue por encima de E1 mientras la caída del volumen no supere 7,70 %, equivalente a 384.644 unidades.</p>
+<h4>Tabla 19. Sensibilidad del margen de E2 a la caída del volumen</h4>
+<table>
+<thead>
+<tr>
+<th align="left">Caída del volumen</th>
+<th align="left">Volumen (unidades)</th>
+<th align="left">Margen E2 (BDT)</th>
+<th align="left">Margen E1 (BDT)</th>
+<th align="left">Diferencia (BDT)</th>
+<th align="left">Mejor escenario</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">0 %</td>
+<td align="left">4.995.377</td>
+<td align="left">691.873.332</td>
+<td align="left">638.568.440</td>
+<td align="left">+53.304.892</td>
+<td align="left">E2</td>
+</tr>
+<tr>
+<td align="left">1 %</td>
+<td align="left">4.945.423</td>
+<td align="left">684.954.598</td>
+<td align="left">638.568.440</td>
+<td align="left">+46.386.158</td>
+<td align="left">E2</td>
+</tr>
+<tr>
+<td align="left">3 %</td>
+<td align="left">4.845.516</td>
+<td align="left">671.117.132</td>
+<td align="left">638.568.440</td>
+<td align="left">+32.548.692</td>
+<td align="left">E2</td>
+</tr>
+<tr>
+<td align="left">5 %</td>
+<td align="left">4.745.608</td>
+<td align="left">657.279.665</td>
+<td align="left">638.568.440</td>
+<td align="left">+18.711.225</td>
+<td align="left">E2</td>
+</tr>
+<tr>
+<td align="left">7 %</td>
+<td align="left">4.645.701</td>
+<td align="left">643.442.198</td>
+<td align="left">638.568.440</td>
+<td align="left">+4.873.758</td>
+<td align="left">E2</td>
+</tr>
+<tr>
+<td align="left">7,70 %</td>
+<td align="left">4.610.733</td>
+<td align="left">638.568.440</td>
+<td align="left">638.568.440</td>
+<td align="left">0</td>
+<td align="left">Equilibrio</td>
+</tr>
+<tr>
+<td align="left">10 %</td>
+<td align="left">4.495.839</td>
+<td align="left">622.685.998</td>
+<td align="left">638.568.440</td>
+<td align="left">−15.882.442</td>
+<td align="left">E1</td>
+</tr>
+</tbody></table>
+<p><em>Fuente: Elaboración propia. El margen de E2 se reduce en la misma proporción que el volumen; E1 se mantiene como referencia.</em></p>
+<h4>Figura 6. Umbral de equilibrio del escenario E2</h4>
+<p><img src="../img/figura6_sensibilidad.png" alt="Umbral de equilibrio del escenario E2"></p>
+<p><em>Fuente: Elaboración propia con los parámetros del modelo MCO y los totales de la Tabla 18.</em></p>
+<p>Con la elasticidad estimada, retirar los descuentos eleva el precio efectivo medio 3,72 %, lo que reduce la cantidad en 0,3 % (0,0792 × 3,72 %). El umbral de 7,70 % es unas veinticinco veces esa caída, de modo que el riesgo de que E2 deje de ser superior a E1 es muy bajo.</p>
+<h3>3.6.7 Contraste con las orientaciones de la asignatura</h3>
+<p>Las cinco orientaciones de Modelización Empresarial I se contrastaron con los resultados. La Tabla 20 resume el resultado de cada una.</p>
+<h4>Tabla 20. Contraste de las orientaciones de la asignatura con los resultados</h4>
+<table>
+<thead>
+<tr>
+<th align="left">Orientación</th>
+<th align="left">Resultado del modelo</th>
+<th align="left">Estado</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">Si la elasticidad es baja en productos de alto margen, se pueden recortar descuentos sin perder volumen</td>
+<td align="left">β<sub>1</sub> = −0,0792 (p &lt; 0,001). Blue Lagoon, con 94,2 % de margen, recibe el mayor descuento (11,1 %); retirarlo reduciría sus ventas cerca de 1 %.</td>
+<td align="left">Confirmado</td>
+</tr>
+<tr>
+<td align="left">Si delivery es significativo, diseñar promociones solo para ese canal</td>
+<td align="left">δ<sub>1</sub> = +0,2009 (p &lt; 0,001): el domicilio vende 22,3 % más unidades que el salón.</td>
+<td align="left">Confirmado</td>
+</tr>
+<tr>
+<td align="left">Si alguna sucursal es significativa, diferenciar promociones por local</td>
+<td align="left">γ<sub>2</sub> y γ<sub>3</sub> no significativas (p = 0,323 y p = 0,227).</td>
+<td align="left">No aplica</td>
+</tr>
+<tr>
+<td align="left">Usar los parámetros estimados para simular escenarios con volumen constante</td>
+<td align="left">E1, E2 y E3 construidos; E2 libera 53,30 millones de BDT.</td>
+<td align="left">Completado</td>
+</tr>
+<tr>
+<td align="left">Reasignar la mezcla para llevar el margen de 61,1 % a 64 %</td>
+<td align="left">E2 llega a 62,47 % antes de cupón solo con descuentos; el 64 % exige reasignar mezcla.</td>
+<td align="left">Parcial</td>
+</tr>
+</tbody></table>
+<p><em>Fuente: Elaboración propia con base en las orientaciones de Modelización Empresarial I y los resultados del modelo.</em></p>
+<h3>3.6.8 Límites y cierre de la fase</h3>
+<p>La modelización deja tres resultados firmes: la demanda es inelástica, los descuentos no mueven el volumen y las sucursales son homogéneas. También deja límites. El panel cubre 162 días de una base sintética, el modelo no incluye efectos fijos por producto ni elasticidades cruzadas, y la estimación agregada supone que el precio de un producto no afecta la demanda de otro. Esas restricciones no cambian la dirección de los coeficientes, pero acotan su precisión. La Fase 5 cierra el circuito con el programa lineal y la política definitiva.</p>
 <hr>
 <h1>REFERENCIAS BIBLIOGRÁFICAS</h1>
 <ul>
 <li>Bernal, C. A. (2016). <em>Metodología de la investigación: Administración, economía, humanidades y ciencias sociales</em> (4.ª ed.). Pearson Educación de Colombia.</li>
+<li>Gujarati, D. N., &amp; Porter, D. C. (2010). <em>Econometría</em> (5.ª ed.). McGraw-Hill.</li>
 <li>Hernández-Sampieri, R., Fernández-Collado, C., &amp; Baptista-Lucio, P. (2014). <em>Metodología de la investigación</em> (6.ª ed.). McGraw-Hill Education.</li>
 <li>Kimball, R., &amp; Ross, M. (2013). <em>The Data Warehouse Toolkit: The Definitive Guide to Dimensional Modeling</em> (3rd ed.). John Wiley &amp; Sons.</li>
 <li>thesohanur. (s. f.). <em>Restaurant &amp; Food Delivery Relational Database</em> [Conjunto de datos]. Kaggle. <a href="https://www.kaggle.com/datasets/thesohanur/restaurant-and-food-delivery-relational-database">https://www.kaggle.com/datasets/thesohanur/restaurant-and-food-delivery-relational-database</a></li>

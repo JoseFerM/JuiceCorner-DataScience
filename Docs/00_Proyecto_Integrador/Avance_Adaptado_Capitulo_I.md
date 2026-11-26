@@ -12,7 +12,7 @@
 
 Juice Corner BD es una cadena comercial del sector gastronómico especializada en la elaboración y venta de jugos naturales, batidos y snacks, con tres sucursales operativas situadas en Dhaka, Bangladesh. La empresa comercializa un menú de 20 productos a través de dos canales principales: consumo en salón (*dine_in*) y servicio a domicilio (*delivery*), registrando sus transacciones en moneda local, el Taka bangladesí (BDT).
 
-La base transaccional de estudio comprende una ventana anual continua de 365 días de operación comercial, del 22 de junio de 2025 al 21 de junio de 2026, abarcando un universo de 1.000.000 de órdenes de compra, 2.498.660 líneas de detalle transaccional y 4.995.377 unidades físicas comercializadas.
+La base transaccional de estudio comprende **162 días continuos de operación comercial** (del 11 de enero al 21 de junio de 2026, ~5,5 meses / semestre base S0) sobre el dataset original sin modificar, abarcando un universo de 1.000.000 de órdenes de compra, 2.498.660 líneas de detalle transaccional y 4.995.377 unidades físicas comercializadas.
 
 ### 1.2 Diagnóstico de la Situación Problemática
 
@@ -64,7 +64,7 @@ De mantenerse el esquema actual de descuentos:
                                       EFECTOS / CONSECUENCIAS
  ┌────────────────────────────────────────────────────────────────────────────────────────┐
  │ • Margen global deprimido (61,1 %) por debajo del potencial financiero (meta: ≥62,0 %) │
- │ • Sobrecosto anual de 24,39 millones de BDT en promociones no justificadas             │
+ │ • Sobrecosto semestral de 24,39 millones de BDT en promociones no justificadas             │
  │ • Reducción directa de 68 BDT de margen por cada orden que aplica cupón                │
  └───────────────────────────────────────────┬────────────────────────────────────────────┘
                                              │
@@ -128,20 +128,24 @@ De mantenerse el esquema actual de descuentos:
 | **OE5** | Simulación de escenarios comerciales proyectados. | Proyección cuantitativa de BDT, porcentaje de descuento y margen en 3 modelos. | Modelo de programación lineal bajo volumen constante. | Permite seleccionar el escenario óptimo con base científica. | Próximo año de operación (S1). |
 | **OE6** | Formulación de la política definitiva de descuentos. | Costo final ≤ 5,00 % y margen ≥ 62,00 % demostrados en simulación. | Ahorro anual de hasta 24,39 millones de BDT. | Constituye la solución gerencial definitiva al problema central. | Próximo año de operación (S1). |
 
+*Fuente: Elaboración propia.*
+
 ### 3.4 Horizonte Temporal de Evaluación y Metas Comparativas
 
-El desempeño de la política propuesta se evalúa en el marco temporal de la empresa (año operativo proyectado S1), manteniendo las condiciones fundamentales de mercado del año observado (S0): mismo volumen total de órdenes y unidades, idénticos precios de lista e igual composición de la carta comercial.
+El desempeño de la política propuesta se evalúa en el marco temporal de la empresa (próximo semestre operativo S1), manteniendo las condiciones fundamentales de mercado del período base observado (S0: 162 días): mismo volumen total de órdenes y unidades, idénticos precios de lista e igual composición de la carta comercial.
 
-#### Tabla 3. Matriz de Metas de Desempeño: Año Observado vs. Proyección Anual
+#### Tabla 3. Matriz de Metas de Desempeño: Semestre Base Observado (S0) vs. Proyección Semestral (S1)
 
 | Indicador Clave de Rendimiento | S0 Observado (Línea Base Histórica) | S1 Inacción (Política Actual Replicada) | S1 Meta (Política Propuesta) | Criterio de Éxito |
 | :--- | :--- | :--- | :--- | :--- |
 | **Volumen de Órdenes** | 1.000.000 | 1.000.000 | 1.000.000 | Constante |
 | **Unidades Físicas Vendidas** | 4.995.377 | 4.995.377 | 4.995.377 | Constante |
 | **Costo de Descuentos (% Subtotal)** | **7,24 %** | **7,24 %** | **≤ 5,00 %** | Reducción ≥ 2,24 pp |
-| **Monto Anual de Descuentos** | 78.843.704 BDT | 78.843.704 BDT | **≤ 54.450.427 BDT** | Ahorro ≥ 24,39M BDT |
+| **Monto de Descuentos (Período)** | 78.843.704 BDT | 78.843.704 BDT | **≤ 54.450.427 BDT** | Ahorro ≥ 24,39M BDT |
 | **Margen de Contribución Global** | **61,1 %** | **61,1 %** | **≥ 62,0 %** | Incremento ≥ 0,9 pp |
 | **Correlación Descuento vs. Margen** | *r* = −0,19 | *r* = −0,19 | **Positiva (*r* > 0)** | Alineación económica |
+
+*Fuente: Elaboración propia con base en la línea base verificada con los datos (Tabla 12).*
 
 ---
 
@@ -158,7 +162,7 @@ La investigación responde a una necesidad crítica de gestión financiera en Ju
 ### 4.3 Delimitación de la Investigación
 
 - **Delimitación Espacial:** Exclusivamente circunscrita a las tres sucursales operativas de la cadena Juice Corner BD en la ciudad de Dhaka, Bangladesh.
-- **Delimitación Temporal:** Análisis fundamentado en la base anual de 365 días completos de operación regular (S0), del 22 de junio de 2025 al 21 de junio de 2026, con proyección de evaluación para el período anual inmediato de operación (S1).
+- **Delimitación Temporal:** Análisis fundamentado en la base histórica original de **162 días completos de operación regular (S0)**, del 11 de enero al 21 de junio de 2026 (~5,5 meses), con proyección de evaluación para el próximo semestre inmediato de operación (S1).
 - **Delimitación Operativa y de Alcance:** La investigación interviene única y estrictamente en las reglas de asignación de descuentos por producto y la gobernanza de cupones. Quedan explícitamente fuera del alcance las variaciones en los precios de lista de la carta, la modificación en recetas de insumos y los cambios en la oferta de productos del menú.
 
 ---
@@ -172,7 +176,7 @@ La investigación adopta un enfoque eminentemente **cuantitativo**. Se basa en u
 ### 5.2 Diseño de la Investigación: No Experimental y Transversal Analítico
 
 - **No Experimental:** Las variables operativas (precios de venta, costos de insumos, frecuencias de compra y descuentos) se analizan en su condición natural histórica, sin manipulación deliberada sobre el mercado físico. Los efectos de las nuevas directrices se evalúan a través de modelos computacionales de simulación.
-- **Transversal Analítico:** Si bien el registro abarca una serie temporal de 365 días, el análisis central se estructura de forma consolidada por producto, canal y sucursal sobre la ventana anual completa, habiéndose verificado la ausencia de tendencias seculares y de efectos por día de la semana.
+- **Transversal Analítico:** Si bien el registro abarca una serie temporal de 162 días, el análisis central se estructura de forma consolidada por producto, canal y sucursal sobre el período base completo, habiéndose verificado la ausencia de tendencias seculares y de efectos por día de la semana.
 
 ### 5.3 Tipo y Alcance de la Investigación: Correlacional y Explicativo
 
@@ -307,7 +311,7 @@ El último flujo carga `FACT_VENTAS` con una sola consulta que une cada línea c
 
 #### Figura 1. Flujo de control del paquete ETL en SQL Server Integration Services
 
-![Flujo de control del paquete ETL](img/figura1_flujo_etl.png)
+![Flujo de control del paquete ETL](../img/figura1_flujo_etl.png)
 
 *Fuente: Elaboración propia. Captura del paquete `Juice Corner.dtsx` después de una ejecución exitosa, recortada y convertida a escala de grises.*
 
@@ -317,7 +321,7 @@ El modelo es un esquema estrella con una única tabla de hechos, `FACT_VENTAS`, 
 
 #### Figura 2. Modelo dimensional en estrella de JuiceCorner_DW
 
-![Modelo dimensional en estrella](img/figura2_modelo_estrella.png)
+![Modelo dimensional en estrella](../img/figura2_modelo_estrella.png)
 
 *Fuente: Elaboración propia con base en el script `JuiceCorner_DW.sql`.*
 
@@ -387,7 +391,7 @@ Este capítulo desarrolla el tercer objetivo específico (OE3) y corresponde a l
 
 ## 3.1 Datos y Método
 
-El análisis se realizó en R sobre las 1.000.000 de órdenes y 2.498.660 líneas de pedido de la ventana anual de 365 días (thesohanur, s. f.). Antes de analizar se comprobó que los datos cuadran: las identidades contables de cada orden (subtotal, descuentos y total) se cumplen en el 100 % de los registros y no hay líneas sin orden. Las pruebas usan un nivel de significancia α = 0,05. Como con un millón de órdenes casi cualquier diferencia resulta significativa, cada prueba se acompaña de un tamaño de efecto (V de Cramér, η² o *d* de Cohen) y se interpreta la relevancia práctica, no solo el valor *p*. Los análisis diarios se realizan sobre la ventana anual, excluyendo el primer y el último día por estar incompletos.
+El análisis se realizó en R sobre las 1.000.000 de órdenes y 2.498.660 líneas de pedido del dataset original de 162 días (del 11 de enero al 21 de junio de 2026; thesohanur, s. f.). Antes de analizar se comprobó que los datos cuadran: las identidades contables de cada orden (subtotal, descuentos y total) se cumplen en el 100 % de los registros y no hay líneas sin orden. Las pruebas usan un nivel de significancia α = 0,05. Como con un millón de órdenes casi cualquier diferencia resulta significativa, cada prueba se acompaña de un tamaño de efecto (V de Cramér, η² o *d* de Cohen) y se interpreta la relevancia práctica, no solo el valor *p*. Los análisis diarios se realizan sobre la serie completa de 160 días completos, excluyendo el primer y el último día por estar incompletos.
 
 La Tabla 11 define los indicadores que se recalculan al cierre de cada fase. El margen global se mide antes de cupones y los cupones se cuentan en el costo de descuentos, para no contarlos dos veces.
 
@@ -425,13 +429,13 @@ Los 20 productos venden prácticamente lo mismo: entre 248.416 y 250.952 unidade
 
 #### Figura 3. Unidades vendidas por producto
 
-![Unidades vendidas por producto](img/figura3_unidades.png)
+![Unidades vendidas por producto](../img/figura3_unidades.png)
 
 *Fuente: Elaboración propia en R con datos de thesohanur (s. f.). Los productos se ordenan por margen a precio de lista; el eje parte de cero.*
 
 #### Figura 4. Margen de contribución por producto, a precio de lista y con descuento de línea
 
-![Margen de contribución por producto](img/figura4_margen.png)
+![Margen de contribución por producto](../img/figura4_margen.png)
 
 *Fuente: Elaboración propia en R con datos de thesohanur (s. f.).*
 
@@ -459,7 +463,7 @@ La correlación entre la tasa de descuento y el margen a precio de lista de los 
 
 #### Figura 5. Tasa de descuento y margen a precio de lista por producto
 
-![Tasa de descuento y margen a precio de lista](img/figura5_dispersion.png)
+![Tasa de descuento y margen a precio de lista](../img/figura5_dispersion.png)
 
 *Fuente: Elaboración propia en R con datos de thesohanur (s. f.). Cada punto es un producto; su tamaño refleja las unidades vendidas.*
 
@@ -513,13 +517,150 @@ Las conclusiones tienen límites. Los datos son sintéticos y cubren una ventana
 
 ## 3.6 Modelización Empresarial
 
-*Pendiente. Esta sección se completa cuando el grupo desarrolle el modelo y el análisis de escenarios (Fases 4 y 5).*
+La modelización convierte los patrones del análisis exploratorio en parámetros y usa esos parámetros para simular políticas de descuento. Se estimó un modelo log-lineal de demanda por mínimos cuadrados ordinarios (MCO), con errores estándar robustos a la heterocedasticidad, y con él se construyeron tres escenarios: la mezcla actual (E1), una reasignación moderada (E2) y la mezcla optimizada que se resolverá por programación lineal en la Fase 5 (E3).
+
+### 3.6.1 Especificación del modelo y datos
+
+<p style="text-align:center; font-style:italic; margin:12pt 0;">ln(Q<sub>it</sub>) = β<sub>0</sub> + β<sub>1</sub>·ln(P<sub>it</sub>) + β<sub>2</sub>·D<sub>it</sub> + β<sub>3</sub>·Desc<sub>it</sub> + δ<sub>1</sub>·Delivery<sub>it</sub> + γ<sub>2</sub>·Gulshan<sub>it</sub> + γ<sub>3</sub>·Banani<sub>it</sub> + u<sub>it</sub></p>
+
+Cada variable se define así:
+
+- Q<sub>it</sub>: unidades vendidas del producto *i* en el día *t*, en la sucursal y el canal correspondientes.
+- P<sub>it</sub>: precio efectivo medio por unidad, es decir, el precio de lista menos el descuento de línea aplicado.
+- D<sub>it</sub>: tasa media de descuento de línea, en puntos porcentuales.
+- Desc<sub>it</sub>: intensidad del cupón de la orden, medida como porcentaje del subtotal.
+- Delivery<sub>it</sub>: variable dicótoma (1 = domicilio, 0 = salón).
+- Gulshan<sub>it</sub> y Banani<sub>it</sub>: dicótomas de sucursal, con Dhanmondi como referencia.
+- u<sub>it</sub>: término de error.
+
+La forma logarítmica en precio y cantidad hace que β<sub>1</sub> se lea directamente como elasticidad; las variables en niveles se interpretan como cambios porcentuales aproximados en la cantidad ante un punto porcentual adicional. La estimación sigue el tratamiento clásico del modelo lineal general y de la corrección de White para varianzas no constantes (Gujarati y Porter, 2010).
+
+El panel tiene 19.440 observaciones y combina 20 productos, 3 sucursales y 2 canales en los 162 días de operación que registra la base transaccional, del 11 de enero al 21 de junio de 2026. Cada celda agrega las unidades del día, el precio efectivo medio, la tasa media de descuento y la intensidad media del cupón. Los escenarios se evalúan sobre el volumen anual del Capítulo I, porque la elasticidad es adimensional y se aplica a esa base sin necesidad de reestimar el modelo.
+
+### 3.6.2 Estimación y bondad de ajuste
+
+La Tabla 16 presenta los coeficientes con errores estándar robustos HC1, necesarios porque la prueba de Breusch-Pagan rechaza la homocedasticidad (apartado 3.6.3).
+
+#### Tabla 16. Modelo MCO de demanda (variable dependiente: logaritmo de las unidades)
+
+| Variable | Coeficiente | Error estándar (HC1) | z | p | Significancia |
+| :--- | :--- | :--- | :--- | :--- | :--- |
+| Constante (β<sub>0</sub>) | 5,9523 | 0,057 | 104,70 | < 0,001 | *** |
+| ln(P) — elasticidad precio (β<sub>1</sub>) | −0,0792 | 0,009 | −8,63 | < 0,001 | *** |
+| Descuento de línea (β<sub>2</sub>) | 0,0006 | 0,0002 | 2,74 | 0,006 | ** |
+| Intensidad del cupón (β<sub>3</sub>) | −0,0113 | 0,001 | −10,18 | < 0,001 | *** |
+| Delivery (δ<sub>1</sub>) | 0,2009 | 0,002 | 105,70 | < 0,001 | *** |
+| Gulshan (γ<sub>2</sub>) | −0,0023 | 0,002 | −0,99 | 0,323 | n.s. |
+| Banani (γ<sub>3</sub>) | −0,0028 | 0,002 | −1,21 | 0,227 | n.s. |
+
+*Fuente: Elaboración propia en Python con statsmodels. MCO con errores robustos HC1; n = 19.440; R² = 0,369; F = 1.896 (p < 0,001). *** p < 0,001; ** p < 0,01; n.s. no significativo.*
+
+El modelo es globalmente significativo y explica el 36,9 % de la variación del logaritmo de las unidades. El ajuste es moderado, como corresponde a un panel agregado sin efectos fijos por producto: el interés no está en predecir cada celda, sino en estimar la dirección y la magnitud de los efectos, y en ese plano los cuatro regresores centrales son significativos.
+
+### 3.6.3 Validación de los supuestos
+
+#### Tabla 17. Diagnóstico de los supuestos clásicos del MCO
+
+| Supuesto | Prueba | Estadístico | p | Decisión |
+| :--- | :--- | :--- | :--- | :--- |
+| Normalidad de los residuos | Jarque-Bera | 710.187,8 | < 0,001 | Se rechaza; la inferencia se sostiene por el teorema central del límite (n = 19.440) |
+| Homocedasticidad | Breusch-Pagan | — | 0,014 | Hay heterocedasticidad; se usan errores robustos HC1 |
+| Autocorrelación | Durbin-Watson | 1,174 | — | Autocorrelación positiva, propia del panel; cubierta por HC1 |
+| Multicolinealidad | Factor de inflación de varianza | Máximo 2,73 | — | Sin problema: todos los VIF son menores que 5 |
+
+*Fuente: Elaboración propia en Python con statsmodels.*
+
+La normalidad se rechaza, como era previsible con 19.440 observaciones y una distribución de ventas con cola a la derecha (asimetría −3,66; curtosis 31,69); el tamaño de la muestra permite apoyarse en la normalidad asintótica. La heterocedasticidad se corrige con HC1 y los coeficientes conservan su significancia: el descuento de línea pasa de p = 0,004 a p = 0,006 y el resto no cambia de decisión. La autocorrelación positiva es esperable en un panel con persistencia diaria y también queda cubierta por la matriz robusta. La multicolinealidad no representa un problema, porque el VIF máximo es 2,73.
+
+### 3.6.4 Interpretación económica
+
+**Precio.** El coeficiente β<sub>1</sub> = −0,0792 (p < 0,001) indica que un aumento de 1 % en el precio reduce la cantidad en 0,08 %. La demanda es inelástica (|β<sub>1</sub>| muy inferior a 1): el cliente de Juice Corner no ajusta su compra al precio, de modo que retirar descuentos no destruye volumen de forma apreciable.
+
+**Descuento de línea.** El coeficiente β<sub>2</sub> = +0,0006 (p = 0,006) indica que un punto porcentual adicional de descuento eleva la cantidad en 0,06 %. El efecto es significativo desde el punto de vista estadístico, pero nulo desde el económico: el descuento de línea subsidia compras que habrían ocurrido igual.
+
+**Cupones.** El coeficiente β<sub>3</sub> = −0,0113 (p < 0,001) indica que un punto más de intensidad del cupón reduce la cantidad en 1,1 %. El signo negativo confirma que los cupones no generan demanda nueva: capturan órdenes que ya iban a comprarse, en línea con los 68 BDT de margen que resta cada orden con cupón.
+
+**Canal.** El coeficiente δ<sub>1</sub> = +0,2009 (p < 0,001) indica que el domicilio vende 22,3 % más unidades que el salón (e<sup>0,2009</sup> − 1). Si se conserva algún incentivo, debe concentrarse en ese canal.
+
+**Sucursales.** Los coeficientes γ<sub>2</sub> = −0,0023 (p = 0,323) y γ<sub>3</sub> = −0,0028 (p = 0,227) no son significativos. Las tres sucursales se comportan igual, lo que confirma el resultado descriptivo y descarta promociones diferenciadas por local.
+
+### 3.6.5 Escenarios de política
+
+El escenario E2 aplica una regla simple sobre el margen unitario a precio de lista: retira el descuento de los productos con margen menor a 50 %, lo reduce a la cuarta parte entre 50 % y 70 %, y a la mitad por encima de 70 %. Además, baja la penetración de cupones de 38,65 % a 20 % de las órdenes, que es el nivel que el propio diseño de los cupones sugiere. La Tabla 18 compara los tres escenarios.
+
+#### Tabla 18. Comparación de escenarios de política de descuentos
+
+| Indicador | E1 — mezcla actual | E2 — reasignación moderada | E3 — optimización (Fase 5) |
+| :--- | :--- | :--- | :--- |
+| Volumen (unidades) | 4.995.377 | 4.995.377 | 4.995.377 |
+| Descuento de línea (BDT) | 52.376.310 | 11.842.878 | Por resolver |
+| Descuento por cupón (BDT) | 26.467.394 | 13.695.935 | Por resolver |
+| Descuento total (BDT) | 78.843.704 | 25.538.812 | ≤ 54.450.427 |
+| Costo de descuentos (% de ventas netas) | 7,24 % | 2,26 % | ≤ 5,00 % |
+| Margen antes de cupón (BDT) | 665.035.834 | 705.569.266 | — |
+| Margen antes de cupón (%) | 61,07 % | 62,47 % | ≥ 62,00 % |
+| Margen después de cupón (BDT) | 638.568.440 | 691.873.331 | — |
+| Margen después de cupón (%) | 58,64 % | 61,25 % | — |
+| Ahorro frente a E1 (BDT) | — | 53.304.892 | — |
+
+*Fuente: Elaboración propia. El costo de descuentos se calcula sobre las ventas netas del descuento de línea de cada escenario; sobre precio de lista, E1 equivale a 6,91 % y E2 a 2,24 %.*
+
+Con esa regla, el costo de descuentos cae de 7,24 % a 2,26 % y el margen después de cupón sube de 58,64 % a 61,25 %. El ahorro es 53,30 millones de BDT, muy superior al mínimo de 24,39 millones que exige la meta de 5 % (78,84 − 54,45 millones), porque E2 retira descuentos completos en lugar de recortarlos hasta el límite.
+
+Conviene separar las dos metas del Capítulo I. El KPI de margen se define antes de cupones: con esa definición, E1 parte de 61,07 % y E2 llega a 62,47 %, de modo que E2 ya cumple el objetivo de 62 % y también el de 5 % de costo. La cifra de 61,25 % de la tabla es la misma realidad medida después de restar el cupón, y es la que se compara con el 58,64 % de E1. E3 no repite ese ejercicio: es el programa lineal que maximiza el margen sujeto a volumen constante, costo de descuentos de 5 % o menos y límites de demanda por producto, y se resolverá en la Fase 5. La meta de 64 % que plantearon las orientaciones de la asignatura exige, además de recortar descuentos, reasignar la mezcla de volumen.
+
+### 3.6.6 Análisis de sensibilidad
+
+La ventaja de E2 no depende de que el volumen se mantenga exacto. La Tabla 19 y la Figura 6 muestran que E2 sigue por encima de E1 mientras la caída del volumen no supere 7,70 %, equivalente a 384.644 unidades.
+
+#### Tabla 19. Sensibilidad del margen de E2 a la caída del volumen
+
+| Caída del volumen | Volumen (unidades) | Margen E2 (BDT) | Margen E1 (BDT) | Diferencia (BDT) | Mejor escenario |
+| :--- | :--- | :--- | :--- | :--- | :--- |
+| 0 % | 4.995.377 | 691.873.332 | 638.568.440 | +53.304.892 | E2 |
+| 1 % | 4.945.423 | 684.954.598 | 638.568.440 | +46.386.158 | E2 |
+| 3 % | 4.845.516 | 671.117.132 | 638.568.440 | +32.548.692 | E2 |
+| 5 % | 4.745.608 | 657.279.665 | 638.568.440 | +18.711.225 | E2 |
+| 7 % | 4.645.701 | 643.442.198 | 638.568.440 | +4.873.758 | E2 |
+| 7,70 % | 4.610.733 | 638.568.440 | 638.568.440 | 0 | Equilibrio |
+| 10 % | 4.495.839 | 622.685.998 | 638.568.440 | −15.882.442 | E1 |
+
+*Fuente: Elaboración propia. El margen de E2 se reduce en la misma proporción que el volumen; E1 se mantiene como referencia.*
+
+#### Figura 6. Umbral de equilibrio del escenario E2
+
+![Umbral de equilibrio del escenario E2](../img/figura6_sensibilidad.png)
+
+*Fuente: Elaboración propia con los parámetros del modelo MCO y los totales de la Tabla 18.*
+
+Con la elasticidad estimada, retirar los descuentos eleva el precio efectivo medio 3,72 %, lo que reduce la cantidad en 0,3 % (0,0792 × 3,72 %). El umbral de 7,70 % es unas veinticinco veces esa caída, de modo que el riesgo de que E2 deje de ser superior a E1 es muy bajo.
+
+### 3.6.7 Contraste con las orientaciones de la asignatura
+
+Las cinco orientaciones de Modelización Empresarial I se contrastaron con los resultados. La Tabla 20 resume el resultado de cada una.
+
+#### Tabla 20. Contraste de las orientaciones de la asignatura con los resultados
+
+| Orientación | Resultado del modelo | Estado |
+| :--- | :--- | :--- |
+| Si la elasticidad es baja en productos de alto margen, se pueden recortar descuentos sin perder volumen | β<sub>1</sub> = −0,0792 (p < 0,001). Blue Lagoon, con 94,2 % de margen, recibe el mayor descuento (11,1 %); retirarlo reduciría sus ventas cerca de 1 %. | Confirmado |
+| Si delivery es significativo, diseñar promociones solo para ese canal | δ<sub>1</sub> = +0,2009 (p < 0,001): el domicilio vende 22,3 % más unidades que el salón. | Confirmado |
+| Si alguna sucursal es significativa, diferenciar promociones por local | γ<sub>2</sub> y γ<sub>3</sub> no significativas (p = 0,323 y p = 0,227). | No aplica |
+| Usar los parámetros estimados para simular escenarios con volumen constante | E1, E2 y E3 construidos; E2 libera 53,30 millones de BDT. | Completado |
+| Reasignar la mezcla para llevar el margen de 61,1 % a 64 % | E2 llega a 62,47 % antes de cupón solo con descuentos; el 64 % exige reasignar mezcla. | Parcial |
+
+*Fuente: Elaboración propia con base en las orientaciones de Modelización Empresarial I y los resultados del modelo.*
+
+### 3.6.8 Límites y cierre de la fase
+
+La modelización deja tres resultados firmes: la demanda es inelástica, los descuentos no mueven el volumen y las sucursales son homogéneas. También deja límites. El panel cubre 162 días de una base sintética, el modelo no incluye efectos fijos por producto ni elasticidades cruzadas, y la estimación agregada supone que el precio de un producto no afecta la demanda de otro. Esas restricciones no cambian la dirección de los coeficientes, pero acotan su precisión. La Fase 5 cierra el circuito con el programa lineal y la política definitiva.
 
 ---
 
 # REFERENCIAS BIBLIOGRÁFICAS
 
 - Bernal, C. A. (2016). *Metodología de la investigación: Administración, economía, humanidades y ciencias sociales* (4.ª ed.). Pearson Educación de Colombia.
+- Gujarati, D. N., & Porter, D. C. (2010). *Econometría* (5.ª ed.). McGraw-Hill.
 - Hernández-Sampieri, R., Fernández-Collado, C., & Baptista-Lucio, P. (2014). *Metodología de la investigación* (6.ª ed.). McGraw-Hill Education.
 - Kimball, R., & Ross, M. (2013). *The Data Warehouse Toolkit: The Definitive Guide to Dimensional Modeling* (3rd ed.). John Wiley & Sons.
 - thesohanur. (s. f.). *Restaurant & Food Delivery Relational Database* [Conjunto de datos]. Kaggle. https://www.kaggle.com/datasets/thesohanur/restaurant-and-food-delivery-relational-database

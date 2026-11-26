@@ -291,7 +291,7 @@
           <div class="p-4 rounded-2xl bg-white/10 backdrop-blur-md border border-white/20 text-xs sm:text-sm text-emerald-50 leading-relaxed mt-2 space-y-1.5">
             <div class="font-bold text-amber-300 uppercase tracking-wider text-[11px]">🎯 Objetivo General SMART de la Investigación:</div>
             <p>
-              Diseñar, mediante un modelo de análisis y simulación de escenarios, una política de descuentos para los <strong>20 productos de Juice Corner BD</strong>, basada en el análisis de <strong>1.000.000 de órdenes transaccionales</strong> (censo semestral de 160 días), que permita en el próximo semestre de operación (<code class="bg-black/30 px-1 py-0.5 rounded font-mono font-bold">S₁</code>):
+              Diseñar, mediante un modelo de análisis y simulación de escenarios, una política de descuentos para los <strong>20 productos de Juice Corner BD</strong>, basada en el análisis de <strong>1.000.000 de órdenes transaccionales</strong> (162 días de operación: 11/01/2026 al 21/06/2026), que permita en el próximo semestre de operación (<code class="bg-black/30 px-1 py-0.5 rounded font-mono font-bold">S₁</code>):
             </p>
             <div class="grid grid-cols-1 sm:grid-cols-3 gap-2 pt-2 text-xs font-semibold text-white">
               <div class="p-2 rounded-xl bg-white/10 flex items-center space-x-2">
@@ -322,7 +322,7 @@
           <div class="text-xl sm:text-2xl font-black font-mono text-emerald-600 dark:text-emerald-400 mt-1">1.000.000</div>
           <p class="text-xs text-slate-500 mt-0.5">Órdenes (Censo 100 %)</p>
           <div class="mt-2 text-[10px] text-slate-400 border-t border-slate-100 dark:border-slate-800 pt-1.5 font-mono">
-            160 días · 3 Sucursales
+            162 Días (S₀) · 3 Sucursales
           </div>
         </div>
 
@@ -2208,6 +2208,9 @@ ORDER BY auditoria_id DESC;`,
       // Close mobile sidebar on selection
       toggleMobileSidebar(false);
       window.scrollTo({ top: 0, behavior: 'smooth' });
+      if (window.history && window.history.replaceState) {
+        window.history.replaceState(null, null, '#' + tabId);
+      }
     }
 
     function toggleMobileSidebar(force) {
@@ -3047,6 +3050,10 @@ ORDER BY auditoria_id DESC;`,
       populateTableList();
       showTableDetails(currentSelectedTable);
       setupQueryPlayground();
+      const hash = window.location.hash.replace('#', '');
+      if (hash && document.getElementById('tab-' + hash)) {
+        switchTab(hash);
+      }
     });
   </script>
 </body>

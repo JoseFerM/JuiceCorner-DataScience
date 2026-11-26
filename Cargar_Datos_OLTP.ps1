@@ -26,10 +26,11 @@ Write-Host "====================================================================
 # 1. DETECTAR RUTA DE ARCHIVOS CSV (100% PORTABLE CON RUTA RELATIVA)
 $candidateFolders = @(
     $DatasetFolder,
-    (Join-Path $PSScriptRoot "dataset"),
     $PSScriptRoot,
-    "C:\Users\Agents\Documents\3.1proyecto\dataset\",
-    "C:\Users\T001-DOC\Documents\Adobe\"
+    (Join-Path $PSScriptRoot "dataset"),
+    "C:\Users\T001-DOC\Documents\Adobe\dataset\",
+    "C:\Users\T001-DOC\Documents\Adobe\",
+    "C:\Users\Agents\Documents\3.1proyecto\dataset\"
 )
 
 $foundFolder = $null
@@ -171,28 +172,8 @@ function To-Bool($val) { if ($val -eq "True" -or $val -eq "1") { return $true } 
 function To-Date($val) { if ([string]::IsNullOrWhiteSpace($val)) { return [DBNull]::Value } else { return [datetime]$val } }
 function To-Str($val) { if ([string]::IsNullOrWhiteSpace($val)) { return [DBNull]::Value } else { return [string]$val } }
 
-# =========================================================================
-# ESCALAMIENTO TEMPORAL: Proyección de 161 días a 1 Año Móvil Completo (365 días)
-# Justificación: Requerimiento metodológico de 1 año para análisis de estacionalidad
-# Rango Origen Kaggle:  11/01/2026 al 21/06/2026 (161 días)
-# Rango Destino Anual:  22/06/2025 al 21/06/2026 (365 días / 12 meses continuos)
-# Preserva: Hora, minuto, segundo y duraciones operativas intradiarias exactas.
-# =========================================================================
-$origStart   = [datetime]"2026-01-11"
-$targetStart = [datetime]"2025-06-22"
-$ratio       = 364.0 / 161.0
-
-function Scale-Date($val) {
-    if ([string]::IsNullOrWhiteSpace($val)) { return [DBNull]::Value }
-    try {
-        $dt = [datetime]$val
-        $dayOffset = ($dt.Date - $origStart).TotalDays
-        $newDayOffset = [Math]::Round($dayOffset * $ratio)
-        return $targetStart.AddDays($newDayOffset).Add($dt.TimeOfDay)
-    } catch {
-        return [DBNull]::Value
-    }
-}
+# Las fechas se cargan directamente del dataset original de Kaggle (11/01/2026 al 21/06/2026, 162 dias).
+# No se aplica escalamiento temporal artificial.
 
 
 # =========================================================================
@@ -266,7 +247,7 @@ Import-FastCsv "customers.csv" "dbo.customers" {
     $r["referral_code"] = To-Str $f[$idx["referral_code"]]
     $r["referred_by"] = To-Int $f[$idx["referred_by"]]
     $r["loyalty_balance"] = To-Dec $f[$idx["loyalty_balance"]]
-    $r["created_at"] = Scale-Date $f[$idx["created_at"]]
+    $r["created_at"] = To-Date $f[$idx["created_at"]]
 }
 
 # 7. customer_addresses (6.627 filas)
@@ -295,8 +276,8 @@ Import-FastCsv "promotions.csv" "dbo.promotions" {
     $r["id"] = To-Int $f[$idx["id"]]
     $r["name"] = To-Str $f[$idx["title"]]
     $r["discount_percentage"] = To-Dec $f[$idx["discount_value"]]
-    $r["start_date"] = Scale-Date $f[$idx["start_date"]]
-    $r["end_date"] = Scale-Date $f[$idx["end_date"]]
+    $r["start_date"] = To-Date $f[$idx["start_date"]]
+    $r["end_date"] = To-Date $f[$idx["end_date"]]
     $r["is_active"] = To-Bool $f[$idx["is_active"]]
 }
 
@@ -326,8 +307,8 @@ Import-FastCsv "orders.csv" "dbo.orders" {
     $r["delivery_fee"] = To-Dec $f[$idx["delivery_fee"]]
     $r["tax"] = To-Dec $f[$idx["tax"]]
     $r["total_amount"] = To-Dec $f[$idx["total_amount"]]
-    $r["placed_at"] = Scale-Date $f[$idx["placed_at"]]
-    $r["completed_at"] = Scale-Date $f[$idx["completed_at"]]
+    $r["placed_at"] = To-Date $f[$idx["placed_at"]]
+    $r["completed_at"] = To-Date $f[$idx["completed_at"]]
 }
 
 # 12. order_items (2.500.000 filas)
@@ -350,7 +331,7 @@ Import-FastCsv "payments.csv" "dbo.payments" {
     $r["method"] = To-Str $f[$idx["method"]]
     $r["amount"] = To-Dec $f[$idx["amount"]]
     $r["status"] = To-Str $f[$idx["status"]]
-    $r["paid_at"] = Scale-Date $f[$idx["paid_at"]]
+    $r["paid_at"] = To-Date $f[$idx["paid_at"]]
 }
 
 # 14. deliveries (700.000 filas)
@@ -359,8 +340,8 @@ Import-FastCsv "deliveries.csv" "dbo.deliveries" {
     $r["id"] = To-Long $f[$idx["id"]]
     $r["order_id"] = To-Long $f[$idx["order_id"]]
     $r["delivery_person_id"] = To-Int $f[$idx["delivery_person_id"]]
-    $r["assigned_at"] = Scale-Date $f[$idx["assigned_at"]]
-    $r["delivered_at"] = Scale-Date $f[$idx["delivered_at"]]
+    $r["assigned_at"] = To-Date $f[$idx["assigned_at"]]
+    $r["delivered_at"] = To-Date $f[$idx["delivered_at"]]
     $r["status"] = To-Str $f[$idx["status"]]
 }
 
@@ -374,7 +355,7 @@ Import-FastCsv "reviews.csv" "dbo.reviews" {
     $r["rating"] = [byte]$f[$idx["rating"]]
     $r["comment"] = To-Str $f[$idx["comment"]]
     $r["is_approved"] = To-Bool $f[$idx["is_approved"]]
-    $r["created_at"] = Scale-Date $f[$idx["created_at"]]
+    $r["created_at"] = To-Date $f[$idx["created_at"]]
 }
 
 # 16. ingredients & product_ingredients
