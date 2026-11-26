@@ -43,7 +43,7 @@ El análisis cuantitativo de los registros históricos pone de manifiesto cuatro
 | **Participación de Órdenes con Cupón** | **38,65 %** (386.495 órdenes) | Alta penetración promocional sin segmentación de canasta |
 | **Pérdida de Margen por Orden con Cupón** | **-68 BDT** por pedido | Reducción de 653 BDT a 615 BDT por transacción |
 | **Correlación Descuento vs. Margen ($r$)** | **$r = -0,19$** ($p = 0,415$) | Desalineación estructural: no existe correlación positiva |
-| **Pruebas de Variación de Demanda** | ANOVA: $p = 0,819$ \| Kruskal-Wallis: $p = 0,908$ | Demanda homogénea anual; ningún producto justifica trato preferencial |
+| **Pruebas de Variación de Demanda** | ANOVA: $p = 0,819$ \| Kruskal-Wallis: $p = 0,908$ | Demanda homogénea en el período; ningún producto justifica trato preferencial |
 
 ### 1.3 Consecuencias de la Inacción (Pronóstico del Problema)
 De mantenerse el esquema actual de descuentos para el ciclo venidero:
@@ -81,14 +81,14 @@ De mantenerse el esquema actual de descuentos para el ciclo venidero:
 ## 2. FORMULACIÓN DEL PROBLEMA
 
 ### 2.1 Pregunta General de Investigación
-> **¿Cómo puede un modelo de análisis y simulación de escenarios reducir la pérdida de margen ocasionada por el otorgamiento de descuentos desalineados con la rentabilidad de los 20 productos de Juice Corner BD, manteniendo constante el volumen de unidades vendidas, los precios de lista y la composición de la carta, durante su próximo semestre de operación en Dhaka, Bangladesh, a partir del análisis del período de 1 año de operación observado?**
+> **¿Cómo puede un modelo de análisis y simulación de escenarios reducir la pérdida de margen ocasionada por el otorgamiento de descuentos desalineados con la rentabilidad de los 20 productos de Juice Corner BD, manteniendo constante el volumen de unidades vendidas, los precios de lista y la composición de la carta, durante su próximo semestre de operación ($S_1$) en Dhaka, Bangladesh, a partir del análisis del semestre base de 162 días observado ($S_0$)?**
 
 ---
 
 ## 3. OBJETIVOS DE LA INVESTIGACIÓN
 
 ### 3.1 Objetivo General
-**Diseñar, mediante un modelo de análisis y simulación de escenarios, una política de descuentos para los 20 productos de Juice Corner BD, basada en el análisis del período de 1 año de operación comercial (1.000.000 de órdenes transaccionales), que permita, en el próximo semestre de operación de la empresa, alcanzar las nuevas metas de reducir la proporción de descuentos otorgados del 7,24 % al 5,00 % o menos del subtotal neto y aumentar el margen de contribución global del 61,1 % al 62,0 % o más, manteniendo constante el volumen de unidades vendidas, los precios de lista y la composición de la carta.**
+**Diseñar, mediante un modelo de análisis y simulación de escenarios, una política de descuentos para los 20 productos de Juice Corner BD, basada en el análisis del semestre base de 162 días de operación comercial (1.000.000 de órdenes transaccionales, $S_0$), que permita, en el próximo semestre de operación de la empresa ($S_1$), alcanzar las nuevas metas de reducir la proporción de descuentos otorgados del 7,24 % al 5,00 % o menos del subtotal neto y aumentar el margen de contribución global del 61,1 % al 62,0 % o más, manteniendo constante el volumen de unidades vendidas, los precios de lista y la composición de la carta.**
 
 ### 3.2 Objetivos Específicos
 1. **OE1. Diagnosticar** la estructura histórica de descuentos (de línea y por cupones) y el margen de contribución individual de los 20 productos a partir de las 1.000.000 de órdenes correspondientes al período de 162 días analizado (11/01/2026 al 21/06/2026).
@@ -108,11 +108,11 @@ De mantenerse el esquema actual de descuentos para el ciclo venidero:
 
 | Objetivo | S (Específico) | M (Medible) | A (Alcanzable) | R (Relevante) | T (Temporal) |
 | :--- | :--- | :--- | :--- | :--- | :--- |
-| **General** | Política integral de descuentos alineada al margen por producto. | Costo de descuento $\le 5,00\%$; margen global $\ge 62,00\%$; correlación $r > 0$. | Demanda plana anual comprobada y volumen constante; ajuste de 0,9 pp de margen. | Corrige la principal causa de fuga de rentabilidad operativa. | Próximo semestre de operación de la empresa (S1). |
-| **OE1** | Diagnóstico de línea base transaccional y rentabilidad. | 1.000.000 órdenes analizadas; 7,24 % costo de descuento; 61,1 % margen. | Datos transaccionales completos disponibles y validados. | Base empírica indispensable de comparación histórica. | Período analizado de 1 año de operación. |
-| **OE2** | Data Warehouse con esquema dimensional en estrella. | 2.498.660 hechos consolidados; subtotal 1.089.008.540 BDT; 0 descuadres. | Infraestructura SQL Server y procesos ETL optimizados. | Garantiza veracidad y trazabilidad única de la información. | Período analizado de 1 año de operación. |
-| **OE3** | Contraste inferencial de demanda y política actual. | Pruebas paramétricas y no paramétricas al 95 % de confianza ($\alpha=0,05$). | Scripts automatizados ejecutados en lenguaje R. | Demuestra la arbitrariedad empírica del modelo comercial a lo largo del año. | Período analizado de 1 año de operación. |
-| **OE4** | Modelación de elasticidad y caída de volumen de equilibrio. | Coeficientes de sensibilidad e intervalo de tolerancia de caída de volumen. | Métodos estadísticos y programación matemática formal. | Calibra el riesgo comercial para la toma de decisiones del nuevo semestre. | Parámetros del año analizado proyectados al próximo semestre. |
+| **General** | Política integral de descuentos alineada al margen por producto. | Costo de descuento $\le 5,00\%$; margen global $\ge 62,00\%$; correlación $r > 0$. | Demanda plana comprobada y volumen constante; ajuste de 0,9 pp de margen. | Corrige la principal causa de fuga de rentabilidad operativa. | Próximo semestre de operación de la empresa ($S_1$). |
+| **OE1** | Diagnóstico de línea base transaccional y rentabilidad. | 1.000.000 órdenes analizadas; 7,24 % costo de descuento; 61,1 % margen. | Datos transaccionales completos disponibles y validados. | Base empírica indispensable de comparación histórica. | Semestre base observado ($S_0$: 162 días). |
+| **OE2** | Data Warehouse con esquema dimensional en estrella. | 2.498.660 hechos consolidados; subtotal 1.089.008.540 BDT; 0 descuadres. | Infraestructura SQL Server y procesos ETL optimizados. | Garantiza veracidad y trazabilidad única de la información. | Semestre base observado ($S_0$: 162 días). |
+| **OE3** | Contraste inferencial de demanda y política actual. | Pruebas paramétricas y no paramétricas al 95 % de confianza ($\alpha=0,05$). | Scripts automatizados ejecutados en lenguaje R. | Demuestra la arbitrariedad empírica del modelo comercial en el período. | Semestre base observado ($S_0$: 162 días). |
+| **OE4** | Modelación de elasticidad y caída de volumen de equilibrio. | Coeficientes de sensibilidad e intervalo de tolerancia de caída de volumen. | Métodos estadísticos y programación matemática formal. | Calibra el riesgo comercial para la toma de decisiones del nuevo semestre. | Parámetros de $S_0$ proyectados al próximo semestre ($S_1$). |
 | **OE5** | Simulación de escenarios comerciales proyectados. | Proyección cuantitativa de BDT, porcentaje de descuento y margen en 3 modelos. | Modelo de programación lineal bajo volumen constante. | Permite seleccionar el escenario óptimo con rigor científico. | Próximo semestre de operación (S1). |
 | **OE6** | Formulación de la política definitiva de descuentos. | Costo final $\le 5,00\%$ y margen $\ge 62,00\%$ demostrados en simulación. | Ahorro semestral de hasta 24,39 millones de BDT. | Constituye la solución gerencial definitiva al problema central. | Próximo semestre de operación (S1). |
 
@@ -135,10 +135,10 @@ En el diseño metodológico, **se analizó el período de 162 días de operació
 ## 4. JUSTIFICACIÓN Y DELIMITACIÓN DE LA INVESTIGACIÓN
 
 ### 4.1 Justificación Teórica y Metodológica
-Desde la perspectiva teórica, la fijación y otorgamiento de descuentos comerciales no debe concebirse como un recurso promocional indiscriminado, sino como una herramienta de optimización microeconómica supeditada al margen de contribución marginal. Metodológicamente, la investigación aporta un marco riguroso de analítica prescriptiva que enlaza la minería de datos transaccionales de un año completo (Data Warehouse y ETL), la contrastación estadística inferencial y la simulación matemática de escenarios bajo condiciones operativas reales.
+Desde la perspectiva teórica, la fijación y otorgamiento de descuentos comerciales no debe concebirse como un recurso promocional indiscriminado, sino como una herramienta de optimización microeconómica supeditada al margen de contribución marginal. Metodológicamente, la investigación aporta un marco riguroso de analítica prescriptiva que enlaza la minería de datos transaccionales del período base de 162 días (Data Warehouse y ETL), la contrastación estadística inferencial y la simulación matemática de escenarios bajo condiciones operativas reales.
 
 ### 4.2 Justificación Práctica y Económica
-La investigación responde a una necesidad crítica de gestión financiera en Juice Corner BD. El análisis del ciclo anual permite fijar metas precisas para el próximo semestre que recuperan al menos 24,39 millones de BDT en margen operativo, sin recurrir a incrementos en los precios de venta al público ni requerir inversiones en infraestructura de capital.
+La investigación responde a una necesidad crítica de gestión financiera en Juice Corner BD. El análisis del semestre base ($S_0$) permite fijar metas precisas para el próximo semestre ($S_1$) que recuperan al menos 24,39 millones de BDT en margen operativo, sin recurrir a incrementos en los precios de venta al público ni requerir inversiones en infraestructura de capital.
 
 ### 4.3 Delimitación de la Investigación
 - **Delimitación Espacial:** Exclusivamente circunscrita a las tres sucursales operativas de la cadena Juice Corner BD en la ciudad de Dhaka, Bangladesh.
@@ -150,20 +150,20 @@ La investigación responde a una necesidad crítica de gestión financiera en Ju
 ## 5. MARCO METODOLÓGICO
 
 ### 5.1 Enfoque Metodológico: Cuantitativo
-La investigación adopta un enfoque eminentemente **cuantitativo**. Se basa en un razonamiento formal deductivo que parte de los principios económicos de maximización de margen para contrastarlos frente al comportamiento empírico de un registro transaccional masivo de 1.000.000 de órdenes correspondientes al año analizado. La recolección y procesamiento se efectúa sobre datos numéricos estructurados, aplicando pruebas estadísticas inferenciales con un nivel de significancia prefijado de $\alpha = 0,05$.
+La investigación adopta un enfoque eminentemente **cuantitativo**. Se basa en un razonamiento formal deductivo que parte de los principios económicos de maximización de margen para contrastarlos frente al comportamiento empírico de un registro transaccional masivo de 1.000.000 de órdenes correspondientes al semestre base analizado ($S_0$: 162 días). La recolección y procesamiento se efectúa sobre datos numéricos estructurados, aplicando pruebas estadísticas inferenciales con un nivel de significancia prefijado de $\alpha = 0,05$.
 
 ### 5.2 Diseño de la Investigación: No Experimental y Transversal Analítico
-- **No Experimental:** Las variables operativas (precios de venta, costos de insumos, frecuencias de compra y descuentos) se analizan en su condición natural histórica registrada durante el año de estudio, sin manipulación deliberada sobre el mercado físico. Los efectos de las nuevas directrices se evalúan a través de modelos computacionales de simulación.
-- **Transversal Analítico:** Se analiza la serie histórica anual de forma consolidada por producto, canal y sucursal, evaluando el período de 1 año para proyectar y alcanzar con certidumbre las nuevas metas del próximo semestre de operación.
+- **No Experimental:** Las variables operativas (precios de venta, costos de insumos, frecuencias de compra y descuentos) se analizan en su condición natural histórica registrada durante el período de estudio ($S_0$), sin manipulación deliberada sobre el mercado físico. Los efectos de las nuevas directrices se evalúan a través de modelos computacionales de simulación.
+- **Transversal Analítico:** Se analiza la serie histórica de 162 días de forma consolidada por producto, canal y sucursal, evaluando el semestre base ($S_0$) para proyectar y alcanzar con certidumbre las nuevas metas del próximo semestre de operación ($S_1$).
 
 ### 5.3 Tipo y Alcance de la Investigación: Correlacional y Explicativo
-- **Alcance Correlacional:** Evalúa el grado de asociación cuantitativa entre el porcentaje de descuento asignado a cada ítem y su respectivo margen de contribución a lo largo del año analizado, midiendo la dispersión y el sentido del coeficiente de Pearson y Spearman.
+- **Alcance Correlacional:** Evalúa el grado de asociación cuantitativa entre el porcentaje de descuento asignado a cada ítem y su respectivo margen de contribución a lo largo del período analizado ($S_0$), midiendo la dispersión y el sentido del coeficiente de Pearson y Spearman.
 - **Alcance Explicativo:** Determina las causas estructurales que originan la erosión de beneficios (descuentos desalineados, canibalización por cupones ciegos y demanda homogénea no reactiva) y cuantifica formalmente el impacto marginal que la nueva política ejercerá para alcanzar las metas del próximo semestre.
 
 ### 5.4 Sistema de Hipótesis
 
 #### Hipótesis de Investigación ($H_i$)
-> **$H_i$:** El diseño y aplicación de una política de descuentos comerciales alineada con el margen de contribución por producto, sustentada en el análisis del período de 1 año de operación, permite reducir el costo total de descuentos al 5,00 % o menos del subtotal neto y elevar el margen de contribución global de Juice Corner BD al 62,00 % o más, manteniendo constantes el volumen de unidades vendidas, los precios de lista y la carta comercial durante el próximo semestre de operación.
+> **$H_i$:** El diseño y aplicación de una política de descuentos comerciales alineada con el margen de contribución por producto, sustentada en el análisis del semestre base de 162 días ($S_0$), permite reducir el costo total de descuentos al 5,00 % o menos del subtotal neto y elevar el margen de contribución global de Juice Corner BD al 62,00 % o más, manteniendo constantes el volumen de unidades vendidas, los precios de lista y la carta comercial durante el próximo semestre de operación ($S_1$).
 
 #### Hipótesis Nula ($H_0$)
 > **$H_0$:** Ninguna política de descuentos comerciales estructurada a partir del margen de contribución permite reducir el costo de descuentos al 5,00 % o menos y elevar simultáneamente el margen global al 62,00 % o más bajo condiciones de volumen y carta constantes en el próximo semestre.
@@ -171,15 +171,15 @@ La investigación adopta un enfoque eminentemente **cuantitativo**. Se basa en u
 #### Hipótesis Estadísticas Secundarias
 1. **Correlación Descuento - Margen:**
    - $H_{0,1}: \rho = 0$ (No existe correlación lineal entre la tasa de descuento de línea y el margen de contribución del producto).
-   - *Resultado empírico:* $r = -0,19$ ($p = 0,415$). No se rechaza $H_0$; se corrobora que la política del año analizado no premia la rentabilidad.
+   - *Resultado empírico:* $r = -0,19$ ($p = 0,415$). No se rechaza $H_0$; se corrobora que la política del período analizado ($S_0$) no premia la rentabilidad.
 2. **Homogeneidad de Demanda entre Productos:**
    - $H_{0,2}: \mu_1 = \mu_2 = \dots = \mu_{20}$ (El volumen de unidades vendidas es idéntico entre los 20 productos de la carta).
-   - *Resultado empírico:* ANOVA $F = 0,695, p = 0,819$; Kruskal-Wallis $\chi^2 = 10,75, p = 0,908$. No se rechaza $H_0$; la demanda anual es uniforme y no sustenta descuentos diferenciales por rotación.
+   - *Resultado empírico:* ANOVA $F = 0,695, p = 0,819$; Kruskal-Wallis $\chi^2 = 10,75, p = 0,908$. No se rechaza $H_0$; la demanda es uniforme y no sustenta descuentos diferenciales por rotación.
 
 ### 5.5 Métodos, Técnicas e Instrumentos de Investigación
 - **Métodos Teóricos:**
-  - *Método Hipotético-Deductivo:* Planteamiento de conjeturas de rentabilidad y contrastación cuantitativa con la evidencia empírica del año analizado.
-  - *Método Analítico-Sintético:* Descomposición de la transaccionalidad anual por niveles (producto, cupón, canal, sucursal) y posterior síntesis en un modelo normativo semestral.
+  - *Método Hipotético-Deductivo:* Planteamiento de conjeturas de rentabilidad y contrastación cuantitativa con la evidencia empírica del semestre base analizado ($S_0$).
+  - *Método Analítico-Sintético:* Descomposición de la transaccionalidad por niveles (producto, cupón, canal, sucursal) y posterior síntesis en un modelo normativo semestral.
 - **Técnicas y Herramientas Tecnológicas:**
   - *Extracción, Transformación y Carga (ETL):* Procedimientos automatizados en scripts PowerShell (.NET `SqlBulkCopy`) y paquetes SSIS para ingesta masiva de datos.
   - *Almacenamiento y Modelado Dimensional:* Microsoft SQL Server, estructurado bajo arquitectura de Data Warehouse dimensional (esquema en estrella).
@@ -187,8 +187,8 @@ La investigación adopta un enfoque eminentemente **cuantitativo**. Se basa en u
   - *Optimización y Simulación:* Modelos de programación lineal determinista para la calibración de metas del próximo semestre.
 
 ### 5.6 Población, Censo y Fuentes de Información
-- **Población Objeto de Estudio:** Finita y exhaustiva, constituida por la totalidad del registro transaccional del año analizado: **1.000.000 de órdenes de compra**, **2.498.660 líneas de pedido**, **20 artículos de menú**, **3 sucursales comerciales** y **6 cupones promocionales**.
-- **Criterio Muestral:** Censo poblacional completo (100 % de los registros procesados), garantizando la total representatividad de la dinámica comercial anual.
+- **Población Objeto de Estudio:** Finita y exhaustiva, constituida por la totalidad del registro transaccional del semestre base ($S_0$: 162 días): **1.000.000 de órdenes de compra**, **2.498.660 líneas de pedido**, **20 artículos de menú**, **3 sucursales comerciales** y **6 cupones promocionales**.
+- **Criterio Muestral:** Censo poblacional completo (100 % de los registros procesados), garantizando la total representatividad de la dinámica comercial del período.
 - **Fuentes de Información:** Base de datos transaccional secundaria de restaurante y delivery (bases validadas `JuiceCorner_OLTP` y `JuiceCorner_DW`).
 
 ---
